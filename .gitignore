@@ -5,4 +5,5 @@ nbproject
 *~
 *.pid
 tmp/*
+log/*
 
