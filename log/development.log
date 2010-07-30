@@ -8526,3 +8526,162 @@ Started GET "/users" for 127.0.0.1 at Fri Jul 30 01:55:21 -0300 2010
 Rendered users/_sidebar.html.haml (1.4ms)
 Rendered users/index.html.haml within layouts/application (10.2ms)
 Completed 200 OK in 28ms (Views: 13.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pedromtavares" for 127.0.0.1 at Fri Jul 30 01:58:31 -0300 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"pedromtavares"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`cached_slug` = 'pedromtavares') LIMIT 1
+Rendered users/_sidebar.html.haml (1.4ms)
+Rendered users/show.html.haml within layouts/application (10.2ms)
+Completed 200 OK in 28ms (Views: 13.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pedromtavares/edit" for 127.0.0.1 at Fri Jul 30 01:58:33 -0300 2010
+  Processing by Devise::RegistrationsController#edit as HTML
+  Parameters: {"id"=>"pedromtavares"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_registrations_edit_html_haml___791329698_93302950_0 at /home/pedromtavares/Projects/universitas/app/views/devise/registrations/edit.html.haml:9)
+Rendered devise/registrations/edit.html.haml within layouts/application (15.6ms)
+Completed 200 OK in 108ms (Views: 19.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at Fri Jul 30 01:58:46 -0300 2010
+  Processing by Devise::RegistrationsController#update as HTML
+  Parameters: {"authenticity_token"=>"4D3mGhUGPQOeTucPURxfPH9lphQnyjnIbFVSUa7zlYM=", "_snowman"=>"\342\230\203", "user"=>{"name"=>"Pedro Mateus Tavares", "current_password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"pedromtavaress", "email"=>"pedromateustavares@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_registrations_edit_html_haml___791329698_92170820_0 at /home/pedromtavares/Projects/universitas/app/views/devise/registrations/edit.html.haml:9)
+Rendered devise/registrations/edit.html.haml within layouts/application (15.6ms)
+Completed 200 OK in 134ms (Views: 18.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/users" for 127.0.0.1 at Fri Jul 30 01:58:54 -0300 2010
+  Processing by Devise::RegistrationsController#update as HTML
+  Parameters: {"authenticity_token"=>"4D3mGhUGPQOeTucPURxfPH9lphQnyjnIbFVSUa7zlYM=", "_snowman"=>"\342\230\203", "user"=>{"name"=>"Pedro Mateus Tavares", "current_password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"pedromtavaress", "email"=>"pedromateustavares@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.`id` FROM `users` WHERE (LOWER(`users`.`email`) = LOWER('pedromateustavares@gmail.com')) AND (`users`.id <> 1) LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.`id` FROM `users` WHERE (`users`.`login` = BINARY 'pedromtavaress') AND (`users`.id <> 1) LIMIT 1[0m
+  [1m[35mSlug Load (0.1ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE `users` SET `login` = 'pedromtavaress', `updated_at` = '2010-07-30 04:58:54' WHERE (`users`.`id` = 1)[0m
+  [1m[35mSlug Load (0.4ms)[0m  SELECT `slugs`.* FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') AND (`slugs`.`name` = 'pedromtavaress') AND (`slugs`.`scope` IS NULL) ORDER BY id DESC
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) AS count_id FROM `slugs` WHERE (`slugs`.`scope` IS NULL) AND (`slugs`.`name` = 'pedromtavaress') AND (`slugs`.`sluggable_type` = 'User')[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `slugs` (`created_at`, `name`, `scope`, `sequence`, `sluggable_id`, `sluggable_type`) VALUES ('2010-07-30 04:58:54', 'pedromtavaress', NULL, 1, 1, 'User')
+  [1m[36mSlug Load (0.4ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1[0m
+  [1m[35mSlug Load (0.3ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.`id` FROM `users` WHERE (LOWER(`users`.`email`) = LOWER('pedromateustavares@gmail.com')) AND (`users`.id <> 1) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.`id` FROM `users` WHERE (`users`.`login` = BINARY 'pedromtavaress') AND (`users`.id <> 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE `users` SET `cached_slug` = 'pedromtavaress', `login` = 'pedromtavaress', `updated_at` = '2010-07-30 04:58:54' WHERE (`users`.`id` = 1)[0m
+  [1m[35mSlug Load (0.3ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC
+  [1m[36mSQL (57.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 263ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 01:58:54 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/_sidebar.html.haml (1.5ms)
+Rendered users/index.html.haml within layouts/application (10.1ms)
+Completed 200 OK in 28ms (Views: 13.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pedromtavaress" for 127.0.0.1 at Fri Jul 30 01:58:57 -0300 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"pedromtavaress"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`cached_slug` = 'pedromtavaress') LIMIT 1[0m
+Rendered users/_sidebar.html.haml (1.4ms)
+Rendered users/show.html.haml within layouts/application (10.5ms)
+Completed 200 OK in 28ms (Views: 14.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pedromtavaress/edit" for 127.0.0.1 at Fri Jul 30 01:58:59 -0300 2010
+  Processing by Devise::RegistrationsController#edit as HTML
+  Parameters: {"id"=>"pedromtavaress"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_registrations_edit_html_haml___791329698_92834110_0 at /home/pedromtavares/Projects/universitas/app/views/devise/registrations/edit.html.haml:9)
+Rendered devise/registrations/edit.html.haml within layouts/application (14.9ms)
+Completed 200 OK in 45ms (Views: 17.7ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at Fri Jul 30 01:59:05 -0300 2010
+  Processing by Devise::RegistrationsController#update as HTML
+  Parameters: {"authenticity_token"=>"4D3mGhUGPQOeTucPURxfPH9lphQnyjnIbFVSUa7zlYM=", "_snowman"=>"\342\230\203", "user"=>{"name"=>"Pedro Mateus Tavares", "current_password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"pedromtavares", "email"=>"pedromateustavares@gmail.com"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.`id` FROM `users` WHERE (LOWER(`users`.`email`) = LOWER('pedromateustavares@gmail.com')) AND (`users`.id <> 1) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.`id` FROM `users` WHERE (`users`.`login` = BINARY 'pedromtavares') AND (`users`.id <> 1) LIMIT 1
+  [1m[36mSlug Load (0.3ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `users` SET `login` = 'pedromtavares', `updated_at` = '2010-07-30 04:59:05' WHERE (`users`.`id` = 1)
+  [1m[36mSlug Load (0.4ms)[0m  [1mSELECT `slugs`.* FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') AND (`slugs`.`name` = 'pedromtavares') AND (`slugs`.`scope` IS NULL) ORDER BY id DESC[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `slugs` WHERE (`slugs`.`id` = 1)
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT COUNT(*) AS count_id FROM `slugs` WHERE (`slugs`.`scope` IS NULL) AND (`slugs`.`name` = 'pedromtavares') AND (`slugs`.`sluggable_type` = 'User')[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `slugs` (`created_at`, `name`, `scope`, `sequence`, `sluggable_id`, `sluggable_type`) VALUES ('2010-07-30 04:59:05', 'pedromtavares', NULL, 1, 1, 'User')
+  [1m[36mSlug Load (0.3ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1[0m
+  [1m[35mSlug Load (0.3ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.`id` FROM `users` WHERE (LOWER(`users`.`email`) = LOWER('pedromateustavares@gmail.com')) AND (`users`.id <> 1) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.`id` FROM `users` WHERE (`users`.`login` = BINARY 'pedromtavares') AND (`users`.id <> 1) LIMIT 1
+  [1m[36mSQL (1.9ms)[0m  [1mUPDATE `users` SET `cached_slug` = 'pedromtavares', `login` = 'pedromtavares', `updated_at` = '2010-07-30 04:59:05' WHERE (`users`.`id` = 1)[0m
+  [1m[35mSlug Load (0.8ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC
+  [1m[36mSQL (58.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 266ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 01:59:05 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/_sidebar.html.haml (1.4ms)
+Rendered users/index.html.haml within layouts/application (10.6ms)
+Completed 200 OK in 29ms (Views: 14.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at Fri Jul 30 01:59:12 -0300 2010
+  Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 26ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 01:59:12 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 01:59:13 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_92709100_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.2ms)
+Completed 200 OK in 35ms (Views: 15.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in.user" for 127.0.0.1 at Fri Jul 30 01:59:16 -0300 2010
+  Processing by Devise::SessionsController#create as 
+  Parameters: {"authenticity_token"=>"4D3mGhUGPQOeTucPURxfPH9lphQnyjnIbFVSUa7zlYM=", "_snowman"=>"\342\230\203", "user"=>{"remember_me"=>"0", "password"=>"[FILTERED]", "login"=>"pedromtavares"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`login` = 'pedromtavares') LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSlug Load (0.4ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2010-07-30 04:59:16', `sign_in_count` = 2, `updated_at` = '2010-07-30 04:59:16' WHERE (`users`.`id` = 1)
+  [1m[36mSlug Load (0.4ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC[0m
+  [1m[35mSQL (47.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 173ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 01:59:16 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users`
+Rendered users/_sidebar.html.haml (1.5ms)
+Rendered users/index.html.haml within layouts/application (10.6ms)
+Completed 200 OK in 28ms (Views: 14.1ms | ActiveRecord: 0.8ms)
