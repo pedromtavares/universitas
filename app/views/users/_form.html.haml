@@ -1,0 +1,16 @@
+
+.group
+  = f.label :name, t("activerecord.attributes.user.name", :default => "Name"), :class => :label
+  = f.text_field :name, :class => 'text_field'
+
+.group
+  = f.label :name, t("activerecord.attributes.user.name", :default => "Name"), :class => :label
+  = f.text_field :name, :class => 'text_field'
+  
+  
+        
+.group.navform.wat-cf
+  %button.button{:type => 'submit'}
+    = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") 
+    = t("web-app-theme.save", :default => "Save")
+  = link_to "#{t("web-app-theme.cancel", :default => "Cancel")}", users_path, :class => "button"

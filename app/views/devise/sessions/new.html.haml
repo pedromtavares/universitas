@@ -1,0 +1,25 @@
+#box
+  .block#block-login
+    %h2 Login
+    .content.login
+      - form_for(resource, :as => resource_name, :url => user_session_path(resource_name)) do |f|       
+        .group.wat-cf
+          .left= f.label :login, {},  :class => 'label right'
+          .right= f.text_field :login, :class => 'text_field'
+        
+        .group.wat-cf
+          .left= f.label :password, {}, :class => 'label right'
+          .right= f.password_field :password, :class => 'text_field'
+          
+        - if devise_mapping.rememberable?
+          = f.check_box :remember_me
+          = f.label :remember_me
+        %br
+          %br        
+        .group.navform.wat-cf
+          .right
+            %button.button{:type => 'submit'}
+              = image_tag("web-app-theme/key.png", :alt => "Login") 
+              Login    
+        %br
+        =render :partial => "devise/shared/links"    
