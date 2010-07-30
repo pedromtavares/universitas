@@ -6,7 +6,7 @@ gem 'rails', '3.0.0.beta4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
-gem 'mongrel'
+#gem 'mongrel'
 gem "mongrel_experimental"
 gem 'haml'
 gem 'inherited_resources', '1.1.2'
