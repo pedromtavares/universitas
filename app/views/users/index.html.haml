@@ -9,17 +9,12 @@
         %tr
           %th= t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name"))
           %th= t("web-app-theme.login", :default => "Login")
-          %th= t("web-app-theme.email", :default => "Email")
-          %th.last &nbsp;
+          %th.last= t("web-app-theme.email", :default => "Email")
         - @users.each do |user|
           %tr{:class => cycle("odd","even")}
-            %td= link_to user.name, user_page_path(user)
-            %td= user.login
-            %td= user.email
-            %td.last
-              = link_to "#{t("web-app-theme.show", :default => "Show")}", user_path(user)
-              = link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_user_path(user)
-              = link_to "#{t("web-app-theme.delete", :default => "Delete")}", user_path(user), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+            %td= link_to user.login, user_path(user)
+            %td= user.name
+            %td.last= user.email
       .actions-bar.wat-cf
         .actions
       	

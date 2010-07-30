@@ -16,5 +16,5 @@
         =@user.email
       
       .wat-cf
-        = link_to "#{t("web-app-theme.edit", :default=> "Edit")}", edit_user_path(@user), :class => "button"
+        = link_to "#{t("web-app-theme.edit", :default=> "Edit")}", edit_user_path(resource), :class => "button"
 - content_for :sidebar, render(:partial => 'sidebar')

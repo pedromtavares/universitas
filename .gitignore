@@ -1,0 +1,8 @@
+nbproject
+.project
+*.log
+*.tmp
+*~
+*.pid
+tmp/*
+

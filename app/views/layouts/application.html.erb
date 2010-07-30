@@ -13,6 +13,7 @@
         <ul class="wat-cf">
           <% if user_signed_in?%>
             <li><%= link_to t("web-app-theme.profile", :default => "Profile"), user_path(current_user)%></li>
+			<li style="color:white">Logged in as <%=current_user%>
 			<li><%= link_to t("web-app-theme.logout", :default => "Logout"), destroy_user_session_path, :class => "logout" %></li>
           <% else %>
           <li><%= link_to t("web-app-theme.login", :default => "Login"), new_user_session_path, :class => "login" %></li>
@@ -37,7 +38,7 @@
         <%= yield %>
         <div id="footer">
           <div class="block">
-            <p>Copyright &copy; <%= Time.now.year %> Your Site.</p>
+            <p>Copyright &copy; <%= Time.now.year %> Universitas.</p>
           </div>      
         </div>
       </div>
