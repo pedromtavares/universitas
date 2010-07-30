@@ -7,7 +7,7 @@ gem 'rails', '3.0.0.beta4'
 
 gem 'mysql'
 #gem 'mongrel'
-gem "mongrel_experimental"
+#gem "mongrel_experimental"
 gem 'haml'
 gem 'inherited_resources', '1.1.2'
 gem 'devise'
