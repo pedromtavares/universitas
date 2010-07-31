@@ -9063,3 +9063,39 @@ Started GET "/pedromtavares/edit" for 127.0.0.1 at Fri Jul 30 23:25:43 -0300 201
 DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_registrations_edit_html_haml___791329698_84046380_0 at /home/pedromtavares/Projects/universitas/app/views/devise/registrations/edit.html.haml:9)
 Rendered devise/registrations/edit.html.haml within layouts/application (14.5ms)
 Completed 200 OK in 42ms (Views: 17.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for 127.0.0.1 at Fri Jul 30 23:34:11 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users`
+Rendered users/_sidebar.html.haml (1.4ms)
+Rendered users/index.html.haml within layouts/application (10.3ms)
+Completed 200 OK in 28ms (Views: 14.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at Fri Jul 30 23:34:13 -0300 2010
+  Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 84ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 23:34:13 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:34:13 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83343900_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.5ms)
+Completed 200 OK in 33ms (Views: 14.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at Fri Jul 30 23:34:14 -0300 2010
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+Rendered devise/registrations/new.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 92ms (Views: 19.0ms | ActiveRecord: 0.0ms)
