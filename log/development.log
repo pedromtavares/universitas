@@ -8743,3 +8743,323 @@ Started GET "/users" for 127.0.0.1 at Fri Jul 30 03:06:03 -0300 2010
 Rendered users/_sidebar.html.haml (2.6ms)
 Rendered users/index.html.haml within layouts/application (11.0ms)
 Completed 200 OK in 27ms (Views: 14.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 03:37:25 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/_sidebar.html.haml (1.8ms)
+Rendered users/index.html.haml within layouts/application (13.5ms)
+Completed 200 OK in 40ms (Views: 17.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 23:07:00 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:07:00 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84866120_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (41.5ms)
+Completed 200 OK in 140ms (Views: 74.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in.user" for 127.0.0.1 at Fri Jul 30 23:07:06 -0300 2010
+  Processing by Devise::SessionsController#create as 
+  Parameters: {"authenticity_token"=>"zlYWBT/DyvE4VPdOU8BPY1sgIZyOKqkagptnRvc1Ad4=", "_snowman"=>"\342\230\203", "user"=>{"remember_me"=>"0", "password"=>"[FILTERED]", "login"=>"pedromtavares"}}
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`login` = 'pedromtavares') LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSlug Load (0.5ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2010-07-31 02:07:06', `last_sign_in_at` = '2010-07-30 04:59:16', `sign_in_count` = 3, `updated_at` = '2010-07-31 02:07:07' WHERE (`users`.`id` = 1)[0m
+  [1m[35mSlug Load (0.3ms)[0m  SELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC
+  [1m[36mSQL (58.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 448ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 23:07:07 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (10.7ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+Rendered users/_sidebar.html.haml (1.4ms)
+Rendered users/index.html.haml within layouts/application (16.8ms)
+Completed 200 OK in 58ms (Views: 34.4ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/users/sign_out" for 127.0.0.1 at Fri Jul 30 23:07:10 -0300 2010
+  Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+Redirected to http://localhost:3000/
+Completed 302 Found in 24ms
+
+
+Started GET "/" for 127.0.0.1 at Fri Jul 30 23:07:10 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:07:10 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83278690_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.1ms)
+Completed 200 OK in 34ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:07:49 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84233220_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.1ms)
+Completed 200 OK in 34ms (Views: 15.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:11:57 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83455790_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (11.8ms)
+Completed 200 OK in 34ms (Views: 14.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:12:10 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.4ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84462240_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.4ms)
+Completed 200 OK in 93ms (Views: 15.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:13:17 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.4ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83564640_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.7ms)
+Completed 200 OK in 43ms (Views: 15.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:13:31 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_85004000_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.2ms)
+Completed 200 OK in 99ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:16:49 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83796130_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.0ms)
+Completed 200 OK in 33ms (Views: 14.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:16:50 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83149630_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.0ms)
+Completed 200 OK in 35ms (Views: 14.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:18:34 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84051160_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.9ms)
+Completed 200 OK in 35ms (Views: 15.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:19:08 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83293120_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/application (12.7ms)
+Completed 200 OK in 47ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:21:22 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84147640_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (14.3ms)
+Completed 200 OK in 36ms (Views: 16.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:22:15 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83358030_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.8ms)
+Completed 200 OK in 34ms (Views: 14.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:22:27 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84232750_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.8ms)
+Completed 200 OK in 34ms (Views: 14.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:22:34 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83436870_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.7ms)
+Completed 200 OK in 39ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:22:42 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84447690_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.3ms)
+Completed 200 OK in 92ms (Views: 13.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:22:53 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83561450_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (13.7ms)
+Completed 200 OK in 35ms (Views: 16.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:23:23 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84851250_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (12.1ms)
+Completed 200 OK in 95ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:23:27 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83686020_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.3ms)
+Completed 200 OK in 33ms (Views: 13.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:23:31 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83115510_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (76.7ms)
+Completed 200 OK in 98ms (Views: 79.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:23:34 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83986560_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.6ms)
+Completed 200 OK in 33ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:23:50 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83231080_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (12.3ms)
+Completed 200 OK in 33ms (Views: 14.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:24:02 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84124050_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.4ms)
+Completed 200 OK in 34ms (Views: 13.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:24:09 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.3ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83336040_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (13.3ms)
+Completed 200 OK in 35ms (Views: 15.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:24:16 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_84219020_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (11.5ms)
+Completed 200 OK in 34ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:24:55 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83423200_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (12.0ms)
+Completed 200 OK in 33ms (Views: 14.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at Fri Jul 30 23:25:00 -0300 2010
+  Processing by Devise::RegistrationsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+Rendered devise/registrations/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 109ms (Views: 34.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at Fri Jul 30 23:25:36 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Fri Jul 30 23:25:36 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/shared/_links.erb (1.2ms)
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_sessions_new_html_haml__999098620_83238080_0 at /home/pedromtavares/Projects/universitas/app/views/devise/sessions/new.html.haml:5)
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (15.0ms)
+Completed 200 OK in 38ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in.user" for 127.0.0.1 at Fri Jul 30 23:25:37 -0300 2010
+  Processing by Devise::SessionsController#create as 
+  Parameters: {"authenticity_token"=>"zlYWBT/DyvE4VPdOU8BPY1sgIZyOKqkagptnRvc1Ad4=", "_snowman"=>"\342\230\203", "user"=>{"remember_me"=>"0", "password"=>"[FILTERED]", "login"=>"pedromtavares"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`login` = 'pedromtavares') LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSlug Load (0.1ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2010-07-31 02:25:37', `last_sign_in_at` = '2010-07-31 02:07:06', `sign_in_count` = 4, `updated_at` = '2010-07-31 02:25:37' WHERE (`users`.`id` = 1)
+  [1m[36mSlug Load (0.1ms)[0m  [1mSELECT `slugs`.`id`, `slugs`.`name`, `slugs`.`sluggable_id`, `slugs`.`sequence`, `slugs`.`sluggable_type`, `slugs`.`scope`, `slugs`.`created_at` FROM `slugs` WHERE (`slugs`.sluggable_id = 1 AND `slugs`.sluggable_type = 'User') ORDER BY id DESC[0m
+  [1m[35mSQL (64.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/users
+Completed 302 Found in 186ms
+
+
+Started GET "/users" for 127.0.0.1 at Fri Jul 30 23:25:37 -0300 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users`
+Rendered users/_sidebar.html.haml (1.8ms)
+Rendered users/index.html.haml within layouts/application (10.7ms)
+Completed 200 OK in 31ms (Views: 14.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pedromtavares" for 127.0.0.1 at Fri Jul 30 23:25:41 -0300 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"pedromtavares"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`cached_slug` = 'pedromtavares') LIMIT 1
+Rendered users/_sidebar.html.haml (1.4ms)
+Rendered users/show.html.haml within layouts/application (10.2ms)
+Completed 200 OK in 43ms (Views: 28.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pedromtavares/edit" for 127.0.0.1 at Fri Jul 30 23:25:43 -0300 2010
+  Processing by Devise::RegistrationsController#edit as HTML
+  Parameters: {"id"=>"pedromtavares"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 1) LIMIT 1
+DEPRECATION WARNING: - style block helpers are deprecated. Please use =. (called from _app_views_devise_registrations_edit_html_haml___791329698_84046380_0 at /home/pedromtavares/Projects/universitas/app/views/devise/registrations/edit.html.haml:9)
+Rendered devise/registrations/edit.html.haml within layouts/application (14.5ms)
+Completed 200 OK in 42ms (Views: 17.7ms | ActiveRecord: 0.1ms)

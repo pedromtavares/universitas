@@ -2,7 +2,7 @@
   .block#block-login
     %h2 Login
     .content.login
-      - form_for(resource, :as => resource_name, :url => user_session_path(resource_name)) do |f|       
+      - form_for(resource, :as => resource_name, :url => user_session_path(resource_name), :html => {:class => 'form login'}) do |f|       
         .group.wat-cf
           .left= f.label :login, {},  :class => 'label right'
           .right= f.text_field :login, :class => 'text_field'
@@ -12,10 +12,11 @@
           .right= f.password_field :password, :class => 'text_field'
           
         - if devise_mapping.rememberable?
-          = f.check_box :remember_me
-          = f.label :remember_me
-        %br
-          %br        
+          .right
+            = f.check_box :remember_me
+            = f.label :remember_me   
+          %br  
+          %br  
         .group.navform.wat-cf
           .right
             %button.button{:type => 'submit'}
