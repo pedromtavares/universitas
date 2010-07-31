@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
   validates :login, :presence => true, :uniqueness => true
   validates :name, :presence => true
   
-  has_friendly_id :login, :use_slug => true
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :name, :email, :password, :password_confirmation, :remember_me
+  
+  has_friendly_id :login, :use_slug => true
   def to_s
     self.login
   end
