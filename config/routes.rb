@@ -1,9 +1,12 @@
 Universitas::Application.routes.draw do
   devise_for :users do
-    get ':id/edit', :to => 'devise/registrations#edit', :as => 'edit_user'
+    get 'profile/edit', :to => 'devise/registrations#edit', :as => 'edit_user'
   end
-  resources :sessions
-  resources :users, :only => [:index]
+  resources :users, :only => [:index] do
+    member do
+      get :follow
+    end
+  end
   get ':id' => 'users#show', :as => 'user'
   
   

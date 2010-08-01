@@ -1,8 +1,18 @@
 class UsersController < InheritedResources::Base
   before_filter :authenticate_user!
-  actions :all, :except => [:new]
+  actions :all
   
-  def new
-    redirect_to users_path
+  def follow
+    unless current_user.following?(resource)
+      current_user.follow!(resource)
+      flash[:notice] = "You are now following #{resource}."
+    end
+    redirect_to root_path
+  end
+  
+  protected
+  
+  def collection
+    @users ||= paginate(end_of_association_chain)
   end
 end

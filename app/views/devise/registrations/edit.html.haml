@@ -1,10 +1,8 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", users_path
-      %li.active= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_user_path(resource)
   .content
-    %h2.title= "#{t("web-app-theme.edit", :default => "Edit")} User"
+    %h2.title= "#{t("web-app-theme.edit", :default => "Edit")} Profile"
     .inner
       - form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => :form }) do |f|
         = devise_error_messages!

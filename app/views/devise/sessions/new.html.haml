@@ -2,7 +2,7 @@
   .block#block-login
     %h2 Login
     .content.login
-      - form_for(resource, :as => resource_name, :url => user_session_path(resource_name), :html => {:class => 'form login'}) do |f|       
+      - form_for(resource, :as => resource_name, :url => user_session_path, :html => {:class => 'form login'}) do |f|       
         .group.wat-cf
           .left= f.label :login, {},  :class => 'label right'
           .right= f.text_field :login, :class => 'text_field'

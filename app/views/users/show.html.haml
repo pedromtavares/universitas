@@ -1,20 +1,15 @@
 .block
   .secondary-navigation
     %ul.wat-cf
-      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", users_path
-      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", user_path
   .content
+    %h2.title= resource.name
     .inner
-      %p
-        %strong= "#{t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name"))} :"
-        =@user.name
-      %p
-        %strong= "#{t("activerecord.attributes.user.login", :default => t("activerecord.labels.login", :default => "Login"))} :"
-        =@user.login
       %p
         %strong= "#{t("activerecord.attributes.user.email", :default => t("activerecord.labels.email", :default => "Email"))} :"
         =@user.email
+        
+      %p= link_to "Follow this user", follow_user_path(resource) unless resource == current_user || !user_signed_in? || current_user.following?(resource)
       
       .wat-cf
-        = link_to "#{t("web-app-theme.edit", :default=> "Edit")}", edit_user_path(resource), :class => "button"
+        = link_to "#{t("web-app-theme.edit", :default=> "Edit")}", edit_user_path, :class => "button" if resource == current_user
 - content_for :sidebar, render(:partial => 'sidebar')

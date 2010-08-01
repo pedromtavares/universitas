@@ -1384,3 +1384,52 @@ Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 56.7ms)
   [1m[35mSQL (443.8ms)[0m  ROLLBACK
   [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
   [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+
+
+Started GET "/users" for 127.0.0.1 at Sun Aug 01 16:55:08 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Sun Aug 01 16:55:08 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Rendered devise/sessions/new.html.haml within layouts/devise/sessions (6.7ms)
+Completed   in 14ms
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+
+
+Started GET "/users" for 127.0.0.1 at Sun Aug 01 16:55:08 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Sun Aug 01 16:55:08 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Completed   in 4ms
+  [1m[35mSQL (0.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK
+  [1m[36mSQL (0.0ms)[0m  [1mBEGIN[0m
+
+
+Started GET "/" for 127.0.0.1 at Sun Aug 01 16:55:08 -0300 2010
+  Processing by UsersController#index as HTML
+Completed   in 0ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at Sun Aug 01 16:55:08 -0300 2010
+  Processing by Devise::SessionsController#new as HTML
+Completed   in 4ms
+  [1m[35mSQL (0.1ms)[0m  ROLLBACK

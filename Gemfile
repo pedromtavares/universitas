@@ -2,21 +2,22 @@ HEROKU = ENV['USER'].match(/^repo\d+/)
 
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.0.rc'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
-#gem 'mongrel'
-#gem "mongrel_experimental"
+gem 'mongrel'
+gem "mongrel_experimental"
 gem 'haml'
 gem 'inherited_resources', '1.1.2'
-gem 'devise', '1.1.rc2'
+gem 'devise', '1.1.1'
 gem 'hpricot'
 gem 'friendly_id'
-gem 'pg'
 gem 'heroku', '1.9.13'
+gem 'faker'
+gem 'will_paginate', '>= 3.0.pre'
 
 unless HEROKU
 	group :test do
