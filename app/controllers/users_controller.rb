@@ -10,6 +10,14 @@ class UsersController < InheritedResources::Base
     redirect_to root_path
   end
   
+  def unfollow
+    if current_user.following?(resource)
+      current_user.unfollow!(resource)
+      flash[:notice] = "You have unfollowed #{resource}."
+    end
+    redirect_to root_path
+  end
+  
   protected
   
   def collection

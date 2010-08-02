@@ -59,6 +59,7 @@ GEM
       activemodel (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
     activesupport (3.0.0.rc)
+    annotate-models (1.0.4)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
     autotest (4.3.2)
@@ -103,13 +104,13 @@ GEM
     gem_plugin (0.2.3)
     gherkin (2.2.0)
       trollop (~> 1.16.2)
+    gravatar_image_tag (0.1.0)
     haml (3.0.15)
     has_scope (0.5.0)
     heroku (1.9.13)
       json_pure (>= 1.2.0, < 1.5.0)
       launchy (~> 0.3.2)
       rest-client (~> 1.4.0)
-    hpricot (0.8.2)
     i18n (0.4.1)
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
@@ -199,6 +200,7 @@ PLATFORMS
 
 DEPENDENCIES
   ZenTest
+  annotate-models
   autotest
   autotest-rails
   capybara
@@ -210,9 +212,9 @@ DEPENDENCIES
   factory_girl_rails
   faker
   friendly_id
+  gravatar_image_tag
   haml
   heroku (= 1.9.13)
-  hpricot
   inherited_resources (= 1.1.2)
   launchy
   machinist!

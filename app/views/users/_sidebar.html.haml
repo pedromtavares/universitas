@@ -1,5 +1,7 @@
-- following = resource.following
-- followers = resource.followers
+- @user ||= current_user
+- following = @user.following
+- followers = @user.followers
+%h1="#{@user.login}'s connections"
 .block
   %h3 Following
   .content

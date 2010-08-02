@@ -1,20 +1,21 @@
 .block
-  .secondary-navigation
-    %ul.wat-cf
   .content
     %h2.title= "#{t("web-app-theme.all", :default => "All")} Users" 
     .inner
       %table.table
         %tr
+          %th.first
           %th= t("web-app-theme.login", :default => "Login")
           %th= t("web-app-theme.name", :default => "Name")
           %th.last= t("web-app-theme.email", :default => "Email")
         - @users.each do |user|
           %tr{:class => cycle("odd","even")}
-            %td= link_to user.login, user_path(user)
+            %td.first= gravatar_for user
+            %td= link_to user.login, profile_path(user)
             %td= user.name
-            %td.last= user.email
+            %td= user.email
       .actions-bar.wat-cf
         .actions
         .pagination
           = will_paginate
+- content_for :sidebar, render(:partial => 'sidebar')
