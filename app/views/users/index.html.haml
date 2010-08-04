@@ -18,4 +18,4 @@
         .actions
         .pagination
           = will_paginate
-- content_for :sidebar, render(:partial => 'sidebar')
+- content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?

@@ -16,3 +16,18 @@
 	margin:5px;
 	padding:5px;
 }
+
+ul.list li {
+  clear: left;
+  padding-top:10px;
+  padding-bottom: 20px;
+}
+
+ul.list li:hover {
+  background-color:#ebebeb;
+}
+
+ul.list li .item {
+  margin-left: 30px;
+}
+

@@ -43,7 +43,6 @@ describe User do
     
     describe "relationships" do
       before(:each) do
-        @user = User.create!(@attr)
         @followed = Factory(:user)
       end
       it "should follow another user" do
@@ -63,6 +62,19 @@ describe User do
         @user.unfollow!(@followed)
         @user.should_not be_following(@followed)
       end
+    end
+    
+    it 'should update its status' do
+      @user.update_status("Hello")
+      @user.status.should == "Hello"
+    end
+  
+    it 'should return a feed with updates on the users it follows as well as its own' do
+      followed = Factory(:user)
+      followed.update_status("test")
+      @user.update_status("hi")
+      @user.follow!(followed)
+      @user.feed.should == followed.updates + @user.updates
     end
 
 

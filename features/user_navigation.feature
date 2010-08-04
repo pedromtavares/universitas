@@ -8,9 +8,9 @@ Feature: User navigation
   		And there are some users registered
   
   Scenario: Listing users
-	Given I am on the homepage 
+	Given I am on the users page 
 	Then I should see the first page of users
-	But I should not see the second page of users
+		But I should not see the second page of users
 	
   Scenario: Following users
   	Given I am on the last user's page

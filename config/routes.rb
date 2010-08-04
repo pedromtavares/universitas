@@ -7,11 +7,15 @@ Universitas::Application.routes.draw do
       get :follow, :unfollow
     end
   end
+  
+  resource :dashboard, :only => [:show], :controller => 'dashboard' do
+    put :update_status, :as => 'update_status'
+  end
+  
   get ':id' => 'users#show', :as => 'profile'
   get ':id' => 'users#show', :as => 'user'
   
-  
-  root :to => 'users#index'
+  root :to => 'dashboard#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

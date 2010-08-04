@@ -26,6 +26,9 @@ module NavigationHelpers
     when /the last user\'s page/
       user_path(User.last)
       
+    when /my dashboard/
+      dashboard_path
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

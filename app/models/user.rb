@@ -36,9 +36,20 @@ class User < ActiveRecord::Base
   has_many :following, :through => :relationships, :source => :followed
   has_many :reverse_relationships, :foreign_key => "followed_id", :dependent => :destroy, :class_name => 'Relationship'
   has_many :followers, :through => :reverse_relationships
+  has_many :updates
   
   def to_s
     self.login
+  end
+  
+  def update_status(msg)
+    self.update_attribute :status, msg
+    Update.new_status(self, msg)
+  end
+  
+  def feed
+    result = Update.arel_table
+    Update.where(result[:user_id].in(self.following).or(result[:user_id].matches(self.id))).order('updated_at desc')  
   end
   
   def following?(followed)

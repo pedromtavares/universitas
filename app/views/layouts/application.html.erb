@@ -22,7 +22,15 @@
       </div>      
       <div id="main-navigation">
         <ul class="wat-cf">
-          <li class="active"><%= link_to "Users", users_path %></li>
+        	<% %w{dashboard users}.each do |type|%>
+				<% if controller_name == type%>
+					<li class="active">
+				<% else %>
+					<li>
+				<% end %>
+				<%=link_to type.titleize, url_for(type)%>
+				</li>
+			<%end%>
         </ul>
       </div>
     </div>    

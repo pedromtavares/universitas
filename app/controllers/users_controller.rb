@@ -1,5 +1,4 @@
 class UsersController < InheritedResources::Base
-  before_filter :authenticate_user!
   actions :all
   
   def follow
