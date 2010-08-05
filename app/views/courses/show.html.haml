@@ -1,0 +1,40 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "All", collection_url
+      %li= link_to "New Course", new_resource_url
+      %li.active= link_to resource
+  .content
+    %h2.title= resource.name
+    .inner
+      %p
+        %strong Description:
+        = resource.description
+      %p  
+        %strong Teacher:
+        = link_to resource.teacher.name, resource.teacher
+        
+      - if user_signed_in? && !current_user.teacher_of?(resource)
+        - unless current_user.student_of?(resource)
+          %p= button_to "Enter this course", enter_course_path
+        - else
+          %p= button_to "Leave this course", leave_course_path, :method => :delete
+          
+      %h3 Students
+      - unless resource.students.blank?
+        %table.table
+          %tr
+            %th.first
+            %th Name
+            %th Grade
+            %th.last 
+          - resource.students.each do |student|
+            %tr{:class => cycle("odd","even")}
+              %td.first
+              %td= link_to student.name, student.user
+              %td= student.grade
+              %td
+      - else
+        %p This course has no students!
+      %br.clear
+      

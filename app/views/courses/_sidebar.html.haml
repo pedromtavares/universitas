@@ -1,0 +1,21 @@
+- @user ||= current_user
+- following = @user.following
+- followers = @user.followers
+%h1="#{@user.login}'s connections"
+.block
+  %h3 Following
+  .content
+    - unless following.empty?
+      - following.each do |user|
+        %p= link_to user.name, user
+    - else
+      %p Not following anyone.
+    
+.block
+  %h3 Followers
+  .content
+    - unless followers.empty?
+      - followers.each do |user|
+        %p= link_to user.name, user
+    - else
+      %p No followers.

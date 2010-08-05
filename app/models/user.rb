@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   validates :login, :presence => true, :uniqueness => true, :length => { :minimum => 4, :maximum => 20 }
   validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
-  # Setup accessible (or protected) attributes for your model
+  
   attr_accessible :login, :name, :email, :password, :password_confirmation, :remember_me
   has_friendly_id :login, :use_slug => true
   
@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, :foreign_key => "followed_id", :dependent => :destroy, :class_name => 'Relationship'
   has_many :followers, :through => :reverse_relationships
   has_many :updates
+  has_many :students
+  has_many :courses, :through => :students
+  has_many :courses_teached, :class_name => 'Course', :foreign_key => "teacher_id"
   
   def to_s
     self.login
@@ -62,6 +65,14 @@ class User < ActiveRecord::Base
   
   def unfollow!(followed)
     self.relationships.find_by_followed_id(followed).destroy
+  end
+  
+  def student_of?(course)
+    self.courses.include?(course) && !self.teacher_of?(course)
+  end
+  
+  def teacher_of?(course)
+    self.courses_teached.include?(course)
   end
   
 end

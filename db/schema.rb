@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100803143241) do
+ActiveRecord::Schema.define(:version => 20100805164838) do
+
+  create_table "courses", :force => true do |t|
+    t.string   "name"
+    t.integer  "teacher_id"
+    t.string   "description"
+    t.boolean  "closed",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
@@ -34,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20100803143241) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "students", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.float    "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "updates", :force => true do |t|
     t.string   "content"

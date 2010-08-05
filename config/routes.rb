@@ -12,6 +12,14 @@ Universitas::Application.routes.draw do
     put :update_status, :as => 'update_status'
   end
   
+  resources :courses, :except => [:delete] do
+    member do
+      post :enter
+      delete :leave
+    end
+    resources :students
+  end
+  
   get ':id' => 'users#show', :as => 'profile'
   get ':id' => 'users#show', :as => 'user'
   

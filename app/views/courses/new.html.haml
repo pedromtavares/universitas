@@ -1,0 +1,17 @@
+.block
+  .content
+    %h2.title New Course
+    .inner
+      = form_for(resource, :url => collection_url, :html => { :method => :post, :class => :form }) do |f|
+        .group
+          = f.label :name, t("activerecord.attributes.course.name", :default => "Name"), :class => :label
+          = f.text_field :name, :class => 'text_field'
+        .group
+          = f.label :description, t("activerecord.attributes.course.description", :default => "Description"), :class => :label
+          = f.text_field :description, :class => 'text_field'
+        %br      
+        .group.navform.wat-cf
+          %button.button{:type => 'submit'}
+            = image_tag("web-app-theme/tick.png", :alt => "#{t("web-app-theme.create", :default => "Create")}") 
+            = t("web-app-theme.create", :default => "Create")
+          = link_to "#{t("web-app-theme.back", :default => "Back")}", collection_url, :class => "button"     
