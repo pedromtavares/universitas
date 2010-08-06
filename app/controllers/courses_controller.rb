@@ -1,5 +1,6 @@
 class CoursesController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :allow_teacher, :only => [:edit, :update]
   actions :all, :except => :delete
   
   def create
@@ -18,8 +19,8 @@ class CoursesController < InheritedResources::Base
     else
       redirect_to @course, :error => "You already are in this course!"
     end
-    
   end
+  
   
   def leave
     @course = Course.find params[:id]
@@ -31,5 +32,13 @@ class CoursesController < InheritedResources::Base
   
   def collection
     @courses ||= paginate(end_of_association_chain)
+  end
+  
+  def allow_teacher
+    course = Course.find(params[:id])
+    unless current_user.teacher_of?(course)
+      flash[:alert] = 'You do not have permission to do that.'
+      redirect_to course
+    end
   end
 end

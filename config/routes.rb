@@ -17,7 +17,6 @@ Universitas::Application.routes.draw do
       post :enter
       delete :leave
     end
-    resources :students
   end
   
   get ':id' => 'users#show', :as => 'profile'
