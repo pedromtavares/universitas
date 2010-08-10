@@ -1,32 +1,18 @@
-GIT
-  remote: git://github.com/aslakhellesoy/cucumber-rails.git
-  revision: 0fe7e4f
-  specs:
-    cucumber-rails (0.3.2)
-      cucumber (>= 0.8.0)
-
-GIT
-  remote: git://github.com/aslakhellesoy/cucumber.git
-  revision: 30d4376
+PATH
+  remote: vendor/gems/cucumber
   specs:
     cucumber (0.9.0)
       builder (~> 2.1.2)
       diff-lcs (~> 1.1.2)
       gherkin (~> 2.2.0)
       json_pure (~> 1.4.3)
-      term-ansicolor (~> 1.0.4)
+      term-ansicolor (~> 1.0.5)
 
-GIT
-  remote: git://github.com/bmabey/database_cleaner.git
-  revision: 7ea99d7
+PATH
+  remote: vendor/gems/cucumber-rails
   specs:
-    database_cleaner (0.5.2)
-
-GIT
-  remote: git://github.com/notahat/machinist.git
-  revision: 5534f44
-  specs:
-    machinist (2.0.0.beta2)
+    cucumber-rails (0.3.2)
+      cucumber (>= 0.8.0)
 
 GEM
   remote: http://rubygems.org/
@@ -65,7 +51,7 @@ GEM
     autotest (4.3.2)
     autotest-rails (4.1.0)
       ZenTest
-    babosa (0.1.0)
+    babosa (0.1.1)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
     capybara (0.3.9)
@@ -105,7 +91,7 @@ GEM
     gherkin (2.2.0)
       trollop (~> 1.16.2)
     gravatar_image_tag (0.1.0)
-    haml (3.0.15)
+    haml (3.0.16)
     has_scope (0.5.0)
     heroku (1.9.13)
       json_pure (>= 1.2.0, < 1.5.0)
@@ -117,7 +103,7 @@ GEM
       responders (~> 0.6.0)
     johnson (2.0.0.pre3)
       stackdeck (~> 0.2)
-    json_pure (1.4.3)
+    json_pure (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -207,7 +193,6 @@ DEPENDENCIES
   capybara-envjs
   cucumber!
   cucumber-rails!
-  database_cleaner!
   devise (= 1.1.1)
   factory_girl_rails
   faker
@@ -217,7 +202,6 @@ DEPENDENCIES
   heroku (= 1.9.13)
   inherited_resources (= 1.1.2)
   launchy
-  machinist!
   mongrel
   mongrel_experimental
   mysql

@@ -26,14 +26,14 @@ end
 group :test do
   gem "rspec"
   gem "rspec-rails",      ">= 2.0.0.beta"
-  gem "machinist",        :git => "git://github.com/notahat/machinist.git"
+  #gem "machinist",        :git => "git://github.com/notahat/machinist.git"
   gem "faker"
   gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
-  gem "cucumber",         :git => "git://github.com/aslakhellesoy/cucumber.git"
-  gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
-  gem "cucumber-rails",   :git => "git://github.com/aslakhellesoy/cucumber-rails.git"
+  gem "cucumber",         :path => File.join(File.dirname(__FILE__), '/vendor/gems/cucumber') #:git => "git://github.com/aslakhellesoy/cucumber.git"
+  #gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
+  gem "cucumber-rails",   :path => File.join(File.dirname(__FILE__), '/vendor/gems/cucumber-rails') #:git => "git://github.com/aslakhellesoy/cucumber-rails.git"
   gem "capybara"
   gem "capybara-envjs"
   gem "launchy"
