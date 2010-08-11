@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   
   def feed
     result = Update.arel_table
-    Update.where(result[:user_id].in(self.following).or(result[:user_id].matches(self.id))).order('updated_at desc')  
+    Update.where(result[:user_id].in(self.following).or(result[:user_id].eq(self.id.to_s))).order('updated_at desc')  
   end
   
   def following?(followed)
