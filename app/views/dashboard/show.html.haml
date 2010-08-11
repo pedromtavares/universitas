@@ -12,14 +12,13 @@
       %br
       %br
       %h3 Recent Updates
-      - unless @feed.blank?
-        %ul.list
-          - @feed.each do |update|
-            %li
-              .left= link_to(gravatar_for(update.user), update.user)
-              .item
-                %p
-                  = link_to update.user.name, update.user
-                  = update.content
+      %ul.list
+        - @feed.each do |update|
+          %li
+            .left= link_to(gravatar_for(update.user), update.user)
+            .item
+              %p
+                = link_to update.user.name, update.user
+                = update.content
       .actions-bar.wat-cf
         .actions
