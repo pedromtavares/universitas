@@ -20,7 +20,7 @@
         - else
           %p= button_to "Leave this course", leave_course_path, :method => :delete
           
-      = link_to "#{t("web-app-theme.edit", :default=> "Edit")}", edit_resource_url, :class => "button" if current_user.teacher_of?(resource)
+      = link_to "#{t("web-app-theme.edit", :default=> "Edit")}", edit_resource_url, :class => "button" if user_signed_in? && current_user.teacher_of?(resource)
       %br.clear
           
       %h3 Students

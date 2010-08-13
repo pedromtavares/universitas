@@ -1,5 +1,13 @@
-PATH
-  remote: vendor/gems/cucumber
+GIT
+  remote: git://github.com/aslakhellesoy/cucumber-rails.git
+  revision: 0fe7e4f
+  specs:
+    cucumber-rails (0.3.2)
+      cucumber (>= 0.8.0)
+
+GIT
+  remote: git://github.com/aslakhellesoy/cucumber.git
+  revision: 06aa77f
   specs:
     cucumber (0.9.0)
       builder (~> 2.1.2)
@@ -7,12 +15,6 @@ PATH
       gherkin (~> 2.2.0)
       json_pure (~> 1.4.3)
       term-ansicolor (~> 1.0.5)
-
-PATH
-  remote: vendor/gems/cucumber-rails
-  specs:
-    cucumber-rails (0.3.2)
-      cucumber (>= 0.8.0)
 
 GEM
   remote: http://rubygems.org/
