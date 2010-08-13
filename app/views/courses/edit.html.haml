@@ -5,7 +5,7 @@
       %li= link_to "New Course", new_resource_url
       %li.active= link_to "Edit #{resource.name}", edit_resource_url
   .content
-    %h2.title New Course
+    %h2.title Edit Course
     .inner
-      = form_for(resource, :url => resource_url, :html => { :method => :post, :class => :form }) do |f|
+      = form_for(resource, :url => resource_url, :html => { :class => :form }) do |f|
         = render :partial => "form", :locals => {:f => f}  
