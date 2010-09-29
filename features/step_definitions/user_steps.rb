@@ -23,13 +23,13 @@ Given /^I already follow the last user$/ do
 end
 
 Given /^I follow a few users$/ do
-  users.each do |user|
+  users[0..2].each do |user|
     first_user.follow!(user)
   end
 end
 
 Given /^I have a few followers$/ do
-  users.each do |user|
+  users[0..2].each do |user|
     user.follow!(first_user)
   end
 end
@@ -74,7 +74,7 @@ Then /^all my followers should see my status update to "([^"]*)"$/ do |message|
   followers = first_user.followers
   followers.each do |user|
     Given "I logout"
-    Given "I am logged in as \"#{user.login}\" with the \"#{user.password}\" password"
+    And "I am logged in as \"#{user.login}\" with the \"123456\" password"
     When "I go to my dashboard"
     Then "I should see \"#{message}\""
   end

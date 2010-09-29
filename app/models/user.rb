@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def follow!(followed)
-    self.relationships.create!(:followed_id => followed.id)
+    self.relationships.create!(:followed_id => followed.id) unless followed == self
   end
   
   def unfollow!(followed)
