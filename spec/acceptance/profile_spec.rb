@@ -30,7 +30,7 @@ feature "User profile", %q{
   scenario "Editing profile" do
     visit edit_profile_page
     fill_in("Name", :with => "Another Name")
-    fill_in("Current Password", :with => "123456")
+    fill_in("Current password", :with => "123456")
     click_button("Update")
     page.should have_content("You updated your account successfully.")
   end

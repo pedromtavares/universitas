@@ -24,9 +24,9 @@ feature "Signup", %q{
     fill_in("Name", :with => "Test")
     fill_in("Email", :with => "test@test.com")
     fill_in("Password", :with => "123456")
-    fill_in("Password confirmation", :with => "3456")
+    fill_in("Password confirmation", :with => "123456")
     click_button("Signup")
-    page.should have_content("errors prohibited this user from being saved:")
+    page.should have_content("is too short (minimum is 4 characters)")
     current_path.should == users_page
   end
 end

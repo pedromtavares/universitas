@@ -7,5 +7,5 @@
   .content
     %h2.title Edit Course
     .inner
-      = form_for(resource, :url => resource_url, :html => { :class => :form }) do |f|
+      = simple_form_for(resource, :url => resource_url, :html => { :class => :form }) do |f|
         = render :partial => "form", :locals => {:f => f}  

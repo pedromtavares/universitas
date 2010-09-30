@@ -2,48 +2,12 @@
 <div class="block" id="block-signup"> 
 	<h2>Sign up</h2> 
 	<div class="content"> 
-		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form'}) do |f| %>
-	  	<%= devise_error_messages! %>
-	    <div class="group wat-cf"> 
-	      <div class="left"> 
-	        <%= f.label :login, {}, :class => 'label' %></label> 
-	      </div> 
-	      <div class="right"> 
-	        <%= f.text_field :login, :class => 'text_field' %>
-	      </div> 
-	    </div> 
-		<div class="group wat-cf"> 
-	      <div class="left"> 
-	        <%= f.label :name, {}, :class => 'label' %></label> 
-	      </div> 
-	      <div class="right"> 
-	        <%= f.text_field :name, :class => 'text_field' %>
-	      </div> 
-	    </div> 
-		 <div class="group wat-cf"> 
-	      <div class="left"> 
-	        <%= f.label :email, {}, :class => 'label' %></label> 
-	      </div> 
-	      <div class="right"> 
-	        <%= f.text_field :email, :class => 'text_field' %>
-	      </div> 
-	    </div> 
-		<div class="group wat-cf"> 
-	      <div class="left"> 
-	        <%= f.label :password, {}, :class => 'label' %></label> 
-	      </div> 
-	      <div class="right"> 
-	        <%= f.password_field :password, :class => 'text_field' %>
-	      </div> 
-	    </div> 
-		<div class="group wat-cf"> 
-	      <div class="left"> 
-	        <%= f.label :password_confirmation, {}, :class => 'label' %></label> 
-	      </div> 
-	      <div class="right"> 
-	        <%= f.password_field :password_confirmation, :class => 'text_field' %>
-	      </div> 
-	    </div> 
+		<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form'}) do |f| %>
+	    <%= f.input :login %>
+		<%= f.input :name %>
+		<%= f.input :email %>
+		<%= f.input :password %>
+		<%= f.input :password_confirmation %>
 	    <div class="group navform wat-cf"> 
 	      <button class="button" type="submit"> 
 	        <%=image_tag("web-app-theme/tick.png", :alt => "Signup")%>  Signup
