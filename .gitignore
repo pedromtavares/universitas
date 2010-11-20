@@ -6,4 +6,5 @@ nbproject
 *.pid
 tmp/*
 log/*
-
+.rvmrc
+.redcar/

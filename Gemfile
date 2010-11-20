@@ -9,11 +9,12 @@ gem 'mysql'
 
 gem 'haml'
 gem 'inherited_resources', '1.1.2'
-gem 'devise'
+gem 'devise', '1.1.3'
 gem 'friendly_id'
-gem 'heroku', '1.9.13'
+gem 'heroku', '1.10.8'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'gravatar_image_tag'
+gem 'simple_form'
 
 
 group :development do
@@ -21,18 +22,18 @@ group :development do
 	gem "mongrel_experimental"
 	gem 'annotate-models'
 	gem 'faker'
+	gem "rspec"
+  gem "rspec-rails",      ">= 2.0.0.beta"
+  gem 'steak', '>= 1.0.0.beta.2'
 end
 
 group :test do
-  gem "rspec"
-  gem "rspec-rails",      ">= 2.0.0.beta"
-  #gem "machinist",        :git => "git://github.com/notahat/machinist.git"
+
   gem "faker"
   gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
   gem "cucumber",         :git => "git://github.com/aslakhellesoy/cucumber.git"
-  #gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
   gem "cucumber-rails",   :git => "git://github.com/aslakhellesoy/cucumber-rails.git"
   gem "capybara"
   gem "capybara-envjs"

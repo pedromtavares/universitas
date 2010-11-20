@@ -1,9 +1,5 @@
-.group
-  = f.label :name, t("activerecord.attributes.course.name", :default => "Name"), :class => :label
-  = f.text_field :name, :class => 'text_field'
-.group
-  = f.label :description, t("activerecord.attributes.course.description", :default => "Description"), :class => :label
-  = f.text_field :description, :class => 'text_field'
+= f.input :name
+= f.input :description
 %br      
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
