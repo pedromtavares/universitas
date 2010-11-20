@@ -50,9 +50,8 @@ class User < ActiveRecord::Base
     Update.new_status(self, msg)
   end
   
-  def feed
-    result = Update.arel_table
-    Update.where(result[:user_id].in(self.following).or(result[:user_id].eq(self.id.to_s))).order('updated_at desc')  
+  def feed    
+    Update.where("user_id IN (?) or user_id = ?", self.following, self.id)
   end
   
   def following?(followed)

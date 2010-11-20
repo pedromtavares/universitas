@@ -22,14 +22,14 @@ feature "User Navigation", %q{
   
   scenario "Following users" do
     visit other_user_profile
-    click "Follow this user"
+    click_link_or_button "Follow this user"
     page.should have_content("You are now following")
   end
   
   scenario "Unfollowing users" do
     follow_other_user
     visit other_user_profile
-    click "Unfollow this user"
+    click_link_or_button "Unfollow this user"
     page.should have_content("You have unfollowed")
   end
 end

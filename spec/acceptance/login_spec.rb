@@ -28,7 +28,7 @@ feature "Login", %q{
   
   scenario "Logout" do
     logged_in_as("default")
-    click("Logout")
+    click_link_or_button("Logout")
     current_path.should == login_page
   end
   

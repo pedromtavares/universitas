@@ -26,7 +26,7 @@ feature "User dashboard", %q{
     click_button("Update")
     page.should have_content("Testing")
     primary_user.followers.each do |user|
-      click "Logout"
+      click_link_or_button "Logout"
       logged_in_as(user.login)
       visit dashboard
       page.should have_content("Testing")
