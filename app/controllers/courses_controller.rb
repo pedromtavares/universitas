@@ -1,20 +1,20 @@
 class CoursesController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :allow_teacher, :only => [:edit, :update]
+  before_filter :allow_teacher, :only => [:edit, :update]  
   actions :all, :except => :delete
   
   def create
     @course = Course.new(params[:course])
     @course.teacher = current_user
+    status_update
     create!
-    Update.new_course(current_user, @course)
   end
   
   def enter
     @course = Course.find params[:id]
     unless current_user.student_of?(@course)
       Student.create!(:user => current_user, :course => @course, :grade => 0)
-      Update.entered_course(current_user, @course)
+      status_update
       redirect_to @course, :notice => "You have entered the course #{@course}"
     else
       redirect_to @course, :error => "You already are in this course!"
@@ -40,5 +40,9 @@ class CoursesController < InheritedResources::Base
       flash[:alert] = 'You do not have permission to do that.'
       redirect_to course
     end
+  end
+  
+  def status_update    
+    current_user.updates.create!(:reference => @course)
   end
 end

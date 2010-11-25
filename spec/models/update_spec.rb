@@ -4,9 +4,7 @@ describe Update do
   before(:each) do
     @user = Factory(:user)
   end
-  it 'should create a new status update' do
-    update = Update.new_status(@user, "Hello")
-    Update.first.content.should == " updated status to: \"Hello\""
-    Update.first.user.should == @user
-  end
+  it 'should have a polymorphic association' do
+    @user.updates.create!(:reference => @user).reference.should == @user
+  end  
 end

@@ -47,11 +47,11 @@ class User < ActiveRecord::Base
   
   def update_status(msg)
     self.update_attribute :status, msg
-    Update.new_status(self, msg)
+    self.updates.create!(:reference => self)    
   end
   
   def feed    
-    Update.where("user_id IN (?) or user_id = ?", self.following, self.id)
+    Update.where("user_id IN (?) or user_id = ?", self.following, self.id).order('created_at desc')
   end
   
   def following?(followed)
