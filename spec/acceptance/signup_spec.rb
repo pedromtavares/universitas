@@ -13,7 +13,7 @@ feature "Signup", %q{
     fill_in("Email", :with => "test@test.com")
     fill_in("Password", :with => "123456")
     fill_in("Password confirmation", :with => "123456")
-    click_button("Signup")
+    click_button("Sign Up")
     page.should have_content("You have signed up successfully.")
     current_path.should == homepage
   end
@@ -25,7 +25,7 @@ feature "Signup", %q{
     fill_in("Email", :with => "test@test.com")
     fill_in("Password", :with => "123456")
     fill_in("Password confirmation", :with => "123456")
-    click_button("Signup")
+    click_button("Sign Up")
     page.should have_content("is too short (minimum is 4 characters)")
     current_path.should == users_page
   end

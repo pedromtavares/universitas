@@ -13,6 +13,7 @@ Universitas::Application.routes.draw do
   end
   
   resources :courses, :except => [:delete] do
+		resources :documents
     member do
       post :enter
       delete :leave

@@ -1,17 +1,19 @@
 .block
   .content
-    %h2.title= "Dashboard - #{current_user.name}"
+    %h2.title
+      = t('shared.dashboard')
+      -
+      =current_user.name
     .inner
       = form_tag update_status_dashboard_path, :method => :put do
         %h3 
           Status:
           = text_field_tag :status, current_user.status, :size => 100, :maxlength => 100
-          = submit_tag "Update"
-        
+          = submit_tag t('shared.update')      
       %br
       %br
       %br
-      %h3 Recent Updates
+      %h3= t('dashboard.recent_updates')
       %ul.list
         - @feed.each do |update|
           %li

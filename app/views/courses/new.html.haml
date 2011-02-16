@@ -1,10 +1,7 @@
 .block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first= link_to "All", collection_url
-      %li.active= link_to "New Course", new_resource_url
+  = render :partial => 'shared/breadcrumbs'
   .content
-    %h2.title New Course
+    %h2.title= t('courses.new')
     .inner
       = simple_form_for(resource, :url => collection_url, :html => { :method => :post, :class => :form }) do |f|
         = render :partial => "form", :locals => {:f => f}  

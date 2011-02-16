@@ -1,14 +1,16 @@
 #box
   .block#block-login
-    %h2 Login
+    %h2=t 'shared.login'
+    .flash
+      .message
     .content.login
       = form_for(resource, :as => resource_name, :url => user_session_path, :html => {:class => 'form login'}) do |f|       
         .group.wat-cf
-          .left= f.label :login, {},  :class => 'label right'
+          .left= f.label :login, :class => 'label right'
           .right= f.text_field :login, :class => 'text_field'
         
         .group.wat-cf
-          .left= f.label :password, {}, :class => 'label right'
+          .left= f.label :password, :class => 'label right'
           .right= f.password_field :password, :class => 'text_field'
           
         - if devise_mapping.rememberable?
@@ -20,7 +22,7 @@
         .group.navform.wat-cf
           .right
             %button.button{:type => 'submit'}
-              = image_tag("web-app-theme/key.png", :alt => "Login") 
-              Login    
+              = image_tag("icons/key.png", :alt => "Login") 
+              = t 'shared.login'    
         %br
         =render :partial => "devise/shared/links"    

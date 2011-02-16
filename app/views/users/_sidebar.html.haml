@@ -1,21 +1,23 @@
-- @user ||= current_user
-- following = @user.following
-- followers = @user.followers
-%h1="#{@user.login}'s connections"
+- resource ||= current_user
+- following = resource.following
+- followers = resource.followers
+%h1
+=resource
+=t('users.connections')
 .block
-  %h3 Following
+  %h3=t('users.following')
   .content
     - unless following.empty?
       - following.each do |user|
         %p= link_to user.name, user
     - else
-      %p Not following anyone.
+      %p=t('users.not_following')
     
 .block
-  %h3 Followers
+  %h3=t('users.followers')
   .content
     - unless followers.empty?
       - followers.each do |user|
         %p= link_to user.name, user
     - else
-      %p No followers.
+      %p=t('users.no_followers')

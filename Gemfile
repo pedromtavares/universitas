@@ -11,10 +11,12 @@ gem 'haml'
 gem 'inherited_resources', '1.1.2'
 gem 'devise', '1.1.3'
 gem 'friendly_id'
-gem 'heroku', '1.10.8'
+# gem 'heroku', '1.10.8'
 gem 'will_paginate', '>= 3.0.pre'
 gem 'gravatar_image_tag'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'web-app-theme', '>= 0.6.2'
 
 
 group :development do

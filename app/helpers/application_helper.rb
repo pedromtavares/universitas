@@ -4,13 +4,13 @@ module ApplicationHelper
     case target.class.to_s
       when "User"
         if target == update.user
-          "updated status to \"#{update.user.status}\""
+          "#{t('dashboard.updated_status')} \"#{update.user.status}\""
         end
       when "Course"
         if update.user.teacher_of?(target)
-          "created a course called #{link_to(target, target)}".html_safe
+          "#{t('dashboard.created_course')} #{link_to(target, target)}".html_safe
         else
-          "entered a course called #{link_to(target, target)}".html_safe
+          "#{t('dashboard.entered_course')} #{link_to(target, target)}".html_safe
         end
     end
   end

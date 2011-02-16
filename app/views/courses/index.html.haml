@@ -1,24 +1,24 @@
 .block
-  .secondary-navigation
-    %ul.wat-cf
-      %li.first.active= link_to "All", collection_url
-      %li= link_to "New Course", new_resource_url
+  = render :partial => 'shared/breadcrumbs'
   .content
-    %h2.title Courses
+    %h2.title=t('shared.courses')
     .inner
-      %table.table
-        %tr
-          %th.first
-          %th Name
-          %th Teacher
-          %th.last Students
-        - collection.each do |resource|
-          %tr{:class => cycle("odd","even")}
-            %td.first
-            %td= link_to resource.name, resource
-            %td= link_to resource.teacher.name, profile_path(resource.teacher)
-            %td= resource.students.size
-      .actions-bar.wat-cf
-        .actions
-        .pagination
-          = will_paginate
+      - unless collection.blank?
+        %table.table
+          %tr
+            %th.first
+            %th= t('courses.name')
+            %th= t('courses.teacher')
+            %th.last= t('courses.students')
+          - collection.each do |resource|
+            %tr{:class => cycle("odd","even")}
+              %td.first
+              %td= link_to resource.name, resource
+              %td= link_to resource.teacher.name, profile_path(resource.teacher)
+              %td= resource.students.size
+        .actions-bar.wat-cf
+          .actions
+          .pagination
+            = will_paginate
+      - else
+        = t('courses.blank')

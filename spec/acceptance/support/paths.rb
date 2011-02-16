@@ -32,6 +32,14 @@ module NavigationHelpers
   def other_user_profile
     "/#{User.last.login}"
   end
+
+	def courses_page
+		courses_path
+	end
+	
+	def course_page(course)
+		course_path(course)
+	end
   
 end
 

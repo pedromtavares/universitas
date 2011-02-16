@@ -1,21 +1,24 @@
 .block
   .content
-    %h2.title= "#{t("web-app-theme.all", :default => "All")} Users" 
+    %h2.title= t('users.all')
     .inner
-      %table.table
-        %tr
-          %th.first
-          %th= t("web-app-theme.login", :default => "Login")
-          %th= t("web-app-theme.name", :default => "Name")
-          %th.last= t("web-app-theme.email", :default => "Email")
-        - @users.each do |user|
-          %tr{:class => cycle("odd","even")}
-            %td.first= gravatar_for user
-            %td= link_to user.login, profile_path(user)
-            %td= user.name
-            %td= user.email
-      .actions-bar.wat-cf
-        .actions
-        .pagination
-          = will_paginate
+      - unless collection.blank?
+        %table.table
+          %tr
+            %th.first
+            %th= t('users.login')
+            %th= t('users.name')
+            %th.last= t('users.email')
+          - collection.each do |user|
+            %tr{:class => cycle("odd","even")}
+              %td.first= gravatar_for user
+              %td= link_to user.login, profile_path(user)
+              %td= user.name
+              %td= user.email
+        .actions-bar.wat-cf
+          .actions
+          .pagination
+            = will_paginate
+      - else
+        =t('users.blank')
 - content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?

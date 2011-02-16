@@ -1,0 +1,28 @@
+- name = resource_class.to_s.downcase.pluralize
+- parent ||= nil
+.secondary-navigation
+  %ul.wat-cf
+    - if parent
+      %li.first= link_to parent.to_s, parent
+    - case controller.action_name
+      - when 'index'
+        %li.first.active= link_to t("#{name}.all"), collection_url
+        %li= link_to t("#{name}.new"), new_resource_url
+      - when 'new'
+        %li.first= link_to t("#{name}.all"), collection_url
+        %li.active= link_to t("#{name}.new"), new_resource_url
+      - when 'create'
+        %li.first= link_to t("#{name}.all"), collection_url
+        %li.active= link_to t("#{name}.new"), new_resource_url
+      - when 'show'
+        %li.first= link_to t("#{name}.all"), collection_url
+        %li= link_to t("#{name}.new"), new_resource_url
+        %li.active= link_to resource
+      - when 'edit'
+        %li.first= link_to t("#{name}.all"), collection_url
+        %li= link_to t("#{name}.new"), new_resource_url
+        %li.active= link_to resource, resource_url
+      - when 'update'
+        %li.first= link_to t("#{name}.all"), collection_url
+        %li= link_to t("#{name}.new"), new_resource_url
+        %li.active= link_to resource, resource_url

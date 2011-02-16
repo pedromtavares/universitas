@@ -14,7 +14,7 @@ module HelperMethods
   
   def logged_in_as(login)
     user = User.find_by_login(login)
-    users << Factory(:user, :login => login) unless user
+    users << Factory(:user, :login => login, :name => "Default User") unless user
     visit login_page
     fill_in("Login", :with => login)
     fill_in("Password", :with => "123456")
@@ -44,6 +44,14 @@ module HelperMethods
   def follow_other_user
     primary_user.follow!(other_user)
   end
+
+	def default_course
+		@default_course ||= Course.create(:teacher => User.find_by_login("default"), :name => "Test Course")
+	end
+	
+	def other_course
+		@other_course ||= Factory(:course)
+	end
   
 end
 

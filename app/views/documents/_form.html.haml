@@ -1,8 +1,9 @@
 = f.input :name
 = f.input :description
+= f.input :file, :as => :file
 %br      
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("icons/tick.png", :alt => t('shared.submit')) 
     = t('shared.submit')
-  = link_to t('shared.back'), collection_url, :class => "button"   
+  = link_to t('shared.back'), collection_url, :class => "button"

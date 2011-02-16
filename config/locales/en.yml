@@ -1,5 +1,62 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  shared:
+    profile: Profile
+    logout: Logout
+    login: Login
+    copyright: Copyright
+    signup: Sign Up
+    signin: Sign In
+    edit: Edit
+    update: Update
+    back: Back
+    confirm: Are you sure?
+    submit: Submit
+    courses: Courses
+    manage: Manage
+    dashboard: Dashboard
+    update: Update
+  dashboard:
+    recent_updates: Recent Updates
+    updated_status: updated status to
+    created_course: created a course called 
+    entered_course: entered a course called
+  account:
+    cancel: Cancel my account
+  users:
+    connections: \'s connections
+    all: All Users
+    login: Login
+    name: Name
+    email: E-mail
+    blank: There are no users yet registered.
+    following: Following
+    not_following: Not following anyone yet.
+    followers: Followers
+    no_followers: No followers yet.
+    follow: Follow this user
+    unfollow: Unfollow this user
+  courses:
+    all: All
+    new: New Course
+    edit: Edit Course
+    name: Name
+    description: Description
+    teacher: Teacher
+    students: Students
+    blank: There are no courses yet created.
+    enter: Enter this course
+    leave: Leave this course
+    documents: Documents
+  students:
+    name: Name
+    grade: Grade
+    blank: This course has no students!
+  documents:
+    name: Name
+    description: Description
+    file: File
+    blank: This course has no documents!
+    edit: Edit Document
+    documents_for: Documents for
+    all: All
+    new: New Document
