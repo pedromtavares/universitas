@@ -1,5 +1,10 @@
 /* Override here any style definide by web-app-theme */
 
+.flash .alert {
+  border: 1px solid #ffbbbb;
+  background-color: #ffdddd;
+}
+
 .pagination em {
   padding: 5px 10px;
   margin-right: 5px; 

@@ -1,5 +1,9 @@
 class UsersController < InheritedResources::Base
-  actions :all
+	
+	def index
+		@user ||= current_user
+		super
+	end
   
   def follow
     unless current_user.following?(resource)

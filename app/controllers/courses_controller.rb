@@ -4,28 +4,24 @@ class CoursesController < InheritedResources::Base
   actions :all, :except => :delete
   
   def create
-    @course = Course.new(params[:course])
-    @course.teacher = current_user
-    status_update
+    @course = Course.new(params[:course].merge(:teacher => current_user))
     create!
   end
   
   def enter
     @course = Course.find params[:id]
     unless current_user.student_of?(@course)
-      Student.create!(:user => current_user, :course => @course, :grade => 0)
-      status_update
-      redirect_to @course, :notice => "You have entered the course #{@course}"
+			@course.create_student(current_user)
+      redirect_to @course, :notice => "#{t('courses.have_entered')} #{@course}"
     else
-      redirect_to @course, :error => "You already are in this course!"
+      redirect_to @course, :error => t('courses.already_in')
     end
   end
   
-  
   def leave
     @course = Course.find params[:id]
-    Student.where(:user_id => current_user, :course_id => @course).first.destroy
-    redirect_to courses_path, :notice => "You have left the course #{@course}"
+		@course.remove_student(current_user)
+    redirect_to courses_path, :notice => "#{t('courses.have_left')} #{@course}"
   end
   
   protected
@@ -37,12 +33,8 @@ class CoursesController < InheritedResources::Base
   def allow_teacher
     course = Course.find(params[:id])
     unless current_user.teacher_of?(course)
-      flash[:alert] = 'You do not have permission to do that.'
+      flash[:alert] = t('shared.no_permission')
       redirect_to course
     end
-  end
-  
-  def status_update    
-    current_user.updates.create!(:reference => @course)
   end
 end

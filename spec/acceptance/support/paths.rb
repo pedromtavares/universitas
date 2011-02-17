@@ -40,6 +40,10 @@ module NavigationHelpers
 	def course_page(course)
 		course_path(course)
 	end
+	
+	def course_creation_page
+		new_course_path
+	end
   
 end
 

@@ -2,37 +2,14 @@
 <html>
 <head>
   <title>Universitas</title>
-	  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => true %>
+	<%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override" %>
 	<%= csrf_meta_tag %>
 </head>
 <body>
   <div id="container">
     <div id="header">
       <h1><a href="/">Universitas</a></h1>
-      <div id="user-navigation">
-        <ul class="wat-cf">
-          <% if user_signed_in?%>
-            <li><%= link_to t("shared.profile"), profile_path(current_user)%></li>
-			      <li>Logged in as <%=current_user%>
-			      <li><%= link_to t("shared.logout"), destroy_user_session_path, :class => "logout" %></li>
-          <% else %>
-            <li><%= link_to t("shared.login"), new_user_session_path, :class => "login" %></li>
-          <% end %>
-        </ul>
-      </div>      
-      <div id="main-navigation">
-        <ul class="wat-cf">
-        	<% %w{dashboard users courses}.each do |type|%>
-				<% if controller_name == type%>
-					<li class="active">
-				<% else %>
-					<li>
-				<% end %>
-				<%=link_to type.titleize, url_for(send(type+"_path"))%>
-				</li>
-			<%end%>
-        </ul>
-      </div>
+      <%= render :partial => 'shared/user_navigation' %>
     </div>    
     <div id="wrapper" class="wat-cf">
       <div class="flash">

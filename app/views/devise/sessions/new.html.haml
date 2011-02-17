@@ -1,9 +1,11 @@
 #box
   .block#block-login
     %h2=t 'shared.login'
-    .flash
-      .message
     .content.login
+      .flash
+        - flash.each do |type, message|
+          .message{:class => type}
+            %p=message
       = form_for(resource, :as => resource_name, :url => user_session_path, :html => {:class => 'form login'}) do |f|       
         .group.wat-cf
           .left= f.label :login, :class => 'label right'

@@ -5,8 +5,24 @@ describe Course do
 		@course = Factory(:course)
 	end
 	
+	it "should create an update right after being created itself" do
+		@course.updates.should_not be_blank
+	end
+	
 	it "should return its name on #to_s" do
 		@course.to_s.should == @course.name
+	end
+	
+	it "should create a student" do
+		student = @course.create_student(Factory(:user))
+		@course.students.first.should == student
+	end
+	
+	it "should remove a student" do
+		user = Factory(:user)
+		student = @course.create_student(user)
+		@course.remove_student(user)
+		@course.students.should be_blank
 	end
 	
   describe "validations" do

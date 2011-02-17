@@ -1,5 +1,7 @@
 module HelperMethods
   
+# ------ User related
+
   def primary_user
     @primary ||= User.first
   end
@@ -44,6 +46,8 @@ module HelperMethods
   def follow_other_user
     primary_user.follow!(other_user)
   end
+
+# ------ Course related
 
 	def default_course
 		@default_course ||= Course.create(:teacher => User.find_by_login("default"), :name => "Test Course")

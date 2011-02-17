@@ -23,6 +23,8 @@ feature "Courses Management", %q{
 		page.should have_content("Default User")
 		page.should_not have_content("Enter this course")
 		page.should_not have_content("Leave this course")
+		visit dashboard
+		page.should have_content("created a course called ")
 	end
 	
 	scenario "Editing an existing course" do
@@ -37,7 +39,9 @@ feature "Courses Management", %q{
 		visit course_page(other_course)
 		click_link_or_button("Enter this course")
 		page.should have_content("Default User")
-	 	click_link_or_button("Leave this course") #will output error if this button doesn't exit
+	 	page.should have_button("Leave this course")
+		visit dashboard
+		page.should have_content("entered a course called ")
 	end
 	
 	scenario "Leaving a course" do
@@ -48,5 +52,9 @@ feature "Courses Management", %q{
 		current_path.should == courses_page
 		visit course_page(other_course)
 		page.should_not have_content("Default User") #he should no longer be a student of that course
+		visit dashboard
+		within("#updates") do
+			page.should_not have_content("Default User") #the update should be removed as well
+		end
 	end
 end

@@ -15,6 +15,7 @@ en:
     manage: Manage
     dashboard: Dashboard
     update: Update
+    no_permission: You do not have permission to do that.
   dashboard:
     recent_updates: Recent Updates
     updated_status: updated status to
@@ -22,8 +23,10 @@ en:
     entered_course: entered a course called
   account:
     cancel: Cancel my account
+  layout:
+    logged_in: Logged in as
   users:
-    connections: \'s connections
+    connections: "'s connections"
     all: All Users
     login: Login
     name: Name
@@ -47,6 +50,9 @@ en:
     enter: Enter this course
     leave: Leave this course
     documents: Documents
+    have_entered: You have entered the course 
+    already_in: You already are in this course!
+    have_left: You have left the course
   students:
     name: Name
     grade: Grade

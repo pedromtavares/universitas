@@ -14,13 +14,14 @@
       %br
       %br
       %h3= t('dashboard.recent_updates')
-      %ul.list
+      %ul.list#updates
         - @feed.each do |update|
-          %li
-            .left= link_to(gravatar_for(update.user), update.user)
-            .item
-              %p
-                =link_to update.user.name,update.user
-                =render_update_content(update)
+          - unless update.reference.blank?
+            %li
+              .left= link_to(gravatar_for(update.user), update.user)
+              .item
+                %p
+                  =link_to update.user.name,update.user
+                  =render_update_content(update)
       .actions-bar.wat-cf
         .actions

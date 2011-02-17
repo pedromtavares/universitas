@@ -1,5 +1,6 @@
 class AddPolymorphicReferenceToUpdates < ActiveRecord::Migration
   def self.up
+		Update.delete_all
     add_column :updates, :reference_type, :string
     add_column :updates, :reference_id, :integer
     remove_column :updates, :content
