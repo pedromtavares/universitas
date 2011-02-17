@@ -22,7 +22,8 @@ describe Course do
 		user = Factory(:user)
 		student = @course.create_student(user)
 		@course.remove_student(user)
-		@course.students.should be_blank
+		@course.reload
+		@course.students.should_not include(student)
 	end
 	
   describe "validations" do

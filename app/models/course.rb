@@ -12,11 +12,11 @@ class Course < ActiveRecord::Base
   end
 
 	def create_student(user)
-		Student.create(:user => user, :course => self, :grade => 0)
+		self.students.create(:user => user, :grade => 0)
 	end
 	
 	def remove_student(user)
-		Student.where(:user_id => user, :course_id => self).first.destroy
+		self.students.where(:user_id => user).first.destroy
 	end
 
 	private
