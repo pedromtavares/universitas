@@ -10,3 +10,4 @@ log/*
 .redcar/
 .idea/
 public/uploads/
+config/database.yml
