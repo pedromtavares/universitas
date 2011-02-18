@@ -6,7 +6,7 @@ class DocumentsController < InheritedResources::Base
 	private
 	
 	def allow_teacher
-    course = Course.find(params[:id])
+    course = Course.find(params[:id] || params[:course_id])
     unless current_user && current_user.teacher_of?(course)
       flash[:alert] = 'You do not have permission to do that.'
       redirect_to course

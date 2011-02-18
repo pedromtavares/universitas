@@ -28,12 +28,13 @@ ul.list li {
   padding-bottom: 20px;
 }
 
-ul.list li:hover {
+#updates li:hover {
   background-color:#ebebeb;
 }
 
-ul.list li .item {
-  margin-left: 30px;
+ul.list li .left span{
+	text-align:center;
+	margin-left:5px;
 }
 
 .form .navform a{

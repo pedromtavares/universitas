@@ -53,6 +53,13 @@ en:
     have_entered: You have entered the course 
     already_in: You already are in this course!
     have_left: You have left the course
+    my_courses: My Courses
+    created: Courses I created
+    created_none: "You don't have any courses created yet."
+    create_one_now: Create one now!
+    entered: Courses I entered
+    entered_none: "You haven't entered any courses yet."
+    enter_one_now: Find and enter one now!
   students:
     name: Name
     grade: Grade

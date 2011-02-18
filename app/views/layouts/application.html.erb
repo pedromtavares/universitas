@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Universitas</title>
-	<%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override" %>
+  <%= render :partial => 'shared/stylesheets'%>
+  <%= yield :stylesheets %>
 	<%= csrf_meta_tag %>
 </head>
 <body>
@@ -32,8 +33,8 @@
       </div>
     </div>    
   </div>
-<%= javascript_include_tag 'jquery/jquery-1.5.min' %>
-<%= javascript_include_tag :all %>
+<%= render :partial => 'shared/javascripts'%>
+<%= yield :javascripts %>
 </body>
 </html>
   

@@ -20,31 +20,40 @@
         = link_to t('shared.edit'), edit_resource_url, :class => "button" 
         = link_to "#{t('shared.manage')}#{t('courses.documents')}", course_documents_path(resource), :class => "button"
       %br.clear
-          
-      %h3= t('courses.students')
-      - unless resource.students.blank?
-        %table.table
-          %tr
-            %th.first
-            %th= t('students.name')
-            %th= t('students.grade')
-            %th.last 
-          - resource.students.each do |student|
-            %tr{:class => cycle("odd","even")}
-              %td.first
-              %td= link_to student.name, student.user
-              %td= student.grade
-              %td
-      - else
-        %p=t('students.blank')
       %br.clear
-      
-      %h3=t('courses.documents')
-      - unless resource.documents.blank?
-        
-      - else
-        %p=t('documents.blank')
-      %br.clear
-      
-      
-      
+      #tabs
+        %ul
+          %li=link_to t('courses.students'), "#students"
+          %li=link_to t('courses.documents'), "#documents"
+        #students
+          - unless resource.students.blank?
+            %table.table
+              %tr
+                %th.first
+                %th= t('students.name')
+                %th= t('students.grade')
+                %th.last 
+              - resource.students.each do |student|
+                %tr{:class => cycle("odd","even")}
+                  %td.first
+                  %td= link_to student.name, student.user
+                  %td= student.grade
+                  %td
+          - else
+            %p=t('students.blank')
+    
+        #documents
+          - unless resource.documents.blank?
+            %ul.list
+              - resource.documents.each do |document|
+                %li
+                  .left
+                    =link_to image_tag('avatar.png'), document.file_url
+                    %br
+                    %span=file_size_from_bytes(document.file.size)
+                  .item
+                    %h3=document.name
+                    %p=document.description
+          - else
+            %p=t('documents.blank')
+- content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?      
