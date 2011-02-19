@@ -1,19 +1,18 @@
-.block
-  .content
-    %h2.title= resource.name
-    = gravatar_for resource unless resource.email.blank?
-    .inner
-      %p
-        %strong=t('users.email')
-        =resource.email
-        
-      - unless resource == current_user || !user_signed_in?
-        - if current_user.following?(resource)
-          %p= link_to t('users.unfollow'), unfollow_user_path(resource) 
-        - else
-          %p= link_to t('users.follow'), follow_user_path(resource)
+.content
+  %h2.title= resource.name
+  = gravatar_for resource unless resource.email.blank?
+  .inner
+    %p
+      %strong=t('users.email')
+      =resource.email
       
-      
-      .wat-cf
-        = link_to t('shared.edit'), edit_profile_path, :class => "button" if resource == current_user
+    - unless resource == current_user || !user_signed_in?
+      - if current_user.following?(resource)
+        %p= link_to t('users.unfollow'), unfollow_user_path(resource) 
+      - else
+        %p= link_to t('users.follow'), follow_user_path(resource)
+    
+    
+    .wat-cf
+      = link_to t('shared.edit'), edit_profile_path, :class => "button" if resource == current_user
 - content_for :sidebar, render(:partial => 'sidebar')

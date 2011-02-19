@@ -1,8 +1,6 @@
-.block
-  = render :partial => 'shared/breadcrumbs'
-  .content
-    %h2.title= t('courses.new')
-    .inner
-      = simple_form_for(resource, :url => collection_url, :html => { :method => :post, :class => :form }) do |f|
-        = render :partial => "form", :locals => {:f => f}  
+.content
+  %h2.title= t('courses.new')
+  .inner
+    = simple_form_for(resource, :url => collection_url, :html => { :method => :post, :class => :form }) do |f|
+      = render :partial => "form", :locals => {:f => f}  
 - content_for :sidebar, render(:partial => 'sidebar')

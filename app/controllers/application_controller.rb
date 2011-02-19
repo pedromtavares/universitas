@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :define_layout
+
+	before_filter :set_breadcrumbs
   
   def paginate( model, options = {} )
     load_page
@@ -23,6 +25,13 @@ class ApplicationController < ActionController::Base
 		else
 			"application"
 		end
+	end
+	
+	def set_breadcrumbs
+		add_breadcrumb(parent.name, :parent_url) if self.respond_to?('parent?') && parent?
+		add_breadcrumb(I18n.t("#{self.controller_name}.all"), :collection_path)
+		add_breadcrumb(I18n.t("#{self.controller_name}.new"), :new_resource_path)
+		add_breadcrumb(resource.name, lambda { |a| resource_path  }) if params[:id]
 	end
 
 end

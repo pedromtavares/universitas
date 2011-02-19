@@ -1,6 +1,7 @@
 class CoursesController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :allow_teacher, :only => [:edit, :update]  
+  before_filter :allow_teacher, :only => [:edit, :update] 
+
   actions :all, :except => :delete
   
   def create

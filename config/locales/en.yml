@@ -12,10 +12,14 @@ en:
     confirm: Are you sure?
     submit: Submit
     courses: Courses
+    users: Users
     manage: Manage
     dashboard: Dashboard
     update: Update
     no_permission: You do not have permission to do that.
+    click_to_download: Click to download
+  custom_messages:
+    file_validation: "can't be larger than 5MB!"
   dashboard:
     recent_updates: Recent Updates
     updated_status: updated status to
@@ -27,7 +31,7 @@ en:
     logged_in: Logged in as
   users:
     connections: "'s connections"
-    all: All Users
+    all: All
     login: Login
     name: Name
     email: E-mail

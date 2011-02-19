@@ -1,16 +1,14 @@
-.block
-  = render :partial => 'shared/breadcrumbs', :locals => {:parent => @course}
-  .content
-    %h2.title= resource.name
-    .inner
-      %p
-        %strong= t('documents.description')
-        = resource.description
-      %p  
-        %strong= t('documents.file')
-        = link_to resource.name, resource.file_url
-          
-      = link_to t('shared.edit'), edit_resource_url, :class => "button" 
-      %br.clear
-      %br.clear
-      
+.content
+  %h2.title= resource.name
+  .inner
+    %p
+      %strong= t('documents.description')
+      = resource.description
+    %p  
+      %strong= t('documents.file')
+      = link_to resource.name, resource.file_url
+        
+    = link_to t('shared.edit'), edit_resource_url, :class => "button" 
+    %br.clear
+    %br.clear
+    

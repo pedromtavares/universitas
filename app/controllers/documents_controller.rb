@@ -1,16 +1,28 @@
 class DocumentsController < InheritedResources::Base
 	before_filter :authenticate_user!, :except => [:index, :show]
-	before_filter :allow_teacher, :except => [:show, :index]  
+	before_filter :allow_teacher, :except => [:show, :index, :download]  
 	belongs_to :course
+	
+	
+	def download
+		@document = Document.find(params[:id])
+		file = File.join('public', @document.file_url)
+		send_file(file, :disposition => 'attachment', :filename => File.basename(file))
+	end
 	
 	private
 	
 	def allow_teacher
-    course = Course.find(params[:id] || params[:course_id])
-    unless current_user && current_user.teacher_of?(course)
+    unless current_user && current_user.teacher_of?(parent)
       flash[:alert] = 'You do not have permission to do that.'
-      redirect_to course
+      redirect_to parent
     end
   end
+
+	def set_breadcrumbs
+		add_breadcrumb(parent.name, :parent_url) if parent?
+		add_breadcrumb(I18n.t("#{self.controller_name}.all"), :collection_path)
+		add_breadcrumb(I18n.t("#{self.controller_name}.new"), :new_resource_path)
+	end
 
 end

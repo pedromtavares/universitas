@@ -21,7 +21,10 @@
         <% end -%>
       </div>
       <div id="main">
-        <%= yield %>
+        <div class="block">
+          <%=render :partial => 'shared/breadcrumbs'%>
+          <%= yield %>
+        </div>
         <div id="footer">
           <div class="block">
             <p><%=t('shared.copyright')%>&copy; <%= Time.now.year %> Universitas</p>

@@ -1,27 +1,26 @@
-.block
-  .content
-    %h2.title
-      = t('shared.dashboard')
-      -
-      =current_user.name
-    .inner
-      = form_tag update_status_dashboard_path, :method => :put do
-        %h3 
-          Status:
-          = text_field_tag :status, current_user.status, :size => 100, :maxlength => 100
-          = submit_tag t('shared.update')      
-      %br
-      %br
-      %br
-      %h3= t('dashboard.recent_updates')
-      %ul.list#updates
-        - @feed.each do |update|
-          - unless update.reference.blank?
-            %li
-              .left= link_to(gravatar_for(update.user), update.user)
-              .item
-                %p
-                  =link_to update.user.name,update.user
-                  =render_update_content(update)
-      .actions-bar.wat-cf
-        .actions
+.content
+  %h2.title
+    = t('shared.dashboard')
+    \-
+    =current_user.name
+  .inner
+    = form_tag update_status_dashboard_path, :method => :put do
+      %h3 
+        Status:
+        = text_field_tag :status, current_user.status, :size => 100, :maxlength => 100
+        = submit_tag t('shared.update')      
+    %br
+    %br
+    %br
+    %h3= t('dashboard.recent_updates')
+    %ul.list#updates
+      - @feed.each do |update|
+        - unless update.reference.blank?
+          %li
+            .left= link_to(gravatar_for(update.user), update.user)
+            .item
+              %p
+                =link_to update.user.name,update.user
+                =render_update_content(update)
+    .actions-bar.wat-cf
+      .actions

@@ -1,18 +1,16 @@
-.block
-  = render :partial => 'shared/breadcrumbs', :locals => {:parent => @course}
-  .content
-    %h2.title 
-      = t('documents.documents_for')
-      = @course.name
-    .inner
-      %table.table
-        %tr
-          %th.first
-          %th= t('documents.name')
-          %th.last= t('documents.description')
-        - collection.each do |resource|
-          %tr{:class => cycle("odd","even")}
-            %td.first
-            %td= link_to resource, resource_path(resource)
-            %td= resource.description
-      
+.content
+  %h2.title 
+    = t('documents.documents_for')
+    = @course.name
+  .inner
+    %table.table
+      %tr
+        %th.first
+        %th= t('documents.name')
+        %th.last= t('documents.description')
+      - collection.each do |resource|
+        %tr{:class => cycle("odd","even")}
+          %td.first= link_to t('shared.edit'), edit_resource_url(resource), :class => "button" 
+          %td= link_to resource, download_course_document_path(resource.course, resource), :title => t('shared.click_to_download')
+          %td= resource.description
+    
