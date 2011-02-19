@@ -3,6 +3,7 @@ require 'faker'
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
+		raise "Don't run this on prod! Are you crazy?" if Rails.env.production?
     Rake::Task['db:reset'].invoke
 		# creates a default user to easily log in
     User.create!(:name => "Default User",

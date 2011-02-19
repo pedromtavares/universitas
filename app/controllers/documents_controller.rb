@@ -5,9 +5,8 @@ class DocumentsController < InheritedResources::Base
 	
 	
 	def download
-		@document = Document.find(params[:id])
-		file = File.join('public', @document.file_url)
-		send_file(file, :disposition => 'attachment', :filename => File.basename(file))
+		file = resource.file_url
+		send_data(file, :disposition => 'attachment', :filename => File.basename(file))
 	end
 	
 	private

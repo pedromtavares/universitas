@@ -47,7 +47,6 @@
                 .left
                   =link_to image_tag('avatar.png'), download_course_document_path(document.course,document), :title => t('shared.click_to_download')
                   %br
-                  %span=file_size_from_bytes(document.file.size)
                 .item
                   %h3=document.name
                   %p=document.description

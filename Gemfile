@@ -17,6 +17,7 @@ gem 'gravatar_image_tag'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'web-app-theme', '>= 0.6.2'
+gem 'fog'
 
 
 group :development do
