@@ -17,10 +17,10 @@
       - @feed.each do |update|
         - unless update.reference.blank?
           %li
-            .left= link_to(gravatar_for(update.user), update.user)
+            .left= render_update_owner(update)
             .item
               %p
-                =link_to update.user.name,update.user
+                =link_to update.owner.name,update.owner
                 =render_update_content(update)
     .actions-bar.wat-cf
       .actions

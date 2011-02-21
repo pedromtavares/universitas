@@ -25,6 +25,7 @@ en:
     updated_status: updated status to
     created_course: created a course called 
     entered_course: entered a course called
+    document_created: "A new document was created:"
   account:
     cancel: Cancel my account
   layout:

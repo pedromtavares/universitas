@@ -6,7 +6,8 @@ describe Course do
 	end
 	
 	it "should create an update right after being created itself" do
-		@course.updates.should_not be_blank
+		@course.update_references.should_not be_blank
+		@course.update_references.first.owner.should == @course.teacher
 	end
 	
 	it "should return its name on #to_s" do

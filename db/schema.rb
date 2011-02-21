@@ -10,12 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215004100) do
+ActiveRecord::Schema.define(:version => 20110220051756) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.integer  "teacher_id"
-    t.string   "description"
+    t.text     "description"
     t.boolean  "closed",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110215004100) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "file"
     t.integer  "course_id"
     t.datetime "created_at"
@@ -62,11 +62,12 @@ ActiveRecord::Schema.define(:version => 20110215004100) do
   end
 
   create_table "updates", :force => true do |t|
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "reference_type"
     t.integer  "reference_id"
+    t.string   "owner_type"
+    t.integer  "owner_id"
   end
 
   create_table "users", :force => true do |t|

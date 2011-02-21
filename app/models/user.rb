@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
   has_many :following, :through => :relationships, :source => :followed
   has_many :reverse_relationships, :foreign_key => "followed_id", :dependent => :destroy, :class_name => 'Relationship'
   has_many :followers, :through => :reverse_relationships
-  has_many :updates
+  has_many :updates, :as => :owner, :dependent => :destroy
+	has_many :update_references, :as => :reference, :dependent => :destroy, :class_name => "Update"
   has_many :students
   has_many :courses, :through => :students
   has_many :courses_teached, :class_name => 'Course', :foreign_key => "teacher_id"
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
   end
   
   def feed    
-    Update.where("user_id IN (?) or user_id = ?", self.following, self.id).order('created_at desc')
+    Update.where("((owner_id IN (?) or owner_id = ?) and owner_type='User') or (owner_id in (?) and owner_type='Course')", self.following, self.id, self.courses + self.courses_teached).order('created_at desc')
   end
   
   def following?(followed)

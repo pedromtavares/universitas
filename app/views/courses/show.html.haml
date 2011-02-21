@@ -24,18 +24,12 @@
         %li=link_to t('courses.documents'), "#documents"
       #students
         - unless resource.students.blank?
-          %table.table
-            %tr
-              %th.first
-              %th= t('students.name')
-              %th= t('students.grade')
-              %th.last 
+          %ul.list
             - resource.students.each do |student|
-              %tr{:class => cycle("odd","even")}
-                %td.first
-                %td= link_to student.name, student.user
-                %td= student.grade
-                %td
+              %li
+                .left= link_to(gravatar_for(student.user), student.user)
+                .item
+                  %h3= link_to student.name, student.user
         - else
           %p=t('students.blank')
   

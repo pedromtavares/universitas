@@ -1,7 +1,8 @@
 class Course < ActiveRecord::Base
   has_many :students
 	has_many :documents
-	has_many :updates, :as => :reference, :dependent => :destroy
+	has_many :updates, :as => :owner, :dependent => :destroy
+	has_many :update_references, :as => :reference, :dependent => :destroy, :class_name => "Update"
   belongs_to :teacher, :class_name => 'User', :foreign_key => 'teacher_id'
 	after_create :status_update
 
