@@ -1,6 +1,6 @@
 .content
   %h2.title= resource.name
-  = gravatar_for resource unless resource.email.blank?
+  %div{:style => 'margin:15px'}= gravatar_for resource unless resource.email.blank?
   .inner
     %p
       %strong=t('users.email')
