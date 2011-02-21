@@ -2,8 +2,7 @@
   %h2.title= resource.name
   .inner
     %p
-      %strong= t('courses.description')
-      = resource.description
+      %em= resource.description
     %p  
       %strong= t('courses.teacher')
       = link_to resource.teacher.name, resource.teacher
