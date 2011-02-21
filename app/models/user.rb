@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :reverse_relationships
   has_many :updates, :as => :owner, :dependent => :destroy
 	has_many :update_references, :as => :reference, :dependent => :destroy, :class_name => "Update"
-  has_many :students
+  has_many :students, :dependent => :destroy
   has_many :courses, :through => :students
   has_many :courses_teached, :class_name => 'Course', :foreign_key => "teacher_id"
   
