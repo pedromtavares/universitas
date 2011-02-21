@@ -39,7 +39,7 @@
             - resource.documents.each do |document|
               %li
                 .left
-                  =link_to image_tag('avatar.png'), download_course_document_path(document.course,document), :title => t('shared.click_to_download')
+                  =link_to image_tag('avatar.png'), document.file_url, :title => t('shared.click_to_download')
                   %br
                 .item
                   %h3=document.name
