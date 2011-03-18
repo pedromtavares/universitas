@@ -5,4 +5,6 @@
   %button.button{:type => 'submit'}
     = image_tag("icons/tick.png", :alt => t('shared.submit')) 
     = t('shared.submit')
-  = link_to t('shared.back'), collection_url, :class => "button"   
+  = link_to collection_url, :class => "button" do
+    = image_tag("icons/back.png", :alt => t('shared.submit'))
+    = t('shared.back')   
