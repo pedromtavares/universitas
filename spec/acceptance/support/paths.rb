@@ -33,16 +33,16 @@ module NavigationHelpers
     "/#{User.last.login}"
   end
 
-	def courses_page
-		courses_path
+	def groups_page
+		groups_path
 	end
 	
-	def course_page(course)
-		course_path(course)
+	def group_page(group)
+		group_path(group)
 	end
 	
-	def course_creation_page
-		new_course_path
+	def group_creation_page
+		new_group_path
 	end
   
 end

@@ -6,8 +6,8 @@ describe Document do
   end
 
 	it "should create an update right after being created itself" do
-		@document.update_references.should_not be_blank
-		@document.update_references.first.owner.should == @document.course
+		@document.targeted_updates.should_not be_blank
+		@document.targeted_updates.first.creator.should == @document.user
 	end
 
 	it "should return its name on #to_s" do

@@ -2,9 +2,17 @@ Universitas::Application.routes.draw do
   devise_for :users do
     get 'profile/edit', :to => 'devise/registrations#edit', :as => 'edit_profile'
   end
-  resources :users, :only => [:index] do
+  resources :users, :only => [:index, :show] do
+		resources :documents, :controller => 'user_documents' do
+			member do
+				get :download
+				post :add
+				delete :remove
+			end
+		end
     member do
-      get :follow, :unfollow
+      post :follow
+ 			delete :unfollow
     end
   end
   
@@ -12,20 +20,18 @@ Universitas::Application.routes.draw do
     put :update_status, :as => 'update_status'
   end
   
-  resources :courses, :except => [:delete] do
-		resources :documents do
-			member do
-				get :download
-			end
-		end
+  resources :groups, :except => [:delete] do
+		resources :forums
     member do
-      post :enter
+      post :join
       delete :leave
     end
   end
+
+	resources :documents, :only => :index
   
-  get ':id' => 'users#show', :as => 'profile'
-  get ':id' => 'users#show', :as => 'user'
+  get 'users/:id' => 'users#show', :as => 'profile'
+  get ':id' => 'groups#show', :as => 'group'
   
   root :to => 'dashboard#show'
 

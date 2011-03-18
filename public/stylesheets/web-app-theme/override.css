@@ -17,19 +17,10 @@
   background-color:black
 }
 
-#updates img{
-	margin:5px;
-	padding:5px;
-}
-
 ul.list li {
   clear: left;
   padding-top:10px;
   padding-bottom: 20px;
-}
-
-#updates li:hover {
-  background-color:#ebebeb;
 }
 
 ul.list li .left span{

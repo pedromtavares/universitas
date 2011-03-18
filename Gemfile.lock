@@ -1,56 +1,36 @@
-GIT
-  remote: git://github.com/aslakhellesoy/cucumber-rails.git
-  revision: f3002faf12560dc7a7dc16cafb282ffbbf892029
-  specs:
-    cucumber-rails (0.4.0.beta.1)
-      cucumber (~> 0.10.0)
-      nokogiri (~> 1.4.4)
-      rack-test (~> 0.5.6)
-
-GIT
-  remote: git://github.com/aslakhellesoy/cucumber.git
-  revision: e2df150cc4fdd4ca6e6a4db8da47fff4eea97df8
-  specs:
-    cucumber (0.10.0)
-      builder (>= 2.1.2)
-      diff-lcs (~> 1.1.2)
-      gherkin (~> 2.3.3)
-      json (~> 1.4.6)
-      term-ansicolor (~> 1.0.5)
-
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.4.2)
+    ZenTest (4.5.0)
     abstract (1.0.0)
-    actionmailer (3.0.3)
-      actionpack (= 3.0.3)
-      mail (~> 2.2.9)
-    actionpack (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
+    actionmailer (3.0.5)
+      actionpack (= 3.0.5)
+      mail (~> 2.2.15)
+    actionpack (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
       builder (~> 2.1.2)
       erubis (~> 2.6.6)
       i18n (~> 0.4)
       rack (~> 1.2.1)
       rack-mount (~> 0.6.13)
-      rack-test (~> 0.5.6)
+      rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    activemodel (3.0.3)
-      activesupport (= 3.0.3)
+    activemodel (3.0.5)
+      activesupport (= 3.0.5)
       builder (~> 2.1.2)
       i18n (~> 0.4)
-    activerecord (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
+    activerecord (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
       arel (~> 2.0.2)
       tzinfo (~> 0.3.23)
-    activeresource (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
-    activesupport (3.0.3)
+    activeresource (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
+    activesupport (3.0.5)
     annotate-models (1.0.4)
-    arel (2.0.8)
+    arel (2.0.9)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     autotest-rails (4.1.0)
@@ -70,11 +50,11 @@ GEM
     capybara-envjs (0.4.0)
       capybara (~> 0.4.0)
       envjs (>= 0.3.7)
-    carrierwave (0.5.1)
+    carrierwave (0.5.2)
       activesupport (~> 3.0)
-    celerity (0.8.7)
+    celerity (0.8.8)
     cgi_multipart_eof_fix (2.5.0)
-    childprocess (0.1.6)
+    childprocess (0.1.7)
       ffi (~> 0.6.3)
     columnize (0.3.2)
     configuration (1.2.0)
@@ -88,7 +68,7 @@ GEM
       johnson (>= 2.0.0.pre3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    excon (0.5.5)
+    excon (0.5.6)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
@@ -98,21 +78,19 @@ GEM
     fastthread (1.0.7)
     ffi (0.6.3)
       rake (>= 0.8.7)
-    fog (0.5.3)
+    fog (0.7.0)
       builder
-      excon (>= 0.5.2)
-      formatador (>= 0.0.16)
+      excon (>= 0.5.5)
+      formatador (>= 0.1.1)
       json
       mime-types
       net-ssh (>= 2.0.23)
       nokogiri (>= 1.4.4)
       ruby-hmac
-    formatador (0.0.16)
+    formatador (0.1.1)
     friendly_id (3.2.1)
       babosa (~> 0.2.1)
     gem_plugin (0.2.3)
-    gherkin (2.3.3)
-      json (~> 1.4.6)
     gravatar_image_tag (1.0.0)
     haml (3.0.25)
     has_scope (0.5.0)
@@ -122,9 +100,11 @@ GEM
       responders (~> 0.6.0)
     johnson (2.0.0.pre3)
       stackdeck (~> 0.2)
-    json (1.4.6)
-    json_pure (1.4.6)
-    launchy (0.3.7)
+    json (1.5.1)
+    json_pure (1.5.1)
+    kaminari (0.10.4)
+      rails (>= 3.0.0)
+    launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
     linecache (0.43)
@@ -142,25 +122,25 @@ GEM
     mongrel_experimental (1.1)
       mongrel (= 1.1)
     mysql (2.8.1)
-    net-ssh (2.1.0)
+    net-ssh (2.1.3)
     nokogiri (1.4.4)
     polyglot (0.3.1)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
-    rails (3.0.3)
-      actionmailer (= 3.0.3)
-      actionpack (= 3.0.3)
-      activerecord (= 3.0.3)
-      activeresource (= 3.0.3)
-      activesupport (= 3.0.3)
+    rails (3.0.5)
+      actionmailer (= 3.0.5)
+      actionpack (= 3.0.5)
+      activerecord (= 3.0.5)
+      activeresource (= 3.0.5)
+      activesupport (= 3.0.5)
       bundler (~> 1.0)
-      railties (= 3.0.3)
-    railties (3.0.3)
-      actionpack (= 3.0.3)
-      activesupport (= 3.0.3)
+      railties (= 3.0.5)
+    railties (3.0.5)
+      actionpack (= 3.0.5)
+      activesupport (= 3.0.5)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
@@ -185,7 +165,7 @@ GEM
       linecache (>= 0.3)
     ruby-hmac (0.4.0)
     rubyzip (0.9.4)
-    selenium-webdriver (0.1.2)
+    selenium-webdriver (0.1.3)
       childprocess (~> 0.1.5)
       ffi (~> 0.6.3)
       json_pure
@@ -194,15 +174,13 @@ GEM
     stackdeck (0.2.0)
     steak (1.1.0)
       rspec (>= 1.3)
-    term-ansicolor (1.0.5)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.24)
+    tzinfo (0.3.25)
     warden (0.10.7)
       rack (>= 1.0.0)
     web-app-theme (0.6.3)
-    will_paginate (3.0.pre2)
     xpath (0.1.3)
       nokogiri (~> 1.3)
 
@@ -217,8 +195,6 @@ DEPENDENCIES
   capybara
   capybara-envjs
   carrierwave
-  cucumber!
-  cucumber-rails!
   devise (= 1.1.3)
   factory_girl_rails
   faker
@@ -227,15 +203,15 @@ DEPENDENCIES
   gravatar_image_tag
   haml
   inherited_resources (= 1.1.2)
+  kaminari
   launchy
   mongrel
   mongrel_experimental
   mysql
-  rails (= 3.0.3)
+  rails (= 3.0.5)
   rspec
   rspec-rails (>= 2.0.0.beta)
   ruby-debug
   simple_form
   steak (>= 1.0.0.beta.2)
   web-app-theme (>= 0.6.2)
-  will_paginate (>= 3.0.pre)

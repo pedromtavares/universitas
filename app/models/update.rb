@@ -1,4 +1,4 @@
 class Update < ActiveRecord::Base
-	belongs_to :owner, :polymorphic => true
-  belongs_to :reference, :polymorphic => true  
+	belongs_to :creator, :polymorphic => true
+  belongs_to :target, :polymorphic => true  
 end

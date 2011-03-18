@@ -1,6 +1,9 @@
 - following = resource.following
 - followers = resource.followers
-%h1="#{resource}#{t('users.connections')}"
+- if resource == current_user
+  %h1="#{t('users.my_connections')}"
+- else
+  %h1="#{resource}#{t('users.connections')}"
 .block
   %h3=t('users.following')
   .content

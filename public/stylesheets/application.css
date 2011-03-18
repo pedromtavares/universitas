@@ -1,0 +1,74 @@
+.clear{
+	clear:all;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.center{
+	text-align:center;
+}
+.small{
+	float:left;
+	font-size: 10px;
+	color: grey;
+	width:200px;
+	padding:5px;
+}
+.small_box{
+	float:left;
+	width:200px;
+	margin:0 5px;
+}
+#updates img{
+	margin:5px;
+	padding:5px;
+}
+
+#updates li:hover {
+  background-color:#ebebeb;
+}
+
+#module-box{
+	height: 150px;
+}
+
+#module-box .left{
+	width: 70%;
+}
+#module-box .right{
+	width: 30%;
+}
+
+#doc-box{
+	margin: 10px;
+	padding: 0px;
+	overflow:auto;
+	height:100px;
+	font-size:10px;
+}
+
+#doc-box .name{
+	float:left;
+	
+	margin: 2px 0 0px 10px;
+	width:120px;
+}
+
+#doc-box .doc{
+	margin:2px;
+	padding:5px;
+	clear:left;
+	height:15px;
+}
+
+#doc-box .doc img{
+	float:left;
+}
+
+#doc-box .doc .options{
+	float:left;
+	text-decoration: underline;
+}

@@ -15,12 +15,12 @@
     %h3= t('dashboard.recent_updates')
     %ul.list#updates
       - @feed.each do |update|
-        - unless update.reference.blank?
+        - unless update.target.blank?
           %li
-            .left= render_update_owner(update)
+            .left= render_update_creator(update)
             .item
               %p
-                =link_to update.owner.name,update.owner
+                =link_to update.creator.name,update.creator
                 =render_update_content(update)
     .actions-bar.wat-cf
       .actions

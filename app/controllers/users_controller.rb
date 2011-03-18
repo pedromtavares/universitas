@@ -1,7 +1,14 @@
 class UsersController < InheritedResources::Base
 	
 	def index
+		@users = paginate(User.search(params[:search])) if params[:search]
 		@user ||= current_user
+		super
+	end
+	
+	def show
+		@user_documents = @user.user_documents
+		@groups = @user.groups_leadered + @user.groups
 		super
 	end
   
@@ -10,7 +17,7 @@ class UsersController < InheritedResources::Base
       current_user.follow!(resource)
       flash[:notice] = "You are now following #{resource}."
     end
-    redirect_to root_path
+    redirect_to resource
   end
   
   def unfollow
@@ -18,7 +25,7 @@ class UsersController < InheritedResources::Base
       current_user.unfollow!(resource)
       flash[:notice] = "You have unfollowed #{resource}."
     end
-    redirect_to root_path
+    redirect_to resource
   end
   
   protected

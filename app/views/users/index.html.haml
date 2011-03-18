@@ -1,7 +1,12 @@
 .content
-  %h2.title= t('shared.users')
+  %h2.title= t('users.plural')
   .inner
-    - unless collection.blank?
+    = form_tag users_path, :class => 'form', :method => 'get' do
+      .small_box= text_field_tag :search, params[:search], :class => 'text_field'
+      %button{:type => 'submit', :class => 'button', :style => 'padding:1.5px 5px' }=t('shared.search')
+    %br
+    %br
+    - unless collection.all.blank?
       %table.table
         %tr
           %th.first
@@ -17,7 +22,7 @@
       .actions-bar.wat-cf
         .actions
         .pagination
-          = will_paginate
+          = paginate collection
     - else
       =t('users.blank')
 - content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?

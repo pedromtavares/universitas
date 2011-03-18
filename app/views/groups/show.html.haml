@@ -1,0 +1,72 @@
+.content
+  %h2.title= resource.name
+  .inner
+    %p
+      %em= resource.description
+    %p  
+      %strong= t('groups.leader')
+      = link_to resource.leader.name, resource.leader
+      
+    - if user_signed_in? && !current_user.leader_of?(resource)
+      - unless current_user.member_of?(resource)
+        %p= button_to t('groups.join'), join_group_path
+      - else
+        %p= button_to t('groups.leave'), leave_group_path, :method => :delete
+        
+    - if user_signed_in? && current_user.leader_of?(resource)
+      = render :partial => 'leader_menu'
+    %br.clear
+    %br.clear
+    #tabs
+      %ul
+        %li=link_to t('modules.plural'), "#modules"
+        %li=link_to t('documents.plural'), "#documents"
+        %li=link_to t('members.plural'), "#members"
+      #modules
+        - unless resource.modules.blank?
+          - resource.modules.each do |m|
+            #module-box.ui-state-default
+              .left
+                %h2=m.name
+                %p=m.description
+              .right
+                %h3.center Documents
+                #doc-box.ui-state-active
+                  - unless m.documents.blank?
+                  - else
+                    - 10.times do
+                      .doc.ui-state-hover
+                        =image_tag 'avatar_small.png'
+                        .name Some doc
+                        .options
+                          =link_to "#", :title => t('documents.add') do
+                            %span.ui-icon.ui-icon-plusthick
+                
+            %br.clear
+        - else
+          %p=t('modules.blank')
+      #members
+        - unless resource.members.blank?
+          %ul.list
+            - resource.members.each do |member|
+              %li
+                .left= link_to(gravatar_for(member.user), member.user)
+                .item
+                  %h3= link_to member.name, member.user
+        - else
+          %p=t('members.blank')
+  
+      #documents
+        - unless resource.documents.blank?
+          %ul.list
+            - resource.documents.each do |document|
+              %li
+                .left
+                  =link_to image_tag('avatar.png'), document.file_url, :title => t('shared.click_to_download')
+                  %br
+                .item
+                  %h3=document.name
+                  %p=document.description
+        - else
+          %p=t('groups.documents.blank')
+- content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?      

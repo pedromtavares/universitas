@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,12 +12,12 @@ gem 'inherited_resources', '1.1.2'
 gem 'devise', '1.1.3'
 gem 'friendly_id'
 # gem 'heroku', '1.10.8'
-gem 'will_paginate', '>= 3.0.pre'
 gem 'gravatar_image_tag'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'web-app-theme', '>= 0.6.2'
 gem 'fog'
+gem 'kaminari'
 
 
 group :development do
@@ -36,8 +36,6 @@ group :test do
   gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
-  gem "cucumber",         :git => "git://github.com/aslakhellesoy/cucumber.git"
-  gem "cucumber-rails",   :git => "git://github.com/aslakhellesoy/cucumber-rails.git"
   gem "capybara"
   gem "capybara-envjs"
   gem "launchy"

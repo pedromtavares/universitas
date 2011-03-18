@@ -8,11 +8,51 @@
       
     - unless resource == current_user || !user_signed_in?
       - if current_user.following?(resource)
-        %p= link_to t('users.unfollow'), unfollow_user_path(resource) 
+        %p= link_to t('users.unfollow'), unfollow_user_path(resource), :method => :delete 
       - else
-        %p= link_to t('users.follow'), follow_user_path(resource)
+        %p= link_to t('users.follow'), follow_user_path(resource), :method => :post
     
-    
-    .wat-cf
-      = link_to t('shared.edit'), edit_profile_path, :class => "button" if resource == current_user
+    -if resource == current_user
+      .wat-cf
+        = link_to t('shared.edit'), edit_profile_path, :class => "button"
+        = link_to "#{t('shared.manage')} #{t('users.documents.uploaded.plural')}", user_documents_path(resource), :class => "button"
+      
+  #tabs
+    %ul
+      %li=link_to t('documents.plural'), "#documents"
+      %li=link_to t('groups.plural'), "#groups"
+
+    #documents
+      - unless @user_documents.blank?
+        %ul.list
+          - @user_documents.each do |user_document|
+            %li
+              .left
+                =link_to image_tag('avatar.png'), user_document.file.url, :title => t('shared.click_to_download')
+                %br
+              .item
+                %h3=user_document.name
+                %p=user_document.description
+                - unless current_user.has_document?(user_document)
+                  .small=link_to t('documents.add'), add_user_document_path(current_user,user_document.document), :method => :post
+                - if resource == current_user and current_user.has_document?(user_document)
+                  .small=link_to t('documents.remove'), remove_user_document_path(current_user,user_document), :method => :delete                 
+      - else
+        %p=t('users.documents.blank')
+    #groups
+      - unless @groups.blank?
+        %ul.list
+          - @groups.each do |group|
+            %li
+              .left= link_to(image_tag('avatar.png'), group)
+              .item
+                %h3= link_to group.name, group
+                %p
+                  %em= group.description
+                .small= pluralize(group.members.count, t('members.singular'))
+                .small= pluralize(group.documents.count, t('documents.singular'))
+                .small= pluralize(group.modules.count, t('modules.singular'))
+                
+      - else
+        %p=t('users.groups.blank')
 - content_for :sidebar, render(:partial => 'sidebar')

@@ -30,10 +30,13 @@ namespace :db do
 		# creates some courses with previously created users as teachers
 		30.times do |n|
 			name = Faker::Company.catch_phrase
-			Course.create!(:name => name,
-										:description => Faker::Lorem.sentence,
-										:teacher => User.find(n + 1))
-			puts "Successfully created course #{name}"
+			group = Group.create!(:name => name,
+										:description => Faker::Lorem.paragraph,
+										:leader => User.find(n + 1))
+			3.times do
+				GroupModule.create!(:group => group, :name => Faker::Company.catch_phrase, :description => Faker::Lorem.paragraph)
+			end
+			puts "Successfully created group #{name}"
 		end
     
 		# makes dummy users follow each other and enter random courses
@@ -44,9 +47,9 @@ namespace :db do
         user.follow!(target) unless user.following?(target) || user == target
         puts "#{user.name} is now following #{target.name}"
 
-				course = Course.find(rand(30) + 1)
-				course.create_student(user)
-				puts "#{user.name} is now a student of course #{course.name}"
+				group = Group.find(rand(30) + 1)
+				group.create_member(user)
+				puts "#{user.name} is now a member of course #{group.name}"
       end
 			
     end

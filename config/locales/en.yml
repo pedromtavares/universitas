@@ -11,70 +11,101 @@ en:
     back: Back
     confirm: Are you sure?
     submit: Submit
-    courses: Courses
+    groups: Groups
     users: Users
     manage: Manage
     dashboard: Dashboard
     update: Update
     no_permission: You do not have permission to do that.
     click_to_download: Click to download
+    search: Search
+    pagination:
+      prev: « Prev
+      next: Next »
   custom_messages:
-    file_validation: "can't be larger than 5MB!"
+    file_validation: "can't be larger than 10MB!"
   dashboard:
+    plural: Dashboard
     recent_updates: Recent Updates
     updated_status: updated status to
-    created_course: created a course called 
-    entered_course: entered a course called
-    document_created: "A new document was created:"
+    created_group: created a group called 
+    joined_group: joined a group called
+    document_created: "created a new document:"
+    document_added: "added a new document:"
   account:
     cancel: Cancel my account
   layout:
     logged_in: Logged in as
   users:
+    singular: User
+    plural: Users
     connections: "'s connections"
+    my_connections: "My connections"
     all: All
     login: Login
     name: Name
     email: E-mail
-    blank: There are no users yet registered.
+    blank: No user matched your search results.
     following: Following
     not_following: Not following anyone yet.
     followers: Followers
     no_followers: No followers yet.
     follow: Follow this user
     unfollow: Unfollow this user
-  courses:
+    groups:
+      blank: This user is in no groups yet.
+    documents:
+      uploaded:
+        singular: Uploaded Document
+        plural: Uploaded Documents
+        blank: You have no uploaded documents.
+      blank: This user has no documents yet.
+  groups:
+    singular: Group
+    plural: Groups
     all: All
-    new: New Course
-    edit: Edit Course
+    new: New Group
+    edit: Edit Group
     name: Name
     description: Description
-    teacher: Teacher
-    students: Students
-    blank: There are no courses yet created.
-    enter: Enter this course
-    leave: Leave this course
-    documents: Documents
-    have_entered: You have entered the course 
-    already_in: You already are in this course!
-    have_left: You have left the course
-    my_courses: My Courses
-    created: Courses I created
-    created_none: "You don't have any courses created yet."
+    leader: Leader
+    blank: No group matched your search results.
+    join: Join this group
+    leave: Leave this group
+    have_joined: You have joined the group 
+    already_in: You already are in this group!
+    have_left: You have left the group
+    my_groups: My Groups
+    created: Groups I created
+    created_none: "You don't have any groups created yet."
     create_one_now: Create one now!
-    entered: Courses I entered
-    entered_none: "You haven't entered any courses yet."
+    entered: Groups I entered
+    entered_none: "You haven't entered any groups yet."
     enter_one_now: Find and enter one now!
-  students:
+    documents:
+      blank: This group has no documents!
+  members:
+    singular: Member
+    plural: Members
     name: Name
-    grade: Grade
-    blank: This course has no students!
+    blank: This group has no students!
   documents:
+    singular: Document
+    plural: Documents
     name: Name
     description: Description
     file: File
-    blank: This course has no documents!
     edit: Edit Document
     documents_for: Documents for
     all: All
     new: New Document
+    add: Add To My Documents
+    remove: Remove From My Documents
+    blank: No document results matched your search.
+    uploader: Uploaded By
+  modules:
+    singular: Module
+    plural: Modules
+    name: Name
+    description: Description
+    blank: This group has no modules!

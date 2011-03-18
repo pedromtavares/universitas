@@ -10,22 +10,53 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110220051756) do
-
-  create_table "courses", :force => true do |t|
-    t.string   "name"
-    t.integer  "teacher_id"
-    t.text     "description"
-    t.boolean  "closed",      :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110227225207) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "file"
-    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["user_id"], :name => "index_documents_on_user_id"
+
+  create_table "group_documents", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "document_id"
+    t.integer  "group_module_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_documents", ["group_id", "document_id"], :name => "index_group_documents_on_group_id_and_document_id"
+
+  create_table "group_members", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_members", ["group_id", "user_id"], :name => "index_group_members_on_group_id_and_user_id"
+
+  create_table "group_modules", :force => true do |t|
+    t.integer  "group_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_modules", ["group_id"], :name => "index_group_modules_on_group_id"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,26 +84,30 @@ ActiveRecord::Schema.define(:version => 20110220051756) do
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
-  create_table "students", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.float    "grade"
+  create_table "updates", :force => true do |t|
+    t.integer  "creator_id"
+    t.string   "creator_type"
+    t.integer  "target_id"
+    t.string   "target_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "updates", :force => true do |t|
+  add_index "updates", ["creator_type", "creator_id", "target_type", "target_id"], :name => "index_updates_on_c_and_t"
+
+  create_table "user_documents", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "reference_type"
-    t.integer  "reference_id"
-    t.string   "owner_type"
-    t.integer  "owner_id"
   end
+
+  add_index "user_documents", ["user_id", "document_id"], :name => "index_user_documents_on_user_id_and_document_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                                               :null => false
     t.string   "name",                                                :null => false
+    t.string   "status"
     t.string   "cached_slug"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
@@ -87,7 +122,6 @@ ActiveRecord::Schema.define(:version => 20110220051756) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

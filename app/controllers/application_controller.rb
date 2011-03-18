@@ -4,17 +4,8 @@ class ApplicationController < ActionController::Base
 
 	before_filter :set_breadcrumbs
   
-  def paginate( model, options = {} )
-    load_page
-    model.paginate( { :page => @page, :per_page => @per_page }.merge(options) )
-  end
-
-  def load_page
-    @page = params[:page] || '1'
-    @per_page = params[:per_page].to_i
-    if @per_page < 1 || @per_page > 10
-      @per_page = 10
-    end
+  def paginate(model)
+    model.page(params[:page]).per(10)
   end
 
 	private
@@ -31,7 +22,7 @@ class ApplicationController < ActionController::Base
 		add_breadcrumb(parent.name, :parent_url) if self.respond_to?('parent?') && parent?
 		add_breadcrumb(I18n.t("#{self.controller_name}.all"), :collection_path)
 		add_breadcrumb(I18n.t("#{self.controller_name}.new"), :new_resource_path)
-		add_breadcrumb(resource.name, lambda { |a| resource_path  }) if params[:id]
+		add_breadcrumb(resource.to_s, lambda { |a| resource_path  }) if params[:id]
 	end
 
 end

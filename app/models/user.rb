@@ -36,23 +36,30 @@ class User < ActiveRecord::Base
   has_many :following, :through => :relationships, :source => :followed
   has_many :reverse_relationships, :foreign_key => "followed_id", :dependent => :destroy, :class_name => 'Relationship'
   has_many :followers, :through => :reverse_relationships
-  has_many :updates, :as => :owner, :dependent => :destroy
-	has_many :update_references, :as => :reference, :dependent => :destroy, :class_name => "Update"
-  has_many :students, :dependent => :destroy
-  has_many :courses, :through => :students
-  has_many :courses_teached, :class_name => 'Course', :foreign_key => "teacher_id"
+  has_many :updates, :as => :creator, :dependent => :destroy
+	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
+	has_many :group_members, :dependent => :destroy
+  has_many :groups, :through => :group_members, :dependent => :destroy
+  has_many :groups_leadered, :class_name => 'Group'
+	has_many :user_documents
+	has_many :group_documents
+	has_many :uploaded_documents, :class_name => 'Document'
   
   def to_s
     self.login
   end
+
+	def self.search(search)
+		self.where("name like ? or login like ?", "%#{search}%", "%#{search}%")
+	end
   
   def update_status(msg)
     self.update_attribute :status, msg
-    self.updates.create!(:reference => self)    
+    self.updates.create!(:target => self)    
   end
   
   def feed    
-    Update.where("((owner_id IN (?) or owner_id = ?) and owner_type='User') or (owner_id in (?) and owner_type='Course')", self.following, self.id, self.courses + self.courses_teached).order('created_at desc')
+    Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Course')", self.following, self.id, self.groups + self.groups_leadered).order('created_at desc')
   end
   
   def following?(followed)
@@ -67,12 +74,16 @@ class User < ActiveRecord::Base
     self.relationships.find_by_followed_id(followed).destroy
   end
   
-  def student_of?(course)
-    self.courses.include?(course) && !self.teacher_of?(course)
+  def member_of?(group)
+    self.groups.first(group) and not self.leader_of?(group)
   end
   
-  def teacher_of?(course)
-    self.courses_teached.include?(course)
+  def leader_of?(group)
+    self.groups_leadered.first(group)
   end
+
+	def has_document?(user_document)
+		self.user_documents.find_by_document_id(user_document.document)
+	end
   
 end

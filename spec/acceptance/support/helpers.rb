@@ -47,14 +47,14 @@ module HelperMethods
     primary_user.follow!(other_user)
   end
 
-# ------ Course related
+# ------ Group related
 
-	def default_course
-		@default_course ||= Course.create(:teacher => User.find_by_login("default"), :name => "Test Course")
+	def default_group
+		@default_group ||= Group.create(:leader => User.find_by_login("default"), :name => "Test Group")
 	end
 	
-	def other_course
-		@other_course ||= Factory(:course)
+	def other_group
+		@other_group ||= Factory(:group)
 	end
   
 end
