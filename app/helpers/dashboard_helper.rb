@@ -19,7 +19,7 @@ module DashboardHelper
 		when "User"
 			link_to(gravatar_for(creator), creator)
 		when "Group"
-			link_to(image_tag('avatar.png'), creator) # replace with a default course icon
+			link_to(image_tag(creator.image_url), creator)
 		end
 	end
 end

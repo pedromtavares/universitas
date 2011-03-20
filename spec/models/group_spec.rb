@@ -27,9 +27,9 @@ describe Group do
 		@group.members.should_not include(member)
 	end
 	
-  describe "validations" do
+	describe "validations" do
   	it "should have a name" do
-  		Group.new.should_not be_valid
+  		Factory.build(:group, :name => nil).should_not be_valid
   	end
   end
 end

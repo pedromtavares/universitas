@@ -10,6 +10,9 @@
 .center{
 	text-align:center;
 }
+.spaced{
+	margin:5px;
+}
 .small{
 	float:left;
 	font-size: 10px;

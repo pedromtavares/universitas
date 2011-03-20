@@ -16,7 +16,9 @@
           %button.button{:type => 'submit'}
             = image_tag("icons/tick.png", :alt => t('shared.update')) 
             = t('shared.update')
-          = link_to t('shared.back'), user_path(resource), :class => "button"     
+          = link_to user_path(resource), :class => "button" do
+            = image_tag("icons/back.png", :alt => t('shared.back'))
+            = t('shared.back')     
       %br
         	
       = link_to t('account.cancel'), registration_path(resource_name), :confirm => t('shared.confirm'), :method => :delete

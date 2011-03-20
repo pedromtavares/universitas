@@ -22,7 +22,7 @@ module NavigationHelpers
   end
   
   def profile_page
-    "/#{User.first.login}"
+    "/users/#{User.first.login}"
   end
   
   def edit_profile_page
@@ -30,7 +30,7 @@ module NavigationHelpers
   end
   
   def other_user_profile
-    "/#{User.last.login}"
+    "/users/#{User.last.login}"
   end
 
 	def groups_page

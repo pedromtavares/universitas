@@ -2,6 +2,7 @@
   %h2.title= resource.name
   .inner
     %p
+      =image_tag resource.image_url, :class => 'left spaced'
       %em= resource.description
     %p  
       %strong= t('groups.leader')
@@ -32,7 +33,7 @@
               .right
                 %h3.center Documents
                 #doc-box.ui-state-active
-                  - unless m.documents.blank?
+                  - unless m.group_documents.blank?
                   - else
                     - 10.times do
                       .doc.ui-state-hover
@@ -57,16 +58,16 @@
           %p=t('members.blank')
   
       #documents
-        - unless resource.documents.blank?
+        - unless resource.group_documents.blank?
           %ul.list
-            - resource.documents.each do |document|
+            - resource.group_documents.each do |group_document|
               %li
                 .left
-                  =link_to image_tag('avatar.png'), document.file_url, :title => t('shared.click_to_download')
+                  =link_to image_tag('avatar.png'), group_document.file_url, :title => t('shared.click_to_download')
                   %br
                 .item
-                  %h3=document.name
-                  %p=document.description
+                  %h3=group_document.name
+                  %p=group_document.description
         - else
           %p=t('groups.documents.blank')
 - content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?      

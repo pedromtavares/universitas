@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
+    t.string   "cached_slug"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

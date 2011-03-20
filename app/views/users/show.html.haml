@@ -33,10 +33,11 @@
               .item
                 %h3=user_document.name
                 %p=user_document.description
-                - unless current_user.has_document?(user_document)
-                  .small=link_to t('documents.add'), add_user_document_path(current_user,user_document.document), :method => :post
-                - if resource == current_user and current_user.has_document?(user_document)
-                  .small=link_to t('documents.remove'), remove_user_document_path(current_user,user_document), :method => :delete                 
+                - if user_signed_in?
+                  - unless current_user.has_document?(user_document)
+                    .small=link_to t('documents.add'), add_user_document_path(current_user,user_document.document), :method => :post
+                  - if resource == current_user and current_user.has_document?(user_document)
+                    .small=link_to t('documents.remove'), remove_user_document_path(current_user,user_document), :method => :delete
       - else
         %p=t('users.documents.blank')
     #groups
@@ -44,13 +45,13 @@
         %ul.list
           - @groups.each do |group|
             %li
-              .left= link_to(image_tag('avatar.png'), group)
+              .left= link_to(image_tag(group.image_url), group)
               .item
                 %h3= link_to group.name, group
                 %p
                   %em= group.description
                 .small= pluralize(group.members.count, t('members.singular'))
-                .small= pluralize(group.documents.count, t('documents.singular'))
+                .small= pluralize(group.group_documents.count, t('documents.singular'))
                 .small= pluralize(group.modules.count, t('modules.singular'))
                 
       - else

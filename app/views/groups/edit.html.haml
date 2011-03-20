@@ -1,6 +1,6 @@
 .content
   %h2.title= t 'groups.edit'
   .inner
-    = simple_form_for(resource, :url => resource_url, :html => { :class => :form }) do |f|
+    = simple_form_for(resource, :url => resource_url, :html => { :class => :form, :multipart => true }) do |f|
       = render :partial => "form", :locals => {:f => f}  
 - content_for :sidebar, render(:partial => 'sidebar')

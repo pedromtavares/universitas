@@ -40,6 +40,7 @@ class CreateBasicTables < ActiveRecord::Migration
 			t.text :description
 			t.integer :user_id
 			t.string :cached_slug
+			t.string :image
 			t.timestamps
 		end
 		

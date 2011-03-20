@@ -21,12 +21,12 @@ class UserDocumentsController < InheritedResources::Base
 	
 	def add
 		UserDocument.create!(:document_id => params[:id], :user => current_user)
-		redirect_to :back, :notice => "Document successfully added to your collection."
+		redirect_to :back, :notice => I18n.t("documents.added_collection")
 	end
 	
 	def remove
 		UserDocument.find(params[:id]).destroy
-		redirect_to :back, :notice => "Document successfully removed from your collection."
+		redirect_to :back, :notice => I18n.t("documents.removed_collection")
 	end
 	
 	private

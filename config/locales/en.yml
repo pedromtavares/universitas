@@ -36,6 +36,8 @@ en:
     cancel: Cancel my account
   layout:
     logged_in: Logged in as
+  home:
+    plural: Home
   users:
     singular: User
     plural: Users
@@ -103,6 +105,8 @@ en:
     remove: Remove From My Documents
     blank: No document results matched your search.
     uploader: Uploaded By
+    added_collection: "Document successfully added to your collection."
+    removed_collection: "Document successfully removed from your collection."
   modules:
     singular: Module
     plural: Modules

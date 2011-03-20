@@ -17,11 +17,11 @@
           %th= t('modules.plural')
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
-            %td.first
+            %td.first=image_tag resource.image_url
             %td= link_to resource.name, resource
             %td= link_to resource.leader.name, profile_path(resource.leader)
             %td= resource.members.count
-            %td= resource.documents.count
+            %td= resource.group_documents.count
             %td= resource.modules.count
             
       .actions-bar.wat-cf

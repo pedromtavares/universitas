@@ -16,11 +16,11 @@ Universitas::Application.routes.draw do
     end
   end
   
-  resource :dashboard, :only => [:show], :controller => 'dashboard' do
+  resource :dashboard, :only => :show, :controller => 'dashboard' do
     put :update_status, :as => 'update_status'
   end
   
-  resources :groups, :except => [:delete] do
+  resources :groups, :except => [:destroy] do
 		resources :forums
     member do
       post :join
@@ -29,9 +29,12 @@ Universitas::Application.routes.draw do
   end
 
 	resources :documents, :only => :index
+	
+	resource :home, :only => :show, :controller => 'home'
   
   get 'users/:id' => 'users#show', :as => 'profile'
   get ':id' => 'groups#show', :as => 'group'
+	put ':id' => 'groups#update', :as => 'group'
   
   root :to => 'dashboard#show'
 
