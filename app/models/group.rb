@@ -40,11 +40,11 @@ class Group < ActiveRecord::Base
 	end
 
 	def create_member(user)
-		self.members.create(:user => user)
+		self.members.create(:user => user) unless user.member_of?(self)
 	end
 	
 	def remove_member(user)
-		self.members.where(:user_id => user).first.destroy
+		self.members.where(:user_id => user).first.destroy if user.member_of?(self)
 	end
 	
 	def update_status(msg)
