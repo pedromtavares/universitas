@@ -5,7 +5,6 @@ class UserDocumentsController < InheritedResources::Base
 	
 	def create
 		@user_document = Document.new(params[:document].merge(:user_id => current_user.id))
-		UserDocument.create!(:document => @user_document, :user => current_user)
 		create!
 	end
 	
@@ -14,14 +13,13 @@ class UserDocumentsController < InheritedResources::Base
 		update!
 	end
 	
-	def download
-		file = resource.file_url
-		send_data(file, :disposition => 'attachment', :filename => File.basename(file))
-	end
-	
 	def add
-		UserDocument.create!(:document_id => params[:id], :user => current_user)
-		redirect_to :back, :notice => I18n.t("documents.added_collection")
+		if current_user.has_document?(params[:id])
+			redirect_to :back, :alert => I18n.t("users.documents.already_exists")
+		else
+			UserDocument.create!(:document_id => params[:id], :user => current_user)
+			redirect_to :back, :notice => I18n.t("users.documents.added_collection")
+		end
 	end
 	
 	def remove

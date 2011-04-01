@@ -29,6 +29,11 @@ class GroupsController < InheritedResources::Base
 		@group.remove_member(current_user)
     redirect_to groups_path, :notice => "#{t('groups.have_left')} #{@group}"
   end
+
+	def update_status
+		resource.update_status(params[:status])
+		redirect_to resource_path
+	end
   
   protected
   

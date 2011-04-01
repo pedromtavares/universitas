@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
 	before_filter :set_breadcrumbs
   
-  def paginate(model)
-    model.page(params[:page]).per(10)
+  def paginate(model, per=10)
+    model.page(params[:page]).per(per)
   end
 
 	private

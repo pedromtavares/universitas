@@ -17,7 +17,7 @@ class UsersController < InheritedResources::Base
       current_user.follow!(resource)
       flash[:notice] = "You are now following #{resource}."
     end
-    redirect_to resource
+    redirect_to :back
   end
   
   def unfollow
@@ -25,7 +25,7 @@ class UsersController < InheritedResources::Base
       current_user.unfollow!(resource)
       flash[:notice] = "You have unfollowed #{resource}."
     end
-    redirect_to resource
+    redirect_to :back
   end
   
   protected

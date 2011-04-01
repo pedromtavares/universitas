@@ -1,0 +1,16 @@
+%table.table{:class => hide ? 'none' : ''}
+  %tr
+    %th= t('documents.name')
+    %th= t('modules.singular')
+    %th
+  - documents.each do |document|
+    %tr{:class => cycle("odd","even")}
+      %td= link_to document.name, document.file_url, :title => t('shared.click_to_download')
+      %td= document.module.name unless document.module.blank?
+      %td
+        - if document.pending?
+          =link_to accept_group_document_path(document.group, document), :method => :put, :remote => :true, :title => t('groups.documents.accept'), :id => "accept_#{document.id}", :class => 'accept' do
+            %span.ui-icon.ui-icon-check
+        =link_to group_document_path(document.group, document), :method => :delete, :remote => :true, :confirm => t('groups.documents.sure'), :title => t('groups.documents.remove'), :id => "remove_#{document.id}" do
+          %span.ui-icon.ui-icon-closethick
+        

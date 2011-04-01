@@ -4,23 +4,27 @@
     \-
     =current_user.name
   .inner
-    = form_tag update_status_dashboard_path, :method => :put do
-      %h3 
-        Status:
-        = text_field_tag :status, current_user.status, :size => 100, :maxlength => 100
-        = submit_tag t('shared.update')      
-    %br
-    %br
-    %br
+    = form_tag update_status_dashboard_path, :method => :put, :class => 'form' do
+      #status 
+        .title= t('dashboard.status')
+        .input= text_field_tag :status, current_user.status, :maxlength => 100, :class => 'text-field'
+        %button{:type => 'submit', :class => 'button small_button', :id => 'save' }=t('shared.update')   
+    %br.clear
+    %br.clear
     %h3= t('dashboard.recent_updates')
-    %ul.list#updates
-      - @feed.each do |update|
-        - unless update.target.blank?
-          %li
-            .left= render_update_creator(update)
-            .item
-              %p
-                =link_to update.creator.name,update.creator
-                =render_update_content(update)
+    #tabs
+      %ul
+        %li=link_to t('dashboard.all'), "#all"
+        %li=link_to t('users.plural'), "#users"
+        %li=link_to t('groups.plural'), "#groups"
+      #all
+        = render :partial => 'list', :locals => {:feed => @feed}
+      #users
+        = render :partial => 'list', :locals => {:feed => @feed.find_all{|u| u.from_user?}}
+      #groups
+        = render :partial => 'list', :locals => {:feed => @feed.find_all{|u| u.from_group?}}
+        
     .actions-bar.wat-cf
       .actions
+      .pagination
+        = paginate @feed

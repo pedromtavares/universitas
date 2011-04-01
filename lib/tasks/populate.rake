@@ -4,6 +4,7 @@ namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
 		raise "Don't run this on prod! Are you crazy?" if Rails.env.production?
+		system("rm -r #{Rails.root}/public/uploads")
     Rake::Task['db:reset'].invoke
 		# creates a default user to easily log in
     User.create!(:name => "Default User",
@@ -52,6 +53,11 @@ namespace :db do
 				group.create_member(user)
 				puts "#{user.name} is now a member of course #{group.name}"
       end
+			
+			10.times do
+				doc = Document.create!(:name => Faker::Company.name, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt") )
+				user.user_documents.create(:document => doc)
+			end
 			
     end
 

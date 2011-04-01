@@ -19,19 +19,25 @@ en:
     no_permission: You do not have permission to do that.
     click_to_download: Click to download
     search: Search
+    save: Save
     pagination:
       prev: « Prev
       next: Next »
+    share: Share
   custom_messages:
     file_validation: "can't be larger than 10MB!"
+    file_maximum: 'maximum file size: 10MB'
   dashboard:
     plural: Dashboard
+    status: "Status:"
     recent_updates: Recent Updates
     updated_status: updated status to
     created_group: created a group called 
     joined_group: joined a group called
-    document_created: "created a new document:"
-    document_added: "added a new document:"
+    user_document_added: "added a new document:"
+    group_document_added: "added a new document:"
+    group_status: "updated status to"
+    all: All
   account:
     cancel: Cancel my account
   layout:
@@ -62,6 +68,9 @@ en:
         plural: Uploaded Documents
         blank: You have no uploaded documents.
       blank: This user has no documents yet.
+      added_collection: "Document successfully added to your collection."
+      removed_collection: "Document successfully removed from your collection."
+      already_exists: "You already have this document in your collection!"
   groups:
     singular: Group
     plural: Groups
@@ -84,8 +93,24 @@ en:
     entered: Groups I entered
     entered_none: "You haven't entered any groups yet."
     enter_one_now: Find and enter one now!
+    status: "Group Status:"
     documents:
+      plural: Group Documents
       blank: This group has no documents!
+      no_module: No module selected.
+      add: Add to chosen list.
+      remove: Remove from chosen list.
+      new: Add new
+      created: Documents successfully sent to the group leader for approval. You may continue to share more documents as you please.
+      pending:
+        plural: Pending Documents
+        blank: There are no pending documents in this group.
+      accepted:
+        plural: Accepted Documents
+        blank: There are no accepted documents in this group.
+      remove: Remove this document.
+      accept: Accept this document.
+      sure: Are you sure you want to delete this document from this group?
   members:
     singular: Member
     plural: Members
@@ -105,11 +130,11 @@ en:
     remove: Remove From My Documents
     blank: No document results matched your search.
     uploader: Uploaded By
-    added_collection: "Document successfully added to your collection."
-    removed_collection: "Document successfully removed from your collection."
   modules:
     singular: Module
     plural: Modules
     name: Name
     description: Description
     blank: This group has no modules!
+    documents:
+      blank: This module has no documents.

@@ -21,39 +21,27 @@
     %ul
       %li=link_to t('documents.plural'), "#documents"
       %li=link_to t('groups.plural'), "#groups"
+      %li=link_to t('users.following'), "#following"
+      %li=link_to t('users.followers'), "#followers"
 
     #documents
       - unless @user_documents.blank?
-        %ul.list
-          - @user_documents.each do |user_document|
-            %li
-              .left
-                =link_to image_tag('avatar.png'), user_document.file.url, :title => t('shared.click_to_download')
-                %br
-              .item
-                %h3=user_document.name
-                %p=user_document.description
-                - if user_signed_in?
-                  - unless current_user.has_document?(user_document)
-                    .small=link_to t('documents.add'), add_user_document_path(current_user,user_document.document), :method => :post
-                  - if resource == current_user and current_user.has_document?(user_document)
-                    .small=link_to t('documents.remove'), remove_user_document_path(current_user,user_document), :method => :delete
+        = render :partial => 'documents/list', :locals => {:documents => @user_documents.map(&:document)}
       - else
         %p=t('users.documents.blank')
     #groups
       - unless @groups.blank?
-        %ul.list
-          - @groups.each do |group|
-            %li
-              .left= link_to(image_tag(group.image_url), group)
-              .item
-                %h3= link_to group.name, group
-                %p
-                  %em= group.description
-                .small= pluralize(group.members.count, t('members.singular'))
-                .small= pluralize(group.group_documents.count, t('documents.singular'))
-                .small= pluralize(group.modules.count, t('modules.singular'))
-                
+        = render :partial => 'groups/list', :locals => {:groups => @groups}
       - else
         %p=t('users.groups.blank')
+    #following
+      - unless resource.following.blank?
+        = render :partial => 'users/list', :locals => {:users => resource.following}
+      - else
+        %p=t('users.not_following')
+    #followers
+      - unless resource.followers.blank?
+        = render :partial => 'users/list', :locals => {:users => resource.followers}
+      - else
+        %p=t('users.no_followers')
 - content_for :sidebar, render(:partial => 'sidebar')

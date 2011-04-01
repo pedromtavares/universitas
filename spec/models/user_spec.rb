@@ -68,7 +68,15 @@ describe User do
       @user.update_status("Hello")
       @user.status.should == "Hello"
     end
-  
+
+		it "should create an update when updating status" do
+			@user.update_status("Hi")
+			@user.targeted_updates.should_not be_blank
+			@user.targeted_updates.first.creator.should == @user
+		end
+
+		
+  	# needs further testing since feed is not just status updates anymore 
     it 'should return a feed with updates on the users it follows as well as its own' do
       followed = Factory(:user)
       followed.update_status("test")
@@ -77,6 +85,21 @@ describe User do
       @user.feed.should == followed.updates + @user.updates
     end
 
-
-  
+		it "should check if it's in a group" do
+			group = Factory(:group)
+			group.create_member(@user)
+			@user.member_of?(group).should be_true
+		end
+		
+		it "should check if it's a group leader" do
+			group = Factory(:group, :leader => @user)
+			@user.leader_of?(group).should be_true
+			@user.member_of?(group).should be_true
+		end
+		
+		it 'should check if it has a document' do
+			document = Factory(:document, :uploader => @user)
+			@user.has_document?(document).should be_true
+		end
+		
 end

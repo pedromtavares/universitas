@@ -3,21 +3,19 @@
   .inner
     = form_tag documents_path, :class => 'form', :method => 'get' do
       .small_box= text_field_tag :search, params[:search], :class => 'text_field'
-      %button{:type => 'submit', :class => 'button', :style => 'padding:1.5px 5px' }=t('shared.search')
+      %button{:type => 'submit', :class => 'button small_button' }=t('shared.search')
     %br
     %br
     - unless collection.all.blank?
       %table.table
         %tr
-          %th.first
           %th= t('documents.name')
           %th= t('documents.description')
           %th= t('documents.uploader')
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
-            %td.first
             %td= link_to resource.name, resource.file_url
-            %td= resource.description
+            %td= resource.description.truncate(200) if resource.description
             %td= link_to resource.uploader, resource.uploader
       .actions-bar.wat-cf
         .actions

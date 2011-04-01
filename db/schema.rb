@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.integer  "group_id"
     t.integer  "document_id"
     t.integer  "group_module_id"
+    t.boolean  "pending",         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.integer  "user_id"
     t.string   "cached_slug"
     t.string   "image"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -91,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.string   "creator_type"
     t.integer  "target_id"
     t.string   "target_type"
+    t.string   "custom_message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

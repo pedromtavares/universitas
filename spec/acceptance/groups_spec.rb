@@ -53,7 +53,7 @@ feature "Groups Management", %q{
 		visit group_page(other_group)
 		page.should_not have_content("Default User") #he should no longer be a student of that group
 		visit dashboard
-		within("#updates") do
+		within(".updates") do
 			page.should_not have_content("Default User") #the update should be removed as well
 		end
 	end

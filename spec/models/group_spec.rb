@@ -16,7 +16,7 @@ describe Group do
 	
 	it "should create a member" do
 		member = @group.create_member(Factory(:user))
-		@group.members.first.should == member
+		@group.members.should include(member)
 	end
 	
 	it "should remove a member" do
@@ -26,6 +26,11 @@ describe Group do
 		@group.reload
 		@group.members.should_not include(member)
 	end
+	
+	it 'should update its status' do
+    @group.update_status("Hello")
+    @group.status.should == "Hello"
+  end
 	
 	describe "validations" do
   	it "should have a name" do

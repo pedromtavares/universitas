@@ -5,7 +5,6 @@ Universitas::Application.routes.draw do
   resources :users, :only => [:index, :show] do
 		resources :documents, :controller => 'user_documents' do
 			member do
-				get :download
 				post :add
 				delete :remove
 			end
@@ -20,15 +19,25 @@ Universitas::Application.routes.draw do
     put :update_status, :as => 'update_status'
   end
   
-  resources :groups, :except => [:destroy] do
+  resources :groups, :except => :destroy do
+		resources :documents, :except => [:edit, :update, :show], :controller => 'group_documents' do
+			member do
+				put :accept
+			end
+		end
 		resources :forums
     member do
       post :join
       delete :leave
+			put :update_status
     end
   end
 
-	resources :documents, :only => :index
+	resources :documents, :only => :index do
+		member do
+			get :download
+		end
+	end
 	
 	resource :home, :only => :show, :controller => 'home'
   

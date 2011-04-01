@@ -23,6 +23,7 @@
         %li=link_to t('modules.plural'), "#modules"
         %li=link_to t('documents.plural'), "#documents"
         %li=link_to t('members.plural'), "#members"
+        %li=link_to t('shared.share'), "#share"
       #modules
         - unless resource.modules.blank?
           - resource.modules.each do |m|
@@ -33,41 +34,54 @@
               .right
                 %h3.center Documents
                 #doc-box.ui-state-active
-                  - unless m.group_documents.blank?
-                  - else
-                    - 10.times do
+                  - group_documents = m.group_documents.accepted
+                  - unless group_documents.blank?
+                    - group_documents.each do |group_document|
                       .doc.ui-state-hover
                         =image_tag 'avatar_small.png'
-                        .name Some doc
+                        .name= group_document.name 
                         .options
-                          =link_to "#", :title => t('documents.add') do
-                            %span.ui-icon.ui-icon-plusthick
+                          - unless current_user.has_document?(group_document.document)
+                            =link_to add_user_document_path(current_user,group_document.document), :method => :post do
+                              %span.ui-icon.ui-icon-plusthick{:title => t('documents.add')}
+                  - else
+                    %p.center= t('modules.documents.blank')
                 
             %br.clear
         - else
           %p=t('modules.blank')
       #members
         - unless resource.members.blank?
-          %ul.list
-            - resource.members.each do |member|
-              %li
-                .left= link_to(gravatar_for(member.user), member.user)
-                .item
-                  %h3= link_to member.name, member.user
+          = render :partial => 'users/list', :locals => {:users => resource.members.map(&:user)}
         - else
           %p=t('members.blank')
   
       #documents
         - unless resource.group_documents.blank?
-          %ul.list
-            - resource.group_documents.each do |group_document|
-              %li
-                .left
-                  =link_to image_tag('avatar.png'), group_document.file_url, :title => t('shared.click_to_download')
-                  %br
-                .item
-                  %h3=group_document.name
-                  %p=group_document.description
+          = render :partial => 'documents/list', :locals => {:documents => resource.group_documents.map(&:document)}
         - else
           %p=t('groups.documents.blank')
-- content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?      
+      #share
+        %h1.center Share your documents with this group
+        .share-box.ui-state-default
+          %h2.center Search & Add
+          = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
+            .small_box= text_field_tag :search, '', :class => 'text_field'
+            %button{:type => 'submit', :class => 'button small_button', :onclick => "$('#new-form').hide();$('#search-docs').show();" }=t('shared.search')
+            %button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();" }=t('groups.documents.new')
+            %br.clear
+            #search-docs
+            #new-form.none
+              Lol coisa nova
+            %br.clear
+        .share-box.ui-state-default
+          %h2.center Chosen Documents
+          %p#message.none=t('groups.documents.created')
+          = form_tag group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
+            ="#{t('modules.singular')}:"
+            = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :include_blank => t('groups.documents.no_module'), :class => 'select'
+            %button{:type => 'submit', :class => 'button small_button right', :id => 'save' }=t('shared.save')
+            #chosen-docs
+            %br.clear
+        %br.clear
+= #content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?      

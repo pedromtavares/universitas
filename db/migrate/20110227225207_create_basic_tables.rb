@@ -41,6 +41,7 @@ class CreateBasicTables < ActiveRecord::Migration
 			t.integer :user_id
 			t.string :cached_slug
 			t.string :image
+			t.string :status
 			t.timestamps
 		end
 		
@@ -54,6 +55,7 @@ class CreateBasicTables < ActiveRecord::Migration
 		create_table :updates do |t|
 			t.references :creator, :polymorphic => true
 			t.references :target, :polymorphic => true
+			t.string :custom_message
 			t.timestamps
 		end
 		add_index :updates, [ :creator_type, :creator_id, :target_type, :target_id ], :name => "index_updates_on_c_and_t"
@@ -80,6 +82,7 @@ class CreateBasicTables < ActiveRecord::Migration
 			t.integer :group_id
 			t.integer :document_id
 			t.integer :group_module_id
+			t.boolean :pending, :default => false
 			t.timestamps
 		end
 		add_index :group_documents, [:group_id, :document_id]

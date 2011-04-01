@@ -1,11 +1,12 @@
 # == Schema Information
-# Schema version: 20100801203120
+# Schema version: 20110227225207
 #
 # Table name: users
 #
 #  id                   :integer(4)      not null, primary key
 #  login                :string(255)     not null
 #  name                 :string(255)     not null
+#  status               :string(255)
 #  cached_slug          :string(255)
 #  email                :string(255)     default(""), not null
 #  encrypted_password   :string(128)     default(""), not null
@@ -42,6 +43,7 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :group_members, :dependent => :destroy
   has_many :groups_leadered, :class_name => 'Group'
 	has_many :user_documents
+	has_many :documents, :through => :user_documents
 	has_many :group_documents
 	has_many :uploaded_documents, :class_name => 'Document'
   
@@ -55,11 +57,11 @@ class User < ActiveRecord::Base
   
   def update_status(msg)
     self.update_attribute :status, msg
-    self.updates.create!(:target => self)    
+    self.updates.create!(:target => self, :custom_message => msg)    
   end
   
   def feed    
-    Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Course')", self.following, self.id, self.groups + self.groups_leadered).order('created_at desc')
+    Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups + self.groups_leadered).order('created_at desc')
   end
   
   def following?(followed)
@@ -75,15 +77,15 @@ class User < ActiveRecord::Base
   end
   
   def member_of?(group)
-    self.groups.first(group) and not self.leader_of?(group)
+    self.groups.exists?(group)
   end
   
   def leader_of?(group)
-    self.groups_leadered.first(group)
+    self.groups_leadered.exists?(group)
   end
 
-	def has_document?(user_document)
-		self.user_documents.find_by_document_id(user_document.document)
+	def has_document?(document)
+		self.documents.exists?(document)
 	end
   
 end

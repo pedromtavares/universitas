@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   before_filter :authenticate_user!
   def show
-    @feed = current_user.feed
+    @feed = paginate(current_user.feed, 20)
   end
   
   def update_status

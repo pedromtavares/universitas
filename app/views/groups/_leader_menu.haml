@@ -1,2 +1,10 @@
 = link_to t('shared.edit'), edit_resource_url, :class => "button" 
--# link_to "#{t('shared.manage')} #{t('documents.plural')}", group_documents_path(resource), :class => "button"
+= link_to "#{t('shared.manage')} #{t('groups.documents.plural')}", group_documents_path(resource), :class => "button"
+%br.clear
+%br.clear
+= form_tag update_status_group_path(resource), :method => :put, :class => 'form' do
+  #group-status 
+    .title= t('groups.status')
+    .input= text_field_tag :status, resource.status, :maxlength => 100, :class => 'text-field'
+    %button{:type => 'submit', :class => 'button small_button', :id => 'save' }=t('shared.update')   
+%br.clear

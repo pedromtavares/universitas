@@ -1,0 +1,14 @@
+%ul.list
+  - documents.each do |document|
+    %li
+      .left
+        =link_to image_tag('avatar.png'), document.file.url, :title => t('shared.click_to_download')
+        %br
+      .item
+        %h3=document.name
+        %p=document.description
+        - if user_signed_in?
+          - unless current_user.has_document?(document)
+            .small=link_to t('documents.add'), add_user_document_path(current_user, document), :method => :post
+          - else
+            .small=link_to t('documents.remove'), remove_user_document_path(current_user,document), :method => :delete

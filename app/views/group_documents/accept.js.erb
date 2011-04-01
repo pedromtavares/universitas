@@ -1,0 +1,12 @@
+var span = $('#accept_<%=@group_document.id%>')
+var doc = span.closest('tr');
+var table = $('#accepted table');
+
+doc.detach();
+
+if (table.hasClass('none')){
+	table.removeClass('none');
+	$('#accepted p').addClass('none');
+}
+doc.find('a.accept').detach();
+table.find('tbody').append(doc);

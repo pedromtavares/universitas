@@ -23,8 +23,10 @@ feature "User profile", %q{
     primary_user.following.each do |following|
       page.should have_content(following.name)
     end
-    page.should_not have_content("Follow this user")
-    page.should_not have_content("Unfollow this user")
+		within('.inner') do
+			page.should_not have_content("Follow this user")
+	    page.should_not have_content("Unfollow this user")
+		end
   end
   
   scenario "Editing profile" do
