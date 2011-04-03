@@ -4,7 +4,7 @@ class UserDocumentsController < InheritedResources::Base
 	belongs_to :user
 	
 	def create
-		@user_document = Document.new(params[:document].merge(:user_id => current_user.id))
+		@user_document = Document.new(params[:document].merge(:uploader => current_user))
 		create!
 	end
 	

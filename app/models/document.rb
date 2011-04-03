@@ -35,6 +35,7 @@ class Document < ActiveRecord::Base
 	private
 	
 	def create_user_document
+		puts self.inspect
 		UserDocument.create(:user => self.uploader, :document => self)
 	end
 	
