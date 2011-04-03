@@ -22,6 +22,6 @@ class GroupMember < ActiveRecord::Base
 	private
 	
 	def status_update
-		self.user.updates.create!(:target => self)
+		self.user.updates.create!(:target => self) unless self.user.leader_of?(self.group)
 	end
 end
