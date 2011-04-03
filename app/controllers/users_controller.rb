@@ -8,7 +8,7 @@ class UsersController < InheritedResources::Base
 	
 	def show
 		@user_documents = @user.user_documents
-		@groups = @user.groups_leadered + @user.groups
+		@groups = @user.groups
 		super
 	end
   
