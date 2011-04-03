@@ -16,7 +16,6 @@ class GroupDocumentsController < InheritedResources::Base
 		@chosen = params[:documents]
 		if @chosen.blank?
 			@group_document = Document.new(params[:document].merge(:uploader => current_user))
-			current_user.user_documents.create!(:document => @group_document)
 			parent.group_documents.create!(:document => @group_document)
 			create!{collection_url}
 		else
