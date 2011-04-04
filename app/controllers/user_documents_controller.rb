@@ -4,6 +4,7 @@ class UserDocumentsController < InheritedResources::Base
 	belongs_to :user
 	
 	def create
+		params[:user_document] = params[:document]
 		@user_document = Document.new(params[:document].merge(:uploader => current_user))
 		create!
 	end
@@ -33,7 +34,7 @@ class UserDocumentsController < InheritedResources::Base
 		@user_document = if params[:id]
 			parent.uploaded_documents.find(params[:id])
 		else
-			Document.new
+			Document.new(params[:document])
 		end
 	end
 

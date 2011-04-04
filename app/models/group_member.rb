@@ -16,7 +16,6 @@ class GroupMember < ActiveRecord::Base
 	has_many :updates, :as => :target, :dependent => :destroy
 
 	after_create :status_update
-	
   delegate :name, :email, :to => :user
 
 	private

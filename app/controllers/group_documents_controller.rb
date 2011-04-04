@@ -37,7 +37,7 @@ class GroupDocumentsController < InheritedResources::Base
 		@group_document = if params[:id]
 			parent.group_documents.find(params[:id])
 		else
-			Document.new
+			Document.new(params[:document])
 		end
 	end
 

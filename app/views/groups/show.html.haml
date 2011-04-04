@@ -32,7 +32,7 @@
                 %h2=m.name
                 %p=m.description
               .right
-                %h3.center Documents
+                %h3.center=t('documents.plural')
                 #doc-box.ui-state-active
                   - group_documents = m.group_documents.accepted
                   - unless group_documents.blank?
@@ -57,31 +57,33 @@
           %p=t('members.blank')
   
       #documents
-        - unless resource.group_documents.blank?
-          = render :partial => 'documents/list', :locals => {:documents => resource.group_documents.map(&:document)}
+        - unless resource.group_documents.accepted.blank?
+          = render :partial => 'documents/list', :locals => {:documents => resource.group_documents.accepted.map(&:document)}
         - else
           %p=t('groups.documents.blank')
       #share
-        %h1.center Share your documents with this group
-        .share-box.ui-state-default
-          %h2.center Search & Add
-          = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
-            .small_box= text_field_tag :search, '', :class => 'text_field'
-            %button{:type => 'submit', :class => 'button small_button', :onclick => "$('#new-form').hide();$('#search-docs').show();" }=t('shared.search')
-            %button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();" }=t('groups.documents.new')
-            %br.clear
-            #search-docs
-            #new-form.none
-              Lol coisa nova
-            %br.clear
-        .share-box.ui-state-default
-          %h2.center Chosen Documents
-          %p#message.none=t('groups.documents.created')
-          = form_tag group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
-            ="#{t('modules.singular')}:"
-            = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :include_blank => t('groups.documents.no_module'), :class => 'select'
-            %button{:type => 'submit', :class => 'button small_button right', :id => 'save' }=t('shared.save')
-            #chosen-docs
-            %br.clear
+        - if current_user.member_of?(resource)
+          %h1.center=t('groups.documents.share')
+          .share-box.ui-state-default
+            %h2.center=t('groups.documents.search')
+            = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
+              .small_box= text_field_tag :search, '', :class => 'text_field'
+              %button{:type => 'submit', :class => 'button small_button', :onclick => "$('#new-form').hide();$('#search-docs').show();" }=t('shared.search')
+              %button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();" }=t('groups.documents.new')
+              %br.clear
+              #search-docs
+              #new-form.none
+              %br.clear
+          .share-box.ui-state-default
+            %h2.center=t('groups.documents.chosen')
+            %p#message.none=t('groups.documents.created')
+            = form_tag group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
+              ="#{t('modules.singular')}:"
+              = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :include_blank => t('groups.documents.no_module'), :class => 'select'
+              %button{:type => 'submit', :class => 'button small_button right', :id => 'save' }=t('shared.save')
+              #chosen-docs
+              %br.clear
+        -else
+          %h1.center=t('groups.documents.must_be_member')
         %br.clear
 = #content_for :sidebar, render(:partial => 'sidebar') if user_signed_in?      

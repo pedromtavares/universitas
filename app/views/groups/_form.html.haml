@@ -1,6 +1,6 @@
 = f.input :name
 = f.input :description
-= f.input :image, :as => :file
+= f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum')}<br/>#{t('custom_messages.image_extensions')}")
 %br      
 .group.navform.wat-cf
   %button.button{:type => 'submit'}

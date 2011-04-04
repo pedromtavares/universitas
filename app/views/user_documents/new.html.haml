@@ -1,5 +1,5 @@
 .content
   %h2.title= t('documents.new')
   .inner
-    = simple_form_for(resource, :url => collection_url, :html => {:class => :form, :multipart => true }) do |f|
+    = simple_form_for(@user_document, :url => collection_url,  :html => {:class => :form, :multipart => true }) do |f|
       = render :partial => "form", :locals => {:f => f}  

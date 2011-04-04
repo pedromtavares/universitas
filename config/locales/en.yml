@@ -1,4 +1,8 @@
 en:
+  errors:
+    messages:
+      carrierwave_processing_error: failed to be processed
+      carrierwave_integrity_error: is not an allowed file type
   shared:
     profile: Profile
     logout: Logout
@@ -20,13 +24,17 @@ en:
     click_to_download: Click to download
     search: Search
     save: Save
+    share: Share
     pagination:
       prev: « Prev
       next: Next »
-    share: Share
   custom_messages:
     file_validation: "can't be larger than 10MB!"
+    image_validation: "can't be larger than 1MB!"
     file_maximum: 'maximum file size: 10MB'
+    file_extensions: 'allowed file types: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
+    image_maximum: 'allowed file types: jpg, jpeg, gif, png'
+    image_extensions: 'maximum file size: 1MB'
   dashboard:
     plural: Dashboard
     status: "Status:"
@@ -111,6 +119,10 @@ en:
       remove: Remove this document.
       accept: Accept this document.
       sure: Are you sure you want to delete this document from this group?
+      chosen: Chosen Documents
+      share: Share your documents with this group 
+      search: "Search & Add"
+      must_be_member: You must be a member of this group to share documents with it! 
   members:
     singular: Member
     plural: Members

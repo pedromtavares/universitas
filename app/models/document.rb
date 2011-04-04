@@ -16,10 +16,10 @@ class Document < ActiveRecord::Base
 	belongs_to :uploader, :class_name => "User", :foreign_key => 'user_id'
 	has_many :user_documents
 	has_many :group_documents
+	
 	attr_accessible :uploader, :name, :file, :description
 	after_create :create_user_document
 	mount_uploader :file, FileUploader
-
 	
 	validates :name, :presence => true
 	validates :file, :presence => true, :length => {:maximum => 10000000, :message => I18n.t('custom_messages.file_validation')}
@@ -35,7 +35,6 @@ class Document < ActiveRecord::Base
 	private
 	
 	def create_user_document
-		puts self.inspect
 		UserDocument.create(:user => self.uploader, :document => self)
 	end
 	
