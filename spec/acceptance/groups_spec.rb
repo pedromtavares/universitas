@@ -19,7 +19,6 @@ feature "Groups Management", %q{
 		fill_in("Name", :with => "My Group")
 		click_button "Submit"
 		page.should have_content("Group was successfully created.")
-		page.should have_content("This group has no students!")
 		page.should have_content("Default User")
 		page.should_not have_content("Join this group")
 		page.should_not have_content("Leave this group")

@@ -127,7 +127,7 @@ en:
     singular: Member
     plural: Members
     name: Name
-    blank: This group has no students!
+    blank: This group has no members!
   documents:
     singular: Document
     plural: Documents

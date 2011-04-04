@@ -62,7 +62,7 @@
         - else
           %p=t('groups.documents.blank')
       #share
-        - if current_user.member_of?(resource)
+        - if user_signed_in? && current_user.member_of?(resource)
           %h1.center=t('groups.documents.share')
           .share-box.ui-state-default
             %h2.center=t('groups.documents.search')

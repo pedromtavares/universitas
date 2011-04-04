@@ -56,7 +56,6 @@ namespace :db do
 			
 			10.times do
 				doc = Document.create!(:name => Faker::Company.name, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt") )
-				user.user_documents.create(:document => doc)
 			end
 			
     end

@@ -43,7 +43,7 @@ class Group < ActiveRecord::Base
 	end
 	
 	def remove_member(user)
-		self.members.where(:user_id => user).first.destroy if user.member_of?(self)
+		self.members.where(:user_id => user).first.destroy if user.member_of?(self) && !user.leader_of?(self)
 	end
 	
 	def update_status(msg)

@@ -74,15 +74,16 @@ describe User do
 			@user.targeted_updates.should_not be_blank
 			@user.targeted_updates.first.creator.should == @user
 		end
-
 		
-  	# needs further testing since feed is not just status updates anymore 
     it 'should return a feed with updates on the users it follows as well as its own' do
       followed = Factory(:user)
+			group = Factory(:group)
       followed.update_status("test")
+			group.update_status("group!")
+			group.create_member(@user)
       @user.update_status("hi")
       @user.follow!(followed)
-      @user.feed.should == followed.updates + @user.updates
+      @user.feed.should == followed.updates + group.updates + @user.updates
     end
 
 		it "should check if it's in a group" do

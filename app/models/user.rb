@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
   
   def feed    
-    Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups + self.groups_leadered).order('created_at desc')
+    Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups).order('created_at desc')
   end
   
   def following?(followed)
