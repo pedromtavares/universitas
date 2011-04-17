@@ -1,4 +1,5 @@
 class DocumentsController < InheritedResources::Base
+	respond_to :html, :js
 	
 	def index
 		@documents = paginate(Document.search(params[:search])) if params[:search]

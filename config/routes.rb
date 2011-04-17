@@ -21,6 +21,9 @@ Universitas::Application.routes.draw do
   
   resources :groups, :except => :destroy do
 		resources :documents, :except => [:edit, :update, :show], :controller => 'group_documents' do
+			collection do
+				post :add_multiple
+			end
 			member do
 				put :accept
 			end

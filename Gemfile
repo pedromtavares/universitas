@@ -19,7 +19,6 @@ gem 'web-app-theme', '>= 0.6.2'
 gem 'fog'
 gem 'kaminari'
 
-
 group :development do
 	gem 'mongrel'
 	gem "mongrel_experimental"

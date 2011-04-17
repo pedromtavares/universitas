@@ -34,7 +34,7 @@ class UserDocumentsController < InheritedResources::Base
 		@user_document = if params[:id]
 			parent.uploaded_documents.find(params[:id])
 		else
-			Document.new(params[:document])
+			@user_document.errors.blank? ? Document.new(params[:document]) : @user_document
 		end
 	end
 

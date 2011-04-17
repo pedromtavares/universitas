@@ -108,8 +108,9 @@ en:
       no_module: No module selected.
       add: Add to chosen list.
       remove: Remove from chosen list.
-      new: Add new
+      new: New
       created: Documents successfully sent to the group leader for approval. You may continue to share more documents as you please.
+      invalid: Invalid document. Please check the file type and size before submitting.
       pending:
         plural: Pending Documents
         blank: There are no pending documents in this group.
@@ -123,6 +124,7 @@ en:
       share: Share your documents with this group 
       search: "Search & Add"
       must_be_member: You must be a member of this group to share documents with it! 
+      blank_prompt: Blank (General Document)
   members:
     singular: Member
     plural: Members

@@ -13,16 +13,23 @@ class GroupDocumentsController < InheritedResources::Base
 	end
 	
 	def create
-		@chosen = params[:documents]
-		if @chosen.blank?
-			@group_document = Document.new(params[:document].merge(:uploader => current_user))
-			parent.group_documents.create!(:document => @group_document)
-			create!{collection_url}
-		else
-			@chosen.each do |document|
-				unless collection.find_by_document_id(document)
-					parent.group_documents.create(:document_id => document, :pending => true, :group_module_id => params[:module], :sender => current_user)
-				end
+		params[:group_document].merge!(:sender => current_user, :pending => !current_user.leader_of?(parent))
+		params[:group_document][:document_attributes].merge!(:uploader => current_user)
+		create! do |success, failure|
+			if current_user.leader_of?(parent)
+				success.html {redirect_to collection_url}
+			else
+				success.html {redirect_to parent_url, :notice => I18n.t('groups.documents.created')}
+				failure.html {redirect_to parent_url, :alert => I18n.t('groups.documents.invalid')}
+			end
+		end
+	end
+	
+	def add_multiple
+		params[:documents].each do |document|
+			unless collection.find_by_document_id(document)
+				pending = !current_user.leader_of?(parent)
+				parent.group_documents.create(:document_id => document, :pending => pending, :group_module_id => params[:module], :sender => current_user)
 			end
 		end
 	end
@@ -37,7 +44,7 @@ class GroupDocumentsController < InheritedResources::Base
 		@group_document = if params[:id]
 			parent.group_documents.find(params[:id])
 		else
-			Document.new(params[:document])
+			@group_document.errors.blank? ? GroupDocument.new(:document => params[:document] || Document.new) : @group_document
 		end
 	end
 

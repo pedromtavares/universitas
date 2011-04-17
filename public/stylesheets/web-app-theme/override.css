@@ -118,3 +118,7 @@ input.checkbox {
   color: #8C8C8C;
   font-size: .9em;
 }
+
+.form select{
+	margin: 0 10px;
+}

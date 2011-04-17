@@ -20,6 +20,8 @@ class GroupDocument < ActiveRecord::Base
 	belongs_to :module, :foreign_key => 'group_module_id', :class_name => "GroupModule"
 	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
 	
+	accepts_nested_attributes_for :document
+	
 	scope :accepted, where(:pending => false)
 	scope :pending, where(:pending => true)
 	

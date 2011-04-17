@@ -64,20 +64,22 @@
       #share
         - if user_signed_in? && current_user.member_of?(resource)
           %h1.center=t('groups.documents.share')
-          .share-box.ui-state-default
+          .share-box.ui-state-default#search-box
             %h2.center=t('groups.documents.search')
             = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
               .small_box= text_field_tag :search, '', :class => 'text_field'
-              %button{:type => 'submit', :class => 'button small_button', :onclick => "$('#new-form').hide();$('#search-docs').show();" }=t('shared.search')
-              %button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();" }=t('groups.documents.new')
+              %button#search-button{:type => 'submit', :class => 'button small_button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()" }=t('shared.search')
+              %button#new-button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();" }=t('groups.documents.new')
               %br.clear
               #search-docs
-              #new-form.none
+            #new-form.none
+              = simple_form_for(GroupDocument.new(:document => params[:document] || Document.new), :url => group_documents_path(resource), :html => {:class => :form, :multipart => true }) do |f|
+                = render :partial => 'group_documents/form', :locals => {:f => f}
               %br.clear
-          .share-box.ui-state-default
+          .share-box.ui-state-default#chosen-box
             %h2.center=t('groups.documents.chosen')
             %p#message.none=t('groups.documents.created')
-            = form_tag group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
+            = form_tag add_multiple_group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
               ="#{t('modules.singular')}:"
               = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :include_blank => t('groups.documents.no_module'), :class => 'select'
               %button{:type => 'submit', :class => 'button small_button right', :id => 'save' }=t('shared.save')

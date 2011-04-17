@@ -1,11 +1,11 @@
-= f.input :name
-= f.input :description
-= f.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
+= f.simple_fields_for :document do |document|
+  = document.input :name
+  = document.input :description, :as => :text
+  = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
+= f.association :module, :collection => @group.modules, :prompt => t('groups.documents.blank_prompt')
+
 %br      
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("icons/tick.png", :alt => t('shared.submit')) 
     = t('shared.submit')
-  = link_to collection_url, :class => "button" do
-    = image_tag("icons/back.png", :alt => t('shared.back'))
-    = t('shared.back')
