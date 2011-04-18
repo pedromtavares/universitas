@@ -18,7 +18,6 @@ class Document < ActiveRecord::Base
 	has_many :group_documents
 	
 	attr_accessible :uploader, :name, :file, :description
-	after_create :create_user_document
 	mount_uploader :file, FileUploader
 	
 	validates :name, :presence => true
@@ -30,12 +29,6 @@ class Document < ActiveRecord::Base
 	
 	def self.search(search)
 		self.where("name like ?", "%#{search}%")
-	end
-	
-	private
-	
-	def create_user_document
-		UserDocument.create(:user => self.uploader, :document => self)
 	end
 	
 end

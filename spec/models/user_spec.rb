@@ -100,6 +100,7 @@ describe User do
 		
 		it 'should check if it has a document' do
 			document = Factory(:document, :uploader => @user)
+			Factory(:user_document, :document => document, :user => @user)
 			@user.has_document?(document).should be_true
 		end
 		

@@ -18,5 +18,16 @@ describe GroupDocument do
 		@group_document.targeted_updates.should_not be_blank
 		@group_document.targeted_updates.first.creator.should == @group_document.group
 	end
+	
+	it "should accept a pending document and create an update of such" do
+		@group_document.accept
+		@group_document.pending.should be_false
+		@group_document.targeted_updates.should_not be_blank
+		@group_document.targeted_updates.first.creator.should == @group_document.group
+	end
+	
+	it "should create a user document referring its sender to the document" do
+		@group_document.sender.has_document?(@group_document.document).should be_true
+	end
 
 end

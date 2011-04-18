@@ -1,6 +1,7 @@
-= f.input :name
-= f.input :description
-= f.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
+= f.simple_fields_for :document do |document|
+  = document.input :name
+  = document.input :description, :as => :text
+  = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
 %br      
 .group.navform.wat-cf
   %button.button{:type => 'submit'}

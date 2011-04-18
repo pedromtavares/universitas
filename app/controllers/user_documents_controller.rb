@@ -4,14 +4,10 @@ class UserDocumentsController < InheritedResources::Base
 	belongs_to :user
 	
 	def create
-		params[:user_document] = params[:document]
-		@user_document = Document.new(params[:document].merge(:uploader => current_user))
-		create!
-	end
-	
-	def update
-		params[:user_document] = params[:document]
-		update!
+		params[:user_document][:document_attributes].merge!(:uploader => current_user)
+		create! do |success, failure|
+			success.html{redirect_to collection_url}
+		end
 	end
 	
 	def add
@@ -34,7 +30,7 @@ class UserDocumentsController < InheritedResources::Base
 		@user_document = if params[:id]
 			parent.uploaded_documents.find(params[:id])
 		else
-			@user_document.errors.blank? ? Document.new(params[:document]) : @user_document
+			@user_document.errors.blank? ? UserDocument.new(:document => Document.new) : @user_document
 		end
 	end
 

@@ -28,7 +28,7 @@ namespace :db do
       puts "Successfully created user #{name}"
     end
 
-		# creates some courses with previously created users as teachers
+		# creates some groups with previously created users as leaders
 		30.times do |n|
 			name = Faker::Company.catch_phrase
 			group = Group.create!(:name => name,
@@ -41,7 +41,7 @@ namespace :db do
 			puts "Successfully created group #{name}"
 		end
     
-		# makes dummy users follow each other and enter random courses
+		# makes dummy users follow each other and enter random groups
     users = User.all
     users.each do |user|
       5.times do
@@ -55,7 +55,7 @@ namespace :db do
       end
 			
 			10.times do
-				doc = Document.create!(:name => Faker::Company.name, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt") )
+				UserDocument.create!(:document => Document.create(:name => Faker::Company.name, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt")), :user => user)
 			end
 			
     end

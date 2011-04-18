@@ -20,16 +20,22 @@ class GroupDocument < ActiveRecord::Base
 	belongs_to :module, :foreign_key => 'group_module_id', :class_name => "GroupModule"
 	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
 	
-	accepts_nested_attributes_for :document
-	
 	scope :accepted, where(:pending => false)
 	scope :pending, where(:pending => true)
 	
+	after_create :create_user_document
 	delegate :name, :description, :file, :file_url, :to => :document
+	accepts_nested_attributes_for :document
 	
 	def accept
 		self.update_attribute(:pending, false)
 		self.group.updates.create!(:target => self)		
+	end
+	
+	private
+	
+	def create_user_document
+		self.sender.user_documents.create(:document => self.document) unless self.sender.has_document?(self.document)
 	end
 
 end
