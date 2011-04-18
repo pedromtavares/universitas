@@ -23,16 +23,24 @@ class GroupDocument < ActiveRecord::Base
 	scope :accepted, where(:pending => false)
 	scope :pending, where(:pending => true)
 	
-	after_create :create_user_document
+	after_create [:create_user_document, :create_update]
 	delegate :name, :description, :file, :file_url, :to => :document
 	accepts_nested_attributes_for :document
 	
 	def accept
 		self.update_attribute(:pending, false)
+		self.status_update
+	end
+	
+	def status_update
 		self.group.updates.create!(:target => self)		
 	end
 	
 	private
+	
+	def create_update
+		self.status_update if self.sender.leader_of?(self.group)
+	end
 	
 	def create_user_document
 		self.sender.user_documents.create(:document => self.document) unless self.sender.has_document?(self.document)

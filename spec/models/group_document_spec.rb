@@ -7,7 +7,7 @@ describe GroupDocument do
 
 	it 'should delegate its name, description and file and file_url to its document' do
 		parent = @group_document.document
-		@group_document.name.should == parent.name
+			@group_document.name.should == parent.name
 		@group_document.description.should == parent.description
 		@group_document.file.should == parent.file
 		@group_document.file_url.should == parent.file_url
@@ -29,5 +29,13 @@ describe GroupDocument do
 	it "should create a user document referring its sender to the document" do
 		@group_document.sender.has_document?(@group_document.document).should be_true
 	end
+	
+	it "should create an update after being created case the creator is also the group leader" do
+		user = Factory(:user)
+		group = Factory(:group, :leader => user)
+		document = Factory(:group_document, :group => group, :sender => user)
+		document.targeted_updates.should_not be_blank
+		document.targeted_updates.first.creator.should == document.group
+	end 
 
 end
