@@ -108,7 +108,8 @@ en:
       no_module: No module selected.
       add: Add to chosen list.
       remove: Remove from chosen list.
-      new: New
+      new: New Group Document
+      create: Create
       created: Documents successfully sent to the group leader for approval. You may continue to share more documents as you please.
       invalid: Invalid document. Please check the file type and size before submitting.
       pending:

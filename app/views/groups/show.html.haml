@@ -69,7 +69,7 @@
             = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
               .small_box= text_field_tag :search, '', :class => 'text_field'
               %button#search-button{:type => 'submit', :class => 'button small_button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()" }=t('shared.search')
-              %button#new-button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();" }=t('groups.documents.new')
+              %button#new-button{:type => 'button', :class => 'button small_button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();" }=t('groups.documents.create')
               %br.clear
               #search-docs
             #new-form.none
