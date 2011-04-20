@@ -68,6 +68,8 @@ en:
     no_followers: No followers yet.
     follow: Follow this user
     unfollow: Unfollow this user
+    timeline: Timeline
+    blank_timeline: There are no updates from this user yet!
     groups:
       blank: This user is in no groups yet.
     documents:
@@ -102,6 +104,8 @@ en:
     entered_none: "You haven't entered any groups yet."
     enter_one_now: Find and enter one now!
     status: "Group Status:"
+    timeline: Timeline
+    blank_timeline: There are no updates from this group yet!
     documents:
       plural: Group Documents
       blank: This group has no documents!

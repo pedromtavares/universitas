@@ -57,6 +57,10 @@ class Group < ActiveRecord::Base
 		@blank ||= GroupModule.blank_module
 		self.modules.include?(@blank) ? self.modules: self.modules.unshift(@blank)
 	end
+	
+	def timeline
+		Update.where("creator_id = ? and creator_type='Group'", self.id).order('created_at desc')
+	end
 
 	private
 	

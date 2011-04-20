@@ -8,6 +8,11 @@ class GroupsController < InheritedResources::Base
 		@groups = paginate(Group.search(params[:search])) if params[:search]
 		super
 	end
+	
+	def show
+		@timeline = @group.timeline
+		super
+	end
   
   def create
     @group = Group.new(params[:group].merge(:leader => current_user))
