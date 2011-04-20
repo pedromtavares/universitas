@@ -7,7 +7,7 @@
     %tr{:class => cycle("odd","even"), :id => document.id}
       %td= link_to document.name, document.file_url, :title => t('shared.click_to_download')
       %td.module
-        .name=document.module.name unless document.module.blank?
+        .name= document.module.blank? ? t('groups.documents.blank_prompt') : document.module.name
         = simple_form_for document, :url => group_document_path(@group,document), :remote => true do |f|
           = f.association :module, :collection => @group.modules_with_blank, :prompt => false, :label => false, :input_html => {:class => 'update-module none'}
       %td

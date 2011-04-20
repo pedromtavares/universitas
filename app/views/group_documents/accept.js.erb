@@ -1,12 +1,21 @@
 var span = $('#accept_<%=@group_document.id%>')
 var doc = span.closest('tr');
-var table = $('#accepted table');
+var accepted = $('#accepted table');
+var pending = $('#pending table');
 
 doc.detach();
 
-if (table.hasClass('none')){
-	table.removeClass('none');
+// hide blank message and show accepted table case it was hidden
+if (accepted.hasClass('none')){
+	accepted.removeClass('none');
 	$('#accepted p').addClass('none');
 }
+
 doc.find('a.accept').detach();
-table.find('tbody').append(doc);
+accepted.find('tbody').append(doc);
+
+// show blank message and hide pending table if it's empty
+if (pending.children().length == 1){
+	pending.addClass('none');
+	$('#pending p').removeClass('none');
+}
