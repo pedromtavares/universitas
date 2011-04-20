@@ -9,7 +9,7 @@
       %td.module
         .name=document.module.name unless document.module.blank?
         = simple_form_for document, :url => group_document_path(@group,document), :remote => true do |f|
-          = f.association :module, :collection => @group.modules_with_blank, :label => false, :input_html => {:class => 'update-module none'}
+          = f.association :module, :collection => @group.modules_with_blank, :prompt => false, :label => false, :input_html => {:class => 'update-module none'}
       %td
         - if document.pending?
           =link_to accept_group_document_path(document.group, document), :method => :put, :remote => :true, :title => t('groups.documents.accept'), :id => "accept_#{document.id}", :class => 'accept' do

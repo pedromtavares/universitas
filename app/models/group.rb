@@ -54,8 +54,8 @@ class Group < ActiveRecord::Base
 	end
 	
 	def modules_with_blank
-		blank = GroupModule.new(:name => I18n.t('groups.documents.blank_prompt'))
-		self.modules.unshift(blank)
+		@blank ||= GroupModule.blank_module
+		self.modules.include?(@blank) ? self.modules: self.modules.unshift(@blank)
 	end
 
 	private

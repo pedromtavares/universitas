@@ -14,4 +14,8 @@
 class GroupModule < ActiveRecord::Base
 	belongs_to :group
 	has_many :group_documents
+	
+	def self.blank_module
+		self.new(:name => I18n.t('groups.documents.blank_prompt'))
+	end
 end
