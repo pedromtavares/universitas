@@ -28,7 +28,7 @@ class UserDocumentsController < InheritedResources::Base
 
 	def resource
 		@user_document = if params[:id]
-			parent.user_documents.find(params[:id])
+			parent.user_documents.find_by_document_id(params[:id])
 		else
 			@user_document.errors.blank? ? UserDocument.new(:document => Document.new) : @user_document
 		end
