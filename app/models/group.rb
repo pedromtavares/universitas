@@ -52,6 +52,11 @@ class Group < ActiveRecord::Base
 		self.update_attribute(:status, msg)
 		self.updates.create!(:target => self, :custom_message => msg)
 	end
+	
+	def modules_with_blank
+		blank = GroupModule.new(:name => I18n.t('groups.documents.blank_prompt'))
+		self.modules.unshift(blank)
+	end
 
 	private
 	

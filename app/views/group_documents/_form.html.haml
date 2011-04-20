@@ -2,7 +2,7 @@
   = document.input :name
   = document.input :description, :as => :text
   = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
-= f.association :module, :collection => @group.modules, :prompt => t('groups.documents.blank_prompt')
+= f.association :module, :collection => @group.modules_with_blank, :prompt => false
 
 %br      
 .group.navform.wat-cf

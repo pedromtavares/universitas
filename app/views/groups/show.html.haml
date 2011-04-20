@@ -82,7 +82,7 @@
             %p#message.none=t('groups.documents.created')
             = form_tag add_multiple_group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
               ="#{t('modules.singular')}:"
-              = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :include_blank => t('groups.documents.no_module'), :class => 'select'
+              = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :class => 'select'
               = loading_icon
               %button{:type => 'submit', :class => 'button small_button right', :id => 'save' }=t('shared.save')
               #chosen-docs
