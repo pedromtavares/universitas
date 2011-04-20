@@ -2,15 +2,19 @@
   %tr
     %th= t('documents.name')
     %th= t('modules.singular')
-    %th
+    %th= loading_icon
   - documents.each do |document|
-    %tr{:class => cycle("odd","even")}
+    %tr{:class => cycle("odd","even"), :id => document.id}
       %td= link_to document.name, document.file_url, :title => t('shared.click_to_download')
-      %td= document.module.name unless document.module.blank?
+      %td.module
+        .name=document.module.name unless document.module.blank?
+        = simple_form_for document, :url => group_document_path(@group,document), :remote => true do |f|
+          = f.association :module, :collection => @group.modules, :prompt => t('groups.documents.blank_prompt'), :label => false, :input_html => {:class => 'update-module none'}
       %td
         - if document.pending?
           =link_to accept_group_document_path(document.group, document), :method => :put, :remote => :true, :title => t('groups.documents.accept'), :id => "accept_#{document.id}", :class => 'accept' do
             %span.ui-icon.ui-icon-check
+        =link_to 'javascript:void(0)', :title => t('groups.documents.edit_module'), :class => 'edit-module' do
+          %span.ui-icon.ui-icon-pencil
         =link_to group_document_path(document.group, document), :method => :delete, :remote => :true, :confirm => t('groups.documents.sure'), :title => t('groups.documents.remove'), :id => "remove_#{document.id}" do
           %span.ui-icon.ui-icon-closethick
-        

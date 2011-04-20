@@ -173,3 +173,7 @@
 #new-form textarea{
 	height:100px;
 }
+
+.form .links, .form .nested-fields{
+	margin:10px 0;
+}

@@ -8,4 +8,8 @@ module ApplicationHelper
 			"#{in_kb.round} KB"
 		end
 	end
+	
+	def loading_icon
+		image_tag('loading.gif', :class => 'loading none')
+	end
 end

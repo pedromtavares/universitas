@@ -118,8 +118,9 @@ en:
       accepted:
         plural: Accepted Documents
         blank: There are no accepted documents in this group.
-      remove: Remove this document.
-      accept: Accept this document.
+      remove: Remove this document
+      accept: Accept this document
+      edit_module: Edit Module
       sure: Are you sure you want to delete this document from this group?
       chosen: Chosen Documents
       share: Share your documents with this group 
@@ -151,5 +152,7 @@ en:
     name: Name
     description: Description
     blank: This group has no modules!
+    remove: Remove Module
+    add: Add Module
     documents:
       blank: This module has no documents.

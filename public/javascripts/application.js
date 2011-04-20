@@ -1,5 +1,6 @@
 $(function(){
 	$("#tabs").tabs();
+	
 	$("#search-docs .doc .options a").live('click', function(event){
 		var target = $(event.target).parent();
 		var doc = target.parent().parent();
@@ -24,17 +25,21 @@ $(function(){
 			$('#chosen-form').hide();
 		}
 	});
+	
+	$(".table .edit-module").live('click', function(){
+		var td = $(this).closest('tr').find('.module');
+		td.find('.update-module').removeClass('none');
+		td.find('.name').addClass('none');
+	});
+	
+	$(".table .update-module").change(function(){
+		$(this).closest('form').submit();
+	});
+	
+	$("img.loading").ajaxStart(function(){
+		$(this).removeClass('none');
+	}).ajaxComplete(function(){
+		$(this).addClass('none');
+	});
+	
 });
-
-
-function highlight(obj,color, time){
-  var original = obj.css('background');
-  obj.animate({
-    backgroundColor: color
-  },time/2);
-
-  obj.animate({
-    backgroundColor: original
-  },time/2);
-
-}

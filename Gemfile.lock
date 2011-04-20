@@ -56,6 +56,7 @@ GEM
     cgi_multipart_eof_fix (2.5.0)
     childprocess (0.1.7)
       ffi (~> 0.6.3)
+    cocoon (1.0.3)
     columnize (0.3.2)
     configuration (1.2.0)
     culerity (0.2.15)
@@ -196,6 +197,7 @@ DEPENDENCIES
   capybara
   capybara-envjs
   carrierwave
+  cocoon
   devise (= 1.1.3)
   factory_girl_rails
   faker

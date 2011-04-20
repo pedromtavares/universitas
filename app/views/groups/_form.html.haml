@@ -1,11 +1,15 @@
 = f.input :name
 = f.input :description
-= f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum')}<br/>#{t('custom_messages.image_extensions')}")
-%br      
+= f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum')}<br/>#{t('custom_messages.image_extensions')}")      
+
+%h3= t('modules.plural')
+= f.simple_fields_for :modules do |mod|
+  = render 'module_fields', :f => mod
+.links
+  = link_to_add_association t('modules.add'), f, :modules
+%br
+%br
 .group.navform.wat-cf
   %button.button{:type => 'submit'}
     = image_tag("icons/tick.png", :alt => t('shared.submit')) 
     = t('shared.submit')
-  = link_to collection_url, :class => "button" do
-    = image_tag("icons/back.png", :alt => t('shared.back'))
-    = t('shared.back')   

@@ -12,4 +12,3 @@
         = render :partial => 'table', :locals => {:documents => @pending, :hide => @pending.blank?}
         %p.center{:class => @pending.blank? ? '' : 'none'}=t('groups.documents.pending.blank')
 %br.clear
-    
