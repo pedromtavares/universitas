@@ -39,6 +39,13 @@ class GroupsController < InheritedResources::Base
 		resource.update_status(params[:status])
 		redirect_to resource_path
 	end
+	
+	def timeline
+		@feed = resource.timeline(Time.parse(params[:last]))
+		respond_to do |format|
+			format.js{ render 'dashboard/show'}
+		end
+	end
   
   protected
   

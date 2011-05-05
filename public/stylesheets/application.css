@@ -19,7 +19,7 @@
 .small{
 	float:left;
 	font-size: 10px;
-	color: grey;
+	color: gray;
 	width:200px;
 	padding:5px;
 }
@@ -31,6 +31,12 @@
 .small_button{
 	padding: 1.5px 5px !important
 }
+
+.updates{
+	height:450px;
+	overflow:auto;
+}
+
 .updates img{
 	margin:5px;
 	padding:5px;

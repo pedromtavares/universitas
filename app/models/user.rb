@@ -60,12 +60,12 @@ class User < ActiveRecord::Base
     self.updates.create!(:target => self, :custom_message => msg)    
   end
   
-  def feed    
-    Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups).order('created_at desc')
+  def feed(last = Time.now)
+		Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups).where('created_at < ?', last).limit(20).order('created_at desc')
   end
 
-	def timeline
-    Update.where("creator_id = ? and creator_type='User'", self.id).order('created_at desc')
+	def timeline(last = Time.now)
+    Update.where("creator_id = ? and creator_type='User'", self.id).where('created_at < ?', last).limit(20).order('created_at desc')
 	end
   
   def following?(followed)

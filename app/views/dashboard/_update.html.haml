@@ -1,0 +1,7 @@
+- unless update.target.blank?
+  %li{:class => update.creator.class.to_s.parameterize}
+    .left= render_update_creator(update)
+    .item
+      %p
+        =link_to update.creator.name,update.creator
+        =render_update_content(update)

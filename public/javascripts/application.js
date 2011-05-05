@@ -1,5 +1,42 @@
 $(function(){
+	
+	/******* General Code *******/
+	
+	$('.updates').endlessScroll({
+		fireOnce: true,
+		fireDelay: 500,
+		ceaseFire: function(){
+			return $('#infinite-scroll').length && !$(this).closest('.ui-tabs-panel').hasClass('ui-tabs-hide') ? false : true;
+		},
+	  callback: function(){
+	    $.ajax({
+		  url: $(this).attr('url'),
+		  data: {
+				last: $(this).attr('last'),
+				type: $(this).attr('type')
+			},
+			dataType: 'script'
+		 });
+	  }
+	});
+	
+	$("img.loading").ajaxStart(function(){
+		$(this).removeClass('none');
+	}).ajaxComplete(function(){
+		$(this).addClass('none');
+	});
+	
+	/******* jQuery UI *******/
+	
 	$("#tabs").tabs();
+	
+	$("#tabs").bind('tabsselect', function(event, ui){
+		list = $('.updates');
+		list.find('li').hide();
+		showUpdatesFor($(ui.tab).attr('target'));
+	});
+	
+	/******* Group document sharing UI *******/
 	
 	$("#search-docs .doc .options a").live('click', function(event){
 		var target = $(event.target).parent();
@@ -26,6 +63,8 @@ $(function(){
 		}
 	});
 	
+	/******* Group document management UI *******/
+	
 	$(".table .edit-module").live('click', function(){
 		var td = $(this).closest('tr').find('.module');
 		td.find('.update-module').removeClass('none');
@@ -36,10 +75,22 @@ $(function(){
 		$(this).closest('form').submit();
 	});
 	
-	$("img.loading").ajaxStart(function(){
-		$(this).removeClass('none');
-	}).ajaxComplete(function(){
-		$(this).addClass('none');
-	});
-	
 });
+
+/******* Helper Functions *******/
+
+function showUpdatesFor(type){
+	if(type == ''){type = 'all'}
+	list = $('#'+type+' .updates');
+	list.find('li').hide();
+	switch(type){
+		case 'user':
+			list.find('.user').show();
+			break;
+		case 'group':
+			list.find('.group').show();
+			break;
+		default:
+			list.find('li').show();
+	}
+}

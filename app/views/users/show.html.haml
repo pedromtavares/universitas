@@ -19,15 +19,16 @@
       
   #tabs
     %ul
-      %li=link_to t('users.timeline'), "#timeline"
+      %li=link_to t('users.timeline'), "#all"
       %li=link_to t('documents.plural'), "#documents"
       %li=link_to t('groups.plural'), "#groups"
       %li=link_to t('users.following'), "#following"
       %li=link_to t('users.followers'), "#followers"
 
-    #timeline
+    #all
       - unless @timeline.blank?
-        = render :partial => 'dashboard/list', :locals => {:feed => @timeline}
+        #infinite-scroll.none
+        = render :partial => 'dashboard/list', :locals => {:feed => @timeline, :url => timeline_user_path(resource)}
       -else
         %p=t('users.blank_timeline')
     #documents

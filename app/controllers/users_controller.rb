@@ -16,7 +16,7 @@ class UsersController < InheritedResources::Base
   def follow
     unless current_user.following?(resource)
       current_user.follow!(resource)
-      flash[:notice] = "You are now following #{resource}."
+      flash[:notice] = "#{t('users.now_following')} #{resource}."
     end
     redirect_to :back
   end
@@ -24,10 +24,17 @@ class UsersController < InheritedResources::Base
   def unfollow
     if current_user.following?(resource)
       current_user.unfollow!(resource)
-      flash[:notice] = "You have unfollowed #{resource}."
+      flash[:notice] = "#{t('users.have_unfollowed')} #{resource}."
     end
     redirect_to :back
   end
+
+	def timeline
+		@feed = resource.timeline(Time.parse(params[:last]))
+		respond_to do |format|
+			format.js{ render 'dashboard/show'}
+		end
+	end
   
   protected
   

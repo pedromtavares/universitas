@@ -10,6 +10,7 @@ Universitas::Application.routes.draw do
 			end
 		end
     member do
+			get :timeline
       post :follow
  			delete :unfollow
     end
@@ -30,6 +31,7 @@ Universitas::Application.routes.draw do
 		end
 		resources :forums
     member do
+			get :timeline
       post :join
       delete :leave
 			put :update_status

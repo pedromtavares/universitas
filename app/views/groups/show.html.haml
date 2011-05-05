@@ -20,14 +20,15 @@
     %br.clear
     #tabs
       %ul
-        %li=link_to t('groups.timeline'), "#timeline"
+        %li=link_to t('groups.timeline'), "#all"
         %li=link_to t('modules.plural'), "#modules"
         %li=link_to t('documents.plural'), "#documents"
         %li=link_to t('members.plural'), "#members"
         %li=link_to t('shared.share'), "#share"
-      #timeline
+      #all
         - unless @timeline.blank?
-          = render :partial => 'dashboard/list', :locals => {:feed => @timeline}
+          #infinite-scroll.none
+          = render :partial => 'dashboard/list', :locals => {:feed => @timeline, :url => timeline_group_path(resource)}
         -else
           %p=t('groups.blank_timeline')
       #modules

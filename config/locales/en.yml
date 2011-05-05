@@ -68,6 +68,8 @@ en:
     no_followers: No followers yet.
     follow: Follow this user
     unfollow: Unfollow this user
+    now_following: You are now following
+    have_unfollowed: You have unfollowed
     timeline: Timeline
     blank_timeline: There are no updates from this user yet!
     groups:

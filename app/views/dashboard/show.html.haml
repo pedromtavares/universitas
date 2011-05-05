@@ -13,18 +13,14 @@
     %br.clear
     %h3= t('dashboard.recent_updates')
     #tabs
+      #infinite-scroll.none
       %ul
-        %li=link_to t('dashboard.all'), "#all"
-        %li=link_to t('users.plural'), "#users"
-        %li=link_to t('groups.plural'), "#groups"
+        %li=link_to t('dashboard.all'), "#all", :target => 'all'
+        %li=link_to t('users.plural'), "#user", :target => 'user'
+        %li=link_to t('groups.plural'), "#group", :target => 'group'
       #all
         = render :partial => 'list', :locals => {:feed => @feed}
-      #users
-        = render :partial => 'list', :locals => {:feed => @feed.find_all{|u| u.from_user?}}
-      #groups
-        = render :partial => 'list', :locals => {:feed => @feed.find_all{|u| u.from_group?}}
-        
-    .actions-bar.wat-cf
-      .actions
-      .pagination
-        = paginate @feed
+      #user
+        = render :partial => 'list', :locals => {:feed => @feed, :type => 'user'}
+      #group
+        = render :partial => 'list', :locals => {:feed => @feed, :type => 'group'}
