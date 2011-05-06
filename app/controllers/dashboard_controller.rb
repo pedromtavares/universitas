@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
 	respond_to :html, :js 
   before_filter :authenticate_user!
   def show
-		last = params[:last].blank? ? Time.now : Time.parse(params[:last])
+		last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
     @feed = current_user.feed(last)
   end
   

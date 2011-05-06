@@ -58,7 +58,7 @@ class Group < ActiveRecord::Base
 		self.modules.include?(@blank) ? self.modules: self.modules.unshift(@blank)
 	end
 	
-	def timeline(last = Time.now)
+	def timeline(last = Time.now + 1.second)
 		Update.where("creator_id = ? and creator_type='Group'", self.id).where('created_at < ?', last).limit(20).order('created_at desc')
 	end
 

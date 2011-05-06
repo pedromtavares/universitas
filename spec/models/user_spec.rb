@@ -5,6 +5,7 @@ describe User do
     before(:each) do
       @attr = { :name => "Default User", :email => "default@default.com", :login => 'default', :password => '123456', :password_confirmation => '123456' }
       @user = Factory(:user)
+			@group = Factory(:group)
     end
     
     it "should create a new instance given valid attributes" do
@@ -44,52 +45,39 @@ describe User do
     describe "relationships" do
       before(:each) do
         @followed = Factory(:user)
+				@user.follow!(@followed)
       end
-      it "should follow another user" do
-        @user.follow!(@followed)
+      it "should follow another user" do    
         @user.should be_following(@followed)
       end
       it "should include the followed user in the following array" do
-        @user.follow!(@followed)
         @user.following.include?(@followed).should be_true
       end
       it "should include the follower in the followers array" do
-        @user.follow!(@followed)
         @followed.followers.include?(@user).should be_true
       end
       it "should unfollow a user" do
-        @user.follow!(@followed)
         @user.unfollow!(@followed)
         @user.should_not be_following(@followed)
       end
     end
     
-    it 'should update its status' do
-      @user.update_status("Hello")
-      @user.status.should == "Hello"
-    end
-
-		it "should create an update when updating status" do
-			@user.update_status("Hi")
-			@user.targeted_updates.should_not be_blank
-			@user.targeted_updates.first.creator.should == @user
-		end
-		
-    it 'should return a feed with updates on the users it follows as well as its own' do
-      followed = Factory(:user)
-			group = Factory(:group)
-      followed.update_status("test")
-			group.update_status("group!")
-			group.create_member(@user)
-      @user.update_status("hi")
-      @user.follow!(followed)
-      @user.feed.should == followed.updates + group.updates + @user.updates
+    describe "updating status" do
+			before(:each) do
+				@user.update_status("Hello")
+			end
+    	it 'should update its status' do
+	      @user.status.should == "Hello"
+	    end
+			it "should create an update when updating status" do
+				@user.targeted_updates.should_not be_blank
+				@user.targeted_updates.first.creator.should == @user
+			end
     end
 
 		it "should check if it's in a group" do
-			group = Factory(:group)
-			group.create_member(@user)
-			@user.member_of?(group).should be_true
+			@group.create_member(@user)
+			@user.member_of?(@group).should be_true
 		end
 		
 		it "should check if it's a group leader" do
@@ -102,6 +90,24 @@ describe User do
 			document = Factory(:document, :uploader => @user)
 			Factory(:user_document, :document => document, :user => @user)
 			@user.has_document?(document).should be_true
+		end
+		
+		describe "feeds" do
+			before(:each) do
+				@followed = Factory(:user)
+	      @followed.update_status("test")
+				@group.update_status("group!")
+				@group.create_member(@user)
+	      @user.update_status("hi")
+	      @user.follow!(@followed)
+			end
+			it 'should return a feed with updates on the users it follows as well as its own' do
+	      @user.feed.should == @followed.updates + @group.updates + @user.updates
+	    end
+
+			it 'should return a timeline with its updates only' do
+	      @user.timeline.should == @user.updates.to_a
+			end
 		end
 		
 end

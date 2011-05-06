@@ -8,7 +8,7 @@ gem 'rails', '3.0.5'
 gem 'mysql'
 
 gem 'haml'
-gem 'inherited_resources', '1.1.2'
+gem 'inherited_resources'
 gem 'devise', '1.1.3'
 gem 'friendly_id'
 gem 'gravatar_image_tag'

@@ -31,6 +31,11 @@ describe Group do
     @group.update_status("Hello")
     @group.status.should == "Hello"
   end
+
+	it 'should have a timeline with its updates only' do
+		@group.update_status("Hello")
+		@group.timeline == @group.updates.to_a
+	end
 	
 	describe "validations" do
   	it "should have a name" do
