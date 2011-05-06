@@ -35,6 +35,7 @@ Universitas::Application.routes.draw do
       post :join
       delete :leave
 			put :update_status
+			post :promote
     end
   end
 
@@ -43,12 +44,13 @@ Universitas::Application.routes.draw do
 			get :download
 		end
 	end
-	
+		
 	resource :home, :only => :show, :controller => 'home'
   
   get 'users/:id' => 'users#show', :as => 'profile'
   get ':id' => 'groups#show', :as => 'group'
 	put ':id' => 'groups#update', :as => 'group'
+	delete 'dashboard/:id/destroy' => 'dashboard#destroy', :as => 'delete_update'
   
   root :to => 'dashboard#show'
 

@@ -5,6 +5,9 @@
     %p
       %strong=t('users.email')
       =resource.email
+      %p
+        %strong= t('dashboard.status')
+        %span.gray= "\"#{resource.status}\"" unless resource.status.blank?
       
     - unless resource == current_user || !user_signed_in?
       - if current_user.following?(resource)

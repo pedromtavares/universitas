@@ -46,6 +46,11 @@ class GroupsController < InheritedResources::Base
 			format.js{ render 'dashboard/show'}
 		end
 	end
+	
+	def promote
+		resource.promote(params[:message], current_user)
+		redirect_to resource_path, :notice => "#{t('groups.have_promoted')}"
+	end
   
   protected
   

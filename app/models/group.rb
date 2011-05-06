@@ -61,6 +61,10 @@ class Group < ActiveRecord::Base
 	def timeline(last = Time.now + 1.second)
 		Update.where("creator_id = ? and creator_type='Group'", self.id).where('created_at < ?', last).limit(20).order('created_at desc')
 	end
+	
+	def promote(msg, user)
+		user.updates.create!(:target => self, :custom_message => msg)
+	end
 
 	private
 	

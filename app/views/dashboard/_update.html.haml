@@ -1,7 +1,11 @@
 - unless update.target.blank?
-  %li{:class => update.creator.class.to_s.parameterize}
+  %li{:class => update.creator.class.to_s.parameterize, :id => update.id}
     .left= render_update_creator(update)
     .item
+      - if user_signed_in? && (update.creator == current_user || current_user.leader_of?(update.creator))
+        .right{:style => 'margin:0 10px'}
+          =link_to delete_update_path(update), :method => :delete, :remote => :true, :confirm => t('dashboard.are_you_sure'), :title => t('dashboard.delete_update'), :class => 'remove' do
+            %span.ui-icon.ui-icon-closethick
       %p
         =link_to update.creator.name,update.creator
         =render_update_content(update)

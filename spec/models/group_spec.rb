@@ -37,6 +37,13 @@ describe Group do
 		@group.timeline == @group.updates.to_a
 	end
 	
+	it 'should be promoted by a member' do
+		user = Factory(:user)
+		member = @group.create_member(user)
+		@group.promote("testing", user)
+		user.updates.should include @group.targeted_updates.last
+	end
+	
 	describe "validations" do
   	it "should have a name" do
   		Factory.build(:group, :name => nil).should_not be_valid

@@ -10,4 +10,12 @@ class DashboardController < ApplicationController
     current_user.update_status(params[:status])
     redirect_to root_path
   end
+
+	def destroy
+		@update = Update.find(params[:id])
+		@update.destroy
+	end
+	
+	def set_breadcrumbs
+	end
 end

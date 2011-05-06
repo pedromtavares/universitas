@@ -80,6 +80,18 @@
 	width:70%;
 }
 
+#promote-group{
+	float:left;
+	width:100%;
+	font-size:10pt;
+}
+
+#promote-group .input{
+	margin-right: 11px;
+	float:left;
+	width:68%;
+}
+
 #module-box{
 	height: 150px;
 }

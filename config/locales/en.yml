@@ -45,6 +45,10 @@ en:
     user_document_added: "added a new document:"
     group_document_added: "added a new document:"
     group_status: "updated status to"
+    are_you_sure: Are you sure you want to delete this update?
+    delete_update: Delete this update
+    promoted_group: promoted the group
+    promoted_message: by saying
     all: All
   account:
     cancel: Cancel my account
@@ -108,6 +112,9 @@ en:
     status: "Group Status:"
     timeline: Timeline
     blank_timeline: There are no updates from this group yet!
+    promote: Promote this group
+    promote_submit: Promote!
+    have_promoted: You have promoted this group to your followers!
     documents:
       plural: Group Documents
       blank: This group has no documents!

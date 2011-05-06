@@ -8,7 +8,11 @@ module DashboardHelper
     when "Group"
 			case creator.class.to_s
 			when "User"
-    		"#{t('dashboard.created_group')} #{link_to(target, target)}".html_safe
+				if update.custom_message
+					"#{t('dashboard.promoted_group')} #{link_to(target, target)} #{t('dashboard.promoted_message')} \"#{h(update.custom_message)}\"".html_safe
+				else
+    			"#{t('dashboard.created_group')} #{link_to(target, target)}".html_safe
+				end
 			when "Group"
 		    "#{t('dashboard.group_status')} \"#{update.custom_message}\""
 			end

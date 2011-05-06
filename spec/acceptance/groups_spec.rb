@@ -22,8 +22,8 @@ feature "Groups Management", %q{
 		page.should have_content("Default User")
 		page.should_not have_content("Join this group")
 		page.should_not have_content("Leave this group")
-		# visit dashboard
-		# page.should have_content("created a group called ")
+		visit dashboard
+		page.should have_content("created a group called ")
 	end
 	
 	scenario "Editing an existing group" do
@@ -39,8 +39,8 @@ feature "Groups Management", %q{
 		click_link_or_button("Join this group")
 		page.should have_content("Default User")
 	 	page.should have_button("Leave this group")
-		# visit dashboard
-		# page.should have_content("joined a group called ")
+		visit dashboard
+		page.should have_content("joined a group called ")
 	end
 	
 	scenario "Leaving a group" do
