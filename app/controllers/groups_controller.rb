@@ -1,5 +1,5 @@
 class GroupsController < InheritedResources::Base
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :timeline]
   before_filter :allow_leader, :only => [:edit, :update] 
 
   actions :all, :except => :delete
