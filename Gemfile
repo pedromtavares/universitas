@@ -5,7 +5,7 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+gem 'mysql2'
 
 gem 'haml'
 gem 'inherited_resources'
@@ -15,7 +15,7 @@ gem 'gravatar_image_tag'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'web-app-theme', '>= 0.6.2'
+gem 'web-app-theme'
 gem 'fog'
 gem 'kaminari'
 gem 'cocoon'
@@ -26,12 +26,14 @@ group :development do
 	gem 'annotate-models'
 	gem 'faker'
 	gem "rspec"
-  gem "rspec-rails",      ">= 2.0.0.beta"
-  gem 'steak', '>= 1.0.0.beta.2'
+  gem "rspec-rails"
+  gem 'steak'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem 'guard-livereload'
 end
 
 group :test do
-
   gem "faker"
   gem "ZenTest"
   gem "autotest"
