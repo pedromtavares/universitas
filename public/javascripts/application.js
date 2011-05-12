@@ -48,7 +48,7 @@ $(function(){
 			if (chosen.length == 0){
 				$('#message').hide();
 				$('#chosen-form').show();
-				$('#chosen-docs').append(target.attr('target'));
+				$('#chosen-docs').append(target.attr('chosen'));
 			}
 			doc.detach();	
 		}

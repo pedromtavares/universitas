@@ -4,7 +4,7 @@
       =image_tag 'avatar_small.png'
       .name=document.name
       .options
-        =link_to "javascript:void(0)", :title => t('groups.documents.add'), :id => "add_#{document.id}", :target => "#{render(:partial => 'chosen_document', :locals => {:document => document})}" do
+        =link_to "javascript:void(0)", :title => t('groups.documents.add'), :id => "add_#{document.id}", :chosen => "#{render(:partial => 'chosen_document', :locals => {:document => document})}" do
           %span.ui-icon.ui-icon-plusthick
 - else
   %p You have no documents to share!
