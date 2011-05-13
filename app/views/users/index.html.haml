@@ -12,13 +12,11 @@
           %th.first
           %th= t('users.login')
           %th= t('users.name')
-          %th.last= t('users.email')
         - collection.each do |user|
           %tr{:class => cycle("odd","even")}
             %td.first= gravatar_for user
             %td= link_to user.login, profile_path(user)
             %td= user.name
-            %td= user.email
       .actions-bar.wat-cf
         .actions
         .pagination

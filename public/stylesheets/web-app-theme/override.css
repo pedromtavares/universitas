@@ -1,9 +1,4 @@
 /* Override here any style definide by web-app-theme */
-
-body{
-	font-family: Comic Sans, Comic Sans MS, cursive;
-}
-
 .flash .alert {
   border: 1px solid #ffbbbb;
   background-color: #ffdddd;
