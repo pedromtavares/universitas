@@ -1,0 +1,33 @@
+.content
+  %h2.title=t('home.what')
+  .inner
+    %p=t('home.what_text')
+  %h2.title=t('home.signup') 
+  .inner
+    %p=raw t('home.signup_text') 
+  %h2.title=t('home.features')
+  .inner  
+    %ul.list.home
+      %li
+        .left= image_tag 'home/doc.png'
+        .item
+          %h3=t('home.doc')
+          %p=raw t('home.doc_text')
+      %li
+        .left= image_tag 'home/dash.png'
+        .item
+          %h3=t('home.dash')
+          %p=raw t('home.dash_text')
+      %li
+        .left= image_tag 'home/group.png'
+        .item
+          %h3=t('home.group')
+          %p=raw t('home.group_text')
+          %p=raw t('home.group_text2')
+      %li
+        .left= image_tag 'home/forum.png'
+        .item
+          %h3=t('home.forum')
+          %p=raw t('home.forum_text')
+          
+= content_for :sidebar, render(:partial => 'sidebar')

@@ -52,7 +52,7 @@ Universitas::Application.routes.draw do
 	put ':id' => 'groups#update', :as => 'group'
 	delete 'dashboard/:id/destroy' => 'dashboard#destroy', :as => 'delete_update'
   
-  root :to => 'dashboard#show'
+  root :to => 'home#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

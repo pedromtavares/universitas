@@ -10,6 +10,7 @@ en:
     copyright: Copyright
     signup: Sign Up
     signin: Sign In
+    signout: Sign out
     edit: Edit
     update: Update
     back: Back
@@ -54,8 +55,6 @@ en:
     cancel: Cancel my account
   layout:
     logged_in: Logged in as
-  home:
-    plural: Home
   users:
     singular: User
     plural: Users
@@ -169,3 +168,28 @@ en:
     add: Add Module
     documents:
       blank: This module has no documents.
+  home:
+    plural: Home
+    what: What is Universitas?
+    faq: Frequently Asked Questions
+    what_text: "In a nutshell, Universitas is a Google Groups on steroids. It's a more social and collaborative approach to groups, where you get to more actively keep track of what's going on in groups you're interested in, along with being able to contribute with them directly by sharing your own documents and ideas. Oh, it's all free too."
+    signup: Not comfortable signing up?
+    signup_text: "No problem! Universitas is meant to be a free and open platform, be our guest and browse freely through our user, group and document databases (you can download any document you want too!) by navigating the top menu and when you're ready for a more thorough experience, <a href='/users/sign_up'>become a member</a>."
+    features: Features
+    doc: Document Upload and Sharing
+    doc_text: "One of the purposes in Universitas is to hold a huge document database, so you as a user can upload as many documents as you want and have your own document collection to share with other people or other groups. These documents will be accessible to anyone on the web to download, so watch out for confidential stuff!"
+    dash: Dashboard Updates and Twitter-Like Network
+    dash_text: "Say you have some colleagues or people you admire who are also in Universitas, you probably would want to know if they've engaged in a new group or if they uploaded a new document. For that reason the platform has a small Twitter-like social network, where you can follow other people and get updates on your dashboard referring not only to the people you follow, but to the groups you're in as well. You can also keep up with a user or group's update feed just by visiting their page." 
+    group: Simple Yet Powerful Groups
+    group_text: "Universitas' groups have an easy-to-use, yet powerful user interface. You start by getting a very friendly URL for your group, such as universit.as/mygroup that you can easily share across the web. You can also nest various different subjects on your group into separated modules, each with their own document collection."
+    group_text2: "Sharing documents with groups is as easy as selecting them from your own collection and adding them to the group's collection (or to a specific module collection), or you can just upload them directly from the same place. As a group leader, you get to manage every single document that comes in through a similar and instinctive UI."
+    forum: Group Forums
+    forum_text: "The most important thing related to groups is discussion: what's the point in having groups if you can't exchange thoughts and ideas? In Universitas, each group gets its very own forum (or message board, if you will), where the group leader can create (and moderate) as many sections as he wants and the members can create topics and posts about basically anything they wish to share."
+    unlimited: "Unlimited document upload? Seriously?"
+    unlimited_text: "Yes. You can store any sort of allowed file types here (documents and images), although storing is not the tool's purpose as much as is sharing and discussing. If storage is your only desire, Dropbox would be the most recommended tool."
+    who: Who is Universitas for?
+    who_text: "People interested in learning new things and in sharing their knowledge. Maybe you want to learn something and don't know where to start, or maybe you have a ton of interesting material about something and would like a central place for it all so other people could come and get interested as well. Heck, even if you just got a study group and need a place to put all your research in and discuss it."
+    get: "What do I get when I sign up?"
+    get_text: "You get to upload documents, to join groups, post in forums and updates in your dashboard. The most you do as a guest is search our databases and download documents, which is fine too, but signing up takes like 30 seconds and gets you full access to the system, making those 30 seconds quite worthwhile."
+    social: "Yet another social network? Geez."
+    social_text: "No, Universitas' network is far from having the same personal-life focus purpose of Facebook nor the micro-blogging purpose of Twitter, or at least that's not what it was meant for. Aside from the status update, the updates system is restricted to Universitas' features only, like joining a group or creating a document, and so is the focus of its network. Share your photos or comment about the latest news somewhere else."

@@ -3,9 +3,10 @@
     - if user_signed_in?
       %li= link_to t("shared.profile"), profile_path(current_user)
       %li="#{t('layout.logged_in')} #{current_user}"
-      %li= link_to t("shared.logout"), destroy_user_session_path, :class => "logout"
+      %li= link_to t("shared.signout"), destroy_user_session_path, :class => "logout"
     - else
-      %li= link_to t("shared.login"), new_user_session_path, :class => "login"
+      %li= link_to t("shared.signup"), new_user_registration_path, :class => "login"
+      %li= link_to t("shared.signin"), new_user_session_path, :class => "login"
 #main-navigation
   %ul.wat-cf
     - items = user_signed_in? ? %w{home dashboard users groups documents} : %w{home users groups documents}
