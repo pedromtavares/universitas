@@ -55,7 +55,7 @@ class GroupsController < InheritedResources::Base
   protected
   
   def collection
-    @groups ||= paginate(end_of_association_chain)
+    @groups ||= paginate(end_of_association_chain.includes(:leader))
   end
   
   def allow_leader

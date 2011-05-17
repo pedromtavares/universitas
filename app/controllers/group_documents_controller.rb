@@ -49,7 +49,7 @@ class GroupDocumentsController < InheritedResources::Base
 	end
 
 	def collection
-		@group_documents = parent.group_documents
+		@group_documents = parent.group_documents.includes([:document, :module, :group])
 	end
 	
 	def set_breadcrumbs

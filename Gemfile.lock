@@ -38,6 +38,8 @@ GEM
     babosa (0.3.3)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    bullet (2.0.1)
+      uniform_notifier (~> 1.0.0)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
@@ -180,6 +182,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    uniform_notifier (1.0.1)
     warden (0.10.7)
       rack (>= 1.0.0)
     web-app-theme (0.6.3)
@@ -194,6 +197,7 @@ DEPENDENCIES
   annotate-models
   autotest
   autotest-rails
+  bullet
   capybara
   capybara-envjs
   carrierwave
@@ -210,7 +214,7 @@ DEPENDENCIES
   launchy
   mongrel
   mongrel_experimental
-  mysql2
+  mysql2 (= 0.2.7)
   rails (= 3.0.5)
   rmagick
   rspec

@@ -35,8 +35,8 @@
       -else
         %p=t('users.blank_timeline')
     #documents
-      - unless @user_documents.blank?
-        = render :partial => 'documents/list', :locals => {:documents => @user_documents.map(&:document)}
+      - unless @documents.blank?
+        = render :partial => 'documents/list', :locals => {:documents => @documents}
       - else
         %p=t('users.documents.blank')
     #groups

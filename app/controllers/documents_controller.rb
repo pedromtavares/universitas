@@ -14,7 +14,7 @@ class DocumentsController < InheritedResources::Base
 	private
 	
 	def collection
-    @documents ||= paginate(end_of_association_chain)
+    @documents ||= paginate(end_of_association_chain.includes(:uploader))
   end
 
 	def set_breadcrumbs

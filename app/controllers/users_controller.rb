@@ -7,7 +7,7 @@ class UsersController < InheritedResources::Base
 	end
 	
 	def show
-		@user_documents = @user.user_documents
+		@documents = @user.documents
 		@groups = @user.groups
 		@timeline = @user.timeline
 		super

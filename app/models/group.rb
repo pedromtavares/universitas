@@ -15,6 +15,7 @@
 
 class Group < ActiveRecord::Base
   has_many :members, :class_name => 'GroupMember'
+	has_many :users, :through => :members
 	has_many :group_documents
 	has_many :documents, :through => :group_documents
 	has_many :modules, :class_name => 'GroupModule'

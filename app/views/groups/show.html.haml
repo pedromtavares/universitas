@@ -62,13 +62,13 @@
           %p=t('modules.blank')
       #members
         - unless resource.members.blank?
-          = render :partial => 'users/list', :locals => {:users => resource.members.map(&:user)}
+          = render :partial => 'users/list', :locals => {:users => resource.users}
         - else
           %p=t('members.blank')
   
       #documents
         - unless resource.group_documents.accepted.blank?
-          = render :partial => 'documents/list', :locals => {:documents => resource.group_documents.accepted.map(&:document)}
+          = render :partial => 'documents/list', :locals => {:documents => resource.group_documents.accepted.includes(:document).map(&:document)}
         - else
           %p=t('groups.documents.blank')
       #share
