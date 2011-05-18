@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
   
   def update_status
     current_user.update_status(params[:status])
-    redirect_to root_path
+    redirect_to dashboard_path
   end
 
 	def destroy

@@ -11,6 +11,9 @@ class GroupsController < InheritedResources::Base
 	
 	def show
 		@timeline = @group.timeline
+		@modules = @group.modules
+		@accepted_docs = @group.group_documents.accepted
+		@members = @group.members
 		super
 	end
   

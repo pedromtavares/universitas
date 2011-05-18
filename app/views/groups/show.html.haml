@@ -19,24 +19,26 @@
     %br.clear
     - if user_signed_in? && current_user.member_of?(resource)
       = render :partial => 'member_menu'
-    %p.center
-      %span.gray= "\"#{resource.status}\"" unless resource.status.blank?
-    #tabs
+    
+    - unless resource.status.blank?
+      %p.center      
+        %span.gray= "\"#{resource.status}\"" 
+    #tabs.ui-tabs
       %ul
         %li=link_to t('groups.timeline'), "#all"
         %li=link_to t('modules.plural'), "#modules"
         %li=link_to t('documents.plural'), "#documents"
         %li=link_to t('members.plural'), "#members"
         %li=link_to t('shared.share'), "#share"
-      #all
+      #all.ui-tabs-hide
         - unless @timeline.blank?
           #infinite-scroll.none
           = render :partial => 'dashboard/list', :locals => {:feed => @timeline, :url => timeline_group_path(resource)}
         -else
           %p=t('groups.blank_timeline')
-      #modules
-        - unless resource.modules.blank?
-          - resource.modules.each do |m|
+      #modules.ui-tabs-hide
+        - unless @modules.blank?
+          - @modules.each do |m|
             #module-box.ui-state-default
               .left
                 %h2=m.name
@@ -44,9 +46,8 @@
               .right
                 %h3.center=t('documents.plural')
                 #doc-box.ui-state-active
-                  - group_documents = m.group_documents.accepted
-                  - unless group_documents.blank?
-                    - group_documents.each do |group_document|
+                  - unless @accepted_docs.blank?
+                    - @accepted_docs.each do |group_document|
                       .doc.ui-state-hover
                         =image_tag 'avatar_small.png'
                         .name= group_document.name 
@@ -60,18 +61,18 @@
             %br.clear
         - else
           %p=t('modules.blank')
-      #members
-        - unless resource.members.blank?
+      #members.ui-tabs-hide
+        - unless @members.blank?
           = render :partial => 'users/list', :locals => {:users => resource.users}
         - else
           %p=t('members.blank')
   
-      #documents
-        - unless resource.group_documents.accepted.blank?
-          = render :partial => 'documents/list', :locals => {:documents => resource.group_documents.accepted.includes(:document).map(&:document)}
+      #documents.ui-tabs-hide
+        - unless @accepted_docs.blank?
+          = render :partial => 'documents/list', :locals => {:documents => @accepted_docs.includes(:document).map(&:document)}
         - else
           %p=t('groups.documents.blank')
-      #share
+      #share.ui-tabs-hide
         - if user_signed_in? && current_user.member_of?(resource)
           %h1.center=t('groups.documents.share')
           .share-box.ui-state-default#search-box
@@ -92,7 +93,7 @@
             %p#message.none=t('groups.documents.created')
             = form_tag add_multiple_group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
               ="#{t('modules.singular')}:"
-              = select_tag "module", options_from_collection_for_select(resource.modules, :id, :name), :class => 'select'
+              = select_tag "module", options_from_collection_for_select(@modules, :id, :name), :class => 'select'
               = loading_icon
               %button{:type => 'submit', :class => 'button small_button right', :id => 'save' }=t('shared.save')
               #chosen-docs

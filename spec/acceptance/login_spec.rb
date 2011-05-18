@@ -7,14 +7,14 @@ feature "Login", %q{
 } do
 
   scenario "Login required" do
-    visit homepage
+    visit dashboard
     page.should have_content("You need to sign in or sign up before continuing.")
   end
   
   scenario "Login sucessfully" do
     logged_in_as("default")
     page.should have_content("Signed in successfully.") and page.should have_content("Logged in as default")
-    current_path.should == homepage
+    current_path.should == dashboard
   end
   
   scenario "Login failed" do
@@ -28,8 +28,8 @@ feature "Login", %q{
   
   scenario "Logout" do
     logged_in_as("default")
-    click_link_or_button("Logout")
-    current_path.should == login_page
+    click_link_or_button("Sign out")
+    current_path.should == homepage
   end
   
 end

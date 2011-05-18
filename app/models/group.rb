@@ -9,6 +9,7 @@
 #  user_id     :integer(4)
 #  cached_slug :string(255)
 #  image       :string(255)
+#  status      :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

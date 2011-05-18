@@ -24,5 +24,9 @@ class ApplicationController < ActionController::Base
 		add_breadcrumb(I18n.t("#{self.controller_name}.new"), :new_resource_path)
 		add_breadcrumb(resource.to_s, lambda { |a| resource_path  }) if params[:id]
 	end
+	
+	def after_sign_in_path_for(resource)
+		dashboard_path
+	end
 
 end
