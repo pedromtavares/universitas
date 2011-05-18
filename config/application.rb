@@ -51,6 +51,8 @@ module Universitas
 		  :user_name            => ENV['GMAIL_SMTP_USER'],
 		  :password             => ENV['GMAIL_SMTP_PASSWORD'],
 		  :authentication       => 'plain',
+			:enable_starttls_auto => true,
+			:tls => true
 		}
     
 
