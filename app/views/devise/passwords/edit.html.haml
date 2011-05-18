@@ -1,0 +1,25 @@
+#box
+  .block#block-login
+    %h2=t 'devise.change_your_password'
+    .content.login
+      .flash
+        - resource.errors.each do |field, message|
+          .message{:class => 'error'}
+            %p="#{field} #{message}".humanize
+      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :put, :class => 'form login'}) do |f|    
+        = f.hidden_field :reset_password_token
+        .group.wat-cf
+          .left= f.label :password, :class => 'label right'
+          .right= f.password_field :password, :class => 'text_field'
+        .group.wat-cf
+          .left= f.label :password_confirmation, :class => 'label right'
+          .right= f.password_field :password_confirmation, :class => 'text_field'
+          %br  
+          %br  
+        .group.navform.wat-cf
+          .right
+            %button.button{:type => 'submit'}
+              = image_tag("icons/key.png", :alt => "Login") 
+              = t 'devise.change_my_password'    
+        %br
+        =render :partial => "devise/shared/links"

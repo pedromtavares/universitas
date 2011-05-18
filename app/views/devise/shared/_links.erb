@@ -1,16 +1,14 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Already have an account? Sign in here.", new_user_session_path %><br />
+  <%= link_to t('devise.already_have_account'), new_user_session_path %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Don't have a login? Sign up!", new_registration_path(resource_name) %><br />
+  <%= link_to t('devise.dont_have_login'), new_registration_path(resource_name) %><br />
 <% end -%>
 
-<div style="display:none">
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  <%= link_to t('devise.forgot_password'), new_password_path(resource_name) %><br />
 <% end -%>
-</div>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
