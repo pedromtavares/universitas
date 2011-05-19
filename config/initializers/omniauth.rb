@@ -3,5 +3,5 @@ prod = {:tk => "xSPf7B76FUoAgYoLtskow" , :ts => "TuneZkXeact74LKVKcv3afX1eBiXkty
 hash = Rails.env.production? ? prod : dev
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, hash[:tk], hash[:ts] 
-	provider :facebook, hash[:fk], hash[:fs] 
+	provider :facebook, hash[:fk], hash[:fs],{:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
 end
