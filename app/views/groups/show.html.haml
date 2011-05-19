@@ -13,13 +13,13 @@
         %p= button_to t('groups.join'), join_group_path
       - else
         %p= button_to t('groups.leave'), leave_group_path, :method => :delete
-        
+    %br.clear    
     - if user_signed_in? && current_user.leader_of?(resource)
       = render :partial => 'leader_menu'
     %br.clear
     - if user_signed_in? && current_user.member_of?(resource)
       = render :partial => 'member_menu'
-    
+    %br.clear
     - unless resource.status.blank?
       %p.center      
         %span.gray= "\"#{resource.status}\"" 
@@ -47,9 +47,9 @@
                 %h3.center=t('documents.plural')
                 #doc-box.ui-state-active
                   - unless @accepted_docs.blank?
-                    - @accepted_docs.each do |group_document|
+                    - m.group_documents.accepted.each do |group_document|
                       .doc.ui-state-hover
-                        =image_tag 'avatar_small.png'
+                        =link_to document_icon_for(group_document.document, true), group_document.file_url
                         .name= group_document.name 
                         .options
                           - unless !user_signed_in? || current_user.has_document?(group_document.document)

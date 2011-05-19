@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Universitas</title>
+  <title>Universitas - <%= t('shared.app_description')%></title>
   <%= render :partial => 'shared/stylesheets'%>
   <%= yield :stylesheets %>
 	<%= csrf_meta_tag %>
@@ -9,7 +9,7 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1><a href="/">Universitas</a></h1>
+      <a href="/"><%=image_tag 'logo.png', :class => 'left'%><h1>niversitas - <%= t('shared.app_description')%></a></h1>
       <%= render :partial => 'shared/user_navigation' %>
     </div>    
     <div id="wrapper" class="wat-cf">

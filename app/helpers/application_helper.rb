@@ -9,6 +9,22 @@ module ApplicationHelper
 		end
 	end
 	
+	def document_icon_for(document, small = false)
+		file = case document.extension
+			when 'docx'
+				'doc'
+			when 'xlsx'
+				'xls'
+			when 'pptx'
+				'ppt'
+			when 'jpeg'
+				'jpg'
+			else
+				document.extension
+		end
+		small ? image_tag("docs/small/#{file}.png") : image_tag("docs/#{file}.png")
+	end
+	
 	def loading_icon
 		image_tag('loading.gif', :class => 'loading none')
 	end

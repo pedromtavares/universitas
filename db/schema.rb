@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.text     "description"
     t.string   "file"
     t.integer  "user_id"
+    t.string   "content_type"
+    t.integer  "file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -122,7 +124,6 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.string   "cached_slug"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

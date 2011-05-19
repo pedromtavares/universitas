@@ -65,6 +65,8 @@ class CreateBasicTables < ActiveRecord::Migration
       t.text :description
       t.string :file
 			t.integer :user_id
+			t.string :content_type
+			t.integer :file_size
       t.timestamps
     end
 		add_index :documents, [:user_id]

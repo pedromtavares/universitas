@@ -1,11 +1,13 @@
 %table.table{:class => hide ? 'none' : ''}
   %tr
+    %th.first
     %th= t('documents.name')
     %th= t('modules.singular')
     %th= loading_icon
   - documents.each do |document|
     %tr{:class => cycle("odd","even"), :id => document.id}
-      %td= link_to document.name, document.file_url, :title => t('shared.click_to_download')
+      %td.first= link_to document_icon_for(document.document, true), document.file_url, :title => t('shared.click_to_download')
+      %td= document.name
       %td.module
         .name= document.module.blank? ? t('groups.documents.blank_prompt') : document.module.name
         = simple_form_for document, :url => group_document_path(@group,document), :remote => true do |f|

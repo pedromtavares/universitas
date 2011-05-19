@@ -9,12 +9,14 @@
     - unless collection.all.blank?
       %table.table
         %tr
+          %th.first
           %th= t('documents.name')
           %th= t('documents.description')
           %th= t('documents.uploader')
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
-            %td= link_to resource.name, resource.file_url
+            %td.first=link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
+            %td= resource.name
             %td= resource.description.truncate(200) if resource.description
             %td= link_to resource.uploader, resource.uploader
       .actions-bar.wat-cf

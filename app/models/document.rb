@@ -18,6 +18,7 @@ class Document < ActiveRecord::Base
 	has_many :group_documents
 	
 	attr_accessible :uploader, :name, :file, :description
+	before_save :set_file_attributes 
 	mount_uploader :file, FileUploader
 	
 	validates :name, :presence => true
@@ -27,8 +28,19 @@ class Document < ActiveRecord::Base
 		self.name
 	end
 	
+	def extension
+		self.file_url.split('.').last.downcase
+	end
+	
 	def self.search(search)
 		self.where("name like ?", "%#{search}%")
 	end
+	
+	private 
+	
+  def set_file_attributes 
+    self.content_type = file.file.content_type 
+    self.file_size = file.size 
+  end
 	
 end

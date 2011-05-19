@@ -8,12 +8,16 @@
         %tr
           %th.first
           %th= t('documents.name')
-          %th.last= t('documents.description')
+          %th= t('documents.size')
+          %th= t('documents.description')
+          %th
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
-            %td.first= link_to t('shared.edit'), edit_resource_url(resource), :class => "button" 
-            %td= link_to resource, resource.file_url, :title => t('shared.click_to_download')
+            %td.first= link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download') 
+            %td= resource
+            %td= file_size_from_bytes resource.file_size
             %td= resource.description
+            %td.last= link_to t('shared.edit'), edit_resource_url(resource), :class => "button" 
     -else
       %p=t('users.documents.uploaded.blank')
     

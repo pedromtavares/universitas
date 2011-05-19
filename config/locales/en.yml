@@ -10,13 +10,17 @@ en:
     change_my_password: Change my password
     already_have_account: "Already have an account? Sign in here."
     dont_have_login: "Don't have a login? Sign up!"
+    no_password: "(leave blank if you don't wish to have a password)"
   auth:
     signed_in: "Signed in successfully."
     edit_profile: " Please visit your <a href='/profile/edit'>edit profile page</a> and update your e-mail address for future account recovery."
     account_created: "Account successfully created."
     problem_signing: "There was a problem signing in through an external service provider, please try signing up normally."
     failure: "There was a problem with the external service provider, please try again."
+    signin_twitter: Sign in with Twitter
+    signin_facebook: Sign in with Facebook
   shared:
+    app_description: "Social & Collaborative Groups"
     profile: Profile
     logout: Logout
     login: Login
@@ -171,6 +175,8 @@ en:
     remove: Remove From My Documents
     blank: No document results matched your search.
     uploader: Uploaded By
+    size: Size
+    type: Type
   modules:
     singular: Module
     plural: Modules

@@ -9,7 +9,7 @@
         = f.input :name, :required => false
         = f.input :email, :required => false
         - if current_user.has_no_password
-          = f.input :password, :required => false, :hint => "(leave blank if you don't wish to have a password)"
+          = f.input :password, :required => false, :hint => t('devise.no_password')
         - else
           = f.input :password, :required => false
         = f.input :password_confirmation
