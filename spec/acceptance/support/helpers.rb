@@ -20,7 +20,7 @@ module HelperMethods
     visit login_page
     fill_in("Login", :with => login)
     fill_in("Password", :with => "123456")
-    click_button("Login")
+    click_button("Sign In")
   end
   
   def few_users_registered

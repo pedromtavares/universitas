@@ -5,11 +5,11 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '0.2.7'
+gem 'mysql'
 
 gem 'haml'
 gem 'inherited_resources'
-gem 'devise', '1.1.3'
+gem 'devise'
 gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'simple_form'
@@ -19,6 +19,7 @@ gem 'web-app-theme'
 gem 'fog'
 gem 'kaminari'
 gem 'cocoon'
+gem 'omniauth'
 
 group :development do
 	gem 'mongrel'

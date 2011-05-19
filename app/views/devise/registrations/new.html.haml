@@ -12,5 +12,9 @@
           %button.button{:type => 'submit'}
             = image_tag("icons/tick.png", :alt => t('shared.signup')) 
             = t 'shared.signup'
+          %br.clear  
+          %br.clear
+          = link_to image_tag('signin_twitter.png'), '/auth/twitter'
+          = link_to image_tag('signin_facebook.png', :style => 'margin-bottom:1px'), '/auth/facebook'
           
       =render :partial => "devise/shared/links"

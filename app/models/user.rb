@@ -26,10 +26,14 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
   validates :login, :presence => true, :uniqueness => true, :length => { :minimum => 4, :maximum => 20 }
   validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
-  
+	validates :email, :presence => true, :allow_blank => true, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i, :if => :email_required?
+	validates :email, :uniqueness => true, :allow_blank => true
+	validates :password, :presence => true, :length => 6..20, :if => :password_required?
+	validates :password, :confirmation => true
+
   attr_accessible :login, :name, :email, :password, :password_confirmation, :remember_me
   has_friendly_id :login, :use_slug => true
   
@@ -42,10 +46,11 @@ class User < ActiveRecord::Base
 	has_many :group_members, :dependent => :destroy
   has_many :groups, :through => :group_members, :dependent => :destroy
   has_many :groups_leadered, :class_name => 'Group'
-	has_many :user_documents
+	has_many :user_documents, :dependent => :destroy
 	has_many :documents, :through => :user_documents
 	has_many :group_documents
 	has_many :uploaded_documents, :class_name => 'Document'
+	has_many :authentications, :dependent => :destroy
   
   def to_s
     self.login
@@ -90,6 +95,53 @@ class User < ActiveRecord::Base
 
 	def has_document?(document)
 		self.documents.exists?(document)
+	end
+	
+	def has_no_password
+		self.encrypted_password.blank?
+	end
+	
+	def external?
+		self.authentications.present?
+	end
+	
+	def apply_omniauth(omniauth)
+		self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+		unless self.valid?
+			self.login = User.get_unique_login(self) unless self.errors[:login].blank?
+			self.email = "" if User.find_by_email(self.email)
+		end
+	end
+	
+	def self.get_unique_login(original)
+		tries = 1
+		user = self.new(original.attributes.merge(:login => "#{original.login}#{tries}"))
+		user.valid?
+		while user.errors[:login].present? do
+			user = self.new(user.attributes.merge(:login => "#{original.login}#{tries}"))
+			user.valid?
+			tries+=1
+			break if tries > 100
+		end
+		user.login
+	end
+	
+	def update_with_password(params={}) 
+	  if self.has_no_password
+			update_attributes(params) 
+		else
+			super
+		end
+	end
+	
+	protected
+	
+	def password_required?
+	  self.authentications.blank? && (!self.persisted? || !self.password.nil? || !self.password_confirmation.nil?)
+	end
+	
+	def email_required?
+		self.authentications.blank? || self.persisted?
 	end
   
 end

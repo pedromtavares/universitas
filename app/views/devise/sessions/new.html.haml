@@ -25,6 +25,10 @@
           .right
             %button.button{:type => 'submit'}
               = image_tag("icons/key.png", :alt => "Login") 
-              = t 'shared.login'    
+              = t 'shared.signin'
+            %br.clear  
+            %br.clear  
+            = link_to image_tag('signin_twitter.png'), '/auth/twitter'
+            = link_to image_tag('signin_facebook.png', :style => 'margin-bottom:1px'), '/auth/facebook' 
         %br
         =render :partial => "devise/shared/links"    

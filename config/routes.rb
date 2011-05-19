@@ -44,6 +44,8 @@ Universitas::Application.routes.draw do
 			get :download
 		end
 	end
+	
+	resources :authentications
 		
 	resource :home, :only => :show, :controller => 'home'
   
@@ -51,6 +53,9 @@ Universitas::Application.routes.draw do
   get ':id' => 'groups#show', :as => 'group'
 	put ':id' => 'groups#update', :as => 'group'
 	delete 'dashboard/:id/destroy' => 'dashboard#destroy', :as => 'delete_update'
+	
+	match '/auth/:provider/callback' => 'authentications#create'
+	match '/auth/failure' => 'authentications#failure'
   
   root :to => 'home#show'
 

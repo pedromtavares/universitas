@@ -3,9 +3,11 @@ require 'faker'
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
+	
 		raise "Don't run this on prod! Are you crazy?" if Rails.env.production?
 		system("rm -r #{Rails.root}/public/uploads")
     Rake::Task['db:reset'].invoke
+
 		# creates a default user to easily log in
     User.create!(:name => "Default User",
                  :email => "default@default.com",
@@ -42,8 +44,7 @@ namespace :db do
 		end
     
 		# makes dummy users follow each other and enter random groups
-    users = User.all
-    users.each do |user|
+    User.all.each do |user|
       5.times do
         target = User.find(rand(100)+1)
         user.follow!(target) unless user.following?(target) || user == target

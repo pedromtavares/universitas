@@ -11,7 +11,7 @@ class CreateBasicTables < ActiveRecord::Migration
       t.trackable
       t.timestamps
     end
-    add_index :users, :email,                :unique => true
+    add_index :users, :login,                :unique => true
     add_index :users, :reset_password_token, :unique => true
 
     create_table :slugs do |t|
@@ -94,10 +94,16 @@ class CreateBasicTables < ActiveRecord::Migration
 		end
 		add_index :user_documents, [:user_id, :document_id]
 		
+		create_table :authentications do |t|
+			t.integer :user_id
+			t.string :provider
+			t.string :uid
+		end
+				
   end
 
   def self.down
-		[:users, :slugs, :relationships, :groups, :group_members, :updates, :documents, :group_modules, :group_documents, :user_documents].each do |name|
+		[:users, :slugs, :relationships, :groups, :group_members, :updates, :documents, :group_modules, :group_documents, :user_documents, :authentications].each do |name|
 			drop_table name
 		end
   end

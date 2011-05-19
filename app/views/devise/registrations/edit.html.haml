@@ -8,9 +8,12 @@
         = f.input :login, :required => false
         = f.input :name, :required => false
         = f.input :email, :required => false
-        = f.input :password, :required => false
+        - if current_user.has_no_password
+          = f.input :password, :required => false, :hint => "(leave blank if you don't wish to have a password)"
+        - else
+          = f.input :password, :required => false
         = f.input :password_confirmation
-        = f.input :current_password, :required => true
+        = f.input :current_password, :required => true unless current_user.has_no_password
         %br      
         .group.navform.wat-cf
           %button.button{:type => 'submit'}

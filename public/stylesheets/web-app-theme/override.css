@@ -125,3 +125,7 @@ input.checkbox {
 .form textarea{
 	height: 100px;
 }
+
+#user-navigation ul li a img{
+	margin-bottom:-5px;
+}

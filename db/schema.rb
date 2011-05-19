@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(:version => 20110227225207) do
 
+  create_table "authentications", :force => true do |t|
+    t.integer "user_id"
+    t.string  "provider"
+    t.string  "uid"
+  end
+
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -129,7 +135,7 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

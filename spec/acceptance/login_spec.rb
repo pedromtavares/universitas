@@ -21,7 +21,7 @@ feature "Login", %q{
     visit login_page
     fill_in("Login", :with => "default")
     fill_in("Password", :with => "654321")
-    click_button("Login")
+    click_button("Sign In")
     page.should have_content("Invalid login or password.")
     current_path.should == login_page
   end

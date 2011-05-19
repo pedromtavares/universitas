@@ -4,12 +4,18 @@ en:
       carrierwave_processing_error: failed to be processed
       carrierwave_integrity_error: is not an allowed file type
   devise:
-    forgot_password: Forgot your password?
-    send_me_password: Send me reset password instructions
+    forgot_password: Forgot your password or need account recovery?
+    send_me_password: Send me reset password/account recovery instructions
     change_your_password: Change your password
     change_my_password: Change my password
     already_have_account: "Already have an account? Sign in here."
     dont_have_login: "Don't have a login? Sign up!"
+  auth:
+    signed_in: "Signed in successfully."
+    edit_profile: " Please visit your <a href='/profile/edit'>edit profile page</a> and update your e-mail address for future account recovery."
+    account_created: "Account successfully created."
+    problem_signing: "There was a problem signing in through an external service provider, please try signing up normally."
+    failure: "There was a problem with the external service provider, please try again."
   shared:
     profile: Profile
     logout: Logout
