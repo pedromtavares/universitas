@@ -110,6 +110,7 @@ class User < ActiveRecord::Base
 		unless self.valid?
 			self.login = User.get_unique_login(self) unless self.errors[:login].blank?
 			self.email = "" if User.find_by_email(self.email)
+			self.name = self.login.humanize unless self.errors[:name].blank?
 		end
 	end
 	
