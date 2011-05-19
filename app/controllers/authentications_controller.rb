@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+	
+	skip_before_filter :verify_authenticity_token
 		
 	def create
 	  omniauth = request.env["omniauth.auth"]
