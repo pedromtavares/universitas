@@ -105,7 +105,7 @@ class CreateBasicTables < ActiveRecord::Migration
   end
 
   def self.down
-		[:users, :slugs, :relationships, :groups, :group_members, :updates, :documents, :group_modules, :group_documents, :user_documents, :authentications].each do |name|
+		[:users, :slugs, :relationships, :groups, :group_members, :updates, :documents, :group_modules, :group_documents, :user_documents].each do |name|
 			drop_table name
 		end
   end
