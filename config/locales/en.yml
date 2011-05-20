@@ -21,6 +21,16 @@ en:
     failure: "There was a problem with the external service provider, please try again."
     signin_twitter: Sign in with Twitter
     signin_facebook: Sign in with Facebook
+    successful: Sign in service was added successfully.
+    signin_options: Sign In Options
+    signed_in_services: "You have signed in with these services:"
+    remove: 'Are you sure you want to remove this sign in option?'
+    add: 'Add another service to sign in with:'
+    add_alt: 'You can also choose to sign in with one of these services:'
+    twitter: Twitter
+    facebook: Facebook
+    cannot_destroy: "You cannot destroy your only way to sign in the application! Try saving a password to your account, then remove sign in options."
+    destroyed: "Successfully destroyed sign in option."
   shared:
     app_description: "Social & Collaborative Groups"
     profile: Profile
@@ -179,6 +189,7 @@ en:
     uploader: Uploaded By
     size: Size
     type: Type
+    my_documents: My Documents
   modules:
     singular: Module
     plural: Modules

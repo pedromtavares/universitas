@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Universitas</title>
-  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override" %>
+<title>Universitas - <%= t('shared.app_description')%></title>
+  <%= render :partial => 'shared/stylesheets'%>
   <%= csrf_meta_tag %>
 </head>
 <body>
   <div id="container">
     <div id="header">
-      <h1><a href="/">Universitas</a></h1>
+      <a href="/"><%=image_tag 'logo.png', :class => 'left'%><h1>niversitas - <%= t('shared.app_description')%></a></h1>
       <%= render :partial => 'shared/user_navigation' %>
     </div>   
     <div id="box">

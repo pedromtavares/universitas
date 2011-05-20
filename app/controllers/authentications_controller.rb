@@ -8,6 +8,10 @@ class AuthenticationsController < ApplicationController
 	    notice += t('auth.edit_profile') if authentication.user.email.blank?
 			flash[:notice] = notice.html_safe 
 	    sign_in_and_redirect(:user, authentication.user)
+		elsif current_user
+	    current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+	    flash[:notice] = t('auth.successful')
+	    redirect_to edit_profile_path
 	  else
 			name = omniauth['user_info']['name']
 			login = omniauth['user_info']['nickname'].blank? ? name.parameterize : omniauth['user_info']['nickname']
@@ -21,14 +25,25 @@ class AuthenticationsController < ApplicationController
       	sign_in_and_redirect(:user, user)
 			else
 				session[:omniauth] = omniauth.except('extra')
-				redirect_to new_user_registration_url
+				redirect_to new_user_registration_path
 			end
 	  end
 	end
 	
 	def failure
 		flash[:error] = t('auth.failure')
-		redirect_to root_path
+		redirect_to root_url
+	end
+	
+	def destroy
+		@authentication = current_user.authentications.find(params[:id])
+		if current_user.authentications.size == 1 && current_user.has_no_password
+			flash[:error] = t('auth.cannot_destroy')
+		else
+			@authentication.destroy
+			flash[:notice] = t('auth.destroyed')
+		end
+		redirect_to edit_profile_url
 	end
 	
 	private

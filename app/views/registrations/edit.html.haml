@@ -15,6 +15,7 @@
         = f.input :password_confirmation
         = f.input :current_password, :required => true unless current_user.has_no_password
         %br      
+        
         .group.navform.wat-cf
           %button.button{:type => 'submit'}
             = image_tag("icons/tick.png", :alt => t('shared.update')) 
@@ -22,6 +23,28 @@
           = link_to user_path(resource), :class => "button" do
             = image_tag("icons/back.png", :alt => t('shared.back'))
             = t('shared.back')     
-      %br
-        	
+      %hr
+      %h2.title{:style => 'margin-left:0'}=t('auth.signin_options')
+      - unless @authentications.blank?
+        %strong= t('auth.signed_in_services')
+        %br.clear
+        .authentications
+          - @authentications.each do |authentication|
+            .authentication
+              =image_tag "auth/#{authentication.provider}_small.png"
+              .provider= authentication.provider.titleize
+              = link_to "X", authentication, :confirm => t('auth.remove'), :method => :delete, :class => "remove"
+        %br.clear
+        %strong=t('auth.add') unless current_user.has_all_providers
+      - else
+        %strong=t('auth.add_alt') unless current_user.has_all_providers
+      %br.clear
+      - on_each_provider do |provider|
+        - unless current_user.has_provider?(provider)
+          =link_to "/auth/#{provider}", :class => 'provider' do
+            = image_tag("auth/#{provider}.png")
+            %strong= t("auth.#{provider}")
+      %br.clear
+      %hr
+      %br.clear	
       = link_to t('account.cancel'), registration_path(resource_name), :confirm => t('shared.confirm'), :method => :delete

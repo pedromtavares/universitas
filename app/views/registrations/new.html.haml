@@ -17,7 +17,7 @@
               = t 'shared.signup'
             %br.clear  
             %br.clear
-            = link_to image_tag('signin_twitter.png', :title => t('auth.signin_twitter')), '/auth/twitter'
-            = link_to image_tag('signin_facebook.png', :title => t('auth.signin_facebook'), :style => 'margin-bottom:1px'), '/auth/facebook'
+            = link_to image_tag('auth/signin_twitter.png', :title => t('auth.signin_twitter')), '/auth/twitter'
+            = link_to image_tag('auth/signin_facebook.png', :title => t('auth.signin_facebook'), :style => 'margin-bottom:1px'), '/auth/facebook'
           
         =render :partial => "devise/shared/links"

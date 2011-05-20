@@ -101,8 +101,12 @@ class User < ActiveRecord::Base
 		self.encrypted_password.blank?
 	end
 	
-	def external?
-		self.authentications.present?
+	def has_provider?(provider)
+		self.authentications.find_by_provider(provider)
+	end
+	
+	def has_all_providers
+		self.authentications.count == Authentication::PROVIDERS.size
 	end
 	
 	def apply_omniauth(omniauth)
