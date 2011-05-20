@@ -31,7 +31,7 @@
         .authentications
           - @authentications.each do |authentication|
             .authentication
-              =image_tag "auth/#{authentication.provider}_small.png"
+              =image_tag "auth/#{authentication.provider}_small.png", :title => t("auth.#{authentication.provider}")
               .provider= authentication.provider.titleize
               = link_to "X", authentication, :confirm => t('auth.remove'), :method => :delete, :class => "remove"
         %br.clear
@@ -42,7 +42,7 @@
       - on_each_provider do |provider|
         - unless current_user.has_provider?(provider)
           =link_to "/auth/#{provider}", :class => 'provider' do
-            = image_tag("auth/#{provider}.png")
+            = image_tag("auth/#{provider}.png", :title => t("auth.#{provider}"))
             %strong= t("auth.#{provider}")
       %br.clear
       %hr

@@ -5,8 +5,8 @@
       %li="#{t('layout.logged_in')} #{current_user}"
       %li= link_to t("shared.signout"), destroy_user_session_path, :class => "logout"
     - else
-      %li= link_to t("shared.signup"), new_user_registration_path, :class => "login"
-      %li= link_to t("shared.signin"), new_user_session_path, :class => "login"
+      %li.signin= link_to t("shared.signup"), new_user_registration_path
+      %li.signin= link_to t("shared.signin"), new_user_session_path
       - on_each_provider do |provider|
         %li= link_to image_tag("auth/signin_#{provider}_small.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
 #main-navigation

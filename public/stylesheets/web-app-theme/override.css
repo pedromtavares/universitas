@@ -127,5 +127,9 @@ input.checkbox {
 }
 
 #user-navigation ul li a img{
-	margin-bottom:-5px;
+	margin-bottom:-20px;
+}
+
+.signin{
+	margin-top: 10px;
 }
