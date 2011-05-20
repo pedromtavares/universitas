@@ -1,0 +1,23 @@
+- if session[:omniauth]
+  = render :partial => 'complete_registration'
+- else
+  #box
+    #block-signup.block
+      %h2= t 'shared.signup'
+      .content
+        =simple_form_for(resource,:as => resource_name,:url => registration_path(resource_name),:html =>{:class => 'form'}) do |f|
+          =f.input :login 
+          =f.input :name
+          =f.input :email
+          =f.input :password
+          =f.input :password_confirmation
+          .group.navform.wat-cf
+            %button.button{:type => 'submit'}
+              = image_tag("icons/tick.png", :alt => t('shared.signup')) 
+              = t 'shared.signup'
+            %br.clear  
+            %br.clear
+            = link_to image_tag('signin_twitter.png', :title => t('auth.signin_twitter')), '/auth/twitter'
+            = link_to image_tag('signin_facebook.png', :title => t('auth.signin_facebook'), :style => 'margin-bottom:1px'), '/auth/facebook'
+          
+        =render :partial => "devise/shared/links"

@@ -107,24 +107,6 @@ class User < ActiveRecord::Base
 	
 	def apply_omniauth(omniauth)
 		self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-		unless self.valid?
-			self.login = User.get_unique_login(self) unless self.errors[:login].blank?
-			self.email = "" if User.find_by_email(self.email)
-			self.name = self.login.humanize unless self.errors[:name].blank?
-		end
-	end
-	
-	def self.get_unique_login(original)
-		tries = 1
-		user = self.new(original.attributes.merge(:login => "#{original.login}#{tries}"))
-		user.valid?
-		while user.errors[:login].present? do
-			user = self.new(user.attributes.merge(:login => "#{original.login}#{tries}"))
-			user.valid?
-			tries+=1
-			break if tries > 100
-		end
-		user.login
 	end
 	
 	def update_with_password(params={}) 
@@ -134,8 +116,6 @@ class User < ActiveRecord::Base
 			super
 		end
 	end
-	
-	protected
 	
 	def password_required?
 	  self.authentications.blank? && (!self.persisted? || !self.password.nil? || !self.password_confirmation.nil?)

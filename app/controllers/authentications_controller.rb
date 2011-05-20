@@ -1,6 +1,4 @@
 class AuthenticationsController < ApplicationController
-	
-	skip_before_filter :verify_authenticity_token
 		
 	def create
 	  omniauth = request.env["omniauth.auth"]
@@ -16,14 +14,14 @@ class AuthenticationsController < ApplicationController
 			email = omniauth['user_info']['email'] || ""
 	    user = User.new(:name => name, :login => login, :email => email)
 			user.apply_omniauth(omniauth)
-	    if user.save!
+	    if user.save
       	notice = t('auth.account_created')
 		    notice += t('auth.edit_profile') if user.email.blank?
 				flash[:notice] = notice.html_safe
       	sign_in_and_redirect(:user, user)
 			else
-				flash[:error] = t('auth.problem_signing')
-				redirect_to new_user_session_path
+				session[:omniauth] = omniauth.except('extra')
+				redirect_to new_user_registration_url
 			end
 	  end
 	end

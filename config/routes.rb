@@ -1,6 +1,6 @@
 Universitas::Application.routes.draw do
-  devise_for :users do
-    get 'profile/edit', :to => 'devise/registrations#edit', :as => 'edit_profile'
+  devise_for :users, :controllers => {:registrations => 'registrations'} do
+    get 'profile/edit', :to => 'registrations#edit', :as => 'edit_profile'
   end
   resources :users, :only => [:index, :show] do
 		resources :documents, :controller => 'user_documents' do
