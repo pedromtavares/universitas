@@ -25,6 +25,7 @@ class Document < ActiveRecord::Base
 	
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }
 	validates :file, :presence => true, :length => {:maximum => 10000000, :message => I18n.t('custom_messages.file_validation')}
+	validates :description, :length => {:maximum => 1000}
 	
 	def to_s
 		self.name

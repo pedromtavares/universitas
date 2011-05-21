@@ -31,8 +31,8 @@ class Group < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :modules, :allow_destroy => true
 
-	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }
-	validates :description, :length => {:minimum => 10, :maximum => 1000}
+	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }, :exclusion => {:in => Rails.application.routes.routes.map{|r| r.path.split('/').second.gsub(/\(.*\)/, '')}.uniq}
+	validates :description, :length => {:maximum => 1000}
 	validates :image, :length => {:maximum => 1000000, :message => I18n.t('custom_messages.image_validation')}
   
   def to_s
