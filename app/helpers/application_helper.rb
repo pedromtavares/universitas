@@ -9,7 +9,7 @@ module ApplicationHelper
 		end
 	end
 	
-	def document_icon_for(document, small = false)
+	def document_icon_for(document, small = false, options = {})
 		file = case document.extension
 			when 'docx'
 				'doc'
@@ -22,7 +22,8 @@ module ApplicationHelper
 			else
 				document.extension
 		end
-		small ? image_tag("docs/small/#{file}.png") : image_tag("docs/#{file}.png")
+		file = small ? "docs/small/#{file}.png" : "docs/#{file}.png"
+		image_tag(file, options)
 	end
 	
 	def loading_icon

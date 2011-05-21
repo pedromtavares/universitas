@@ -15,6 +15,9 @@ class GroupModule < ActiveRecord::Base
 	belongs_to :group
 	has_many :group_documents
 	
+	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
+	validates :description, :length => { :minimum => 4, :maximum => 200 }
+	
 	def self.blank_module
 		self.new(:name => I18n.t('groups.documents.blank_prompt'))
 	end

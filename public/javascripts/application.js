@@ -4,10 +4,11 @@ $(function(){
 	
 	$('.updates').endlessScroll({
 		fireOnce: true,
-		fireDelay: 500,
+		fireDelay: 1500,
 		ceaseFire: function(){
 			return $('#infinite-scroll').length && !$(this).closest('.ui-tabs-panel').hasClass('ui-tabs-hide') ? false : true;
 		},
+		bottomPixels:500,
 	  callback: function(){
 	    $.ajax({
 		  url: $(this).attr('url'),

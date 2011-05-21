@@ -53,7 +53,7 @@ class GroupDocumentsController < InheritedResources::Base
 	end
 	
 	def set_breadcrumbs
-		add_breadcrumb(parent.name, :parent_url) if parent?
+		add_breadcrumb(parent.name.truncate(50), :parent_url) if parent?
 		add_breadcrumb(I18n.t("documents.all"), :collection_path)
 		add_breadcrumb(I18n.t("groups.documents.new"), :new_resource_path)
 	end

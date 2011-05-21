@@ -39,6 +39,6 @@ class UsersController < InheritedResources::Base
   protected
   
   def collection
-    @users ||= paginate(end_of_association_chain)
+    @users ||= paginate(end_of_association_chain.order('created_at asc'))
   end
 end

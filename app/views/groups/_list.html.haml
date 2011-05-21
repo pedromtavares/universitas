@@ -1,11 +1,2 @@
 %ul.list
-  - groups.each do |group|
-    %li
-      .left= link_to(image_tag(group.image_url), group)
-      .item
-        %h3= link_to group.name, group
-        %p
-          %em= group.description
-        .small= pluralize(group.members.count, t('members.singular'))
-        .small= pluralize(group.group_documents.count, t('documents.singular'))
-        .small= pluralize(group.modules.count, t('modules.singular'))
+  =render groups

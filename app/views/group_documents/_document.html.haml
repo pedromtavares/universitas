@@ -1,0 +1,12 @@
+.doc.ui-state-hover{:title => document.name}
+  =document_icon_for(document, true)
+  .name=document.name.truncate(38)
+  = hidden_field_tag 'documents[]', document.id
+  .options
+    -case option
+      - when :add
+        =link_to "javascript:void(0)", :title => t('groups.documents.add'), :id => "add_#{document.id}", :chosen => "#{render(:partial => 'document', :locals => {:document => document, :option => :remove})}" do
+          %span.ui-icon.ui-icon-plusthick
+      - when :remove
+        =link_to "javascript:void(0)", :title => t('groups.documents.remove'), :id => "remove_#{document.id}" do
+          %span.ui-icon.ui-icon-closethick

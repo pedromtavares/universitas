@@ -16,7 +16,7 @@ en:
     edit_profile: " Please visit your <a href='/profile/edit'>edit profile page</a> and update your e-mail address for future account recovery."
     account_created: "Account successfully created."
     please_complete: "Please complete your registration"
-    first_time: "We noticed this is your first time here, so please fill in the form below to create an account and you're good to go!"
+    first_time: "Please fill in the form below to create an account associated with the sign in option you chose and you're good to go!"
     problem_signing: "There was a problem signing in through an external service provider, please try signing up normally."
     failure: "There was a problem with the external service provider, please try again."
     signin_twitter: Sign in with Twitter

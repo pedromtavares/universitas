@@ -1,7 +1,0 @@
-.doc.ui-state-hover
-  =image_tag 'avatar_small.png'
-  .name=document.name
-  = hidden_field_tag 'documents[]', document.id
-  .options
-    =link_to "javascript:void(0)", :title => t('groups.documents.remove'), :id => "remove_#{document.id}" do
-      %span.ui-icon.ui-icon-closethick

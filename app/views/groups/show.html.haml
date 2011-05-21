@@ -48,9 +48,9 @@
                 #doc-box.ui-state-active
                   - unless @accepted_docs.blank?
                     - m.group_documents.accepted.each do |group_document|
-                      .doc.ui-state-hover
-                        =link_to document_icon_for(group_document.document, true), group_document.file_url
-                        .name= group_document.name 
+                      .doc.ui-state-hover{:title => group_document.name}
+                        =link_to document_icon_for(group_document.document, true), group_document.file_url, :title => t('shared.click_to_download')
+                        .name= group_document.name.truncate(38) 
                         .options
                           - unless !user_signed_in? || current_user.has_document?(group_document.document)
                             =link_to add_user_document_path(current_user,group_document.document), :method => :post do

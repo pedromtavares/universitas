@@ -15,11 +15,11 @@
 #
 
 class Group < ActiveRecord::Base
-  has_many :members, :class_name => 'GroupMember'
+  has_many :members, :class_name => 'GroupMember', :dependent => :destroy
 	has_many :users, :through => :members
-	has_many :group_documents
+	has_many :group_documents, :dependent => :destroy
 	has_many :documents, :through => :group_documents
-	has_many :modules, :class_name => 'GroupModule'
+	has_many :modules, :class_name => 'GroupModule', :dependent => :destroy
 	has_many :updates, :as => :creator, :dependent => :destroy
 	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
   belongs_to :leader, :class_name => 'User', :foreign_key => 'user_id'
@@ -31,7 +31,8 @@ class Group < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :modules, :allow_destroy => true
 
-	validates :name, :presence => true
+	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }
+	validates :description, :length => {:minimum => 10, :maximum => 1000}
 	validates :image, :length => {:maximum => 1000000, :message => I18n.t('custom_messages.image_validation')}
   
   def to_s

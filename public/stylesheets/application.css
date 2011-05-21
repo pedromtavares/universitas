@@ -115,7 +115,7 @@
 #doc-box .name{
 	float:left;
 	margin: 2px 0 0px 10px;
-	width:200px;
+	width:215px;
 }
 
 #doc-box .doc{
@@ -136,16 +136,16 @@
 
 .share-box{
 	height: 500px;
-	width: 48%;
+	width: 380px;
 	float:left;
-	margin: 5px;
+	margin: 2px;
 	overflow:auto;
 }
 
 .share-box .name{
 	float:left;
 	margin: 2px 0 0px 10px;
-	width:300px;
+	width:290px;
 }
 
 .share-box .doc{
