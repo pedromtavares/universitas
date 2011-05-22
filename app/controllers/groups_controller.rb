@@ -1,6 +1,6 @@
 class GroupsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show, :timeline]
-  before_filter :allow_leader, :only => [:edit, :update] 
+  before_filter :check_leader, :only => [:edit, :update] 
 
   actions :all, :except => :delete
 
@@ -61,9 +61,8 @@ class GroupsController < InheritedResources::Base
     @groups ||= paginate(end_of_association_chain.includes(:leader))
   end
   
-  def allow_leader
-    group = Group.find(params[:id])
-    unless current_user.leader_of?(group)
+  def check_leader
+    unless current_user.leader_of?(resource)
       flash[:alert] = t('shared.no_permission')
       redirect_to group
     end

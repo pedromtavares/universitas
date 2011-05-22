@@ -96,6 +96,10 @@ class User < ActiveRecord::Base
 		self.documents.exists?(document)
 	end
 	
+	def uploaded_document?(document)
+		self.uploaded_documents.exists?(document)
+	end
+	
 	def has_no_password
 		self.encrypted_password.blank?
 	end

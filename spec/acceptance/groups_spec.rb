@@ -38,7 +38,7 @@ feature "Groups Management", %q{
 		visit group_page(other_group)
 		click_link_or_button("Join this group")
 		page.should have_content("Default User")
-	 	page.should have_button("Leave this group")
+	 	page.should have_content("Leave this group")
 		visit dashboard
 		page.should have_content("joined a group called ")
 	end

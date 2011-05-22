@@ -115,6 +115,8 @@ en:
       added_collection: "Document successfully added to your collection."
       removed_collection: "Document successfully removed from your collection."
       already_exists: "You already have this document in your collection!"
+      remove: Remove from my collection
+      no_permission: "You do not have permission to edit this document."
   groups:
     singular: Group
     plural: Groups
@@ -181,10 +183,11 @@ en:
     file: File
     edit: Edit Document
     documents_for: Documents for
+    documents_uploaded: Documents You Uploaded
     all: All
     new: New Document
-    add: Add To My Documents
-    remove: Remove From My Documents
+    add: Add To My Collection
+    remove: Remove From My Collection
     blank: No document results matched your search.
     uploader: Uploaded By
     size: Size
@@ -218,10 +221,10 @@ en:
     forum: Group Forums
     forum_text: "The most important thing related to groups is discussion: what's the point in having groups if you can't exchange thoughts and ideas? In Universitas, each group gets its very own forum (or message board, if you will), where the group leader can create (and moderate) as many sections as he wants and the members can create topics and posts about basically anything they wish to share."
     unlimited: "Unlimited document upload? Seriously?"
-    unlimited_text: "Yes. You can store any sort of allowed file types here (documents and images), although storing is not the tool's purpose as much as is sharing and discussing. If storage is your only desire, Dropbox would be the most recommended tool."
+    unlimited_text: "Yes. You can store any sort of allowed file types here (documents and images), although storing is not the tool's purpose as much as is sharing and discussing."
     who: Who is Universitas for?
     who_text: "People interested in learning new things and in sharing their knowledge. Maybe you want to learn something and don't know where to start, or maybe you have a ton of interesting material about something and would like a central place for it all so other people could come and get interested as well. Heck, even if you just got a study group and need a place to put all your research in and discuss it."
     get: "What do I get when I sign up?"
     get_text: "You get to upload documents, to join groups, post in forums and updates in your dashboard. The most you do as a guest is search our databases and download documents, which is fine too, but signing up takes like 30 seconds and gets you full access to the system, making those 30 seconds quite worthwhile."
     social: "Yet another social network? Geez."
-    social_text: "No, Universitas' network is far from having the same personal-life focus purpose of Facebook nor the micro-blogging purpose of Twitter, or at least that's not what it was meant for. Aside from the status update, the updates system is restricted to Universitas' features only, like joining a group or creating a document, and so is the focus of its network. Share your photos or comment about the latest news somewhere else."
+    social_text: "No, Universitas' network is far from having the same personal-life focus purpose of Facebook nor the micro-blogging purpose of Twitter, or at least that's not what it was meant for. Aside from the status update, the updates system is restricted to Universitas' features only, like joining a group or creating a document, and so is the focus of its network."

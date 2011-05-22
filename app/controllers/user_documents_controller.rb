@@ -1,6 +1,7 @@
 class UserDocumentsController < InheritedResources::Base
 	defaults :route_collection_name => 'documents', :route_instance_name => 'document'
 	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :check_uploader, :only => [:edit, :update] 
 	belongs_to :user
 	
 	def create
@@ -20,8 +21,8 @@ class UserDocumentsController < InheritedResources::Base
 	end
 	
 	def remove
-		UserDocument.find(params[:id]).destroy
-		redirect_to :back, :notice => I18n.t("documents.removed_collection")
+		current_user.documents.find(params[:id]).destroy
+		redirect_to :back, :notice => I18n.t("users.documents.removed_collection")
 	end
 	
 	private
@@ -35,7 +36,14 @@ class UserDocumentsController < InheritedResources::Base
 	end
 
 	def collection
-		@user_documents = parent.uploaded_documents
+		@user_documents = paginate(parent.documents)
+	end
+	
+	def check_uploader
+		unless current_user.uploaded_document?(resource.document)
+			flash[:error] = t('users.documents.no_permission')
+			redirect_to user_documents_path(current_user)
+		end
 	end
 	
 	def set_breadcrumbs

@@ -6,19 +6,23 @@
       %button{:type => 'submit', :class => 'button small_button' }=t('shared.search')
     %br
     %br
-    - unless collection.all.blank?
+    - unless collection.blank?
       %table.table
         %tr
           %th.first
           %th= t('documents.name')
           %th= t('documents.description')
           %th= t('documents.uploader')
+          - if user_signed_in?
+            %th.last
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
             %td.first=link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
             %td= resource.name
             %td= resource.description.truncate(200) if resource.description
             %td= link_to resource.uploader, resource.uploader
+            - if user_signed_in? && !current_user.has_document?(resource)
+              %td= link_to t('documents.add'), add_user_document_path(current_user, resource), :method => :post, :class => "button"
       .actions-bar.wat-cf
         .actions
         .pagination

@@ -10,9 +10,9 @@
       
     - if user_signed_in? && !current_user.leader_of?(resource)
       - unless current_user.member_of?(resource)
-        %p= button_to t('groups.join'), join_group_path
+        %p= link_to t('groups.join'), join_group_path, :method => :post, :class => 'button'
       - else
-        %p= button_to t('groups.leave'), leave_group_path, :method => :delete
+        %p= link_to t('groups.leave'), leave_group_path, :method => :delete, :class => 'button'
     %br.clear    
     - if user_signed_in? && current_user.leader_of?(resource)
       = render :partial => 'leader_menu'

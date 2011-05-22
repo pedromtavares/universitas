@@ -274,6 +274,7 @@ DEPENDENCIES
   mysql
   omniauth
   rails (= 3.0.5)
+  rake (= 0.8.7)
   rmagick
   rspec
   rspec-rails

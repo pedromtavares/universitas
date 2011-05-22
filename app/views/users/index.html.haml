@@ -6,17 +6,24 @@
       %button{:type => 'submit', :class => 'button small_button' }=t('shared.search')
     %br
     %br
-    - unless collection.all.blank?
+    - unless collection.blank?
       %table.table
         %tr
           %th.first
           %th= t('users.login')
           %th= t('users.name')
+          - if user_signed_in?
+            %th.last
         - collection.each do |user|
           %tr{:class => cycle("odd","even")}
             %td.first= gravatar_for user
             %td= link_to user.login, profile_path(user)
             %td= user.name
+            - if user_signed_in?
+              - if current_user.following?(user)
+                %td= link_to t('users.unfollow'), unfollow_user_path(user), :method => :delete, :class => 'button' 
+              - else
+                %td= link_to t('users.follow'), follow_user_path(user), :method => :post, :class => 'button'
       .actions-bar.wat-cf
         .actions
         .pagination

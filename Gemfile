@@ -20,6 +20,7 @@ gem 'fog'
 gem 'kaminari'
 gem 'cocoon'
 gem 'omniauth'
+gem 'rake', '0.8.7'
 
 group :development do
 	gem 'mongrel'

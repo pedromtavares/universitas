@@ -1,7 +1,6 @@
 .content
   %h2.title 
-    = t('documents.documents_for')
-    = @user.name
+    = t('documents.my_documents')
   .inner
     - unless collection.blank?
       %table.table
@@ -10,14 +9,22 @@
           %th= t('documents.name')
           %th= t('documents.size')
           %th= t('documents.description')
-          %th
+          %th.last
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
             %td.first= link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download') 
             %td= resource
             %td= file_size_from_bytes resource.file_size
             %td= resource.description
-            %td.last= link_to t('shared.edit'), edit_resource_url(resource), :class => "button" 
+            %td
+              = link_to t('shared.edit'), edit_resource_url(resource), :class => "button" if current_user.uploaded_document?(resource) 
+              %br.clear
+              %br.clear
+              = link_to t('users.documents.remove'), remove_user_document_path(current_user,resource), :method => :delete, :class => "button" 
+      .actions-bar.wat-cf
+        .actions
+        .pagination
+          = paginate collection  
     -else
-      %p=t('users.documents.uploaded.blank')
+      %p=t('users.documents.blank')
     
