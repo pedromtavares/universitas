@@ -15,13 +15,13 @@ class UserDocumentsController < InheritedResources::Base
 		if current_user.has_document?(params[:id])
 			redirect_to :back, :alert => I18n.t("users.documents.already_exists")
 		else
-			UserDocument.create!(:document_id => params[:id], :user => current_user)
+			current_user.add_document(params[:id])
 			redirect_to :back, :notice => I18n.t("users.documents.added_collection")
 		end
 	end
 	
 	def remove
-		current_user.documents.find(params[:id]).destroy
+		current_user.remove_document(params[:id])
 		redirect_to :back, :notice => I18n.t("users.documents.removed_collection")
 	end
 	
@@ -29,7 +29,7 @@ class UserDocumentsController < InheritedResources::Base
 
 	def resource
 		@user_document = if params[:id]
-			parent.user_documents.find_by_document_id(params[:id])
+			parent.documents.find(params[:id])
 		else
 			@user_document.errors.blank? ? UserDocument.new(:document => Document.new) : @user_document
 		end

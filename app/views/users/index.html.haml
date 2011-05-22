@@ -19,7 +19,7 @@
             %td.first= gravatar_for user
             %td= link_to user.login, profile_path(user)
             %td= user.name
-            - if user_signed_in?
+            - if user_signed_in? && current_user != user
               - if current_user.following?(user)
                 %td= link_to t('users.unfollow'), unfollow_user_path(user), :method => :delete, :class => 'button' 
               - else

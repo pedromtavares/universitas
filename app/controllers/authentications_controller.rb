@@ -13,12 +13,7 @@ class AuthenticationsController < ApplicationController
 	    flash[:notice] = t('auth.successful')
 	    redirect_to edit_profile_path
 	  else
-			name = omniauth['user_info']['name']
-			login = omniauth['user_info']['nickname'].blank? ? name.parameterize : omniauth['user_info']['nickname']
-			email = omniauth['user_info']['email'] || ""
-	    user = User.new(:name => name, :login => login, :email => email)
-			user.apply_omniauth(omniauth)
-	    if user.save
+	    if User.create_from_omniauth(omniauth).save
       	notice = t('auth.account_created')
 		    notice += t('auth.edit_profile') if user.email.blank?
 				flash[:notice] = notice.html_safe

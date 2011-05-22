@@ -27,10 +27,7 @@ class GroupDocumentsController < InheritedResources::Base
 	
 	def add_multiple
 		params[:documents].each do |document|
-			unless collection.find_by_document_id(document)
-				pending = !current_user.leader_of?(parent)
-				parent.group_documents.create(:document_id => document, :pending => pending, :group_module_id => params[:module], :sender => current_user)
-			end
+			parent.add_document(document, params[:module], current_user)
 		end
 	end
 	

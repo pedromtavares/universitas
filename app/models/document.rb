@@ -42,8 +42,8 @@ class Document < ActiveRecord::Base
 	private 
 	
   def set_file_attributes 
-    self.content_type = file.file.content_type 
-    self.file_size = file.size 
+    self.content_type = self.file.file.content_type 
+    self.file_size = self.file.size 
   end
 	
 end

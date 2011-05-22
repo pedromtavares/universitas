@@ -43,7 +43,7 @@ class GroupDocument < ActiveRecord::Base
 	end
 	
 	def create_user_document
-		self.sender.user_documents.create(:document => self.document) unless self.sender.has_document?(self.document)
+		self.sender.add_document(self.document)
 	end
 
 end

@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
+
   validates :login, :presence => true, :uniqueness => true, :length => { :minimum => 4, :maximum => 20 }, :exclusion => {:in => Rails.application.routes.routes.map{|r| r.path.split('/').third.try(:gsub, /\(.*\)/, '')}.uniq}
   validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
 	validates :email, :presence => true, :allow_blank => true, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i, :if => :email_required?
@@ -91,7 +92,7 @@ class User < ActiveRecord::Base
   def leader_of?(group)
     self.groups_leadered.exists?(group)
   end
-
+	
 	def has_document?(document)
 		self.documents.exists?(document)
 	end
@@ -100,8 +101,13 @@ class User < ActiveRecord::Base
 		self.uploaded_documents.exists?(document)
 	end
 	
-	def has_no_password
-		self.encrypted_password.blank?
+	def add_document(document)
+		document = document.is_a?(Document) ? document.id : document
+		self.user_documents.create(:document_id => document) unless self.has_document?(document)
+	end
+	
+	def remove_document(document)
+		self.documents.find(document).destroy if self.has_document?(document)
 	end
 	
 	def has_provider?(provider)
@@ -112,16 +118,8 @@ class User < ActiveRecord::Base
 		self.authentications.count == Authentication::PROVIDERS.size
 	end
 	
-	def apply_omniauth(omniauth)
-		self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-	end
-	
-	def update_with_password(params={}) 
-	  if self.has_no_password
-			update_attributes(params) 
-		else
-			super
-		end
+	def has_no_password
+		self.encrypted_password.blank?
 	end
 	
 	def password_required?
@@ -130,6 +128,24 @@ class User < ActiveRecord::Base
 	
 	def email_required?
 		self.authentications.blank? || self.persisted?
+	end
+	
+	def self.create_from_omniauth(omniauth)
+		name = omniauth['user_info']['name']
+		login = omniauth['user_info']['nickname'].blank? ? name.parameterize : omniauth['user_info']['nickname']
+		email = omniauth['user_info']['email'] || ""
+    user = User.new(:name => name, :login => login, :email => email)
+		user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+		user
+	end
+	
+	# devise override
+	def update_with_password(params={}) 
+	  if self.has_no_password
+			update_attributes(params) 
+		else
+			super
+		end
 	end
   
 end

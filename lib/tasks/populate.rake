@@ -56,7 +56,7 @@ namespace :db do
       end
 			
 			10.times do
-				UserDocument.create!(:document => Document.create(:name => Faker::Lorem.paragraph[0..99], :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph), :user => user)
+				user.add_document(Document.create(:name => Faker::Lorem.paragraph[0..99], :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph))
 			end
 			
     end

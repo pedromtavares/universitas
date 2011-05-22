@@ -2,11 +2,15 @@ require 'spec_helper'
 
 describe Document do
   before(:each) do
-    @document = Factory(:document)
+    @document = Factory(:document, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"))
   end
 
 	it "should return its name on #to_s" do
 		@document.to_s.should == @document.name
+	end
+	
+	it "should have an extension" do
+		@document.extension.should == 'txt'
 	end
 	
 	describe "validations" do

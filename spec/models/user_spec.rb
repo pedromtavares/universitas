@@ -5,11 +5,6 @@ describe User do
     before(:each) do
       @attr = { :name => "Default User", :email => "default@default.com", :login => 'default', :password => '123456', :password_confirmation => '123456' }
       @user = Factory(:user)
-			@group = Factory(:group)
-    end
-    
-    it "should create a new instance given valid attributes" do
-      User.create!(@attr)
     end
     
     describe "name validations" do
@@ -40,7 +35,23 @@ describe User do
       it "should not accept invalid e-mail addresses" do
         User.new(@attr.merge(:email => "hahalol.com")).should_not be_valid
       end
+			it "should not validate if e-mail is not required" do
+				user = User.new(@attr.merge(:email => ''))
+				user.authentications << Factory.build(:authentication)
+				user.should be_valid
+			end
     end
+
+		describe "password validations" do
+			it "should not accept small passwords" do
+				User.new(@attr.merge(:password => "1234", :password_confirmation => "1234")).should_not be_valid
+			end
+			it "should not validate if password is not required" do
+				user = User.new(@attr.merge(:password => '', :password_confirmation => ''))
+				user.authentications << Factory.build(:authentication)
+				user.should be_valid
+			end
+		end
     
     describe "relationships" do
       before(:each) do
@@ -75,26 +86,49 @@ describe User do
 			end
     end
 
-		it "should check if it's in a group" do
-			@group.create_member(@user)
-			@user.member_of?(@group).should be_true
+		describe "groups" do
+			before(:each) do
+				@group = Factory(:group)
+			end
+			it "should check if it's in a group" do
+				@group.create_member(@user)
+				@user.member_of?(@group).should be_true
+			end
+			it "should check if it's a group leader" do
+				group = Factory(:group, :leader => @user)
+				@user.leader_of?(group).should be_true
+				@user.member_of?(group).should be_true
+			end
 		end
 		
-		it "should check if it's a group leader" do
-			group = Factory(:group, :leader => @user)
-			@user.leader_of?(group).should be_true
-			@user.member_of?(group).should be_true
-		end
-		
-		it 'should check if it has a document' do
-			document = Factory(:document, :uploader => @user)
-			Factory(:user_document, :document => document, :user => @user)
-			@user.has_document?(document).should be_true
+		describe "documents" do
+			before(:each) do
+				@document = Factory(:document, :uploader => @user)
+				@other_user = Factory(:user)
+				Factory(:user_document, :user => @other_user, :document => @document)
+			end
+			it 'should check if it has a certain document' do
+				@user.has_document?(@document).should be_false
+				@other_user.has_document?(@document).should be_true
+			end
+			it 'should check if it uploaded a document' do
+				@user.uploaded_document?(@document).should be_true
+				@other_user.uploaded_document?(@document).should be_false
+			end
+			it 'should add a document' do
+				@user.add_document(@document)
+				@user.documents.should include(@document)
+			end
+			it 'should remove a document' do
+				@other_user.remove_document(@document)
+				@other_user.documents.should_not include(@document)
+			end
 		end
 		
 		describe "feeds" do
 			before(:each) do
 				@followed = Factory(:user)
+				@group = Factory(:group)
 	      @followed.update_status("test")
 				@group.update_status("group!")
 				@group.create_member(@user)
@@ -102,12 +136,39 @@ describe User do
 	      @user.follow!(@followed)
 			end
 			it 'should return a feed with updates on the users it follows as well as its own' do
-	      @user.feed.should == @followed.updates + @group.updates + @user.updates
+	      @user.feed.to_a.should == @followed.updates + @group.updates + @user.updates
 	    end
 
 			it 'should return a timeline with its updates only' do
-	      @user.timeline.should == @user.updates.to_a
+	      @user.timeline.to_a.should == @user.updates.to_a
 			end
+		end
+		
+		
+		describe "authentications" do
+			it 'should check if it has a certain provider' do
+				@authentication = Factory(:authentication, :provider => 'twitter', :user => @user)
+				@user.has_provider?('twitter').should be_true
+			end
+			it 'should check if it has all providers' do
+				Authentication::PROVIDERS.each do |provider|
+					Factory(:authentication, :provider => provider, :user => @user) unless @user.has_provider?(provider)
+				end
+				@user.has_all_providers.should be_true
+			end
+		end
+		
+		describe "omniauth" do
+			it 'should create a user from omniauth params' do
+				params = {'provider'=> 'twitter', 'uid' => '12345', 'user_info' => {'name' => 'test', 'nickname' => 'test', 'email' => ''}}
+				user = User.create_from_omniauth(params)
+				auth = user.authentications.first
+				user.name.should == 'test'
+				user.login.should == 'test'
+				auth.uid.should == '12345'
+				auth.provider.should == 'twitter'		
+			end
+		
 		end
 		
 end

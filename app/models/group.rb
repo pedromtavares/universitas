@@ -68,6 +68,23 @@ class Group < ActiveRecord::Base
 	def promote(msg, user)
 		user.updates.create!(:target => self, :custom_message => msg)
 	end
+	
+	def has_document?(document)
+		self.documents.exists?(document)
+	end
+	
+	def add_document(document, group_module, sender)
+		document = document.is_a?(Document) ? document.id : document
+		group_module = group_module.is_a?(GroupModule) ? group_module.id : group_module
+		pending = !sender.leader_of?(self)
+		unless self.has_document?(document)
+			self.group_documents.create(:document_id => document, :pending => pending, :group_module_id => group_module, :sender => sender)
+		end
+	end
+	
+	def remove_document(document)
+		self.documents.find(document).destroy if self.has_document?(document)
+	end
 
 	private
 	

@@ -14,7 +14,8 @@ class RegistrationsController < Devise::RegistrationsController
   def build_resource(*args)
     super
     if session[:omniauth]
-      @user.apply_omniauth(session[:omniauth])
+			omniauth = session[:omniauth]
+      @user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     end
   end
 end
