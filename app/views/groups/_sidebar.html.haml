@@ -1,24 +1,2 @@
-- leadered = current_user.groups_leadered
-- entered = current_user.groups - leadered
-%h1=t('groups.my_groups')
-.block
-  %h3=t('groups.created')
-  .content
-    - unless leadered.blank?
-      - leadered.each do |group|
-        %p= link_to group.name, group
-    - else
-      %p
-        =t('groups.created_none')
-        =link_to t('groups.create_one_now'), new_group_path
-    
-.block
-  %h3=t('groups.entered')
-  .content
-    - unless entered.blank?
-      - entered.each do |group|
-        %p= link_to group.name, group
-    - else
-      %p
-        =t('groups.entered_none')
-        =link_to t('groups.enter_one_now'), groups_path
+= render :partial => 'side_info'
+= render :partial => 'side_tips'

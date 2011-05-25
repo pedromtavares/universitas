@@ -8,7 +8,6 @@
         =resource.email
       - unless resource.status.blank?
         %p
-          %strong= t('dashboard.status')
           %span.gray= "\"#{resource.status}\"" 
       
     - unless resource == current_user || !user_signed_in?
@@ -56,4 +55,3 @@
         = render :partial => 'users/list', :locals => {:users => resource.followers}
       - else
         %p=t('users.no_followers')
-- content_for :sidebar, render(:partial => 'sidebar')

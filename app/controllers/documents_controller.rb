@@ -1,4 +1,5 @@
 class DocumentsController < InheritedResources::Base
+	before_filter :load_presenter
 	respond_to :html, :js
 	
 	def index
@@ -16,6 +17,10 @@ class DocumentsController < InheritedResources::Base
 	def collection
     @documents ||= paginate(end_of_association_chain.includes(:uploader).order('created_at asc'))
   end
+
+	def load_presenter
+		@presenter = DocumentsPresenter.new(current_user)
+	end
 
 	def set_breadcrumbs
 		add_breadcrumb(I18n.t("documents.all"), :collection_path)

@@ -12,8 +12,8 @@
           %th.last
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
-            %td.first= link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download') 
-            %td= resource
+            %td.first= link_to document_icon_for(resource.document), resource.file_url, :title => t('shared.click_to_download') 
+            %td= resource.document
             %td= file_size_from_bytes resource.file_size
             %td= resource.description
             %td

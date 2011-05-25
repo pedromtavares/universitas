@@ -1,0 +1,8 @@
+.block
+  %h2=t('documents.my_documents')
+  .content.sidebar-box
+    - unless @presenter.documents.blank?
+      - @presenter.documents.each do |document|
+        = link_to document_icon_for(document, false, :class => 'spaced left', :title => document.name), document.file_url
+    - else
+      %p=t('documents.no_documents')

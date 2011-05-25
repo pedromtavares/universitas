@@ -1,6 +1,7 @@
 class GroupDocumentsController < InheritedResources::Base
 	defaults :route_collection_name => 'documents', :route_instance_name => 'document'
 	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :load_presenter
 	belongs_to :group
 	
 	respond_to :html, :js
@@ -47,6 +48,10 @@ class GroupDocumentsController < InheritedResources::Base
 
 	def collection
 		@group_documents = parent.group_documents.includes([:document, :module, :group])
+	end
+	
+	def load_presenter
+		@presenter = GroupDocumentsPresenter.new(current_user, parent)
 	end
 	
 	def set_breadcrumbs

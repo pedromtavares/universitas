@@ -1,4 +1,5 @@
 class UsersController < InheritedResources::Base
+	before_filter :load_presenter
 	
 	def index
 		@users = paginate(User.search(params[:search])) if params[:search]
@@ -41,4 +42,8 @@ class UsersController < InheritedResources::Base
   def collection
     @users ||= paginate(end_of_association_chain.order('created_at asc'))
   end
+
+	def load_presenter
+		@presenter = UsersPresenter.new(current_user)
+	end
 end

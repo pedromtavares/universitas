@@ -1,0 +1,18 @@
+%h2=t('users.my_connections')
+.block
+  %h3=t('users.following')
+  .content.sidebar-box
+    - unless @presenter.following.empty?
+      - @presenter.following.each do |user|
+        =link_to gravatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+    - else
+      %p=t('users.not_following')
+    
+.block
+  %h3=t('users.followers')
+  .content.sidebar-box
+    - unless @presenter.followers.empty?
+      - @presenter.followers.each do |user|
+        =link_to gravatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+    - else
+      %p=t('users.no_followers')

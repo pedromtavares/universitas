@@ -1,23 +1,3 @@
-- following = resource.following
-- followers = resource.followers
-- if resource == current_user
-  %h1="#{t('users.my_connections')}"
-- else
-  %h1="#{resource}#{t('users.connections')}"
-.block
-  %h3=t('users.following')
-  .content
-    - unless following.empty?
-      - following.each do |user|
-        %p= link_to user.name, user
-    - else
-      %p=t('users.not_following')
-    
-.block
-  %h3=t('users.followers')
-  .content
-    - unless followers.empty?
-      - followers.each do |user|
-        %p= link_to user.name, user
-    - else
-      %p=t('users.no_followers')
+= render :partial => 'side_info'
+= render :partial => 'side_tips'
+

@@ -1,0 +1,8 @@
+.block
+  %h2=t('groups.my_groups')
+  .content.sidebar-box
+    - unless @presenter.groups.blank?
+      - @presenter.groups.each do |group|
+        = link_to image_tag(group.image_url, :class => 'spaced left', :title => group.name), group
+    - else
+      %p=t('groups.joined_none')

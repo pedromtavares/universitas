@@ -1,6 +1,7 @@
 class GroupsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show, :timeline]
   before_filter :check_leader, :only => [:edit, :update] 
+	before_filter :load_presenter
 
   actions :all, :except => :delete
 
@@ -67,4 +68,8 @@ class GroupsController < InheritedResources::Base
       redirect_to group
     end
   end
+
+	def load_presenter
+		@presenter = GroupsPresenter.new(current_user)
+	end
 end

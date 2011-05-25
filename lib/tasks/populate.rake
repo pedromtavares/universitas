@@ -32,13 +32,13 @@ namespace :db do
 
 		# creates some groups with previously created users as leaders
 		30.times do |n|
-			name = Faker::Lorem.paragraph[0..99]
+			name = Faker::Company.catch_phrase
 			group = Group.create!(:name => name,
 										:description => Faker::Lorem.paragraph,
 										:leader => User.find(n + 1),
 										:image => File.open("#{Rails.root}/spec/fixtures/rails.png"))
 			3.times do
-				GroupModule.create!(:group => group, :name => Faker::Lorem.paragraph[0..49], :description => Faker::Lorem.paragraph)
+				GroupModule.create!(:group => group, :name => Faker::Lorem.paragraph[0..49], :description => Faker::Lorem.paragraph[0..199])
 			end
 			puts "Successfully created group #{name}"
 		end
@@ -56,7 +56,7 @@ namespace :db do
       end
 			
 			10.times do
-				user.add_document(Document.create(:name => Faker::Lorem.paragraph[0..99], :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph))
+				user.add_document(Document.create(:name => Faker::Lorem.sentence, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph))
 			end
 			
     end

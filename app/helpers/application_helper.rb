@@ -33,4 +33,8 @@ module ApplicationHelper
 	def on_each_provider(&block)
 		Authentication::PROVIDERS.each(&block)
 	end
+	
+	def full_page?
+		!user_signed_in? && controller.controller_name != 'home'
+	end
 end

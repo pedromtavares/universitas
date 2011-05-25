@@ -20,7 +20,7 @@
           </div>
         <% end -%>
       </div>
-      <div id="main">
+      <div id="main" class="<%='full' if full_page?%>">
         <div class="block">
           <%=render :partial => 'shared/breadcrumbs'%>
           <%= yield %>
@@ -32,6 +32,7 @@
         </div>
       </div>
       <div id="sidebar">
+        <%= render :partial => "#{controller.controller_name}/sidebar" if user_signed_in?%>
         <%= yield :sidebar %>
       </div>
     </div>    

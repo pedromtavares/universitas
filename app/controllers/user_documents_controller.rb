@@ -2,6 +2,7 @@ class UserDocumentsController < InheritedResources::Base
 	defaults :route_collection_name => 'documents', :route_instance_name => 'document'
 	before_filter :authenticate_user!, :except => [:index, :show]
 	before_filter :check_uploader, :only => [:edit, :update] 
+	before_filter :load_presenter
 	belongs_to :user
 	
 	def create
@@ -9,6 +10,10 @@ class UserDocumentsController < InheritedResources::Base
 		create! do |success, failure|
 			success.html{redirect_to collection_url}
 		end
+	end
+	
+	def update
+		update!{collection_path}
 	end
 	
 	def add
@@ -29,14 +34,14 @@ class UserDocumentsController < InheritedResources::Base
 
 	def resource
 		@user_document = if params[:id]
-			parent.documents.find(params[:id])
+			parent.user_documents.find(params[:id])
 		else
 			@user_document.errors.blank? ? UserDocument.new(:document => Document.new) : @user_document
 		end
 	end
 
 	def collection
-		@user_documents = paginate(parent.documents)
+		@user_documents = paginate(parent.user_documents.includes(:user, :document))
 	end
 	
 	def check_uploader
@@ -46,10 +51,15 @@ class UserDocumentsController < InheritedResources::Base
 		end
 	end
 	
+	def load_presenter
+		@presenter = UserDocumentsPresenter.new(current_user)
+	end
+	
 	def set_breadcrumbs
 		add_breadcrumb(parent.name, :parent_url) if parent?
 		add_breadcrumb(I18n.t("documents.all"), :collection_path)
 		add_breadcrumb(I18n.t("documents.new"), :new_resource_path)
+		add_breadcrumb(resource.document.to_s.truncate(50), lambda { edit_resource_path(resource) }) if params[:id]
 	end
 
 end

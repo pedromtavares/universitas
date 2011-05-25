@@ -20,7 +20,12 @@ class Document < ActiveRecord::Base
 	has_many :group_documents, :dependent => :destroy
 	
 	attr_accessible :uploader, :name, :file, :description
-	before_save :set_file_attributes 
+	before_save :set_file_attributes
+	
+	# remove this after carrierwave merges this feature into master
+	before_update :store_previous_file
+	after_save :remove_stored_file
+	
 	mount_uploader :file, FileUploader
 	
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }
@@ -45,5 +50,13 @@ class Document < ActiveRecord::Base
     self.content_type = self.file.file.content_type 
     self.file_size = self.file.size 
   end
+
+	def store_previous_file
+		@stored = Document.find(self.id) if self.file_changed?
+	end
+
+	def remove_stored_file
+		@stored.remove_file! if @stored
+	end
 	
 end

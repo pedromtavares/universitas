@@ -16,7 +16,7 @@ class UserDocument < ActiveRecord::Base
 	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
 
 	after_create :status_update
-	delegate :name, :description, :file, :file_url, :to => :document
+	delegate :name, :description, :file, :file_url, :extension, :file_size,:to => :document
 	accepts_nested_attributes_for :document
 	
 	private
