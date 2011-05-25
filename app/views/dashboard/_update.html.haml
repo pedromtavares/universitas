@@ -9,3 +9,6 @@
       %p
         =link_to update.creator.name,update.creator
         =render_update_content(update)
+      .small
+        = time_ago_in_words(update.created_at)
+        = t('shared.ago')

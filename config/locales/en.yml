@@ -55,6 +55,7 @@ en:
     search: Search
     save: Save
     share: Share
+    ago: ago
     pagination:
       prev: « Prev
       next: Next »
