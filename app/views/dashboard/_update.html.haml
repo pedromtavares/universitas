@@ -1,5 +1,5 @@
 - unless update.target.blank?
-  %li{:class => update.creator.class.to_s.parameterize, :id => update.id}
+  %li{:class => "#{update.creator.class.to_s.parameterize} #{update.id}"}
     .left= render_update_creator(update)
     .item
       - if user_signed_in? && (update.creator == current_user || current_user.leader_of?(update.creator))
