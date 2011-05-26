@@ -3,6 +3,7 @@ class UserDocumentsController < InheritedResources::Base
 	before_filter :authenticate_user!, :except => [:index, :show]
 	before_filter :check_uploader, :only => [:edit, :update] 
 	before_filter :load_presenter
+	before_filter :set_breadcrumbs, :except => [:add, :remove]
 	belongs_to :user
 	
 	def create

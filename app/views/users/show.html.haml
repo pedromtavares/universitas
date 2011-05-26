@@ -20,7 +20,7 @@
       .wat-cf
         = link_to "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path, :class => "button"
         = link_to "#{t('shared.manage')} #{t('documents.plural')}", user_documents_path(resource), :class => "button"
-      
+  %br.clear    
   #tabs
     %ul
       %li=link_to t('users.timeline'), "#all"
