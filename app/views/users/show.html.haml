@@ -1,15 +1,23 @@
 .content
-  %h2.title= resource.name
-  %div{:style => 'margin:15px'}= gravatar_for resource unless resource.email.blank?
+  %h2.title
+    = resource.name
+    - ['website', 'twitter', 'facebook'].each do |service|
+      - if resource.send("#{service}?")
+        = link_to image_tag("auth/signin_#{service}_small.png"), resource.send(service)
+  %div{:style => 'margin:15px'}= avatar_for(resource)
   .inner
+    - if resource.status?
+      %p
+        %span.gray= "\"#{resource.status}\""
     %p
-      - unless resource.email.blank?
+      - if resource.email? && resource.show_email
         %strong=t('users.email')
         =resource.email
-      - unless resource.status.blank?
+    - ['description', 'location'].each do |attr|
+      - if resource.send("#{attr}?")
         %p
-          %span.gray= "\"#{resource.status}\"" 
-      
+          %strong=t("users.#{attr}")
+          = resource.send(attr)
     - unless resource == current_user || !user_signed_in?
       - if current_user.following?(resource)
         %p= link_to t('users.unfollow'), unfollow_user_path(resource), :method => :delete 

@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.string   "cached_slug"
     t.string   "image"
     t.string   "status"
+    t.integer  "modules_count",   :default => 0
+    t.integer  "members_count",   :default => 0
+    t.integer  "documents_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -118,12 +121,19 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
   add_index "user_documents", ["user_id", "document_id"], :name => "index_user_documents_on_user_id_and_document_id"
 
   create_table "users", :force => true do |t|
-    t.string   "login",                                               :null => false
-    t.string   "name",                                                :null => false
+    t.string   "login",                                                 :null => false
+    t.string   "name",                                                  :null => false
     t.string   "status"
     t.string   "cached_slug"
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "location"
+    t.string   "website"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "image"
+    t.text     "description"
+    t.boolean  "show_email",                          :default => true
+    t.string   "email",                               :default => "",   :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",   :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

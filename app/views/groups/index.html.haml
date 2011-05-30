@@ -20,9 +20,9 @@
             %td.first=image_tag resource.image_url
             %td= link_to resource.name, resource
             %td= link_to resource.leader.name, profile_path(resource.leader)
-            %td= resource.members.count
-            %td= resource.group_documents.count
-            %td= resource.modules.count
+            %td= resource.members_count
+            %td= resource.documents_count
+            %td= resource.modules_count
             
       .actions-bar.wat-cf
         .actions

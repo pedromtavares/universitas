@@ -1,5 +1,5 @@
 %li
-  .left= link_to(gravatar_for(user), user)
+  .left= link_to(avatar_for(user), user)
   .item
     %h3= link_to user.name, user
     - unless user == current_user || !user_signed_in?

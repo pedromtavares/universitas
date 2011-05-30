@@ -8,6 +8,13 @@
 #  name                 :string(255)     not null
 #  status               :string(255)
 #  cached_slug          :string(255)
+#  location             :string(255)
+#  website              :string(255)
+#  twitter              :string(255)
+#  facebook             :string(255)
+#  image                :string(255)
+#  description          :text
+#  show_email           :boolean(1)      default(TRUE)
 #  email                :string(255)     default(""), not null
 #  encrypted_password   :string(128)     default(""), not null
 #  reset_password_token :string(255)
@@ -33,9 +40,13 @@ class User < ActiveRecord::Base
 	validates :email, :uniqueness => true, :allow_blank => true
 	validates :password, :presence => true, :length => 6..20, :if => :password_required?
 	validates :password, :confirmation => true
+	
+	validates_length_of :location, :website, :twitter, :facebook, :maximum => 200
+	validates_length_of :description, :maximum => 500
 
-  attr_accessible :login, :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :login, :name, :email, :password, :password_confirmation, :remember_me, :image, :location, :description, :twitter, :facebook, :show_email, :website, :remote_image_url, :remove_image
   has_friendly_id :login, :use_slug => true
+	mount_uploader :image, ImageUploader
   
   has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
   has_many :following, :through => :relationships, :source => :followed
@@ -130,18 +141,37 @@ class User < ActiveRecord::Base
 		self.authentications.blank? || self.persisted?
 	end
 	
+	def add_service_info(omniauth)
+		twitter = omniauth['user_info']['urls']['Twitter']
+		facebook = omniauth['user_info']['urls']['Facebook']
+		image = omniauth['user_info']['image']
+		email = omniauth['user_info']['email']
+		
+		self.twitter = twitter unless twitter.blank?
+		self.facebook = facebook unless facebook.blank?
+		self.remote_image_url = image unless image.blank? || self.image?
+		self.email = email unless email.blank? || self.email?
+		self.save
+	end
+	
 	def self.create_from_omniauth(omniauth)
 		name = omniauth['user_info']['name']
 		login = omniauth['user_info']['nickname'].blank? ? name.parameterize : omniauth['user_info']['nickname']
 		email = omniauth['user_info']['email'] || ""
-    user = User.new(:name => name, :login => login, :email => email)
+		location = omniauth['user_info']['location']
+		image = omniauth['user_info']['image']
+		description = omniauth['user_info']['description']
+		twitter = omniauth['user_info']['urls']['Twitter']
+		facebook = omniauth['user_info']['urls']['Facebook']
+		website = omniauth['user_info']['urls']['Website']
+    user = User.new(:name => name, :login => login, :email => email, :remote_image_url => image, :location => location, :twitter => twitter, :facebook => facebook, :description => description, :website => website)
 		user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
 		user
 	end
 	
 	# devise override
 	def update_with_password(params={}) 
-	  if self.has_no_password
+	  if self.has_no_password || !(params[:email] || params[:login] || params[:name] || params[:password])
 			update_attributes(params) 
 		else
 			super

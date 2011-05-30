@@ -68,6 +68,7 @@ en:
     image_extensions: 'maximum file size: 1MB'
   dashboard:
     plural: Dashboard
+    updated_status_success: You have updated your status successfully.
     status: "Status:"
     recent_updates: Recent Updates
     updated_status: updated status to
@@ -82,7 +83,14 @@ en:
     promoted_message: by saying
     all: All
   account:
+    self: Account
+    personal: Personal
+    errors: There were errors when updating your profile. Please check all tabs.
     cancel: Cancel my account
+    description_hint: 'A short bio of yourself'
+    twitter_hint: "Ex: http://twitter.com/universitas"
+    facebook_hint: "Ex: http://www.facebook.com/universitas"
+    show_email: "Show e-mail address on your profile"
   layout:
     logged_in: Logged in as
   users:
@@ -105,6 +113,8 @@ en:
     have_unfollowed: You have unfollowed
     timeline: Timeline
     blank_timeline: There are no updates from this user yet!
+    location: Location
+    description: Bio
     groups:
       blank: This user is in no groups yet.
     documents:
@@ -193,7 +203,7 @@ en:
     size: Size
     type: Type
     my_documents: My Documents
-    no_documents_yet: You have no documents yet.
+    no_documents: You have no documents yet.
   modules:
     singular: Module
     plural: Modules
@@ -226,6 +236,8 @@ en:
     registrations:
       tip: Importance of a real e-mail address
       tip_text: "Make sure you supply your real e-mail address so that we can send account recovery instructions, which could happen case you forget your password, or if your chosen sign in option (Facebook or Twitter) token expires."
+      tip2: Import personal data from Twitter/Facebook
+      tip2_text: "You can import your personal data from Twitter/Facebook like your picture, location, bio, e-mail and website by adding them as sign in options. Links to your profiles in these services will also be added automatically."
     user_documents:
       tip: About Uploaded Documents
       tip_text: "As a document's original uploader, only you can update it, but keep in mind that documents you have uploaded could have been shared across different users and groups, so avoid editing it too drastically for the sake of consistency."

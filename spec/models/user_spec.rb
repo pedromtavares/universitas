@@ -159,14 +159,24 @@ describe User do
 		end
 		
 		describe "omniauth" do
+			before(:each) do
+				@omniauth = {'provider'=> 'twitter', 'uid' => '12345', 'user_info' => {'name' => 'test', 'nickname' => 'test', 'email' => 'test@email.com', 'image' => '', 'urls' => {'Twitter' => 'twitter.com/test'}}}
+			end
 			it 'should create a user from omniauth params' do
-				params = {'provider'=> 'twitter', 'uid' => '12345', 'user_info' => {'name' => 'test', 'nickname' => 'test', 'email' => ''}}
-				user = User.create_from_omniauth(params)
+				user = User.create_from_omniauth(@omniauth)
 				auth = user.authentications.first
 				user.name.should == 'test'
 				user.login.should == 'test'
 				auth.uid.should == '12345'
 				auth.provider.should == 'twitter'		
+			end
+			
+			it 'should add service info to an already existing user' do
+				@user.add_service_info(@omniauth)
+				@user.email.should_not == @omniauth['user_info']['email'] #user already has email
+				@user.twitter.should == @omniauth['user_info']['urls']['Twitter']
+				@user.image.should be_blank
+				
 			end
 		
 		end

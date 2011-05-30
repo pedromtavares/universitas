@@ -29,7 +29,7 @@ module DashboardHelper
 		creator = update.creator
 		case creator.class.to_s
 		when "User"
-			link_to(gravatar_for(creator), creator)
+			link_to(avatar_for(creator), creator)
 		when "Group"
 			link_to(image_tag(creator.image_url), creator)
 		end

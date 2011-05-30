@@ -12,7 +12,7 @@
 #
 
 class GroupModule < ActiveRecord::Base
-	belongs_to :group
+	belongs_to :group, :counter_cache => :modules_count
 	has_many :group_documents
 	
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }

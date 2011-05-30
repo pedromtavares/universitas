@@ -13,6 +13,9 @@
 .full{
 	width:100% !important;
 }
+.auto{
+	width:auto !important;
+}
 .none{
 	display: none;
 }
@@ -33,6 +36,9 @@
 }
 .small_button{
 	padding: 1.5px 5px !important
+}
+.red{
+	color:red;
 }
 
 .updates{
@@ -209,7 +215,7 @@
 }
 
 .authentication {
-  width: 50px;
+  width: 65px;
   float: left;
   background-color: #EEE;
   border: solid 1px #999;

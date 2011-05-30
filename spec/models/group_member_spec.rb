@@ -20,4 +20,10 @@ describe GroupMember do
 		@member.destroy
 		Update.where(:target_id => @member, :target_type => "GroupMember").should be_blank
 	end
+	
+	it "should increment it's group's counter cache" do
+		count = @group.reload.members_count
+		Factory(:group_member, :group => @group)
+		@group.reload.members_count.should == count + 1
+	end
 end

@@ -5,6 +5,13 @@ class CreateBasicTables < ActiveRecord::Migration
       t.string :name, :null => false
 			t.string :status
       t.string :cached_slug
+			t.string :location
+			t.string :website
+			t.string :twitter
+			t.string :facebook
+			t.string :image
+			t.text :description
+			t.boolean :show_email, :default => true
       t.database_authenticatable :null => false
       t.recoverable
       t.rememberable
@@ -42,6 +49,9 @@ class CreateBasicTables < ActiveRecord::Migration
 			t.string :cached_slug
 			t.string :image
 			t.string :status
+			t.integer :modules_count, :default => 0
+			t.integer :members_count, :default => 0
+			t.integer :documents_count, :default => 0
 			t.timestamps
 		end
 		

@@ -68,7 +68,7 @@ describe Group do
 			user = Factory(:user)
 			@group.add_document(@other_doc, nil, user)
 			@group.documents.should include(@other_doc)
-			@group.group_documents.first.pending.should be_true
+			@group.group_documents.last.pending.should be_true
 		end
 		it 'should remove a document' do
 			@group.remove_document(@document)

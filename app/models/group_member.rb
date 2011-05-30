@@ -11,7 +11,7 @@
 #
 
 class GroupMember < ActiveRecord::Base
-  belongs_to :group
+  belongs_to :group, :counter_cache => :members_count
   belongs_to :user
 	has_many :updates, :as => :target, :dependent => :destroy
 

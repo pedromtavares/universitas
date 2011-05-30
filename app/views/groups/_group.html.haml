@@ -4,6 +4,6 @@
     %h3= link_to group.name, group
     %p
       %em= group.description.truncate(200)
-    .small= pluralize(group.members.count, t('members.singular'))
-    .small= pluralize(group.group_documents.count, t('documents.singular'))
-    .small= pluralize(group.modules.count, t('modules.singular'))
+    .small= pluralize(group.members_count, t('members.singular'))
+    .small= pluralize(group.documents_count, t('documents.singular'))
+    .small= pluralize(group.modules_count, t('modules.singular'))
