@@ -23,12 +23,12 @@ gem 'omniauth'
 gem 'rake', '0.8.7'
 gem 'ancestry'
 gem 'RedCloth'
+gem 'faker'
 
 group :development do
 	gem 'mongrel'
 	gem "mongrel_experimental"
 	gem 'annotate-models'
-	gem 'faker'
 	gem "rspec"
   gem "rspec-rails"
   gem 'steak'
@@ -36,7 +36,6 @@ group :development do
 end
 
 group :test do
-  gem "faker"
   gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
