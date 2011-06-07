@@ -2,8 +2,8 @@
   %h2.title=t('documents.plural')
   .inner
     = form_tag documents_path, :class => 'form', :method => 'get' do
-      .small_box= text_field_tag :search, params[:search], :class => 'text_field'
-      %button{:type => 'submit', :class => 'button small_button' }=t('shared.search')
+      .small-box= text_field_tag :search, params[:search], :class => 'text_field'
+      %button{:type => 'submit', :class => 'button small-button' }=t('shared.search')
     %br
     %br
     - unless collection.blank?
@@ -19,7 +19,7 @@
           %tr{:class => cycle("odd","even")}
             %td.first=link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
             %td= resource.name
-            %td= resource.description.truncate(200) if resource.description
+            %td= resource.description
             %td= link_to resource.uploader, resource.uploader
             - if user_signed_in? && !current_user.has_document?(resource)
               %td= link_to t('documents.add'), add_user_document_path(current_user, resource), :method => :post, :class => "button"

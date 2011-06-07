@@ -54,12 +54,25 @@ namespace :db do
 				group.create_member(user)
 				puts "#{user.name} is now a member of course #{group.name}"
       end
-			
+			# create dummy documents for dummy users
 			10.times do
 				user.add_document(Document.create(:name => Faker::Lorem.sentence, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph))
 			end
 			
     end
 
-  end
+		group = Group.first
+		members = group.members
+		puts "Creating forums, topics and posts for #{group.name}"
+		3.times do
+			forum = Forum.create(:title => Faker::Company.catch_phrase, :description => Faker::Lorem.paragraph, :group => group)
+			5.times do
+				topic = Topic.create(:forum => forum, :title => Faker::Company.catch_phrase)
+				10.times do
+					Post.create(:text => Faker::Lorem.paragraph, :topic => topic, :author => members[rand(members.size)].user)
+				end
+			end
+		end
+		
+	end
 end

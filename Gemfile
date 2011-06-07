@@ -21,6 +21,8 @@ gem 'kaminari'
 gem 'cocoon'
 gem 'omniauth'
 gem 'rake', '0.8.7'
+gem 'ancestry'
+gem 'RedCloth'
 
 group :development do
 	gem 'mongrel'

@@ -38,5 +38,12 @@ describe GroupDocument do
 		document.targeted_updates.first.creator.should == document.group
 		group.reload.documents_count.should == 1
 	end 
+	
+	it "should decrement a group's document count when deleted" do
+		group = @group_document.group
+		count = group.documents_count
+		@group_document.destroy
+		group.reload.documents_count.should == count - 1
+	end
 
 end

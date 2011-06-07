@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.7)
     ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.5)
@@ -30,6 +31,8 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     addressable (2.2.4)
+    ancestry (1.2.4)
+      activerecord (>= 2.2.2)
     annotate-models (1.0.4)
     arel (2.0.10)
     autotest (4.4.6)
@@ -250,7 +253,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   ZenTest
+  ancestry
   annotate-models
   autotest
   autotest-rails

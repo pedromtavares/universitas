@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Textile Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= stylesheet_link_tag 'textile-reference'%>
+    <%= render :partial => 'shared/javascripts'%>
+    <script type="text/javascript">
+      $(window).ready(function() {
+        $('.section-name').each(function(i) {
+          if(i > 0){
+            toggleSection(i);
+          }
+  
+          $(this).click(function() {
+            toggleSection(i);
+          });
+        });
+      });
+
+      function toggleSection(i) {
+        $('.section').slice(i, i + 1).toggle();
+        $('.section-name').slice(i, i + 1).toggleClass('deselected');
+      }
+    </script>
+  </head>
+  <body>
+    
+    <h1 id="title">Textile Guide</h1>
+    
+    <h2 class="section-name">Text</h2>
+    
+    <div class="section">
+      <table>
+        <tr>
+          <th>Textile</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td>This text is *bold*.</td>
+          <td>This text is <strong>bold</strong>.</td>
+        </tr>
+        <tr class="alternate">
+          <td>This text is _emphasised_.</td>
+          <td>This text is <em>emphasised<em>.</td>
+        </tr>
+        <tr>
+          <td>I think +not+.</td>
+          <td>I think <ins>not</ins>.</td>
+        </tr>
+        <tr class="alternate">
+          <td>I like the -blue- red one.</td>
+          <td>I like the <del>blue</del> red one.</td>
+        </tr>
+      </table>
+    </div>
+    
+    <h2 class="section-name">Links and Images</h2>
+    
+    <div class="section">
+      <table>
+        <tr>
+          <td>Link to "Google":http://google.com.</td>
+          <td>Link to <a href="http://google.com" target="_blank">Google</a>.</td>
+        </tr>
+        <tr class="alternate">
+          <td>You should "email me":mailto:jane@example.com.</td>
+          <td>You should <a href="mailto:jane@example.com">email me</a>.</td>
+        </tr>
+        <tr>
+          <td>!http://www.37signals.com/images/logo-37signals.png!</td>
+          <td><img src="http://www.37signals.com/images/logo-37signals.png" alt="" /></td>
+        </tr>
+      </table>
+    </div>
+    
+    <h2 class="section-name">Headings</h2>
+    
+    <div class="section">
+      <table>
+        <tr>
+          <td>h1. Large Heading</td>
+          <td><h1>Large Heading</h1></td>
+        </tr>
+        <tr class="alternate">
+          <td>h2. Medium Heading</td>
+          <td><h2>Medium Heading</h2></td>
+        </tr>
+        <tr>
+          <td>h3. Smaller Heading</td>
+          <td><h3>Smaller Heading</h3></td>
+        </tr>
+      </table>
+    </div>
+    
+    <h2 class="section-name">Lists</h2>
+    
+    <div class="section">
+      <table>
+        <tr>
+          <th>Textile</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td>
+            * Milk<br />
+            * Bread<br />
+            * Cheese<br />
+            ** Cheddar<br />
+            ** Camembert<br />
+            * Rice
+          </td>
+          <td>
+            <ul>
+              <li>Milk</li>
+              <li>Bread</li>
+              <li>Cheese
+                <ul>
+                  <li>Cheddar</li>
+                  <li>Camembert</li>
+                </ul>
+              </li>
+              <li>Rice</li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="alternate">
+          <td>
+            # Milk<br />
+            # Bread<br />
+            # Cheese<br />
+            ## Cheddar<br />
+            ## Camembert<br />
+            # Rice
+          </td>
+          <td>
+            <ol>
+              <li>Milk</li>
+              <li>Bread</li>
+              <li>Cheese
+                <ol>
+                  <li>Cheddar</li>
+                  <li>Camembert</li>
+                </ol>
+              </li>
+              <li>Rice</li>
+            </ol>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <h2 class="section-name">Tables</h2>
+    
+    <div class="section">
+      <table>
+        <tr>
+          <th>Textile</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td>
+            | Bill | 23 | Male |<br />
+            | Sally | 19 | Female |
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td>Bill</td>
+                <td>23</td>
+                <td>Male</td>
+              </tr>
+              <tr>
+                <td>Sally</td>
+                <td>19</td>
+                <td>Female</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="alternate">
+          <td>
+            |_. Name |_. Age |_. Gender |<br />
+            | Bill | 23 | Male |<br />
+            | Sally | 19 | Female |
+          </td>
+          <td>
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+              </tr>
+              <tr>
+                <td>Bill</td>
+                <td>23</td>
+                <td>Male</td>
+              </tr>
+              <tr>
+                <td>Sally</td>
+                <td>19</td>
+                <td>Female</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <h2 class="section-name">Special Characters</h2>
+    
+    <div class="section">
+      <table>
+        <tr>
+          <th>Textile</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td>RoboCorp(TM)</td>
+          <td>RoboCorp&#8482;</td>
+        </tr>
+        <tr class="alternate">
+          <td>Coca-Cola(R)</td>
+          <td>Coca-Cola&#174;</td>
+        </tr>
+        <tr>
+          <td>Awesome(C)</td>
+          <td>Awesome&#169;</td>
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>

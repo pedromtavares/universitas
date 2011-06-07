@@ -1,0 +1,14 @@
+.block
+  %h2=t('forums.new_topics')
+  %ul.navigation
+    - unless @presenter.new_topics.blank?
+      - @presenter.new_topics.each do |topic|
+        %li
+          = link_to group_forum_topic_path(topic.forum.group, topic.forum, topic) do
+            = topic.to_s.truncate(50)
+            - if topic.author.present?
+              .gray
+                = t('shared.by').downcase
+                = topic.author
+    - else
+      %p=t('forums.no_new_topics')

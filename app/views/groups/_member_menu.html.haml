@@ -1,7 +1,10 @@
+= link_to t('forums.plural'), group_forums_path(resource), :class => "button" 
+%br.clear
+%br.clear
 = form_tag promote_group_path(resource), :method => :post, :class => 'form' do
   #promote-group
-    = link_to t('groups.promote'), 'javascript:void(0)', :class => "button small_button", :onclick => "$('#promote').removeClass('none');$('.text-field').focus()"
+    = link_to t('groups.promote'), 'javascript:void(0)', :class => "button small-button", :onclick => "$('#promote').removeClass('none');$('.text-field').focus()"
     .none#promote
       .input= text_field_tag :message, '', :maxlength => 100, :class => 'text-field'
-      %button{:type => 'submit', :class => 'button small_button', :id => 'save' }=t('groups.promote_submit') 
+      %button{:type => 'submit', :class => 'button small-button', :id => 'save' }=t('groups.promote_submit') 
 %br.clear

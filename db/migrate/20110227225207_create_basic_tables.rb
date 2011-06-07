@@ -110,8 +110,37 @@ class CreateBasicTables < ActiveRecord::Migration
 			t.integer :user_id
 			t.string :provider
 			t.string :uid
+			t.timestamps
 		end
-				
+		add_index :authentications, [:uid, :provider]
+
+		
+		create_table :forums do |t|
+			t.integer :group_id
+			t.string :title
+			t.text :description
+			t.integer :topics_count, :default => 0
+			t.timestamps
+		end
+		add_index :forums, :group_id
+		
+		create_table :topics do |t|
+			t.integer :forum_id
+			t.integer :posts_count, :default => 0
+			t.string :title
+			t.timestamps
+		end
+		add_index :topics, :forum_id
+		
+		create_table :posts do |t|
+			t.integer :topic_id
+			t.integer :user_id
+			t.text :text
+			t.string :ancestry
+			t.timestamps
+		end
+		add_index :posts, [:topic_id, :created_at]
+		add_index :posts, :ancestry		
   end
 
   def self.down

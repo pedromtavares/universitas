@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
 	has_many :group_documents
 	has_many :uploaded_documents, :class_name => 'Document'
 	has_many :authentications, :dependent => :destroy
+	has_many :posts, :dependent => :destroy
   
   def to_s
     self.login

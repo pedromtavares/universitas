@@ -56,6 +56,10 @@ en:
     save: Save
     share: Share
     ago: ago
+    in: In
+    by: By
+    for: for
+    cancel: Cancel
     pagination:
       prev: « Prev
       next: Next »
@@ -214,6 +218,51 @@ en:
     add: Add Module
     documents:
       blank: This module has no documents.
+  forums:
+    all: All Forums
+    new: New Forum
+    plural: Group Forums
+    singular: Forum
+    blank: This group has no forums yet.
+    title: Title
+    description: Description
+    topics_count: "# of Topics"
+    last_post: Latest Post
+    no_last_post: This forum has no posts yet.
+    delete: Delete this forum
+    are_you_sure: Are you sure you want to delete this forum?
+    edit: Edit this forum
+    not_allowed: Only members of this group are allowed in its forums.
+    new_topics: Recent Topics
+    no_new_topics: This group doesn't have any topics yet.
+  topics:
+    blank: This forum has no topics yet.
+    singular: Topic
+    new: New Topic
+    posts_count: "# of Posts"
+    delete: Delete this topic
+    are_you_sure: Are you sure you want to delete this topic?
+    edit: Edit this topic
+    textile: Textile Guide
+    created: "Topic successfully created."
+    last_post: Latest Post
+    no_last_post: This topic has no posts yet.
+  posts:
+    singular: Post
+    new: New Post
+    delete: Delete this post
+    are_you_sure: Are you sure you want to delete this post?
+    post: Post
+    reply: Reply
+    reply_to: Reply to this post
+    posted: Posted
+    edit: Edit
+    update: Save modified post
+    edited: Edited
+    in_reply_to: In reply to
+    created: "Post successfully created."
+    error: "There was a problem with your post."
+    no_permission: "You don't have permission to do this."
   tips:
     self: Tips
     documents:
@@ -246,6 +295,16 @@ en:
       tip_text: "After following a user, you will receive updates on your dashboard regarding actions about that user such as when he/she adds a document, joins a group, updates status, etc."
       tip2: Other sign in options
       tip2_text: "You can edit your profile and add other sign in options like Facebook or Twitter, making signing in as easy as clicking the correspondent service icon in the navigation bar."
+    forums:
+      tip: About Group Forums
+      tip_text: "Group forums are meant for discussion and information sharing, each forum has various topics which themselves have various posts, so feel free to pick a topic (or create a new one) and post away!"
+      tip2: Forum Moderator
+      tip2_text: "Group leaders are responsible for moderating the group's forums by being able to create, edit and delete forums, topics and posts."
+    topics: 
+      tip: "Format with Textile"
+      tip_text: "You can format your posts with Textile (markup language) to display links, bold/italic text, lists, and more. Be sure to check the Texttile Guide link near the 'Post' button."
+      tip2: Replying
+      tip2_text: "If you want to reply to a specific post, be sure to click the 'Reply to this post' link on said post. This way your reply will appear nested in its target post."
   home:
     plural: Home
     what: What is Universitas?

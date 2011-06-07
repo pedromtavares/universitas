@@ -29,7 +29,14 @@ Universitas::Application.routes.draw do
 				put :accept
 			end
 		end
-		resources :forums
+		resources :forums do
+			resources :topics do
+				resources :posts
+				collection do
+					get :textile
+				end
+			end
+		end
     member do
 			get :timeline
       post :join
@@ -49,7 +56,8 @@ Universitas::Application.routes.draw do
 		
 	resource :home, :only => :show, :controller => 'home'
   
-  get 'users/:id' => 'users#show', :as => 'profile'
+  get 'textile_guide' => 'posts#textile', :as => 'textile'
+	get 'users/:id' => 'users#show', :as => 'profile'
   get ':id' => 'groups#show', :as => 'group'
 	put ':id' => 'groups#update', :as => 'group'
 	delete 'dashboard/:id/destroy' => 'dashboard#destroy', :as => 'delete_update'

@@ -1,0 +1,36 @@
+%li.post{:id => post.id}
+  .author
+    = link_to profile_path(post.author) do
+      = avatar_for(post.author)
+      %br.clear
+      .spaced= post.author
+  .text
+    .content=textilize(post.text).html_safe
+    .small.gray
+      =t('posts.posted')
+      =time_ago_in_words post.created_at
+      =t('shared.ago')
+      - if post.parent
+        =t('posts.in_reply_to').downcase
+        =post.parent.author 
+      - if post.created_at != post.updated_at
+        %br
+        =t('posts.edited')
+        =time_ago_in_words post.updated_at
+        =t('shared.ago')
+      %br.clear
+  .actions
+    =link_to t('posts.reply_to'), '#in-reply-to', :class => 'reply-to'
+    =link_to t('posts.edit'), 'javascript:void(0)', :class => 'edit-post' if post.author == current_user || current_user.leader_of?(post.topic.forum.group)
+    =link_to t('posts.delete'), group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :delete, :confirm => t('posts.are_you_sure'), :title => t('posts.delete'), :class => 'remove' if current_user.leader_of?(post.topic.forum.group)
+  = form_tag group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :put, :remote => true, :class => 'form none edit-form', :id => "edit-#{post.id}" do
+    = hidden_field_tag :parent_id, post.parent_id, :id => nil
+    = text_area_tag :text, post.text
+    %button.button{:type => 'submit', :onclick => "$('.loading').removeClass('none');"}
+      = image_tag("icons/tick.png", :alt => t('posts.update')) 
+      = t('posts.update')
+    =link_to 'javascript:void(0)', :class => 'button cancel-edit-form' do
+      = image_tag("icons/cross.png", :alt => t('shared.cancel')) 
+      = t('shared.cancel')
+    .spaced= loading_icon
+  %br.clear

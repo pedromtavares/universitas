@@ -1,0 +1,26 @@
+.content
+  %h2.title= resource.title
+  .inner
+    %ul.list
+      = nested_posts(@posts.arrange(:order => :created_at))
+    #last
+    #in-reply-to.none
+      %h3=t('posts.in_reply_to')
+      .flash
+        .message.box
+          %p.left
+          .left.spaced-top
+            =link_to 'javascript:void(0)', :title => t('shared.cancel'), :id => "cancel-reply" do
+              %span.ui-icon.ui-icon-closethick
+          %br.clear
+    %h3#reply=t('posts.reply')
+    = form_tag group_forum_topic_posts_path(parent.group, parent, resource), :class => 'form' do
+      = hidden_field_tag 'parent_id', ''
+      = text_area_tag :text, '', :class => 'reply'
+      .left
+        %button.button{:type => 'submit'}
+          = image_tag("icons/tick.png", :alt => t('shared.submit')) 
+          = t('posts.post')
+      .right
+        = textile_guide
+    %br.clear

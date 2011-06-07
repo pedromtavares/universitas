@@ -15,6 +15,7 @@ class GroupsController < InheritedResources::Base
 		@modules = @group.modules
 		@accepted_docs = @group.group_documents.accepted
 		@members = @group.members
+		add_breadcrumb(t('forums.plural'), lambda { group_forums_path(resource) })
 		super
 	end
   

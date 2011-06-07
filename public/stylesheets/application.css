@@ -1,5 +1,9 @@
+/******* Helpers *******/
+.none{
+	display: none; 
+}
 .clear{
-	clear:all !important;
+	clear:both !important;
 }
 .left{
 	float: left !important;
@@ -16,12 +20,24 @@
 .auto{
 	width:auto !important;
 }
-.none{
-	display: none;
-}
 .spaced{
-	margin:5px;
+	margin:5px !important;
 }
+.spaced-left{
+	margin-left:5px !important;
+}
+.spaced-top{
+	margin-top:5px !important;
+}
+.spaced-right{
+	margin-right:5px !important;
+}
+.red{
+	color:red !important;
+}
+
+/******* General Custom CSS *******/
+
 .small{
 	float:left;
 	font-size: 10px;
@@ -29,17 +45,16 @@
 	width:200px;
 	padding:5px;
 }
-.small_box{
+.small-box{
 	float:left;
 	width:200px;
 	margin:0 5px;
 }
-.small_button{
-	padding: 1.5px 5px !important
+.small-button{
+	padding: 1.5px 5px !important;
 }
-.red{
-	color:red;
-}
+
+/******* Dashboard & Updates *******/
 
 .updates{
 	height:600px;
@@ -71,6 +86,8 @@
 	float:left;
 	width:80%;
 }
+
+/******* Groups *******/
 
 #group-status{
 	float:left;
@@ -206,10 +223,14 @@
 	margin:10px 0;
 }
 
+/******* Home *******/
+
 .home img{
 	margin:15px;
 }
 
+
+/******* Profile *******/
 .authentications {
   margin-bottom: 10px;
 }
@@ -272,7 +293,63 @@
 	width:100px;
 }
 
+/******* Sidebar *******/
+
 .sidebar-box{
 	max-height:150px;
 	overflow:auto;
+}
+
+/******* Forums *******/
+
+.post .author{
+	float:left;
+	width:200px;
+	height:100%;
+}
+
+.post .text{
+	margin-left:200px;
+	width:500px;
+}
+
+.post .actions{
+	float:left;
+	font-size: 10px;
+	color: gray;
+	padding:5px;
+}
+
+.post .actions a{
+	margin-left: 20px;
+}
+
+.post .edit-form{
+	width:500px;
+	float:left;
+}
+
+.reply{
+	width: 100%;
+}
+
+.nested-posts {
+  margin-left: 30px;
+}
+
+.nested-posts .nested-posts .nested-posts .nested-posts {
+  margin-left: 0;
+}
+
+.edit-form .input{
+	float:left;
+	width:400px;
+	margin:0;
+	margin-right:5px;
+}
+
+.flash .box {
+	text-align:left;
+  border: 1px solid #e5e5e5;
+  background-color: #e5e5e5;
 }

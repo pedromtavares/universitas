@@ -1,0 +1,8 @@
+.content
+  %h2.title
+    = t('topics.new')
+    = t('shared.for')
+    = resource.forum
+  .inner
+    = simple_form_for(resource, :url => group_forum_topics_url, :html => { :method => :post, :class => :form}) do |f|
+      = render :partial => "form", :locals => {:f => f}

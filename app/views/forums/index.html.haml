@@ -1,0 +1,39 @@
+.content
+  %h2.title= t('forums.plural')
+  .inner
+    - if current_user.leader_of?(parent)
+      .right.spaced= link_to t('forums.new'), new_group_forum_path(parent), :class => 'button'
+      %br.clear
+    - unless collection.blank?
+      %table.table
+        %tr
+          - if current_user.leader_of?(parent)
+            %th.first
+          %th= t('forums.singular')
+          %th= t('forums.topics_count')
+          %th.last= t('forums.last_post')
+        - collection.each do |resource|
+          %tr{:class => cycle("odd","even")}
+            - if current_user.leader_of?(parent)
+              %td.first
+                =link_to edit_group_forum_path(parent, resource), :title => t('forums.edit') do
+                  %span.ui-icon.ui-icon-pencil
+                =link_to group_forum_path(parent, resource), :method => :delete, :confirm => t('forums.are_you_sure'), :title => t('forums.delete'), :class => 'remove' do
+                  %span.ui-icon.ui-icon-closethick
+            %td
+              = link_to resource.title, group_forum_path(parent, resource)
+              .gray= resource.description
+            %td= resource.topics_count
+            %td.last
+              - unless resource.posts.blank?
+                = link_to "#{time_ago_in_words(resource.last_post.created_at)} #{t('shared.ago')}", group_forum_topic_path(resource.group, resource, resource.last_post.topic) + '#last'
+                %br
+                = t('shared.in')
+                = link_to resource.last_post.topic.to_s.truncate(50), group_forum_topic_path(parent, resource, resource.last_post.topic)
+                %br
+                = t('shared.by')
+                = link_to resource.last_post.author, resource.last_post.author
+              - else
+                = t('forums.no_last_post')
+    - else
+      =t('forums.blank')

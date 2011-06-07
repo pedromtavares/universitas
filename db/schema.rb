@@ -13,10 +13,14 @@
 ActiveRecord::Schema.define(:version => 20110227225207) do
 
   create_table "authentications", :force => true do |t|
-    t.integer "user_id"
-    t.string  "provider"
-    t.string  "uid"
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "authentications", ["uid", "provider"], :name => "index_authentications_on_uid_and_provider"
 
   create_table "documents", :force => true do |t|
     t.string   "name"
@@ -30,6 +34,17 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
   end
 
   add_index "documents", ["user_id"], :name => "index_documents_on_user_id"
+
+  create_table "forums", :force => true do |t|
+    t.integer  "group_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "topics_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forums", ["group_id"], :name => "index_forums_on_group_id"
 
   create_table "group_documents", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +91,18 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
     t.datetime "updated_at"
   end
 
+  create_table "posts", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.string   "ancestry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["ancestry"], :name => "index_posts_on_ancestry"
+  add_index "posts", ["topic_id", "created_at"], :name => "index_posts_on_topic_id_and_created_at"
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -98,6 +125,16 @@ ActiveRecord::Schema.define(:version => 20110227225207) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "topics", :force => true do |t|
+    t.integer  "forum_id"
+    t.integer  "posts_count", :default => 0
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["forum_id"], :name => "index_topics_on_forum_id"
 
   create_table "updates", :force => true do |t|
     t.integer  "creator_id"

@@ -23,13 +23,14 @@ class GroupDocument < ActiveRecord::Base
 	scope :accepted, where(:pending => false)
 	scope :pending, where(:pending => true)
 	
-	after_create [:create_user_document, :create_update, :update_count]
+	after_create [:create_user_document, :create_update, :increment_count]
 	delegate :name, :description, :file, :file_url, :to => :document
 	accepts_nested_attributes_for :document
+	after_destroy :decrement_count
 	
 	def accept
 		self.update_attribute(:pending, false)
-		self.update_count
+		self.increment_count
 		self.status_update
 	end
 	
@@ -37,7 +38,7 @@ class GroupDocument < ActiveRecord::Base
 		self.group.updates.create!(:target => self)		
 	end
 	
-	def update_count
+	def increment_count
 		self.group.update_attribute(:documents_count, self.group.documents_count + 1) unless self.pending
 	end
 	
@@ -49,6 +50,10 @@ class GroupDocument < ActiveRecord::Base
 	
 	def create_user_document
 		self.sender.add_document(self.document)
+	end
+	
+	def decrement_count
+		self.group.update_attribute(:documents_count, self.group.documents_count - 1) unless self.pending
 	end
 
 end

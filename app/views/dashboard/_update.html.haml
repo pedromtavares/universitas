@@ -3,7 +3,7 @@
     .left= render_update_creator(update)
     .item
       - if user_signed_in? && (update.creator == current_user || current_user.leader_of?(update.creator))
-        .right{:style => 'margin:0 10px'}
+        .right.spaced-right
           =link_to delete_update_path(update), :method => :delete, :remote => :true, :confirm => t('dashboard.are_you_sure'), :title => t('dashboard.delete_update'), :class => 'remove' do
             %span.ui-icon.ui-icon-closethick
       %p

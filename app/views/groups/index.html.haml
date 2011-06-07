@@ -2,8 +2,8 @@
   %h2.title=t('groups.plural')
   .inner
     = form_tag groups_path, :class => 'form', :method => 'get' do
-      .small_box= text_field_tag :search, params[:search], :class => 'text_field'
-      %button{:type => 'submit', :class => 'button small_button' }=t('shared.search')
+      .small-box= text_field_tag :search, params[:search], :class => 'text_field'
+      %button{:type => 'submit', :class => 'button small-button' }=t('shared.search')
     %br
     %br
     - unless collection.blank?

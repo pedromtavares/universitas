@@ -76,7 +76,50 @@ $(function(){
 		$(this).closest('form').submit();
 	});
 	
+	/******* Group forums *******/
+
+	$('.reply-to').live('click',function(){
+		var post = $(this).closest('.post');
+		var id = post.attr('id');
+		$('#in-reply-to').removeClass('none');
+		$('#reply').addClass('none');
+		$('#in-reply-to').find('p').html(post.find('.content').html());
+		$('#parent_id').val(id);
+	});
+	
+	$('#cancel-reply').click(function(){
+		$('#in-reply-to').addClass('none');
+		$('#reply').removeClass('none');
+		$('#parent_id').val('');
+	});
+	
+	$('.edit-post').live('click', function(){
+		var post = $(this).closest('.post')
+		var id = post.attr('id');
+		var form = $('#edit-'+id);
+		form.removeClass('none');
+		post.find('.text').addClass('none');
+		post.find('.actions').addClass('none');
+	});
+	
+	$('.cancel-edit-form').live('click', function(){
+		var post = $(this).closest('.post')
+		$(this).closest('form').addClass('none');
+		post.find('.text').removeClass('none');
+		post.find('.actions').removeClass('none');
+	});
+	
+	$('.edit-topic').live('click', function(){
+		var topic = $(this).closest('.topic')
+		var id = topic.attr('id');
+		var form = $('#edit-'+id);
+		form.removeClass('none');
+		topic.find('.title').addClass('none');
+	});
+		
+		
 });
+
 
 /******* Helper Functions *******/
 
