@@ -23,7 +23,6 @@ gem 'omniauth'
 gem 'rake', '0.8.7'
 gem 'ancestry'
 gem 'RedCloth'
-gem 'ffi', '1.0.7'
 
 group :development do
 	gem 'mongrel'
