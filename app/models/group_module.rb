@@ -18,7 +18,16 @@ class GroupModule < ActiveRecord::Base
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
 	validates :description, :length => { :minimum => 4, :maximum => 200 }
 	
+	after_create :create_forum
+	
 	def self.blank_module
 		self.new(:name => I18n.t('groups.documents.blank_prompt'))
+	end
+	
+	
+	private
+	
+	def create_forum
+		self.group.forums.create(:title => self.name, :description => self.description)
 	end
 end
