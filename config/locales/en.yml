@@ -60,6 +60,7 @@ en:
     by: By
     for: for
     cancel: Cancel
+    add: Add
     pagination:
       prev: « Prev
       next: Next »

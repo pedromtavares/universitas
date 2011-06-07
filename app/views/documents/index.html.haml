@@ -13,16 +13,15 @@
           %th= t('documents.name')
           %th= t('documents.description')
           %th= t('documents.uploader')
-          - if user_signed_in?
-            %th.last
         - collection.each do |resource|
           %tr{:class => cycle("odd","even")}
-            %td.first=link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
+            %td.first
+              =link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
+              - if user_signed_in? && !current_user.has_document?(resource)
+                = link_to t('shared.add'), add_user_document_path(current_user, resource), :method => :post, :class => "button spaced"
             %td= resource.name
             %td= resource.description
             %td= link_to resource.uploader, resource.uploader
-            - if user_signed_in? && !current_user.has_document?(resource)
-              %td= link_to t('documents.add'), add_user_document_path(current_user, resource), :method => :post, :class => "button"
       .actions-bar.wat-cf
         .actions
         .pagination
