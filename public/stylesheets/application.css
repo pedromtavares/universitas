@@ -192,11 +192,15 @@
 
 .share-box .select{
 	margin: 3px;
-	width: 230px;
+	width: 200px;
 }
 
 .share-box #chosen-form{
 	margin:2px;
+}
+
+.share-box .small-box{
+	width:180px;
 }
 
 .group-documents .box{
