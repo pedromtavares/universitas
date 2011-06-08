@@ -79,8 +79,10 @@
             = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
               .small-box= text_field_tag :search, '', :class => 'text_field'
               = submit_button(true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
+                = button_icon :search
                 =t('shared.search')
-              = submit_button(true, :id => 'new-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();") do
+              = link_to('javascript:void(0)', :class => 'button small-button', :id => 'new-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();") do
+                = button_icon :add
                 =t('groups.documents.create')
               = loading_icon
               %br.clear
@@ -97,7 +99,8 @@
               = select_tag "module", options_from_collection_for_select(@modules, :id, :name), :class => 'select'
               = loading_icon
               = submit_button(true, :class => 'right') do
-                =t('shared.save')
+                = button_icon :check
+                = t('shared.save')
               #chosen-docs
               %br.clear
         -else

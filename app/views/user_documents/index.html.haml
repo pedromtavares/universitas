@@ -17,10 +17,10 @@
             %td= file_size_from_bytes resource.file_size
             %td= resource.description
             %td
-              = link_to t('shared.edit'), edit_resource_url(resource), :class => "button" if current_user.uploaded_document?(resource) 
+              = button_to_icon :edit, t('shared.edit'), edit_resource_url(resource) if current_user.uploaded_document?(resource) 
               %br.clear
               %br.clear
-              = link_to t('users.documents.remove'), remove_user_document_path(current_user,resource), :method => :delete, :class => "button" 
+              = button_to_icon :remove, t('users.documents.remove'), remove_user_document_path(current_user,resource), :method => :delete
       .actions-bar.wat-cf
         .actions
         .pagination

@@ -1,5 +1,5 @@
-= link_to t('shared.edit'), edit_resource_url, :class => "button" 
-= link_to "#{t('shared.manage')} #{t('groups.documents.plural')}", group_documents_path(resource), :class => "button"
+= button_to_icon :edit, t('shared.edit'), edit_resource_url
+= button_to_icon :folder, "#{t('shared.manage')} #{t('groups.documents.plural')}", group_documents_path(resource)
 %br.clear
 %br.clear
 = form_tag update_status_group_path(resource), :method => :put, :class => 'form' do

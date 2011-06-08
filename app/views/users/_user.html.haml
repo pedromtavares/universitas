@@ -4,6 +4,7 @@
     %h3= link_to user.name, user
     - unless user == current_user || !user_signed_in?
       - if current_user.following?(user)
-        %p= link_to t('users.unfollow'), unfollow_user_path(user), :method => :delete 
+        %p= button_to_icon :remove, t('users.unfollow'), unfollow_user_path(user), :method => :delete 
       - else
-        %p= link_to t('users.follow'), follow_user_path(user), :method => :post
+        %p= button_to_icon :add, t('users.follow'), follow_user_path(user), :method => :post
+      %br.clear

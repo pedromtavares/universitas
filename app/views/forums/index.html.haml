@@ -2,7 +2,7 @@
   %h2.title= t('forums.plural')
   .inner
     - if current_user.leader_of?(parent)
-      .right.spaced= link_to t('forums.new'), new_group_forum_path(parent), :class => 'button'
+      .right.spaced= button_to_icon :message, t('forums.new'), new_group_forum_path(parent)
       %br.clear
     - unless collection.blank?
       %table.table

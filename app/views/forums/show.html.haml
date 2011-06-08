@@ -1,7 +1,7 @@
 .content
   %h2.title= resource.title
   .inner
-    .right.spaced= link_to t('topics.new'), new_group_forum_topic_path(@group, @forum), :class => 'button'
+    .right.spaced= button_to_icon :message, t('topics.new'), new_group_forum_topic_path(@group, @forum), :class => 'button'
     %br.clear
     - unless @topics.blank?
       %table.table

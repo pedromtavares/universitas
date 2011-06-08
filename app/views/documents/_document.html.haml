@@ -7,6 +7,7 @@
     %p=document.description
     - if user_signed_in?
       - unless current_user.has_document?(document)
-        .small=link_to t('documents.add'), add_user_document_path(current_user, document), :method => :post
+        .small=button_to_icon :add, t('documents.add'), add_user_document_path(current_user, document), :method => :post
       - else
-        .small=link_to t('documents.remove'), remove_user_document_path(current_user,document), :method => :delete
+        .small=button_to_icon :remove, t('documents.remove'), remove_user_document_path(current_user,document), :method => :delete
+      %br.clear

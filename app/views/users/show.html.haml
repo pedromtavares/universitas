@@ -20,14 +20,15 @@
           = resource.send(attr)
     - unless resource == current_user || !user_signed_in?
       - if current_user.following?(resource)
-        %p= link_to t('users.unfollow'), unfollow_user_path(resource), :method => :delete 
+        %p= button_to_icon :remove, t('users.unfollow'), unfollow_user_path(resource), :method => :delete 
       - else
-        %p= link_to t('users.follow'), follow_user_path(resource), :method => :post
+        %p= button_to_icon :add, t('users.follow'), follow_user_path(resource), :method => :post
+      %br.clear
     
     -if resource == current_user
       .wat-cf
-        = link_to "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path, :class => "button"
-        = link_to "#{t('shared.manage')} #{t('documents.plural')}", user_documents_path(resource), :class => "button"
+        = button_to_icon :edit, "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path
+        = button_to_icon :folder, "#{t('shared.manage')} #{t('documents.plural')}", user_documents_path(resource)
   %br.clear    
   #tabs
     %ul

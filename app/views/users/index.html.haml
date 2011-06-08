@@ -3,8 +3,7 @@
   .inner
     = form_tag users_path, :class => 'form', :method => 'get' do
       .small-box= text_field_tag :search, params[:search], :class => 'text_field'
-      =submit_button(true) do
-        =t('shared.search')
+      = search_button
     %br
     %br
     - unless collection.blank?
@@ -22,9 +21,9 @@
             %td= user.name
             - if user_signed_in? && current_user != user
               - if current_user.following?(user)
-                %td= link_to t('users.unfollow'), unfollow_user_path(user), :method => :delete, :class => 'button' 
+                %td= button_to_icon :remove, t('users.unfollow'), unfollow_user_path(user), :method => :delete 
               - else
-                %td= link_to t('users.follow'), follow_user_path(user), :method => :post, :class => 'button'
+                %td= button_to_icon :add, t('users.follow'), follow_user_path(user), :method => :post
       .actions-bar.wat-cf
         .actions
         .pagination

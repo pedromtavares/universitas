@@ -19,21 +19,56 @@ module ApplicationHelper
 		content_tag(:button, {:type => 'submit', :class => klass}.merge(options), &block)
 	end
 	
-	def link_to_icon(icon, title, *args)
-		name = case icon
-		when :add
-			"plusthick"
-		when :edit
-			"pencil"
-		when :remove
-			"closethick"
-		when :user
-			"person"
-		when :check
-			"check"
-		end
-		link_to(*args) do
-			content_tag(:span, "", :class => "ui-icon ui-icon-#{name}", :title => title)
+	def icon_for(name)
+		case name
+			when :add
+				"plusthick"
+			when :edit
+				"pencil"
+			when :remove
+				"closethick"
+			when :user
+				"person"
+			when :check
+				"check"
+			when :search
+				"search"
+			when :folder
+				"folder-open"
+			when :message
+				"comment"
+			when :star
+				"star"
+			when :reply
+				"arrowreturnthick-1-e"
 		end
 	end
+	
+	def button_icon(icon, options = {})
+		klass = "ui-icon ui-icon-#{icon_for(icon)} left spaced-right"
+		klass += options.delete(:class) if options[:class]
+		content_tag(:span, "", {:class => klass}.merge(options))
+	end
+	
+	def link_to_icon(icon, title, *args)
+		link_to(*args) do
+			content_tag(:span, "", :class => "ui-icon ui-icon-#{icon_for(icon)}", :title => title)
+		end
+	end
+	
+	def button_to_icon(icon, text, path, options = {})
+		klass = 'button '
+		klass += options.delete(:class) if options[:class]
+		link_to(path, options.merge(:class => klass)) do
+			content_tag(:span, "", :class => "ui-icon ui-icon-#{icon_for(icon)} left spaced-right") + text
+		end
+	end
+	
+	def search_button
+		submit_button(true) do
+    	button_icon(:search) +
+      t('shared.search')
+		end
+	end
+	
 end

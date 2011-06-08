@@ -3,8 +3,7 @@
   .inner
     = form_tag documents_path, :class => 'form', :method => 'get' do
       .small-box= text_field_tag :search, params[:search], :class => 'text_field'
-      = submit_button(true) do
-        =t('shared.search')
+      = search_button
     %br
     %br
     - unless collection.blank?
