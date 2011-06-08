@@ -10,9 +10,9 @@
       
     - if user_signed_in? && !current_user.leader_of?(resource)
       - unless current_user.member_of?(resource)
-        %p= link_to t('groups.join'), join_group_path, :method => :post, :class => 'button'
+        %p= button_to_icon :key, t('groups.join'), join_group_path, :method => :post
       - else
-        %p= link_to t('groups.leave'), leave_group_path, :method => :delete, :class => 'button'
+        %p= button_to_icon :cancel, t('groups.leave'), leave_group_path, :method => :delete
     %br.clear    
     - if user_signed_in? && current_user.leader_of?(resource)
       = render :partial => 'leader_menu'
@@ -78,10 +78,10 @@
             %h2.center=t('groups.documents.search')
             = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
               .small-box= text_field_tag :search, '', :class => 'text_field'
-              = submit_button(true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
+              = submit_button(:small => true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
                 = button_icon :search
                 =t('shared.search')
-              = link_to('javascript:void(0)', :class => 'button small-button', :id => 'new-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();") do
+              = button_link_to('javascript:void(0)', :id => 'new-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();", :small => true) do
                 = button_icon :add
                 =t('groups.documents.create')
               = loading_icon
@@ -98,7 +98,7 @@
               ="#{t('modules.singular')}:"
               = select_tag "module", options_from_collection_for_select(@modules, :id, :name), :class => 'select'
               = loading_icon
-              = submit_button(true, :class => 'right') do
+              = submit_button(:small => true, :class => 'right') do
                 = button_icon :check
                 = t('shared.save')
               #chosen-docs

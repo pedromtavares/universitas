@@ -26,7 +26,7 @@
   = form_tag group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :put, :remote => true, :class => 'form none edit-form', :id => "edit-#{post.id}" do
     = hidden_field_tag :parent_id, post.parent_id, :id => nil
     = text_area_tag :text, post.text
-    = submit_button(false, {:onclick => "$('.loading').removeClass('none');"}) do
+    = submit_button(:onclick => "$('.loading').removeClass('none');") do
       = image_tag("icons/tick.png", :alt => t('posts.update')) 
       = t('posts.update')
     =link_to 'javascript:void(0)', :class => 'button cancel-edit-form' do

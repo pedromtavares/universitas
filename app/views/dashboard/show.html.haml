@@ -8,7 +8,7 @@
       #status 
         .title= t('dashboard.status')
         .input= text_field_tag :status, current_user.status, :maxlength => 100, :class => 'text-field'
-        =submit_button(true) do
+        =submit_button(:small => true) do
           =t('shared.update')
     %br.clear
     %br.clear

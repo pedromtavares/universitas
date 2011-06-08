@@ -12,9 +12,19 @@ module ApplicationHelper
 		!user_signed_in? && controller.controller_name != 'home'
 	end
 	
-	def submit_button(small = false, options = {}, &block)
+	def button_link_to(*args, &block)
+		options = args.extract_options!
 		klass = 'button '
-		klass += ' small-button ' if small
+		klass += ' small-button ' if options[:small]
+		klass += options.delete(:class) if options[:class]
+		options[:class] = klass
+		args << options
+		link_to(*args, &block)
+	end
+	
+	def submit_button(options = {}, &block)
+		klass = 'button '
+		klass += ' small-button ' if options[:small]
 		klass += options.delete(:class) if options[:class]
 		content_tag(:button, {:type => 'submit', :class => klass}.merge(options), &block)
 	end
@@ -41,6 +51,10 @@ module ApplicationHelper
 				"star"
 			when :reply
 				"arrowreturnthick-1-e"
+			when :cancel
+				"cancel"
+			when :key
+				"key"
 		end
 	end
 	
@@ -65,7 +79,7 @@ module ApplicationHelper
 	end
 	
 	def search_button
-		submit_button(true) do
+		submit_button(:small => true) do
     	button_icon(:search) +
       t('shared.search')
 		end

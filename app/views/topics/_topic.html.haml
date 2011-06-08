@@ -8,7 +8,7 @@
     .title= link_to topic.title, topic_path(topic)
     = form_tag topic_path(topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do
       .input= text_field_tag :title, topic.title, :maxlength => 100, :class => 'text-field'
-      = submit_button(true, {:onclick => "$('.loading').removeClass('none');"}) do
+      = submit_button(:small => true, :onclick => "$('.loading').removeClass('none');") do
         =t('shared.update')
       = loading_icon
   %td= topic.posts_count

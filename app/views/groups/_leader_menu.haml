@@ -6,6 +6,6 @@
   #group-status 
     .title= t('groups.status')
     .input= text_field_tag :status, resource.status, :maxlength => 100, :class => 'text-field'
-    = submit_button(true) do
+    = submit_button(:small => true) do
       =t('shared.update')
 %br.clear

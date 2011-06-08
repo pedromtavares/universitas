@@ -6,6 +6,6 @@
     = button_to_icon :star, t('groups.promote'), 'javascript:void(0)', :class => "small-button", :onclick => "$('#promote').removeClass('none');$('.text-field').focus()"
     .none#promote
       .input= text_field_tag :message, '', :maxlength => 100, :class => 'text-field'
-      = submit_button(true) do
+      = submit_button(:small => true) do
         =t('groups.promote_submit') 
 %br.clear
