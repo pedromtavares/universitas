@@ -1,5 +1,10 @@
 = f.input :name
 = f.input :description
+- if resource.persisted?
+  = label_tag :current_image
+  %br.clear
+  .left.spaced= image_tag resource.image_url
+  %br.clear
 = f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum')}<br/>#{t('custom_messages.image_extensions')}")      
 
 %h3= t('modules.plural')

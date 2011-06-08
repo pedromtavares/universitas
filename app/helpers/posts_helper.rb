@@ -9,4 +9,7 @@ module PostsHelper
 			t('topics.textile')
 		end
 	end
+	def post_path(post)
+		group_forum_topic_path(post.topic.forum.group, post.topic.forum, post.topic) + "##{post.id}"
+	end
 end

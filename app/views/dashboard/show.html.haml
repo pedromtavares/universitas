@@ -18,9 +18,12 @@
         %li=link_to t('dashboard.all'), "#all", :target => 'all'
         %li=link_to t('users.plural'), "#user", :target => 'user'
         %li=link_to t('groups.plural'), "#group", :target => 'group'
+        %li=link_to t('forums.plural'), "#forum", :target => 'forum'
       #all
         = render :partial => 'list', :locals => {:feed => @feed}
       #user
         = render :partial => 'list', :locals => {:feed => @feed, :type => 'user'}
       #group
         = render :partial => 'list', :locals => {:feed => @feed, :type => 'group'}
+      #forum
+        = render :partial => 'list', :locals => {:feed => @feed, :type => 'forum'}

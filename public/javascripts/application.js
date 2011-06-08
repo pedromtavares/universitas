@@ -129,10 +129,13 @@ function showUpdatesFor(type){
 	list.find('li').hide();
 	switch(type){
 		case 'user':
-			list.find('.user').show();
+			list.find('[creator=user]').show();
 			break;
 		case 'group':
-			list.find('.group').show();
+			list.find('[creator=group]').show();
+			break;
+		case 'forum':
+			list.find('[creator=forum]').show();
 			break;
 		default:
 			list.find('li').show();

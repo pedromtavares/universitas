@@ -32,7 +32,7 @@ class Group < ActiveRecord::Base
 	attr_accessible :leader, :name, :image, :description, :modules_attributes
   has_friendly_id :name, :use_slug => true
 	mount_uploader :image, ImageUploader
-	after_create :status_update, :create_first_member, :create_first_forum
+	after_create :create_update, :create_first_member, :create_first_forum
 	
 	accepts_nested_attributes_for :modules, :allow_destroy => true
 
@@ -93,7 +93,7 @@ class Group < ActiveRecord::Base
 
 	private
 	
-	def status_update
+	def create_update
 		self.leader.updates.create(:target => self)
 	end
 	

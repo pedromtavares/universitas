@@ -17,6 +17,10 @@ class Topic < ActiveRecord::Base
 	validates :title, :presence => true, :length => 2..200
 	delegate :text, :author, :to => :first_post, :allow_nil => true
 	
+	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
+	
+	after_create :create_update
+	
 	def to_s
 		self.title
 	end
@@ -27,5 +31,11 @@ class Topic < ActiveRecord::Base
 	
 	def last_post
 		self.posts.order('created_at desc').first
+	end
+	
+	private
+	
+	def create_update
+		self.forum.group.updates.create(:target => self)
 	end
 end

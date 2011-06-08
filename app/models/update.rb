@@ -17,11 +17,26 @@ class Update < ActiveRecord::Base
 	belongs_to :creator, :polymorphic => true
   belongs_to :target, :polymorphic => true  
 
-	def from_user?
-		self.creator.class.to_s == 'User'
+	# generates from_user?, from_group?, etc...
+	[User, Group].each do |klass|
+		class_eval %Q!
+			def from_#{klass.to_s.underscore}?
+				self.creator.class.to_s == '#{klass.to_s}'
+			end
+		!
 	end
 	
-	def from_group?
-		self.creator.class.to_s == 'Group'
+	# generates to_user?, to_group_document?, etc...
+	[User, Group, UserDocument, GroupDocument, GroupMember, Post, Topic].each do |klass|
+		class_eval %Q!
+			def to_#{klass.to_s.underscore}?
+				self.target.class.to_s == '#{klass.to_s}'
+			end
+		!
 	end
+	
+	def to_forum?
+		self.to_post? || self.to_topic?
+	end
+	
 end

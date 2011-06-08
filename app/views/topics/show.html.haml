@@ -3,7 +3,6 @@
   .inner
     %ul.list
       = nested_posts(@posts.arrange(:order => :created_at))
-    #last
     #in-reply-to.none
       %h3=t('posts.in_reply_to')
       .flash

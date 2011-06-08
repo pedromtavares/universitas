@@ -15,12 +15,12 @@ class GroupMember < ActiveRecord::Base
   belongs_to :user
 	has_many :updates, :as => :target, :dependent => :destroy
 
-	after_create :status_update
+	after_create :create_update
   delegate :name, :email, :to => :user
 
 	private
 	
-	def status_update
+	def create_update
 		self.user.updates.create!(:target => self) unless self.user.leader_of?(self.group)
 	end
 end

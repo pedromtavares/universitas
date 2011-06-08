@@ -15,13 +15,13 @@ class UserDocument < ActiveRecord::Base
 	belongs_to :document
 	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
 
-	after_create :status_update
+	after_create :create_update
 	delegate :name, :description, :file, :file_url, :extension, :file_size,:to => :document
 	accepts_nested_attributes_for :document
 	
 	private
 	
-	def status_update
+	def create_update
 		self.user.updates.create!(:target => self)
 	end
 end

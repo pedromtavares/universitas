@@ -86,6 +86,8 @@ en:
     delete_update: Delete this update
     promoted_group: promoted the group
     promoted_message: by saying
+    created_topic: just created a new topic
+    posted_topic: just posted on the topic
     all: All
   account:
     self: Account
@@ -222,7 +224,7 @@ en:
   forums:
     all: All Forums
     new: New Forum
-    plural: Group Forums
+    plural: Forums
     singular: Forum
     blank: This group has no forums yet.
     title: Title

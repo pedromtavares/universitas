@@ -4,18 +4,18 @@
       =link_to 'javascript:void(0)', :title => t('topics.edit'), :class => 'edit-topic' do
         %span.ui-icon.ui-icon-pencil
     - if current_user.leader_of?(topic.forum.group)
-      =link_to group_forum_topic_path(topic.forum.group, topic.forum, topic), :method => :delete, :confirm => t('topics.are_you_sure'), :title => t('topics.delete'), :class => 'remove' do
+      =link_to topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :title => t('topics.delete'), :class => 'remove' do
         %span.ui-icon.ui-icon-closethick
   %td
-    .title= link_to topic.title, group_forum_topic_path(topic.forum.group, topic.forum, topic)
-    = form_tag group_forum_topic_path(topic.forum.group, topic.forum, topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do
+    .title= link_to topic.title, topic_path(topic)
+    = form_tag topic_path(topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do
       .input= text_field_tag :title, topic.title, :maxlength => 100, :class => 'text-field'
       %button{:type => 'submit', :class => 'button small-button', :id => 'save' , :onclick => "$('.loading').removeClass('none');"}=t('shared.update')
       = loading_icon
   %td= topic.posts_count
   %td
     - unless topic.posts.blank?
-      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", group_forum_topic_path(topic.forum.group, topic.forum, topic) + '#last'
+      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", post_path(topic.last_post)
       %br
       = t('shared.by')
       = link_to topic.last_post.author, topic.last_post.author

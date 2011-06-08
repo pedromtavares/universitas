@@ -4,7 +4,7 @@
     - unless @presenter.new_topics.blank?
       - @presenter.new_topics.each do |topic|
         %li
-          = link_to group_forum_topic_path(topic.forum.group, topic.forum, topic) do
+          = link_to topic_path(topic) do
             = topic.to_s.truncate(50)
             - if topic.author.present?
               .gray

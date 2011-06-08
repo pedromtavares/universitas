@@ -26,10 +26,10 @@
             %td= resource.topics_count
             %td.last
               - unless resource.posts.blank?
-                = link_to "#{time_ago_in_words(resource.last_post.created_at)} #{t('shared.ago')}", group_forum_topic_path(resource.group, resource, resource.last_post.topic) + '#last'
+                = link_to "#{time_ago_in_words(resource.last_post.created_at)} #{t('shared.ago')}", post_path(resource.last_post)
                 %br
                 = t('shared.in')
-                = link_to resource.last_post.topic.to_s.truncate(50), group_forum_topic_path(parent, resource, resource.last_post.topic)
+                = link_to resource.last_post.topic.to_s.truncate(50), topic_path(resource.last_post.topic)
                 %br
                 = t('shared.by')
                 = link_to resource.last_post.author, resource.last_post.author
