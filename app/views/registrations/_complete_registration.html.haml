@@ -10,7 +10,7 @@
         =f.input :name
         =f.input :email
         .group.navform.wat-cf
-          %button.button{:type => 'submit'}
+          = submit_button do
             = image_tag("icons/tick.png", :alt => t('shared.signup')) 
             = t 'shared.signup'
           %br.clear  

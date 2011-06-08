@@ -1,16 +1,15 @@
 %tr.topic{:class => cycle("odd","even"), :id => topic.id}
   %td.first
     - if current_user.leader_of?(topic.forum.group) || current_user == topic.first_post.author
-      =link_to 'javascript:void(0)', :title => t('topics.edit'), :class => 'edit-topic' do
-        %span.ui-icon.ui-icon-pencil
+      =link_to_icon :edit, t('topics.edit'), 'javascript:void(0)', :class => 'edit-topic'
     - if current_user.leader_of?(topic.forum.group)
-      =link_to topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :title => t('topics.delete'), :class => 'remove' do
-        %span.ui-icon.ui-icon-closethick
+      =link_to_icon :remove, t('topics.delete'), topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :class => 'remove'
   %td
     .title= link_to topic.title, topic_path(topic)
     = form_tag topic_path(topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do
       .input= text_field_tag :title, topic.title, :maxlength => 100, :class => 'text-field'
-      %button{:type => 'submit', :class => 'button small-button', :id => 'save' , :onclick => "$('.loading').removeClass('none');"}=t('shared.update')
+      = submit_button(true, {:onclick => "$('.loading').removeClass('none');"}) do
+        =t('shared.update')
       = loading_icon
   %td= topic.posts_count
   %td

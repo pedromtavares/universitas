@@ -6,5 +6,6 @@
     = link_to t('groups.promote'), 'javascript:void(0)', :class => "button small-button", :onclick => "$('#promote').removeClass('none');$('.text-field').focus()"
     .none#promote
       .input= text_field_tag :message, '', :maxlength => 100, :class => 'text-field'
-      %button{:type => 'submit', :class => 'button small-button', :id => 'save' }=t('groups.promote_submit') 
+      = submit_button(true) do
+        =t('groups.promote_submit') 
 %br.clear

@@ -23,7 +23,7 @@
             = f.input :current_password, :required => true unless current_user.has_no_password
             %br
             .group.navform.wat-cf
-              %button.button{:type => 'submit'}
+              = submit_button do
                 = image_tag("icons/tick.png", :alt => t('shared.update')) 
                 = t('shared.update')   
           = link_to t('account.cancel'), registration_path(resource_name), :confirm => t('shared.confirm'), :method => :delete
@@ -51,7 +51,7 @@
             %br.clear
             %br.clear
             .group.navform.wat-cf
-              %button.button{:type => 'submit'}
+              = submit_button do
                 = image_tag("icons/tick.png", :alt => t('shared.update')) 
                 = t('shared.update')
         #options

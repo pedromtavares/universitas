@@ -16,10 +16,8 @@
           %tr{:class => cycle("odd","even")}
             - if current_user.leader_of?(parent)
               %td.first
-                =link_to edit_group_forum_path(parent, resource), :title => t('forums.edit') do
-                  %span.ui-icon.ui-icon-pencil
-                =link_to group_forum_path(parent, resource), :method => :delete, :confirm => t('forums.are_you_sure'), :title => t('forums.delete'), :class => 'remove' do
-                  %span.ui-icon.ui-icon-closethick
+                =link_to_icon :edit, t('forums.edit'), edit_group_forum_path(parent, resource)
+                =link_to_icon :remove, t('forums.delete'), group_forum_path(parent, resource), :method => :delete, :confirm => t('forums.are_you_sure'), :class => 'remove'
             %td
               = link_to resource.title, group_forum_path(parent, resource)
               .gray= resource.description

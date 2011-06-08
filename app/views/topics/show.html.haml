@@ -9,15 +9,14 @@
         .message.box
           %p.left
           .left.spaced-top
-            =link_to 'javascript:void(0)', :title => t('shared.cancel'), :id => "cancel-reply" do
-              %span.ui-icon.ui-icon-closethick
+            =link_to_icon :remove, t('shared.cancel'), 'javascript:void(0)', :id => "cancel-reply"
           %br.clear
     %h3#reply=t('posts.reply')
     = form_tag group_forum_topic_posts_path(parent.group, parent, resource), :class => 'form' do
       = hidden_field_tag 'parent_id', ''
       = text_area_tag :text, '', :class => 'reply'
       .left
-        %button.button{:type => 'submit'}
+        = submit_button do
           = image_tag("icons/tick.png", :alt => t('shared.submit')) 
           = t('posts.post')
       .right

@@ -53,8 +53,7 @@
                         .name= group_document.name.truncate(38) 
                         .options
                           - unless !user_signed_in? || current_user.has_document?(group_document.document)
-                            =link_to add_user_document_path(current_user,group_document.document), :method => :post do
-                              %span.ui-icon.ui-icon-plusthick{:title => t('documents.add')}
+                            =link_to_icon(:add, t('documents.add'), add_user_document_path(current_user,group_document.document), :method => :post)
                   - else
                     %p.center= t('modules.documents.blank')
                 
@@ -79,8 +78,10 @@
             %h2.center=t('groups.documents.search')
             = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
               .small-box= text_field_tag :search, '', :class => 'text_field'
-              %button#search-button{:type => 'submit', :class => 'button small-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()" }=t('shared.search')
-              %button#new-button{:type => 'button', :class => 'button small-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();" }=t('groups.documents.create')
+              = submit_button(true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
+                =t('shared.search')
+              = submit_button(true, :id => 'new-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();") do
+                =t('groups.documents.create')
               = loading_icon
               %br.clear
               #search-docs
@@ -95,7 +96,8 @@
               ="#{t('modules.singular')}:"
               = select_tag "module", options_from_collection_for_select(@modules, :id, :name), :class => 'select'
               = loading_icon
-              %button{:type => 'submit', :class => 'button small-button right', :id => 'save' }=t('shared.save')
+              = submit_button(true, :class => 'right') do
+                =t('shared.save')
               #chosen-docs
               %br.clear
         -else

@@ -15,9 +15,6 @@
     = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
 %br      
 .group.navform.wat-cf
-  %button.button{:type => 'submit'}
+  = submit_button do
     = image_tag("icons/tick.png", :alt => t('shared.submit')) 
     = t('shared.submit')
-  = link_to collection_url, :class => "button" do
-    = image_tag("icons/back.png", :alt => t('shared.back'))
-    = t('shared.back')
