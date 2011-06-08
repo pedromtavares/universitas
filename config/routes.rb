@@ -55,6 +55,7 @@ Universitas::Application.routes.draw do
 	resources :authentications
 		
 	resource :home, :only => :show, :controller => 'home'
+	resource :about, :only => [:show, :create], :controller => 'about'
   
   get 'textile_guide' => 'posts#textile', :as => 'textile'
 	get 'users/:id' => 'users#show', :as => 'profile'

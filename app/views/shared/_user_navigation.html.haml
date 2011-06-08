@@ -11,7 +11,7 @@
         %li= link_to image_tag("auth/signin_#{provider}_small.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
 #main-navigation
   %ul.wat-cf
-    - items = user_signed_in? ? %w{home dashboard users groups documents} : %w{home users groups documents}
+    - items = user_signed_in? ? %w{home dashboard users groups documents about} : %w{home users groups documents about}
     - items.each do |type|
       - url = link_to t("#{type}.plural"), url_for(send(type+"_path"))
       - if controller_name == type

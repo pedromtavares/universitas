@@ -1,0 +1,12 @@
+.content
+  %h2.title= t('about.about')
+  .inner
+    %p= raw t('about.about_text')
+  %h2.title=t('about.about2') 
+  .inner
+    %p= raw t('about.about2_text')
+  %h2.title=t('about.about3')
+  .inner
+    %p= raw t('about.about3_text')
+
+= content_for :sidebar, render(:partial => 'sidebar') unless user_signed_in?

@@ -333,3 +333,15 @@ en:
     get_text: "You get to upload documents, to join groups, post in forums and updates in your dashboard. The most you do as a guest is search our databases and download documents, which is fine too, but signing up takes like 30 seconds and gets you full access to the system, making those 30 seconds quite worthwhile."
     social: "Yet another social network? Geez."
     social_text: "No, Universitas' network is far from having the same personal-life focus purpose of Facebook nor the micro-blogging purpose of Twitter, or at least that's not what it was meant for. Aside from the status update, the updates system is restricted to Universitas' features only, like joining a group or creating a document, and so is the focus of its network."
+  about:
+    plural: About Us
+    success: Thanks for contacting us!
+    error: "Oops, there were some errors on the contact form!"
+    contact_us: Contact Us
+    contact_text: "Suggestions? Complaints? Want to help out? Drop us a line at <a href='mailto:universitasproject@gmail.com'>universitasproject@gmail.com</a> or fill in the form below with your info so we can get back to you!"
+    about: About Universitas
+    about_text: "Universitas is originally an open source side project of mine. Open source means that all the source code needed to create this website is <a href='http://github.com/pedromtavares/universitas'>opened to the public</a> (developers, more likely) and side project means that nobody is paying me to work on this, I just do it to experiment new things (technology wise) and to possibly be responsible for something useful to a lot of people."
+    about2: And who are you?
+    about2_text: "My name is <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> and I'm a software developer. I am currently the only person behind Universitas, having developed it all by myself and also the one pays all its bills (server and file storage)."
+    about3: Don't you need help?
+    about3_text: "Yes. Keeping Universitas up to date with new features and fixing eventual bugs consumes time, it took me more than 6 months to launch the initial version because I simply didn't have the time to do it sooner. If you are a developer or a designer and would like to help out, please send me an e-mail or contact me through the form on this page, I will be making an official 'please help me' blog post with more technical details about the project and will update this page with it as soon as it's done."

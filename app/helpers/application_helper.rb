@@ -9,7 +9,7 @@ module ApplicationHelper
 	end
 	
 	def full_page?
-		!user_signed_in? && controller.controller_name != 'home'
+		!user_signed_in? && !['home', 'about'].include?(controller.controller_name)
 	end
 	
 	def button_link_to(*args, &block)
