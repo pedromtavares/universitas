@@ -1,38 +1,6 @@
 en:
-  errors:
-    messages:
-      carrierwave_processing_error: failed to be processed
-      carrierwave_integrity_error: is not an allowed file type
-  devise:
-    forgot_password: Forgot your password or need account recovery?
-    send_me_password: Send me reset password/account recovery instructions
-    change_your_password: Change your password
-    change_my_password: Change my password
-    already_have_account: "Already have an account? Sign in here."
-    dont_have_login: "Don't have a login? Sign up!"
-    no_password: "(leave blank if you don't wish to have a password)"
-  auth:
-    signed_in: "Signed in successfully."
-    edit_profile: " Please visit your <a href='/profile/edit'>edit profile page</a> and update your e-mail address for future account recovery."
-    account_created: "Account successfully created."
-    please_complete: "Please complete your registration"
-    first_time: "Please fill in the form below to create an account associated with the sign in option you chose and you're good to go!"
-    problem_signing: "There was a problem signing in through an external service provider, please try signing up normally."
-    failure: "There was a problem with the external service provider, please try again."
-    signin_twitter: Sign in with Twitter
-    signin_facebook: Sign in with Facebook
-    successful: Sign in service was added successfully.
-    signin_options: Sign In Options
-    signed_in_services: "You have signed in with these services:"
-    remove: 'Are you sure you want to remove this sign in option?'
-    add: 'Add another service to sign in with:'
-    add_alt: 'You can also choose to sign in with one of these services:'
-    twitter: Twitter
-    facebook: Facebook
-    cannot_destroy: "You cannot destroy your only way to sign in the application! Try saving a password to your account, then remove sign in options."
-    destroyed: "Successfully destroyed sign in option."
   shared:
-    app_description: "Social & Collaborative Groups"
+    app_description: "Collaborative Groups"
     profile: Profile
     logout: Logout
     login: Login
@@ -71,6 +39,13 @@ en:
     file_extensions: 'allowed file types: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
     image_maximum: 'allowed file types: jpg, jpeg, gif, png'
     image_extensions: 'maximum file size: 1MB'
+  errors:
+    messages:
+      carrierwave_processing_error: failed to be processed
+      carrierwave_integrity_error: is not an allowed file type
+      not_found: "not found"
+      already_confirmed: "was already confirmed"
+      not_locked: "was not locked"
   dashboard:
     plural: Dashboard
     updated_status_success: You have updated your status successfully.
@@ -98,6 +73,27 @@ en:
     twitter_hint: "Ex: http://twitter.com/universitas"
     facebook_hint: "Ex: http://www.facebook.com/universitas"
     show_email: "Show e-mail address on your profile"
+    or_remote_url: "or image URL:"
+  auth:
+    signed_in: "Signed in successfully."
+    edit_profile: " Please visit your <a href='/profile/edit'>edit profile page</a> and update your e-mail address for future account recovery."
+    account_created: "Account successfully created."
+    please_complete: "Please complete your registration"
+    first_time: "Please fill in the form below to create an account associated with the sign in option you chose and you're good to go!"
+    problem_signing: "There was a problem signing in through an external service provider, please try signing up normally."
+    failure: "There was a problem with the external service provider, please try again."
+    signin_twitter: Sign in with Twitter
+    signin_facebook: Sign in with Facebook
+    successful: Sign in service was added successfully.
+    signin_options: Sign In Options
+    signed_in_services: "You have signed in with these services:"
+    remove: 'Are you sure you want to remove this sign in option?'
+    add: 'Add another service to sign in with:'
+    add_alt: 'You can also choose to sign in with one of these services:'
+    twitter: Twitter
+    facebook: Facebook
+    cannot_destroy: "You cannot destroy your only way to sign in the application! Try saving a password to your account, then remove sign in options."
+    destroyed: "Successfully destroyed sign in option."
   layout:
     logged_in: Logged in as
   users:
@@ -130,6 +126,7 @@ en:
         plural: Uploaded Documents
         blank: You have no uploaded documents.
         i: Documents I Uploaded
+      click_to_edit: Click to edit
       blank: This user has no documents yet.
       added_collection: "Document successfully added to your collection."
       removed_collection: "Document successfully removed from your collection."
@@ -284,7 +281,7 @@ en:
       tip2: As a Group Leader
       tip2_text: "You can edit the group's information (including module information), accept or decline documents that were shared with the group, update the group's status (this update will appear on all members' dashboard) and edit/moderate the group forums. Group leaders can, obviously, also do everything group members do."
       tip3: Sharing documents with a group
-      tip3_text: "To share documents you already own, use the search box to find the specific document you want to search for and click the '+' icon. After you're done, select the target group module (or leave it blank if you want) and click 'Save'. On the other hand, if you want to upload a new document on the fly, click the 'Create' button and fill out the form. On both cases, the document will be sent to the group leader for approval."
+      tip3_text: "To share documents you already own, use the search box to find the specific documents you want to share and click the '+' icon. After you're done, select the target group module (or leave it blank if you want) and click 'Save'. On the other hand, if you want to upload a new document on the fly, click the 'Create' button and fill out the form. On both cases, the document will be sent to the group leader for approval."
     registrations:
       tip: Importance of a real e-mail address
       tip_text: "Make sure you supply your real e-mail address so that we can send account recovery instructions, which could happen case you forget your password, or if your chosen sign in option (Facebook or Twitter) token expires."
@@ -305,7 +302,7 @@ en:
       tip2_text: "Group leaders are responsible for moderating the group's forums by being able to create, edit and delete forums, topics and posts."
     topics: 
       tip: "Format with Textile"
-      tip_text: "You can format your posts with Textile (markup language) to display links, bold/italic text, lists, and more. Be sure to check the Texttile Guide link near the 'Post' button."
+      tip_text: "You can format your posts with Textile (markup language) to display links, bold/italic text, lists, and more. Be sure to check the Textile Guide link near the 'Post' button."
       tip2: Replying
       tip2_text: "If you want to reply to a specific post, be sure to click the 'Reply to this post' link on said post. This way your reply will appear nested in its target post."
   home:
@@ -317,20 +314,20 @@ en:
     signup_text: "No problem! Universitas is meant to be a free and open platform, be our guest and browse freely through our user, group and document databases (you can download any document you want too!) by navigating the top menu and when you're ready for a more thorough experience, <a href='/users/sign_up'>become a member</a>."
     features: Features
     doc: Document Upload and Sharing
-    doc_text: "One of the purposes in Universitas is to hold a huge document database, so you as a user can upload as many documents as you want and have your own document collection to share with other people or other groups. These documents will be accessible to anyone on the web to download, so watch out for confidential stuff!"
-    dash: Dashboard Updates and Twitter-Like Network
-    dash_text: "Say you have some colleagues or people you admire who are also in Universitas, you probably would want to know if they've engaged in a new group or if they uploaded a new document. For that reason the platform has a small Twitter-like social network, where you can follow other people and get updates on your dashboard referring not only to the people you follow, but to the groups you're in as well. You can also keep up with a user or group's update feed just by visiting their page." 
+    doc_text: "One of the purposes in Universitas is to hold a huge document database, so you as a user can upload as many documents as you want and have your own document collection to share with other people or other groups."
+    dash: Dashboard Updates and Internal Network
+    dash_text: "Say you have some colleagues or people you admire who are also in Universitas, you probably would want to know if they've engaged in a new group or if they uploaded a new document. For that reason the platform has an internal Twitter-like social network, where you can follow other people and get updates on your dashboard referring not only to the people you follow, but to the groups you're in as well. You can also keep up with a user or group's update feed just by visiting their page." 
     group: Simple Yet Powerful Groups
     group_text: "Universitas' groups have an easy-to-use, yet powerful user interface. You start by getting a very friendly URL for your group, such as universit.as/mygroup that you can easily share across the web. You can also nest various different subjects on your group into separated modules, each with their own document collection."
-    group_text2: "Sharing documents with groups is as easy as selecting them from your own collection and adding them to the group's collection (or to a specific module collection), or you can just upload them directly from the same place. As a group leader, you get to manage every single document that comes in through a similar and instinctive UI."
+    group_text2: "Sharing documents with groups is as easy as selecting them from your own collection and adding them to the group's collection, or you can just upload them directly from the same place. As a group leader, you get to manage every single document that comes in through a similar and instinctive UI."
     forum: Group Forums
     forum_text: "The most important thing related to groups is discussion: what's the point in having groups if you can't exchange thoughts and ideas? In Universitas, each group gets its very own forum (or message board, if you will), where the group leader can create (and moderate) as many sections as he wants and the members can create topics and posts about basically anything they wish to share."
     unlimited: "Unlimited document upload? Seriously?"
-    unlimited_text: "Yes. You can store any sort of allowed file types here (documents and images), although storing is not the tool's purpose as much as is sharing and discussing."
+    unlimited_text: "Yes. You can store as many files as you want, as long as their types are allowed (documents and images)."
     who: Who is Universitas for?
     who_text: "People interested in learning new things and in sharing their knowledge. Maybe you want to learn something and don't know where to start, or maybe you have a ton of interesting material about something and would like a central place for it all so other people could come and get interested as well. Heck, even if you just got a study group and need a place to put all your research in and discuss it."
     get: "What do I get when I sign up?"
-    get_text: "You get to upload documents, to join groups, post in forums and updates in your dashboard. The most you do as a guest is search our databases and download documents, which is fine too, but signing up takes like 30 seconds and gets you full access to the system, making those 30 seconds quite worthwhile."
+    get_text: "You get to upload documents, to join groups, post in forums and to see updates in your dashboard. The most you do as a guest is search our databases and download documents, which is fine too, but signing up takes like 30 seconds and gets you full access to the system, making those 30 seconds quite worthwhile."
     social: "Yet another social network? Geez."
     social_text: "No, Universitas' network is far from having the same personal-life focus purpose of Facebook nor the micro-blogging purpose of Twitter, or at least that's not what it was meant for. Aside from the status update, the updates system is restricted to Universitas' features only, like joining a group or creating a document, and so is the focus of its network."
   about:
@@ -340,7 +337,7 @@ en:
     contact_us: Contact Us
     contact_text: "Suggestions? Complaints? Want to help out? Drop us a line at <a href='mailto:universitasproject@gmail.com'>universitasproject@gmail.com</a> or fill in the form below with your info so we can get back to you!"
     about: About Universitas
-    about_text: "Universitas is originally an open source side project of mine. Open source means that all the source code needed to create this website is <a href='http://github.com/pedromtavares/universitas'>opened to the public</a> (developers, more likely) and side project means that nobody is paying me to work on this, I just do it to experiment new things (technology wise) and to possibly be responsible for something useful to a lot of people."
+    about_text: "Universitas is originally an open source side project of mine. Open source means that all the source code needed to create this website is <a href='http://github.com/pedromtavares/universitas'>open to the public</a> (developers, more likely) and side project means that nobody is paying me to work on this, I just do it to experiment new things (technology wise) and to possibly be responsible for something useful to a lot of people."
     about2: And who are you?
     about2_text: "My name is <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> and I'm a software developer. I am currently the only person behind Universitas, having developed it all by myself and also the one pays all its bills (server and file storage)."
     about3: Don't you need help?

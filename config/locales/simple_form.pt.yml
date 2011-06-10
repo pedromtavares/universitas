@@ -1,0 +1,27 @@
+pt:
+  simple_form:
+    "yes": 'Sim'
+    "no": 'Não'
+    required:
+      text: 'obrigatório'
+      mark: '*'
+    labels:
+      name: 'Nome'
+      text: 'Texto'
+      email: 'E-mail'
+      password: 'Senha'
+      password_confirmation: "Confirmação da senha"
+      current_password: Senha atual
+      image: Imagem
+      remove_image: Remover Imagem
+      location: Localidade
+      description: Descrição
+      file: Arquivo
+      module: Módulo
+      title: Título
+    hints:
+      user:
+        edit:
+          password: (deixe em branco caso não queira mudá-la)
+          current_password: (precisamos da sua senha atual para confirmar suas mudanças)
+

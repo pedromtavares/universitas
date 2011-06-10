@@ -1,10 +1,14 @@
 #user-navigation
   %ul.wat-cf
     - if user_signed_in?
+      %li= link_to image_tag('icons/en.png', :class => 'flag'), url_for(params.merge(:locale => :en)), :title => "English"
+      %li= link_to image_tag('icons/pt.png', :class => 'flag'), url_for(params.merge(:locale => :pt)), :title => "Português"
       %li= link_to t("shared.profile"), profile_path(current_user)
       %li="#{t('layout.logged_in')} #{current_user}"
       %li= link_to t("shared.signout"), destroy_user_session_path, :class => "logout"
     - else
+      %li= link_to image_tag('icons/en.png'), url_for(params.merge(:locale => :en)), :title => "English"
+      %li= link_to image_tag('icons/pt.png'), url_for(params.merge(:locale => :pt)), :title => "Português"
       %li.signin= link_to t("shared.signup"), new_user_registration_path
       %li.signin= link_to t("shared.signin"), new_user_session_path
       - on_each_provider do |provider|

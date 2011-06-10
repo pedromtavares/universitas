@@ -5,6 +5,10 @@ en:
     required:
       text: 'required'
       mark: '*'
+    labels:
+      email: "E-mail"
+      name: 'Name'
+      text: "Text"
     hints:
       user:
         edit:

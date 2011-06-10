@@ -33,7 +33,7 @@
             %br.clear
             = image_tag resource.image_url if resource.image?
             = f.input_field :image
-            or image URL:
+            = t('account.or_remote_url')
             = f.input_field :remote_image_url
             - if resource.image?
               .left{:style=>'width:5%'}= f.check_box :remove_image

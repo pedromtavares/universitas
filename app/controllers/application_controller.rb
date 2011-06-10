@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
+	include LocalizedSystem
+	
   protect_from_forgery
   layout :define_layout
-
 	before_filter :set_breadcrumbs
   
   def paginate(model, per=10)

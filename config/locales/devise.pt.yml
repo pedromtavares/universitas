@@ -1,0 +1,40 @@
+pt:
+  devise:
+    forgot_password: Esqueceu sua senha ou precisa recuperar sua conta?
+    send_me_password: Enviar-me instruções para resetar minha senha/recuperar minha conta.
+    change_your_password: Troque sua senha
+    change_my_password: Troque minha senha
+    already_have_account: "Já tem uma conta? Entre por aqui."
+    dont_have_login: "Não possui um login? Cadastre-se!"
+    no_password: "(deixe em branco caso você não queira ter uma senha)"
+    failure:
+      unauthenticated: Você precisa entrar no sistema ou se cadastrar antes de continuar.
+      unconfirmed: Você precisa confirmar sua conta antes de continuar.
+      locked: Sua conta está congelada.
+      invalid: Login ou senha inválido(a).
+      invalid_token: Símbolo de autenticação inválido.
+      timeout: "Sua sessão expirou, favor entrar no sistema novamente para continuar."
+      inactive: 'Sua conta não foi ativada ainda.'
+    sessions:
+      signed_in: 'Você entrou no sistema com sucesso.'
+      signed_out: 'Você saiu do sistema com sucesso.'
+    passwords:
+      send_instructions: 'Você receberá um e-mail com instruções de como resetar sua senha em alguns minutos.'
+      updated: 'Sua senha foi atualizada com sucesso. Você está logado.'
+    confirmations:
+      send_instructions: 'Você receberá um e-mail com instruções de como confirmar sua conta em alguns minutos.'
+      confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'
+    registrations:
+      signed_up: 'Cadastro feito com sucesso.'
+      updated: 'Conta atualizada com sucesso.'
+      destroyed: 'Até mais! Sua conta foi cancelada com sucesso. Esperamos ver você novamente em breve.'
+    unlocks:
+      send_instructions: 'Você receberá um e-mail com instruções de como descongelar sua conta em alguns minutos.'
+      unlocked: 'Sua conta foi descongelada com sucesso. Você está logado.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruções de confirmação'
+      reset_password_instructions:
+        subject: 'Instruções para resetar sua senha'
+      unlock_instructions:
+        subject: 'Instruções para descongelar sua conta'

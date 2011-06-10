@@ -10,7 +10,7 @@ feature "Signup", %q{
     visit signup_page
     fill_in("Login", :with => "test")
     fill_in("Name", :with => "Test")
-    fill_in("Email", :with => "test@test.com")
+    fill_in("E-mail", :with => "test@test.com")
     fill_in("Password", :with => "123456")
     fill_in("Password confirmation", :with => "123456")
     click_button("Sign Up")
@@ -22,7 +22,7 @@ feature "Signup", %q{
     visit signup_page
     fill_in("Login", :with => "tes")
     fill_in("Name", :with => "Test")
-    fill_in("Email", :with => "test@test.com")
+    fill_in("E-mail", :with => "test@test.com")
     fill_in("Password", :with => "123456")
     fill_in("Password confirmation", :with => "123456")
     click_button("Sign Up")

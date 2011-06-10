@@ -357,3 +357,8 @@
   border: 1px solid #e5e5e5;
   background-color: #e5e5e5;
 }
+
+.flag{
+	margin-bottom: -10px !important;
+	margin-top: -10px !important;
+}

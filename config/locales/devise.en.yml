@@ -1,11 +1,12 @@
 en:
-  errors:
-    messages:
-      not_found: "not found"
-      already_confirmed: "was already confirmed"
-      not_locked: "was not locked"
-
   devise:
+    forgot_password: Forgot your password or need account recovery?
+    send_me_password: Send me reset password/account recovery instructions
+    change_your_password: Change your password
+    change_my_password: Change my password
+    already_have_account: "Already have an account? Sign in here."
+    dont_have_login: "Don't have a login? Sign up!"
+    no_password: "(leave blank if you don't wish to have a password)"
     failure:
       unauthenticated: 'You need to sign in or sign up before continuing.'
       unconfirmed: 'You have to confirm your account before continuing.'
