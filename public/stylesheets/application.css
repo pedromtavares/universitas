@@ -304,6 +304,10 @@
 	overflow:auto;
 }
 
+.sidebar-box a img{
+	height: 50px;
+}
+
 /******* Forums *******/
 
 .post .author{
