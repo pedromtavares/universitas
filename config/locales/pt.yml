@@ -447,7 +447,7 @@ pt:
         other: "Não pôde ser salvo: %{count} erros."
       body: "Por favor, cheque os seguintes campos:"
     messages:
-      not_found: "no foi achado"
+      not_found: "não foi achado"
       already_confirmed: "já estava confirmado"
       not_locked: "não estava congelado" 
       carrierwave_processing_error: não foi processado.
@@ -459,8 +459,8 @@ pt:
       accepted: "precisa ser aceito"
       empty: "não pode ser vazio"
       blank: "não pode ser vazio"
-      too_long: "está longo (máximo são %{count} caracteres)"
-      too_short: "está curto (mínimo são %{count} caracteres)"
+      too_long: "está longo(a) (máximo são %{count} caracteres)"
+      too_short: "está curto(a) (mínimo são %{count} caracteres)"
       wrong_length: "não é do tamanho correto (precisa ter %{count} caracteres)"
       taken: "não está disponível"
       not_a_number: "não é um número"
