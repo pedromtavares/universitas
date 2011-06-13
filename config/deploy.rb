@@ -1,3 +1,5 @@
+after 'deploy', 'deploy:symlink_db'
+
 set :use_sudo,            false
 #tell git to clone only the latest revision and not the whole repository
 set :git_shallow_clone,   1
@@ -25,4 +27,7 @@ namespace :deploy do
   task :restart do
     sudo "/etc/init.d/unicorn reload"
   end
+	task :symlink_db, :roles => :app do
+		run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+	end
 end
