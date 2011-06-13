@@ -6,7 +6,6 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
-
 gem 'haml'
 gem 'inherited_resources'
 gem 'devise'
@@ -24,25 +23,16 @@ gem 'rake', '0.8.7'
 gem 'ancestry'
 gem 'RedCloth'
 gem 'faker'
+gem 'capistrano'
+gem 'unicorn'
 
 group :development do
-	gem 'mongrel'
-	gem "mongrel_experimental"
 	gem 'annotate-models'
 	gem "rspec"
   gem "rspec-rails"
   gem 'steak'
   gem 'bullet'
-end
-
-group :test do
-  gem "ZenTest"
-  gem "autotest"
-  gem "autotest-rails"
   gem "capybara"
-  gem "capybara-envjs"
-  gem "launchy"
-  gem "ruby-debug"
   gem 'factory_girl_rails'
 end
 
