@@ -8,7 +8,7 @@ set :deploy_to,           "/home/deployer/universitas"
 set :runner,              "deployer"
 set :repository,          "git@github.com:pedromtavares/universitas.git"
 set :scm,                 :git
-ssh_options[:keys] 				=	['~/.ssh/authorized_keys']
+ssh_options[:keys] 				=	['~/.ssh/id_rsa']
 ssh_options[:paranoid]    = false
 default_run_options[:pty] = true
 
