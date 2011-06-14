@@ -11,3 +11,4 @@ log/*
 .idea/
 public/uploads/
 config/database.yml
+config/providers.yml

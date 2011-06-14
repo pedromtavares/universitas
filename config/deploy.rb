@@ -1,4 +1,5 @@
 after 'deploy', 'deploy:symlink_db'
+after 'deploy', 'deploy:symlink_providers'
 
 set :use_sudo,            false
 #tell git to clone only the latest revision and not the whole repository
@@ -29,5 +30,8 @@ namespace :deploy do
   end
 	task :symlink_db, :roles => :app do
 		run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+	end
+	task :symlink_providers, :roles => :app do
+		run "ln -nfs #{shared_path}/config/providers.yml #{release_path}/config/providers.yml"
 	end
 end
