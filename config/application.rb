@@ -52,7 +52,8 @@ module Universitas
 		  :user_name            => services['gmail']['key'],
 		  :password             => services['gmail']['secret'],
 		  :authentication       => 'plain',
-			:enable_starttls_auto => true
+			:enable_starttls_auto => true,
+			:tls => true
 			}    
 
     # Configure the default encoding used in templates for Ruby 1.9.
