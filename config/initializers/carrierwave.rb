@@ -14,5 +14,6 @@ else
 		config.s3_access_key_id = ENV['S3KEY']
 	  config.s3_secret_access_key = ENV['S3SECRET']
 	  config.s3_bucket = 'universitas'
+		config.s3_headers = {"Content-Disposition" => "attachment;"}
 	end
 end
