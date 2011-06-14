@@ -16,6 +16,8 @@ role :web, "66.228.47.42"
 role :db,  "66.228.47.42", :primary => true
 
 require 'bundler/capistrano'
+require './config/boot'
+require 'hoptoad_notifier/capistrano'
 
 namespace :deploy do
   task :start do
@@ -30,10 +32,10 @@ namespace :deploy do
 	task :symlink_db, :roles => :app do
 		run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 	end
-	task :symlink_providers, :roles => :app do
-		run "ln -nfs #{shared_path}/config/providers.yml #{release_path}/config/providers.yml"
+	task :symlink_services, :roles => :app do
+		run "ln -nfs #{shared_path}/config/services.yml #{release_path}/config/services.yml"
 	end
 end
 
 after 'deploy', 'deploy:symlink_db'
-after 'deploy', 'deploy:symlink_providers'
+after 'deploy', 'deploy:symlink_services'

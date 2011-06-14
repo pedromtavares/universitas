@@ -25,6 +25,7 @@ gem 'RedCloth'
 gem 'faker'
 gem 'capistrano'
 gem 'unicorn'
+gem 'hoptoad_notifier'
 
 group :development do
 	gem 'annotate-models'

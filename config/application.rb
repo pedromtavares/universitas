@@ -44,12 +44,13 @@ module Universitas
 
 		config.action_mailer.delivery_method = :smtp
 		config.action_mailer.raise_delivery_errors = true
+		services = YAML::load_file(File.join(Rails.root, 'config', 'services.yml'))
 		config.action_mailer.smtp_settings = {
 			:address              => "smtp.gmail.com",
 		  :port                 => 587,
 		  :domain               => 'gmail.com',
-		  :user_name            => ENV['GMAIL_SMTP_USER'],
-		  :password             => ENV['GMAIL_SMTP_PASSWORD'],
+		  :user_name            => services['gmail']['key'],
+		  :password             => services['gmail']['secret'],
 		  :authentication       => 'plain',
 			:enable_starttls_auto => true,
 			:tls => true
