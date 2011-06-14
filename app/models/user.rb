@@ -147,11 +147,17 @@ class User < ActiveRecord::Base
 		facebook = omniauth['user_info']['urls']['Facebook']
 		image = omniauth['user_info']['image']
 		email = omniauth['user_info']['email']
+		location = omniauth['user_info']['location']
+		description = omniauth['user_info']['description']
+		website = omniauth['user_info']['urls']['Website']
 		
 		self.twitter = twitter unless twitter.blank?
 		self.facebook = facebook unless facebook.blank?
 		self.remote_image_url = image unless image.blank? || self.image?
 		self.email = email unless email.blank? || self.email?
+		self.location = location unless location.blank? || self.location?
+		self.description = description unless description.blank? || self.description?
+		self.website = website unless website.blank? || self.website?
 		self.save
 	end
 	
