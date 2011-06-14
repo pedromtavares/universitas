@@ -1,5 +1,6 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
 set :use_sudo,            false
-#tell git to clone only the latest revision and not the whole repository
 set :git_shallow_clone,   1
 set :keep_releases,       5
 set :application,         "universitas"
@@ -8,6 +9,7 @@ set :deploy_to,           "/home/deployer/universitas"
 set :runner,              "deployer"
 set :repository,          "git@github.com:pedromtavares/universitas.git"
 set :scm,                 :git
+set :rvm_ruby_string, 		'1.9.2@universitas'
 ssh_options[:paranoid]    = false
 default_run_options[:pty] = true
 
@@ -15,9 +17,11 @@ role :app, "66.228.47.42"
 role :web, "66.228.47.42"
 role :db,  "66.228.47.42", :primary => true
 
-require 'bundler/capistrano'
 require './config/boot'
+require 'rvm/capistrano'                 
+require 'bundler/capistrano'
 require 'hoptoad_notifier/capistrano'
+
 
 namespace :deploy do
   task :start do

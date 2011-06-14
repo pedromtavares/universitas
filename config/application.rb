@@ -48,14 +48,12 @@ module Universitas
 		config.action_mailer.smtp_settings = {
 			:address              => "smtp.gmail.com",
 		  :port                 => 587,
-		  :domain               => 'gmail.com',
+		  :domain               => 'universit.as',
 		  :user_name            => services['gmail']['key'],
 		  :password             => services['gmail']['secret'],
 		  :authentication       => 'plain',
-			:enable_starttls_auto => true,
-			:tls => true
-		}
-    
+			:enable_starttls_auto => true
+			}    
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
