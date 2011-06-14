@@ -1,5 +1,3 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-
 set :use_sudo,            false
 set :git_shallow_clone,   1
 set :keep_releases,       5
@@ -9,7 +7,6 @@ set :deploy_to,           "/home/deployer/universitas"
 set :runner,              "deployer"
 set :repository,          "git@github.com:pedromtavares/universitas.git"
 set :scm,                 :git
-set :rvm_ruby_string, 		'1.9.2@universitas'
 ssh_options[:paranoid]    = false
 default_run_options[:pty] = true
 
@@ -18,7 +15,6 @@ role :web, "66.228.47.42"
 role :db,  "66.228.47.42", :primary => true
 
 require './config/boot'
-require 'rvm/capistrano'                 
 require 'bundler/capistrano'
 require 'hoptoad_notifier/capistrano'
 
