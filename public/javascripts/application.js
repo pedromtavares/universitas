@@ -141,3 +141,13 @@ function showUpdatesFor(type){
 			list.find('li').show();
 	}
 }
+
+function toggleNone(elements){
+	$.each(elements, function (index, element){
+		if ($(element).hasClass('none-i')){
+			$(element).removeClass('none-i');
+		}else{
+			$(element).addClass('none-i');
+		}
+	});
+}

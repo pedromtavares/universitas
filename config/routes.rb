@@ -8,6 +8,9 @@ Universitas::Application.routes.draw do
 				post :add
 				delete :remove
 			end
+			collection do
+				get :search
+			end
 		end
     member do
 			get :timeline

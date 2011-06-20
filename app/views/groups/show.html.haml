@@ -41,12 +41,11 @@
           - @modules.each do |m|
             #module-box.ui-state-default
               .left
-                %h2=m.name
-                %p=m.description
-              .right
-                %h3.center=t('documents.plural')
-                #doc-box.ui-state-active
-                  - unless @accepted_docs.blank?
+              %h2=m.name
+              - unless m.group_documents.accepted.blank?
+                %p.left=m.description
+                .right
+                  #doc-box.ui-state-active
                     - m.group_documents.accepted.each do |group_document|
                       .doc.ui-state-hover{:title => group_document.name}
                         =link_to document_icon_for(group_document.document, true), group_document.file_url, :title => t('shared.click_to_download')
@@ -54,9 +53,8 @@
                         .options
                           - unless !user_signed_in? || current_user.has_document?(group_document.document)
                             =link_to_icon(:add, t('documents.add'), add_user_document_path(current_user,group_document.document), :method => :post)
-                  - else
-                    %p.center= t('modules.documents.blank')
-                
+              - else
+                %p=m.description
             %br.clear
         - else
           %p=t('modules.blank')
@@ -76,7 +74,7 @@
           %h1.center=t('groups.documents.share')
           .share-box.ui-state-default#search-box
             %h2.center=t('groups.documents.search')
-            = form_tag group_documents_path(resource), :remote => true, :method => :get, :class => 'form' do
+            = form_tag search_user_documents_path(current_user), :remote => true, :method => :get, :class => 'form' do
               .small-box= text_field_tag :search, '', :class => 'text_field'
               = submit_button(:small => true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
                 = button_icon :search
@@ -87,6 +85,7 @@
               = loading_icon
               %br.clear
               #search-docs
+                = render(:partial => 'search_list', :locals => {:documents => current_user.documents})
             #new-form.none
               = simple_form_for(GroupDocument.new(:document => params[:document] || Document.new), :url => group_documents_path(resource), :html => {:class => :form, :multipart => true }) do |f|
                 = render :partial => 'group_documents/form', :locals => {:f => f}

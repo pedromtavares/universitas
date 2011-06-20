@@ -6,46 +6,34 @@ describe User do
       @attr = { :name => "Default User", :email => "default@default.com", :login => 'default', :password => '123456', :password_confirmation => '123456' }
       @user = Factory(:user)
     end
-    
-    describe "name validations" do
-      it "should require a name" do
-        User.new(@attr.merge(:name => "")).should_not be_valid
-      end
-      it "should not accept large names nor small names" do
-        User.new(@attr.merge(:name => "a" * 51)).should_not be_valid
-        User.new(@attr.merge(:name => "a" * 3)).should_not be_valid
-      end
-    end
-    
-    describe "login validations" do
-      it "should require a login" do
-        User.new(@attr.merge(:login => "")).should_not be_valid
-      end
-      it "should not accept large logins nor small logins" do
-        User.new(@attr.merge(:login => "a" * 21)).should_not be_valid
-        User.new(@attr.merge(:login => "a" * 3)).should_not be_valid
-      end
-      it "should not accept 2 identical logins" do
-        user = User.create!(@attr)
-        User.new(@attr).should_not be_valid
-      end
-    end
-    
-    describe "e-mail validations" do
-      it "should not accept invalid e-mail addresses" do
-        User.new(@attr.merge(:email => "hahalol.com")).should_not be_valid
-      end
+
+		describe 'name validations' do
+			it { should have_valid(:name).when('Test') }
+			it { should_not have_valid(:name).when('', nil, 'tes', 't'*51) }
+		end
+		
+		describe 'login validations' do
+			it { should have_valid(:login).when('test') }
+			it { should_not have_valid(:login).when('', 'joe', 't'*21) }
+			it "should not accept 2 identical logins" do
+	      user = User.create!(@attr)
+	      User.new(@attr).should_not be_valid
+	    end
+		end
+		
+		describe 'email validations' do
+			it { should have_valid(:email).when('someone@gmail.com') }
+			it { should_not have_valid(:email).when('lol.com', '', nil) }
 			it "should not validate if e-mail is not required" do
 				user = User.new(@attr.merge(:email => ''))
 				user.authentications << Factory.build(:authentication)
 				user.should be_valid
 			end
-    end
-
-		describe "password validations" do
-			it "should not accept small passwords" do
-				User.new(@attr.merge(:password => "1234", :password_confirmation => "1234")).should_not be_valid
-			end
+		end
+		
+		describe 'password validations' do
+			before { subject.password_confirmation = '1234'}
+			it { should_not have_valid(:password).when('1234') }
 			it "should not validate if password is not required" do
 				user = User.new(@attr.merge(:password => '', :password_confirmation => ''))
 				user.authentications << Factory.build(:authentication)

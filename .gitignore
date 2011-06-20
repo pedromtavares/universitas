@@ -12,3 +12,4 @@ log/*
 public/uploads/
 config/database.yml
 config/services.yml
+.rspec

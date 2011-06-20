@@ -4,11 +4,10 @@ class TopicsController < InheritedResources::Base
 	belongs_to :forum
 	
 	def create
-		@topic = @forum.topics.build(:title => params[:topic][:title])
-		@post = @topic.posts.build(params[:topic][:post].merge(:author => current_user))
-		if @topic.save && @post.save
+		@topic = parent.topics.build(:title => params[:topic][:title])
+		if @topic.save && @topic.create_post(params[:topic][:post].merge(:author => current_user))
 			flash[:notice] = t('topics.created')
-			redirect_to group_forum_path(@forum.group, @forum)
+			redirect_to group_forum_topic_path(parent.group, parent, @topic)
 		else
 			render :new
 		end

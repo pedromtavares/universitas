@@ -11,6 +11,7 @@
           =f.input :email
           =f.input :password
           =f.input :password_confirmation, :required => true
+          .none=text_field_tag 'honeypot'
           .group.navform.wat-cf
             = submit_button do
               = image_tag("icons/tick.png", :alt => t('shared.signup')) 

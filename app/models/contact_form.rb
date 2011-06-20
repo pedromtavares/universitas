@@ -2,7 +2,7 @@ class ContactForm
 	include ActiveModel::Validations
 	include ActiveModel::Conversion
 	
-	attr_accessor :name, :email, :text
+	attr_accessor :name, :email, :text, :honeypot #honeypot field to avoid contact spambots
 	
 	validates :name, :presence => true, :length => 3..100
 	validates :email, :presence => true, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i

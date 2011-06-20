@@ -7,7 +7,7 @@ class AboutController < ApplicationController
 		@contact_form = ContactForm.new(params[:contact_form])
 		
 		if @contact_form.valid?
-			Notifications.contact_us(@contact_form).deliver
+			Notifications.contact_us(@contact_form).deliver unless @contact_form.honeypot.present?
 			redirect_to about_path, :notice => t('about.success')
 		else
 			flash.now[:error] = t('about.error')

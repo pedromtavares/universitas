@@ -16,11 +16,6 @@ describe GroupMember do
 		@member.updates.should_not be_blank
 	end
 	
-	it "should delete updates associated with it when it is destroyed" do
-		@member.destroy
-		Update.where(:target_id => @member, :target_type => "GroupMember").should be_blank
-	end
-	
 	it "should increment it's group's counter cache" do
 		count = @group.reload.members_count
 		Factory(:group_member, :group => @group)

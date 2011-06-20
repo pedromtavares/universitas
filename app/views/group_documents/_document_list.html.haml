@@ -1,5 +1,0 @@
-- unless documents.blank?
-  - documents.each do |document|
-    = render :partial => 'document', :locals => {:document => document, :option => :add}
-- else
-  %p You have no documents to share!

@@ -1,0 +1,5 @@
+- unless documents.blank?
+  - documents.each do |document|
+    = render :partial => 'groups/sharing_document', :locals => {:document => document, :option => :add}
+- else
+  %p= t('groups.documents.no_doc_share')

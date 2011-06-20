@@ -6,6 +6,14 @@ class UserDocumentsController < InheritedResources::Base
 	before_filter :set_breadcrumbs, :except => [:add, :remove]
 	belongs_to :user
 	
+	def search
+		@documents = if params[:search]
+			current_user.documents.search(params[:search])
+		else
+			current_user.documents
+		end
+	end
+	
 	def create
 		params[:user_document][:document_attributes].merge!(:uploader => current_user)
 		create! do |success, failure|

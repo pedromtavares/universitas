@@ -25,6 +25,10 @@ class Topic < ActiveRecord::Base
 		self.title
 	end
 	
+	def create_post(post)
+		self.posts.create(post)
+	end
+	
 	def first_post
 		self.posts.order('created_at asc').first
 	end

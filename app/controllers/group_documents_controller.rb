@@ -7,7 +7,6 @@ class GroupDocumentsController < InheritedResources::Base
 	respond_to :html, :js
 	
 	def index
-		@documents = current_user.documents.search(params[:search]) if params[:search]
 		@accepted = collection.accepted
 		@pending = collection.pending
 		super

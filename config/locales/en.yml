@@ -184,6 +184,7 @@ en:
       sender: Sender
       senders: Senders
       no_senders: "There aren't any document senders for this group yet."
+      no_doc_share: You have no documents to share!
   members:
     singular: Member
     plural: Members

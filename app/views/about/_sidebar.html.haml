@@ -6,6 +6,7 @@
       = f.input :name
       = f.input :email
       = f.input :text, :as => :text
+      .none= f.input :honeypot
       = submit_button do
         = image_tag("icons/tick.png", :alt => t('shared.submit')) 
         = t('shared.submit')

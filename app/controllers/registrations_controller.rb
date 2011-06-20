@@ -1,8 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
 	before_filter :load_presenter
   def create
-    super
-    session[:omniauth] = nil unless @user.new_record?
+		unless params[:honeypot].blank?
+			redirect_to root_path 
+		else
+    	super
+    	session[:omniauth] = nil unless @user.new_record?
+		end
   end
 
 	def edit

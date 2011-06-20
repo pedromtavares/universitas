@@ -146,7 +146,7 @@ pt:
     my_groups: Meus Grupos
     joined_none: "Você ainda não entrou em nenhum grupo."
     status: "Status do Grupo:"
-    timeline: Atualizacões
+    timeline: Atualizações
     blank_timeline: Ainda não há atualizações deste grupo!
     promote: Promover este grupo
     promote_submit: Promover!
@@ -179,6 +179,7 @@ pt:
       sender: Remetente
       senders: Remetentes
       no_senders: Ainda não há remetentes de documentos neste grupo.
+      no_doc_share: Você não possui documentos para compartilhar!
   members:
     singular: Membro
     plural: Membros

@@ -35,6 +35,8 @@ group :development do
   gem 'bullet'
   gem "capybara"
   gem 'factory_girl_rails'
+  gem 'valid_attribute'
+  gem 'spork', '~> 0.9.0.rc'
 end
 
 # Use unicorn as the web server

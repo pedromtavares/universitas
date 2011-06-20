@@ -9,3 +9,7 @@ end
 Factory.sequence :login do |n|
   "user#{n}"
 end
+
+Factory.sequence :title do |n|
+	"Title {n}"
+end

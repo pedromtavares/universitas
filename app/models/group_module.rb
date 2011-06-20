@@ -15,8 +15,8 @@ class GroupModule < ActiveRecord::Base
 	belongs_to :group, :counter_cache => :modules_count
 	has_many :group_documents
 	
-	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
-	validates :description, :length => { :minimum => 4, :maximum => 200 }
+	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 60 }
+	validates :description, :length => { :minimum => 4, :maximum => 300 }
 	
 	after_create :create_forum
 	
