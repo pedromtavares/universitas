@@ -23,14 +23,20 @@ feature "Guest Navigation", %q{
 	end
   
   scenario "Visiting groups index" do
-		visit groups_page
+		visit groups_path
     page.should_not have_content("You need to sign in or sign up before continuing.")
   end
   
   scenario "Visiting a group page" do
 		visit group_page(other_group)
+		page.should have_content("You must be a member of this group to share documents with it!")
 		page.should_not have_content("You need to sign in or sign up before continuing.")
     page.should_not have_button("Join this group")
+  end
+
+	scenario "Visiting documents index" do
+		visit documents_path
+    page.should_not have_content("You need to sign in or sign up before continuing.")
   end
 
 	scenario "Visiting the dashboard or trying to get to the group creation form will screw you up" do
