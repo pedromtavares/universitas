@@ -26,6 +26,12 @@ feature "Guest Navigation", %q{
 		visit groups_path
     page.should_not have_content("You need to sign in or sign up before continuing.")
   end
+
+	scenario "Trying to add a new group" do
+		visit groups_path
+		click_link_or_button("New Group")
+		page.should have_content("You need to sign in or sign up before continuing.")
+	end
   
   scenario "Visiting a group page" do
 		visit group_page(other_group)
