@@ -7,7 +7,9 @@
     %p  
       %strong= t('groups.leader')
       = link_to resource.leader.name, resource.leader
-      
+    %br.clear
+    = button_to_icon :message, t('forums.plural'), group_forums_path(resource), :class => "button" 
+    %br.clear  
     - if user_signed_in? && !current_user.leader_of?(resource)
       - unless current_user.member_of?(resource)
         %p= button_to_icon :key, t('groups.join'), join_group_path, :method => :post

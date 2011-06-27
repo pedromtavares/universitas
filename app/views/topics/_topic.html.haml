@@ -1,9 +1,10 @@
 %tr.topic{:class => cycle("odd","even"), :id => topic.id}
   %td.first
-    - if current_user.leader_of?(topic.forum.group) || current_user == topic.first_post.author
-      =link_to_icon :edit, t('topics.edit'), 'javascript:void(0)', :class => 'edit-topic'
-    - if current_user.leader_of?(topic.forum.group)
-      =link_to_icon :remove, t('topics.delete'), topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :class => 'remove'
+    - if current_user
+      - if current_user.leader_of?(topic.forum.group) || current_user == topic.first_post.author
+        =link_to_icon :edit, t('topics.edit'), 'javascript:void(0)', :class => 'edit-topic'
+      - if current_user.leader_of?(topic.forum.group)
+        =link_to_icon :remove, t('topics.delete'), topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :class => 'remove'
   %td
     .title= link_to topic.title, topic_path(topic)
     = form_tag topic_path(topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do

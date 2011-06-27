@@ -19,18 +19,19 @@
         =time_ago_in_words post.updated_at
         =t('shared.ago')
       %br.clear
-  .actions
-    =button_to_icon :reply, t('posts.reply_to'), '#in-reply-to', :class => 'reply-to'
-    =button_to_icon :edit, t('posts.edit'), 'javascript:void(0)', :class => 'edit-post' if post.author == current_user || current_user.leader_of?(post.topic.forum.group)
-    =button_to_icon :remove, t('posts.delete'), group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :delete, :confirm => t('posts.are_you_sure'), :title => t('posts.delete'), :class => 'remove' if current_user.leader_of?(post.topic.forum.group)
-  = form_tag group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :put, :remote => true, :class => 'form none edit-form', :id => "edit-#{post.id}" do
-    = hidden_field_tag :parent_id, post.parent_id, :id => nil
-    = text_area_tag :text, post.text
-    = submit_button(:onclick => "$('.loading').removeClass('none');") do
-      = image_tag("icons/tick.png", :alt => t('posts.update')) 
-      = t('posts.update')
-    =link_to 'javascript:void(0)', :class => 'button cancel-edit-form' do
-      = image_tag("icons/cross.png", :alt => t('shared.cancel')) 
-      = t('shared.cancel')
-    .spaced= loading_icon
+  - if current_user
+    .actions
+      =button_to_icon :reply, t('posts.reply_to'), '#in-reply-to', :class => 'reply-to'
+      =button_to_icon :edit, t('posts.edit'), 'javascript:void(0)', :class => 'edit-post' if post.author == current_user || current_user.leader_of?(post.topic.forum.group)
+      =button_to_icon :remove, t('posts.delete'), group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :delete, :confirm => t('posts.are_you_sure'), :title => t('posts.delete'), :class => 'remove' if current_user.leader_of?(post.topic.forum.group)
+    = form_tag group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :put, :remote => true, :class => 'form none edit-form', :id => "edit-#{post.id}" do
+      = hidden_field_tag :parent_id, post.parent_id, :id => nil
+      = text_area_tag :text, post.text
+      = submit_button(:onclick => "$('.loading').removeClass('none');") do
+        = image_tag("icons/tick.png", :alt => t('posts.update')) 
+        = t('posts.update')
+      =link_to 'javascript:void(0)', :class => 'button cancel-edit-form' do
+        = image_tag("icons/cross.png", :alt => t('shared.cancel')) 
+        = t('shared.cancel')
+      .spaced= loading_icon
   %br.clear

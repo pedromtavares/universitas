@@ -2,6 +2,7 @@ class PostsController < InheritedResources::Base
 	respond_to :html, :js
 	belongs_to :topic
 	skip_before_filter :set_breadcrumbs
+	before_filter :authenticate_user!, :allow_members_only, :except => :textile
 	
 	def create
 		@post = Post.new(:text => h(params[:text]), :author => current_user, :topic => parent, :parent_id => params[:parent_id])

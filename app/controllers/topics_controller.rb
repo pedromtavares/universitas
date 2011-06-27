@@ -1,6 +1,7 @@
 class TopicsController < InheritedResources::Base
 	respond_to :html, :js
-	before_filter :load_presenter, :authenticate_user!, :allow_members_only
+	before_filter :load_presenter
+	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
 	belongs_to :forum
 	
 	def create
@@ -31,7 +32,7 @@ class TopicsController < InheritedResources::Base
 		destroy!{group_forum_path(@forum.group, @forum)}
 	end
 	
-  protected
+  private
 
 	def allow_members_only
 		unless current_user.member_of?(parent.group)
@@ -43,11 +44,11 @@ class TopicsController < InheritedResources::Base
 	def load_presenter
 		@presenter = TopicsPresenter.new(current_user, parent.group)
 	end
-	
+
 	def set_breadcrumbs
-		add_breadcrumb(parent.group.name.truncate(50), lambda { group_path(parent.group)})
-		add_breadcrumb(I18n.t("forums.all"), lambda { group_forums_path(parent.group)})
-		add_breadcrumb(parent.title.truncate(50), lambda { group_forum_path(parent.group, parent)})
-		add_breadcrumb(resource.title.truncate(50), lambda { group_forum_topic_path(parent.group, parent, resource)}) if params[:id]
+		add_breadcrumb(parent.group.name.truncate(50), group_path(parent.group))
+		add_breadcrumb(I18n.t("forums.all"), group_forums_path(parent.group))
+		add_breadcrumb(parent.title.truncate(50), group_forum_path(parent.group, parent))
+		add_breadcrumb(resource.title.truncate(50), group_forum_topic_path(parent.group, parent, resource)) if params[:id]
 	end
 end

@@ -1,6 +1,3 @@
-= button_to_icon :message, t('forums.plural'), group_forums_path(resource), :class => "button" 
-%br.clear
-%br.clear
 = form_tag promote_group_path(resource), :method => :post, :class => 'form' do
   #promote-group
     = button_to_icon :star, t('groups.promote'), 'javascript:void(0)', :class => "small-button", :onclick => "$('#promote').removeClass('none');$('.text-field').focus()"

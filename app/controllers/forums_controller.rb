@@ -1,5 +1,6 @@
 class ForumsController < InheritedResources::Base
-	before_filter :load_presenter, :authenticate_user!, :allow_members_only
+	before_filter :load_presenter
+	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
 	belongs_to :group
 	
 	def create
