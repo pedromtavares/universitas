@@ -29,7 +29,7 @@ gem 'hoptoad_notifier'
 gem 'kgio', '2.4.1'
 
 group :development do
-	gem 'annotate-models'
+	gem 'annotate'
 	gem "rspec"
   gem "rspec-rails"
   gem 'steak'
