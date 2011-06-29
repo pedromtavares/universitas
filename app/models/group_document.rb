@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20110227225207
 #
 # Table name: group_documents
 #
@@ -8,7 +7,7 @@
 #  group_id        :integer(4)
 #  document_id     :integer(4)
 #  group_module_id :integer(4)
-#  pending         :boolean(1)
+#  pending         :boolean(1)      default(FALSE)
 #  created_at      :datetime
 #  updated_at      :datetime
 #
@@ -57,3 +56,5 @@ class GroupDocument < ActiveRecord::Base
 	end
 
 end
+
+

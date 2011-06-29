@@ -1,0 +1,21 @@
+hoptoad: 1234
+s3:
+  key: 1234
+  secret: 1234
+gmail:
+  key: your-gmail-username
+  secret: your-gmail-secret
+twitter:
+  development:
+    key: key
+    secret: secret
+  production:
+    key: key
+    secret: secret
+facebook:
+  development:
+    key: key
+    secret: secret
+  production:
+    key: key
+    secret: secret

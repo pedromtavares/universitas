@@ -23,3 +23,19 @@ describe Document do
 		end
   end
 end
+
+# == Schema Information
+#
+# Table name: documents
+#
+#  id           :integer(4)      not null, primary key
+#  name         :string(255)
+#  description  :text
+#  file         :string(255)
+#  user_id      :integer(4)
+#  content_type :string(255)
+#  file_size    :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

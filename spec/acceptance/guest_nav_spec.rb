@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/acceptance_helper'
 feature "Guest Navigation", %q{
   In order to use the application
   as a guest user
-  I want to be able to browse through user profiles and groups without being asked to log in.
+  I want to be able to browse through user profiles, documents, groups and forums without being asked to log in.
 } do
 
   background do
@@ -49,6 +49,18 @@ feature "Guest Navigation", %q{
 		visit dashboard
 		page.should have_content("You need to sign in or sign up before continuing.")
 		visit group_creation_page
+		page.should have_content("You need to sign in or sign up before continuing.")
+	end
+	
+	scenario "Browsing through forums" do
+		visit group_path(other_group)
+		click_link_or_button("Forums")
+		page.should_not have_content("You need to sign in or sign up before continuing.")
+		generate_posts_for(other_forum)
+		visit group_forum_topics_path(other_forum.group, other_forum, other_forum.topics.first)
+		page.should_not have_content("You need to sign in or sign up before continuing.")
+		fill_in("text", :with => "testing")
+		click_link_or_button("Post")
 		page.should have_content("You need to sign in or sign up before continuing.")
 	end
 end

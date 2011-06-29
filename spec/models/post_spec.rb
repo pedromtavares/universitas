@@ -16,3 +16,17 @@ describe Post do
 		target.should == other
 	end
 end
+
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer(4)      not null, primary key
+#  topic_id   :integer(4)
+#  user_id    :integer(4)
+#  text       :text
+#  ancestry   :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

@@ -20,3 +20,17 @@ describe Forum do
 	end
 
 end
+
+# == Schema Information
+#
+# Table name: forums
+#
+#  id           :integer(4)      not null, primary key
+#  group_id     :integer(4)
+#  title        :string(255)
+#  description  :text
+#  topics_count :integer(4)      default(0)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

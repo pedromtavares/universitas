@@ -76,3 +76,22 @@ describe Group do
 		end
 	end
 end
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id              :integer(4)      not null, primary key
+#  name            :string(255)
+#  description     :text
+#  user_id         :integer(4)
+#  cached_slug     :string(255)
+#  image           :string(255)
+#  status          :string(255)
+#  modules_count   :integer(4)      default(0)
+#  members_count   :integer(4)      default(0)
+#  documents_count :integer(4)      default(0)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+

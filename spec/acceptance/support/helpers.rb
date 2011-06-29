@@ -53,8 +53,23 @@ module HelperMethods
 		@default_group ||= Group.create(:leader => User.find_by_login("default"), :name => "Test Group")
 	end
 	
+	def default_forum
+		@default_forum ||= Factory(:forum, :group => self.default_group)
+	end
+	
 	def other_group
 		@other_group ||= Factory(:group)
+	end
+	
+	def other_forum
+		@other_forum ||= Factory(:forum, :group => self.other_group)
+	end
+	
+	def generate_posts_for(forum)
+		topic = Factory(:topic, :forum => forum)
+		10.times do |n|
+			Factory(:post, :topic => topic)
+		end
 	end
   
 end
