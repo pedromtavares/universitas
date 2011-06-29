@@ -47,3 +47,18 @@ describe GroupDocument do
 	end
 
 end
+
+# == Schema Information
+#
+# Table name: group_documents
+#
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)
+#  group_id        :integer(4)
+#  document_id     :integer(4)
+#  group_module_id :integer(4)
+#  pending         :boolean(1)      default(FALSE)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+

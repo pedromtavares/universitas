@@ -11,5 +11,5 @@ Factory.sequence :login do |n|
 end
 
 Factory.sequence :title do |n|
-	"Title {n}"
+	"Title #{n}"
 end

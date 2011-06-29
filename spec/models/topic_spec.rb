@@ -38,3 +38,16 @@ describe Topic do
 	end
 	
 end
+
+# == Schema Information
+#
+# Table name: topics
+#
+#  id          :integer(4)      not null, primary key
+#  forum_id    :integer(4)
+#  posts_count :integer(4)      default(0)
+#  title       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

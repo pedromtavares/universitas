@@ -170,3 +170,34 @@ describe User do
 		end
 		
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :integer(4)      not null, primary key
+#  login                :string(255)     not null
+#  name                 :string(255)     not null
+#  status               :string(255)
+#  cached_slug          :string(255)
+#  location             :string(255)
+#  website              :string(255)
+#  twitter              :string(255)
+#  facebook             :string(255)
+#  image                :string(255)
+#  description          :text
+#  show_email           :boolean(1)      default(TRUE)
+#  email                :string(255)     default(""), not null
+#  encrypted_password   :string(128)     default(""), not null
+#  reset_password_token :string(255)
+#  remember_token       :string(255)
+#  remember_created_at  :datetime
+#  sign_in_count        :integer(4)      default(0)
+#  current_sign_in_at   :datetime
+#  last_sign_in_at      :datetime
+#  current_sign_in_ip   :string(255)
+#  last_sign_in_ip      :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+

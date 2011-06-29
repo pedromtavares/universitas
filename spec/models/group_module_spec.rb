@@ -18,3 +18,16 @@ describe GroupMember do
 		@group.reload.modules_count.should == count + 1
 	end
 end
+
+# == Schema Information
+#
+# Table name: group_modules
+#
+#  id          :integer(4)      not null, primary key
+#  group_id    :integer(4)
+#  name        :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

@@ -27,3 +27,18 @@ describe Update do
 	end
 	
 end
+
+# == Schema Information
+#
+# Table name: updates
+#
+#  id             :integer(4)      not null, primary key
+#  creator_id     :integer(4)
+#  creator_type   :string(255)
+#  target_id      :integer(4)
+#  target_type    :string(255)
+#  custom_message :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
