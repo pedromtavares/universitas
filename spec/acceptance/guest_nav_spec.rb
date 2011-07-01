@@ -57,7 +57,7 @@ feature "Guest Navigation", %q{
 		click_link_or_button("Forums")
 		page.should_not have_content("You need to sign in or sign up before continuing.")
 		generate_posts_for(other_forum)
-		visit group_forum_topics_path(other_forum.group, other_forum, other_forum.topics.first)
+		visit group_forum_topic_path(other_forum.group, other_forum, other_forum.topics.first)
 		page.should_not have_content("You need to sign in or sign up before continuing.")
 		fill_in("text", :with => "testing")
 		click_link_or_button("Post")

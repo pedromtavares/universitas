@@ -38,6 +38,7 @@ group :development do
   gem 'factory_girl_rails'
   gem 'valid_attribute'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'launchy'
 end
 
 # Use unicorn as the web server
