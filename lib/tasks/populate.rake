@@ -44,7 +44,12 @@ namespace :db do
 		end
     
 		# makes dummy users follow each other and enter random groups
-    User.all.each do |user|
+		# by default max_allowed_packet=1MB for MySQL, this can create dropped connections...
+		# "MySQL server has gone away" message - hard to find/diagnose
+		# chunk users into 10 groups
+		users = []
+		10.times { |n| users.concat User.where("id % 10 = #{n}") }
+    users.each do |user|
       5.times do
         target = User.find(rand(100)+1)
         user.follow!(target) unless user.following?(target) || user == target
@@ -58,7 +63,7 @@ namespace :db do
 			10.times do
 				user.add_document(Document.create(:name => Faker::Lorem.sentence, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph))
 			end
-			
+		
     end
 
 		group = Group.first
