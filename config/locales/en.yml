@@ -209,6 +209,7 @@ en:
     type: Type
     my_documents: My Documents
     no_documents: You have no documents yet.
+    uploader: Uploader
   modules:
     singular: Module
     plural: Modules

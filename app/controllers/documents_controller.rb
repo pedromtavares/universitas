@@ -8,7 +8,7 @@ class DocumentsController < InheritedResources::Base
 	end
 	
 	def show
-	  
+	  super
   end
 	
 	def download
