@@ -49,7 +49,7 @@ Universitas::Application.routes.draw do
     end
   end
 
-	resources :documents, :only => :index do
+	resources :documents, :only => [:index, :show] do
 		member do
 			get :download
 		end

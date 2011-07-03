@@ -7,6 +7,10 @@ class DocumentsController < InheritedResources::Base
 		super
 	end
 	
+	def show
+	  
+  end
+	
 	def download
 		file = resource.file_url
 		send_data(file, :disposition => 'attachment', :filename => File.basename(file))
