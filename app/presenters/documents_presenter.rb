@@ -1,5 +1,6 @@
 class DocumentsPresenter < ApplicationPresenter
 	
+	
 	def documents
 		@user.documents
 	end

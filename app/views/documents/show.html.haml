@@ -10,5 +10,8 @@
       %strong=t("documents.uploader")
       = link_to resource.uploader, resource.uploader
     %p
+  %br.clear    
   #tabs
     %ul
+      %li=link_to t("documents.users"), "#users"
+      %li=link_to t("documents.groups"), "#groups"

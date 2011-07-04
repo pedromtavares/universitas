@@ -210,6 +210,9 @@ en:
     my_documents: My Documents
     no_documents: You have no documents yet.
     uploader: Uploader
+    users: Users
+    groups: Groups
+    blank_users: This documents is not collected by any users
   modules:
     singular: Module
     plural: Modules
