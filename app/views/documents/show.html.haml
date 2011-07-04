@@ -1,6 +1,5 @@
 .content
-  %h2.title
-    = resource.name
+  %h2.title= resource.name
   %div.left.spaced{:style => 'margin:15px'}= link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
   .inner
     %p
@@ -15,3 +14,9 @@
     %ul
       %li=link_to t("documents.users"), "#users"
       %li=link_to t("documents.groups"), "#groups"
+      
+    #users
+      - unless @users.blank?
+        = render :partial => 'users/list', :locals => {:users => resource.users}
+      - else
+        %p=t('members.blank')

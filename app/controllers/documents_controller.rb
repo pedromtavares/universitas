@@ -8,6 +8,7 @@ class DocumentsController < InheritedResources::Base
 	end
 	
 	def show
+	  @users = @document.users
 	  super
   end
 	
