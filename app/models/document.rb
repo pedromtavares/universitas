@@ -20,7 +20,7 @@ class Document < ActiveRecord::Base
 	has_many :group_documents, :dependent => :destroy
 	has_many :users, :through => :user_documents
 	has_many :groups, :through => :group_documents
-	
+	has_friendly_id :name, :use_slug => true
 	
 	attr_accessible :uploader, :name, :file, :description
 	before_save :set_file_attributes
