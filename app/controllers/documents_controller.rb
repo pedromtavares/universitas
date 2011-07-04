@@ -9,6 +9,7 @@ class DocumentsController < InheritedResources::Base
 	
 	def show
 	  @users = @document.users
+	  @groups = @document.groups
 	  super
   end
 	

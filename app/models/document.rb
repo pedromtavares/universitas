@@ -19,6 +19,7 @@ class Document < ActiveRecord::Base
 	has_many :user_documents, :dependent => :destroy
 	has_many :group_documents, :dependent => :destroy
 	has_many :users, :through => :user_documents
+	has_many :groups, :through => :group_documents
 	
 	
 	attr_accessible :uploader, :name, :file, :description

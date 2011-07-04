@@ -19,4 +19,9 @@
       - unless @users.blank?
         = render :partial => 'users/list', :locals => {:users => resource.users}
       - else
-        %p=t('members.blank')
+        %p=t('document.blank_users')
+    #groups
+      - unless @groups.blank?
+        = render :partial => 'groups/list', :locals => {:groups => @groups}
+      - else
+        %p=t('document.blank_groups')
