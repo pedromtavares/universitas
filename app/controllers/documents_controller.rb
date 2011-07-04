@@ -7,6 +7,12 @@ class DocumentsController < InheritedResources::Base
 		super
 	end
 	
+	def show
+	  @users = @document.users
+	  @groups = @document.groups
+	  super
+  end
+	
 	def download
 		file = resource.file_url
 		send_data(file, :disposition => 'attachment', :filename => File.basename(file))
@@ -26,6 +32,7 @@ class DocumentsController < InheritedResources::Base
 		add_breadcrumb(I18n.t("documents.all"), :collection_path)
 		add_breadcrumb(I18n.t("documents.my_documents"), lambda { |a| user_documents_path(current_user)  })
 		add_breadcrumb(I18n.t("documents.new"), lambda { |a| new_user_document_path(current_user)  })
+		add_breadcrumb(resource.to_s.truncate(50), :resource_path) if params[:id]		
 	end
 
 end
