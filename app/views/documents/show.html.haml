@@ -1,0 +1,27 @@
+.content
+  %h2.title= resource.name
+  %div.left.spaced{:style => 'margin:15px'}= link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
+  .inner
+    %p
+      %span.gray= resource.description
+    %p
+    %p
+      %strong=t("documents.uploader")
+      = link_to resource.uploader, resource.uploader
+    %p
+  %br.clear    
+  #tabs
+    %ul
+      %li=link_to t("documents.users"), "#users"
+      %li=link_to t("documents.groups"), "#groups"
+      
+    #users
+      - unless @users.blank?
+        = render :partial => 'users/list', :locals => {:users => resource.users}
+      - else
+        %p=t('documents.blank.users')
+    #groups
+      - unless @groups.blank?
+        = render :partial => 'groups/list', :locals => {:groups => @groups}
+      - else
+        %p=t('documents.blank.groups')

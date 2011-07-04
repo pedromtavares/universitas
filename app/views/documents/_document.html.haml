@@ -3,7 +3,7 @@
     =link_to document_icon_for(document), document.file.url, :title => t('shared.click_to_download')
     %br
   .item
-    %h3=document.name
+    %h3=link_to document.name, document
     %p=document.description
     - if user_signed_in?
       - unless current_user.has_document?(document)
