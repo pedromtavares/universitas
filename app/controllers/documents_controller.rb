@@ -10,6 +10,7 @@ class DocumentsController < InheritedResources::Base
 	def show
 	  @users = @document.users
 	  @groups = @document.groups
+		@user_document = current_user.user_documents.find_by_document_id(params[:id]) if current_user
 	  super
   end
 	

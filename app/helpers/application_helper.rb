@@ -29,6 +29,7 @@ module ApplicationHelper
 		content_tag(:button, {:type => 'submit', :class => klass}.merge(options), &block)
 	end
 	
+	# for more icons check out the bottom of http://jqueryui.com/themeroller/
 	def icon_for(name)
 		case name
 			when :add
@@ -55,6 +56,8 @@ module ApplicationHelper
 				"cancel"
 			when :key
 				"key"
+			when :download
+				"arrowthickstop-1-s"
 		end
 	end
 	

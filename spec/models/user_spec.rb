@@ -110,6 +110,7 @@ describe User do
 			it 'should remove a document' do
 				@other_user.remove_document(@document)
 				@other_user.documents.should_not include(@document)
+				Document.find(@document).should be
 			end
 		end
 		

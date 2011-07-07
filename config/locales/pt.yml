@@ -127,6 +127,7 @@ pt:
       removed_collection: "Documento removido com sucesso da sua colecão."
       already_exists: "Você já possui este documento na sua coleção!"
       remove: Remover da minha coleção
+      add: Adicionar à minha coleção
       no_permission: "Você não tem permissão para editar este documento."
   groups:
     singular: Grupo
@@ -200,10 +201,16 @@ pt:
     remove: Remover da minha coleção
     blank: Nenhum resultado correspondeu à sua busca.
     uploader: Enviado Por
+    uploaded_at: Enviado
     size: Tamanho
     type: Tipo
     my_documents: Meus Documentos
     no_documents: Você ainda não possui documentos.
+    users: Usuários
+    groups: Grupos
+    blank:
+      users: Esse documento não está na coleção de ninguém
+      groups: Esse documento não está sendo compartilhado por nenhum grupo
   modules:
     singular: Módulo
     plural: Módulos

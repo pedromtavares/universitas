@@ -105,21 +105,23 @@ class User < ActiveRecord::Base
     self.groups_leadered.exists?(group)
   end
 	
-	def has_document?(document)
-		self.documents.exists?(document)
+	def has_document?(document_id)
+		self.documents.exists?(document_id)
 	end
 	
-	def uploaded_document?(document)
-		self.uploaded_documents.exists?(document)
+	def uploaded_document?(document_id)
+		self.uploaded_documents.exists?(document_id)
 	end
 	
-	def add_document(document)
-		document = document.is_a?(Document) ? document.id : document
-		self.user_documents.create(:document_id => document) unless self.has_document?(document)
+	def add_document(document_id)
+		document = Document.find(document_id)
+		self.user_documents.create(:document => document) unless self.has_document?(document)
 	end
 	
-	def remove_document(document)
-		self.documents.find(document).destroy if self.has_document?(document)
+	def remove_document(document_id)
+		# the reason this find is necessary is because we need to use the integer id on the find_by_document_id(), not the named slug
+		document = Document.find(document_id)
+		self.user_documents.find_by_document_id(document).destroy if self.has_document?(document)
 	end
 	
 	def has_provider?(provider)

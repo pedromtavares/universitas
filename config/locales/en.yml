@@ -131,6 +131,7 @@ en:
       added_collection: "Document successfully added to your collection."
       removed_collection: "Document successfully removed from your collection."
       already_exists: "You already have this document in your collection!"
+      add: Add to my collection
       remove: Remove from my collection
       no_permission: "You do not have permission to edit this document."
   groups:
@@ -205,11 +206,11 @@ en:
     remove: Remove From My Collection
     blank: No document results matched your search.
     uploader: Uploaded By
+    uploaded_at: Uploaded At
     size: Size
     type: Type
     my_documents: My Documents
     no_documents: You have no documents yet.
-    uploader: Uploader
     users: Users
     groups: Groups
     blank:
