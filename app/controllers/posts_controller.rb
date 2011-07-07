@@ -36,4 +36,13 @@ class PostsController < InheritedResources::Base
 		end
 	end
 	
+	private
+	
+	def allow_members_only
+		unless current_user.member_of?(parent.forum.group)
+			flash[:error] = t('forums.not_allowed')
+			redirect_to group_path(parent.forum.group)
+		end
+	end
+	
 end
