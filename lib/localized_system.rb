@@ -31,6 +31,7 @@ module LocalizedSystem
 
   def set_locale
     I18n.locale = cookies.permanent[:locale] = params[:locale] || cookies[:locale] || I18n.default_locale
+		current_user.update_attribute(:locale, I18n.locale) unless current_user.blank?
   end
 
   def current_locale
