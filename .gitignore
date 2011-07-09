@@ -6,7 +6,6 @@ nbproject
 *.pid
 tmp/*
 log/*
-.rvmrc
 .redcar/
 .idea/
 public/uploads/
