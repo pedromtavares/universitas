@@ -87,8 +87,9 @@ class Group < ActiveRecord::Base
 		end
 	end
 	
-	def remove_document(document)
-		self.documents.find(document).destroy if self.has_document?(document)
+	def remove_document(document_id)
+	  document = Document.find(document_id)
+		self.group_documents.find_by_document_id(document).destroy if self.has_document?(document)
 	end
 
 	private

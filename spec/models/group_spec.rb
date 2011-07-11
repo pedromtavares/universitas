@@ -73,6 +73,7 @@ describe Group do
 		it 'should remove a document' do
 			@group.remove_document(@document)
 			@group.documents.should_not include(@document)
+			Document.find(@document).should_not be_blank
 		end
 	end
 end
