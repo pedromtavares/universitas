@@ -5,6 +5,12 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# need ImageMagick
+# brew install imagemagick
+# or
+# apt-get imagemagick
+# you know what to do
+
 gem 'mysql2', '0.2.7'
 gem 'haml'
 gem 'inherited_resources'
