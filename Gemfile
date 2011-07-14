@@ -13,6 +13,12 @@ gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'simple_form'
 gem 'carrierwave'
+# need ImageMagick
+# brew install imagemagick
+# (you may need to `brew update` first)
+# or
+# apt-get imagemagick
+# you know what to do
 gem 'rmagick'
 gem 'web-app-theme'
 gem 'fog'
