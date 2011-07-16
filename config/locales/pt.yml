@@ -35,12 +35,12 @@ pt:
       first: « Primeiro
       last: Último »
   custom_messages:
-    file_validation: "não pode ser maior que 10MB!"
-    image_validation: "não pode ser maior que 1MB!"
-    file_maximum: 'tamanho máximo do arquivo: 10MB'
+    file_validation: "não pode ser maior que %{size}MB!"
+    image_validation: "não pode ser maior que %{size}MB!"
+    file_maximum: 'tamanho máximo do arquivo: %{size}MB'
     file_extensions: 'tipos de arquivo permitidos: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
     image_maximum: 'tipos de arquivo permitidos: jpg, jpeg, gif, png'
-    image_extensions: 'tamanho máximo do arquivo: 1MB'
+    image_extensions: "tamanho máximo do arquivo: %{size}MB"
       
   dashboard:
     plural: Painel

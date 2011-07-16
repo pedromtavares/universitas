@@ -10,9 +10,9 @@
       .center= file_size_from_bytes(resource.document.file_size)
     %br.clear
     %br.clear
-      = document.input :file, :as => :file, :required => false, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
+      = document.input :file, :as => :file, :required => false, :hint => raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")
   - else
-    = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum')}<br/>#{t('custom_messages.file_extensions')}")
+    = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")
 %br      
 .group.navform.wat-cf
   = submit_button do

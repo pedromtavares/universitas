@@ -5,7 +5,7 @@
   %br.clear
   .left.spaced= image_tag resource.image_url
   %br.clear
-= f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum')}<br/>#{t('custom_messages.image_extensions')}")      
+= f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum', :size => Group::MAXIMUM_IMAGE_SIZE_MB)}<br/>#{t('custom_messages.image_extensions')}")      
 
 %h3= t('modules.plural')
 = f.simple_fields_for :modules do |mod|
