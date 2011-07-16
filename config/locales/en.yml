@@ -33,12 +33,12 @@ en:
       prev: « Prev
       next: Next »
   custom_messages:
-    file_validation: "can't be larger than 10MB!"
-    image_validation: "can't be larger than 1MB!"
-    file_maximum: 'maximum file size: 10MB'
+    file_validation: "can't be larger than %{size}MB!"
+    image_validation: "can't be larger than %{size}MB!"
+    file_maximum: 'maximum file size: %{size}MB'
     file_extensions: 'allowed file types: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
-    image_maximum: 'allowed file types: jpg, jpeg, gif, png'
-    image_extensions: 'maximum file size: 1MB'
+    image_extensions: 'allowed file types: jpg, jpeg, gif, png'
+    image_maximum: 'maximum file size: %{size}MB'
   errors:
     messages:
       carrierwave_processing_error: failed to be processed
