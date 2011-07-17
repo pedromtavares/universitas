@@ -6,6 +6,9 @@
       %span.gray= resource.description
     %br.clear
     %p
+      = resource.download_count
+      = t("documents.download_count")
+    %p
       %strong=t("documents.uploader")
       = link_to resource.uploader, resource.uploader
     %p
