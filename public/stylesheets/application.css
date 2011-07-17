@@ -218,6 +218,12 @@
 	margin: 3px;
 }
 
+label.error{
+	font-size:12px;
+	padding:10px;
+	color:#d62f2f;
+}
+
 #new-form{
 	padding:15px;
 	width:90%;
