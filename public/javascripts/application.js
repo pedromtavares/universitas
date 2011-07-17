@@ -76,6 +76,31 @@ $(function(){
 		$(this).closest('form').submit();
 	});
 	
+	/******* Group document share new document form validation *******/
+	$("#new_group_document").validate({
+		rules:{
+			"group_document[document_attributes][name]":{
+				required: true,
+				minlength: 4
+			},
+			"group_document[document_attributes][file]":{
+				required: true
+			}
+			
+		},
+		messages:{
+			"group_document[document_attributes][name]":{
+				required: "Please fill out this field",
+				minlength: "Document name has to be at least 4 characters long"
+			},
+			"group_document[document_attributes][file]":{
+				required: "Please select a file"
+			}
+		}
+			
+	});
+	
+	
 	/******* Group forums *******/
 
 	$('.reply-to').live('click',function(){
@@ -151,3 +176,29 @@ function toggleNone(elements){
 		}
 	});
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
