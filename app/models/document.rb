@@ -50,6 +50,11 @@ class Document < ActiveRecord::Base
 		self.where("name like ?", "%#{search}%")
 	end
 	
+	def download_plus_one
+	  self.download_count += 1
+	  self.save
+  end
+	
 	private 
 	
   def set_file_attributes 
@@ -64,5 +69,6 @@ class Document < ActiveRecord::Base
 	def remove_stored_file
 		@stored.remove_file! if @stored
 	end
+	
 	
 end

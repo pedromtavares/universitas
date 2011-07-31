@@ -13,6 +13,12 @@ describe Document do
 		@document.extension.should == 'txt'
 	end
 	
+	it 'should increase download count by 1' do
+	  current_download_count = @document.download_count
+	  @document.download_plus_one
+	  @document.download_count == current_download_count + 1
+  end
+	
 	describe "validations" do
   	it "should have a name" do
   		Factory.build(:document, :name => nil).should_not be_valid
