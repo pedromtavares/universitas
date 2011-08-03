@@ -60,7 +60,7 @@ Universitas::Application.routes.draw do
 	resource :home, :only => :show, :controller => 'home'
 	resource :about, :only => [:show, :create], :controller => 'about'
   
-  get "/javascripts/track.js" => "home#track"
+  get "/track.js" => "home#track"
   get 'textile_guide' => 'posts#textile', :as => 'textile'
 	get 'users/:id' => 'users#show', :as => 'profile'
   get ':id' => 'groups#show', :as => 'group'
