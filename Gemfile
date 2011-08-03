@@ -33,6 +33,7 @@ gem 'capistrano'
 gem 'unicorn'
 gem 'hoptoad_notifier'
 gem 'kgio', '2.4.1'
+gem 'rest-client'
 
 group :development do
 	gem 'annotate'

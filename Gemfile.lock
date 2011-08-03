@@ -265,6 +265,7 @@ DEPENDENCIES
   omniauth
   rails (= 3.0.5)
   rake (= 0.8.7)
+  rest-client
   rmagick
   rspec
   rspec-rails
