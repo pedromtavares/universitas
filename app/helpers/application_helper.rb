@@ -14,8 +14,9 @@ module ApplicationHelper
 	
 	def button_link_to(*args, &block)
 		options = args.extract_options!
-		klass = 'button '
-		klass += ' small-button ' if options[:small]
+		color = 'gray'
+		color = options.delete(:color) if options[:color]
+		klass = "button button-#{color}"
 		klass += options.delete(:class) if options[:class]
 		options[:class] = klass
 		args << options
@@ -23,8 +24,7 @@ module ApplicationHelper
 	end
 	
 	def submit_button(options = {}, &block)
-		klass = 'button '
-		klass += ' small-button ' if options[:small]
+		klass = 'button button-gray fr'
 		klass += options.delete(:class) if options[:class]
 		content_tag(:button, {:type => 'submit', :class => klass}.merge(options), &block)
 	end
@@ -83,7 +83,7 @@ module ApplicationHelper
 	
 	def search_button
 		submit_button(:small => true) do
-    	button_icon(:search) +
+		  content_tag(:span, '', :class => "search") + 
       t('shared.search')
 		end
 	end

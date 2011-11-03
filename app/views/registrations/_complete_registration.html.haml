@@ -1,19 +1,15 @@
-#box
-  #block-signup.block
-    %h2= t('auth.please_complete')
-    .content.login
-      .flash
-        .message.notice
-          %p=t('auth.first_time')
-      =simple_form_for(resource,:as => resource_name,:url => registration_path(resource_name),:html =>{:class => 'form'}) do |f|
-        =f.input :login 
-        =f.input :name
-        =f.input :email
-        .group.navform.wat-cf
-          = submit_button do
-            = image_tag("icons/tick.png", :alt => t('shared.signup')) 
-            = t 'shared.signup'
-          %br.clear  
-          %br.clear
-        
-      =render :partial => "devise/shared/links"
+.login-box.main-content{:style => 'top:40%'}
+  %header
+    %h2=t('auth.please_complete')
+  %section
+    .message.info
+      =t('auth.first_time')
+    =simple_form_for(resource,:as => resource_name,:url => registration_path(resource_name),:html =>{:class => 'clearfix'}) do |f|
+      =f.input :login 
+      =f.input :name
+      =f.input :email
+      %p.clearfix
+        = submit_button do
+          = t 'shared.signup'
+    %br
+    =render :partial => "devise/shared/links"

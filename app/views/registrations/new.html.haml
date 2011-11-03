@@ -1,24 +1,23 @@
 - if session[:omniauth]
   = render :partial => 'complete_registration'
 - else
-  #box
-    #block-signup.block
-      %h2= t 'shared.signup'
-      .content
-        =simple_form_for(resource,:as => resource_name,:url => registration_path(resource_name),:html =>{:class => 'form'}) do |f|
-          =f.input :login 
-          =f.input :name
-          =f.input :email
-          =f.input :password
-          =f.input :password_confirmation, :required => true
-          .none=text_field_tag 'honeypot'
-          .group.navform.wat-cf
-            = submit_button do
-              = image_tag("icons/tick.png", :alt => t('shared.signup')) 
-              = t 'shared.signup'
-            %br.clear  
-            %br.clear
-            - on_each_provider do |provider|
-              = link_to image_tag("auth/signin_#{provider}.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
-          
-        =render :partial => "devise/shared/links"
+  .login-box.main-content{:style => 'top:40%'}
+    %header
+      %h2=t 'shared.signup'
+    %section
+      - flash.each do |type, message|
+        .message{:class => type}=message
+      =simple_form_for(resource,:as => resource_name,:url => registration_path(resource_name),:html =>{:class => 'clearfix'}) do |f|
+        =f.input :login 
+        =f.input :name
+        =f.input :email
+        =f.input :password
+        =f.input :password_confirmation, :required => true
+        .none=text_field_tag 'honeypot'
+        %p.clearfix
+          = submit_button do
+            = t 'shared.signup'
+      - on_each_provider do |provider|
+        = link_to image_tag("auth/signin_#{provider}.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
+      %br
+      =render :partial => "devise/shared/links"

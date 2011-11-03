@@ -35,7 +35,7 @@
       #all.ui-tabs-hide
         - unless @timeline.blank?
           #infinite-scroll.none
-          = render :partial => 'dashboard/list', :locals => {:feed => @timeline, :url => timeline_group_path(resource)}
+          = render :partial => 'updates/list', :locals => {:feed => @timeline, :url => timeline_group_path(resource)}
         -else
           %p=t('groups.blank_timeline')
       #modules.ui-tabs-hide

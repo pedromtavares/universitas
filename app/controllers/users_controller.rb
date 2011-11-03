@@ -33,7 +33,7 @@ class UsersController < InheritedResources::Base
 	def timeline
 		@feed = resource.timeline(Time.parse(params[:last]))
 		respond_to do |format|
-			format.js{ render 'dashboard/show'}
+			format.js{ render 'updates/index'}
 		end
 	end
   

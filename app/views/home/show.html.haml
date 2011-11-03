@@ -1,32 +1,45 @@
-.content
-  %h2.title=t('home.what')
-  .inner
-    %p=t('home.what_text')
-  %h2.title=t('home.signup') 
-  .inner
-    %p=raw t('home.signup_text') 
-  %h2.title=t('home.features')
-  .inner  
-    %ul.list.home
-      %li
-        .left= image_tag 'home/doc.png'
-        .item
-          %h3=t('home.doc')
-          %p=raw t('home.doc_text')
-      %li
-        .left= image_tag 'home/dash.png'
-        .item
-          %h3=t('home.dash')
-          %p=raw t('home.dash_text')
-      %li
-        .left= image_tag 'home/group.png'
-        .item
-          %h3=t('home.group')
-          %p=raw t('home.group_text')
-          %p=raw t('home.group_text2')
-      %li
-        .left= image_tag 'home/forum.png'
-        .item
-          %h3=t('home.forum')
-          %p=raw t('home.forum_text')
-= content_for :sidebar, render(:partial => 'sidebar') unless user_signed_in?
+.main-content
+  %header
+    %h2 Welcome to Universitas!
+  %section.container_6.clearfix
+    .grid_6
+      .message.info.ac
+        %h3 
+          Get Started:
+          = link_to "Create your own Group!", '/'
+        %p Be it a simple study group or a wide-spread community, collaborate with other users by sharing documents and discussions.
+    %hgroup.grid_6.ac
+      %h2 Collaborative Groups
+      %h4 A single place to share information
+    %figure.grid_2.ac
+      = image_tag 'asset1.jpg'
+      %h3 Create a Group
+      %p And quickly host your documents & discussions
+    %figure.grid_2.ac
+      = image_tag 'asset2.jpg'
+      %h3 Share Documents
+      %p Easily upload multiple documents to your group
+    %figure.grid_2.ac
+      = image_tag 'asset3.jpg'
+      %h3 Spread the Word
+      %p Have an easy and intuitive way to show your group to the world
+    .other-options.grid_6
+      %h3.other But that's not all...
+      %ul
+        %li
+          %h4=link_to "Next Level Collaboration", '#'
+          %p Other members of your group can just as easily weigh in and share their own documents with it.
+        %li
+          %h4=link_to "Latest Updates", '#'
+          %p Get updates on everything that happens around you here on Universitas.
+        %li
+          %h4=link_to "Group Forums", '#'
+          %p Each group gets its own forum (message board) where you can host discussions with other group members.
+        %li
+          %h4=link_to "Follow Users", '#'
+          %p Like Twitter, follow other users on Universitas and get updates about what they're engaging in Universitas.
+        %li
+          %h4=link_to "Group Modules", '#'
+          %p Go deeper and create modules inside your group to nest documents in a more organized manner.
+        
+        

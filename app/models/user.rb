@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
 	end
   
   def update_status(msg)
+    return if msg.blank? || msg == self.status
     self.update_attribute :status, msg
     self.updates.create!(:target => self, :custom_message => msg)    
   end

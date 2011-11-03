@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
 	
   protect_from_forgery
   layout :define_layout
-	before_filter :set_breadcrumbs
-  
+    
   def paginate(model, per=10)
     model.page(params[:page]).per(per)
   end
@@ -17,17 +16,6 @@ class ApplicationController < ActionController::Base
 		else
 			"application"
 		end
-	end
-	
-	def set_breadcrumbs
-		add_breadcrumb(parent.name.truncate(50), :parent_url) if self.respond_to?('parent?') && parent?
-		add_breadcrumb(I18n.t("#{self.controller_name}.all"), :collection_path)
-		add_breadcrumb(I18n.t("#{self.controller_name}.new"), :new_resource_path)
-		add_breadcrumb(resource.to_s.truncate(50), lambda { |a| resource_path  }) if params[:id]
-	end
-	
-	def after_sign_in_path_for(resource)
-		dashboard_path
 	end
 
 end

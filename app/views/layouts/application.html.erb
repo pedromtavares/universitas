@@ -8,36 +8,30 @@
 	<%= render :partial => 'shared/site_analytics'%>
 </head>
 <body>
-  <div id="container">
-    <div id="header">
-      <a href="/"><%=image_tag 'logo.png', :class => 'left'%><h1>niversitas - <%= t('shared.app_description')%></a></h1>
-      <%= render :partial => 'shared/user_navigation' %>
-    </div>    
-    <div id="wrapper" class="wat-cf">
-      <div class="flash">
-        <% flash.each do |type, message| -%>
-          <div class="message <%= type %>">
-            <p><%= message %></p>
-          </div>
-        <% end -%>
-      </div>
-      <div id="main" class="<%='full' if full_page?%>">
-        <div class="block">
-          <%=render :partial => 'shared/breadcrumbs'%>
-          <%= yield %>
+  <div id="wrapper">
+    <header>
+        <div class="container_8 clearfix">
+            <h1 class="grid_1"><a href="/">Universitas</a></h1>
+            <%= render :partial => 'shared/user_navigation' %>
         </div>
-        <div id="footer">
-          <div class="block">
-            <p><%=t('shared.copyright')%> &copy; <%= Time.now.year %> Universitas</p>
-          </div>      
+    </header>
+    <section>
+        <div class="container_8 clearfix">
+            <%= render :partial => 'shared/left_sidebar'%>
+            <section class="main-section grid_7">
+              <%= yield %>
+            </section>
         </div>
-      </div>
-      <div id="sidebar">
-        <%= render :partial => "#{controller.controller_name}/sidebar" if user_signed_in?%>
-        <%= yield :sidebar %>
-      </div>
-    </div>    
+        <div id="push"></div>
+    </section>
   </div>
+  <footer>
+      <div id="footer-inner" class="container_8 clearfix">
+          <div class="grid_8">
+              <%= raw(t('shared.footer_note'))%>
+          </div>
+      </div>
+  </footer>
 <%= render :partial => 'shared/javascripts'%>
 <%= yield :javascripts %>
 </body>

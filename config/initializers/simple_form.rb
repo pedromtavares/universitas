@@ -18,10 +18,10 @@ SimpleForm.setup do |config|
   # config.error_notification_tag = :p
 
   # You can wrap all inputs in a pre-defined tag.
-   config.wrapper_tag = :div
+   config.wrapper_tag = :p
 
   # CSS class to add to all wrapper tags.
-   config.wrapper_class = 'group wat-cf'
+  # config.wrapper_class = 'group wat-cf'
 
   # CSS class to add to the wrapper if the field has errors.
    config.wrapper_error_class = :fieldWithErrors
@@ -48,5 +48,5 @@ SimpleForm.setup do |config|
   # config.country_priority = nil
 
   # Default size for text inputs.
-  # config.default_input_size = 50
+   config.default_input_size = 40
 end

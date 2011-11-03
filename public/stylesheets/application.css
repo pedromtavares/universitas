@@ -17,9 +17,6 @@
 .center{
 	text-align:center !important;
 }
-.full{
-	width:100% !important;
-}
 .auto{
 	width:auto !important;
 }
@@ -60,7 +57,7 @@
 /******* Dashboard & Updates *******/
 
 .updates{
-	height:600px;
+	height:450px;
 	overflow:auto;
 }
 
@@ -304,7 +301,7 @@
 /******* Sidebar *******/
 
 .sidebar-box{
-	max-height:150px;
+	max-height:60px;
 	overflow:auto;
 }
 
@@ -353,6 +350,8 @@
   margin-left: 0;
 }
 
+/* Misc */
+
 .edit-form .input{
 	float:left;
 	width:400px;
@@ -369,4 +368,28 @@
 .flag{
 	margin-bottom: -10px !important;
 	margin-top: -10px !important;
+}
+
+.endless{
+	height:450px;
+	overflow:auto;
+}
+
+/* Overwrites */
+
+.list-view li.group-list{
+    padding: 30px 30px 10px 55px;
+}
+
+.list-view li.group-list .avatar {
+    border: 0;
+    float: left;
+    height: auto;
+    width: auto;
+    margin: -15px 10px 0px -30px;
+}
+
+.list-view li.group-list .avatar img {
+    width: auto;
+    height: auto;
 }

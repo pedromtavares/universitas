@@ -47,8 +47,9 @@ class Group < ActiveRecord::Base
     self.name
   end
 
-	def self.search(search)
-		self.where("name like ?", "%#{search}%")
+	def self.search(search, user = false)
+	  scope = user ? user.groups : self
+	  scope.where("name like ?", "%#{search}%")
 	end
 
 	def create_member(user)

@@ -41,7 +41,7 @@
     #all
       - unless @timeline.blank?
         #infinite-scroll.none
-        = render :partial => 'dashboard/list', :locals => {:feed => @timeline, :url => timeline_user_path(resource)}
+        = render :partial => 'updates/list', :locals => {:feed => @timeline, :url => timeline_user_path(resource)}
       -else
         %p=t('users.blank_timeline')
     #documents

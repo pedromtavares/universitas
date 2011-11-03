@@ -1,32 +1,29 @@
-.content
-  %h2.title=t('groups.plural')
-  .inner
-    = form_tag groups_path, :class => 'form', :method => 'get' do
-      .small-box= text_field_tag :search, params[:search], :class => 'text_field'
-      = search_button
-    %br
-    %br
+.main-content.grid_4.alpha
+  %header
+    .view-switcher
+      %h2
+        = @filter ? t("groups.#{@filter}") : t('groups.all')
+        =link_to "&darr;", 'javascript:void(0)'
+      %ul
+        %li=link_to t('groups.all'), groups_path
+        %li=link_to t('groups.my'), my_groups_path
+  %section
     - unless collection.blank?
-      %table.table
-        %tr
-          %th.first
-          %th= t('groups.name')
-          %th= t('groups.leader')
-          %th= t('members.plural')
-          %th= t('documents.plural')
-          %th= t('modules.plural')
-        - collection.each do |resource|
-          %tr{:class => cycle("odd","even")}
-            %td.first=image_tag resource.image_url
-            %td= link_to resource.name, resource
-            %td= link_to resource.leader.name, profile_path(resource.leader)
-            %td= resource.members_count
-            %td= resource.documents_count
-            %td= resource.modules_count
-            
-      .actions-bar.wat-cf
-        .actions
-        .pagination
-          = paginate collection
+      = form_tag groups_path, :class => 'form', :method => 'get' do
+        = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
+        = search_button
+      %br.clear
+      #infinite-scroll.none
+      %ul.action-buttons.clearfix.fr
+      %ul.listing.list-view.clearfix.endless{'data-page' => 1}
+        - collection.each do |group|
+          %li.group-list.clearfix
+            .avatar= image_tag group.image_url
+            = link_to "&raquo;", group_path(group), :class => "more"
+            %span.timestamp= group.created_at.strftime("%b %d, %Y")
+            = link_to group.name, group_path(group), :class => "name"
+            .entry-meta
+              = t('groups.led_by') 
+              = link_to group.leader
     - else
       = t('groups.blank')

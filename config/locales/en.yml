@@ -16,7 +16,7 @@ en:
     groups: Groups
     users: Users
     manage: Manage
-    dashboard: Dashboard
+    updates: Updates
     update: Update
     no_permission: You do not have permission to do that.
     click_to_download: Click to download
@@ -29,9 +29,15 @@ en:
     for: for
     cancel: Cancel
     add: Add
+    footer_note: "Universitas - This project is <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. All rights reserved."
+    with: with
+    get_started: Get Started
     pagination:
       prev: « Prev
       next: Next »
+  registration:
+    login: Login
+    password: Password
   custom_messages:
     file_validation: "can't be larger than %{size}MB!"
     image_validation: "can't be larger than %{size}MB!"
@@ -46,10 +52,10 @@ en:
       not_found: "not found"
       already_confirmed: "was already confirmed"
       not_locked: "was not locked"
-  dashboard:
-    plural: Dashboard
+  updates:
+    plural: Latest Updates
     updated_status_success: You have updated your status successfully.
-    status: "Status:"
+    status: "Update your status..."
     recent_updates: Recent Updates
     updated_status: updated status to
     created_group: created a group called 
@@ -137,7 +143,7 @@ en:
   groups:
     singular: Group
     plural: Groups
-    all: All
+    all: All Groups
     new: New Group
     edit: Edit Group
     name: Name
@@ -157,6 +163,9 @@ en:
     promote: Promote this group
     promote_submit: Promote!
     have_promoted: You have promoted this group to your followers!
+    recent: Recent Groups
+    my: My Groups
+    led_by: Led by
     documents:
       plural: Group Documents
       blank: This group has no documents!
@@ -213,6 +222,7 @@ en:
     no_documents: You have no documents yet.
     users: Users
     groups: Groups
+    recent: Recent Documents
     blank:
       users: This document is not collected by any users
       groups: This document is not shared to any groups 
@@ -272,7 +282,7 @@ en:
     error: "There was a problem with your post."
     no_permission: "You don't have permission to do this."
   tips:
-    self: Tips
+    self: Helpful Tips
     documents:
       tip: Upload all you want!
       tip_text: "Feel free to upload as many documents as you please, but be aware that these will be available to anyone on the web to download."
@@ -300,7 +310,7 @@ en:
       tip_text: "As a document's original uploader, only you can update it, but keep in mind that documents you have uploaded could have been shared across different users and groups, so avoid editing it too drastically for the sake of consistency."
     users:
       tip: Following users
-      tip_text: "After following a user, you will receive updates on your dashboard regarding actions about that user such as when he/she adds a document, joins a group, updates status, etc."
+      tip_text: "After following a user, you will receive updates regarding actions about that user such as when he/she adds a document, joins a group, updates status, etc."
       tip2: Other sign in options
       tip2_text: "You can edit your profile and add other sign in options like Facebook or Twitter, making signing in as easy as clicking the correspondent service icon in the navigation bar."
     forums:

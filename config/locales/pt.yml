@@ -16,7 +16,7 @@ pt:
     groups: Grupos
     users: Usuários
     manage: Gerenciar
-    dashboard: Painel
+    updates: Atualizações
     no_permission: Você não tem permissão pra fazer isso.
     click_to_download: Clique pra baixar
     search: Buscar
@@ -28,12 +28,17 @@ pt:
     for: Para
     cancel: Cancelar
     add: Adicionar
+    footer_note: "Universitas - Este projeto é <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. Direitos autorais."
+    with: pelo
   views:
     pagination:
       previous: ‹ Ant
       next: Prox ›
       first: « Primeiro
       last: Último »
+  registration:
+    login: Login
+    password: Senha
   custom_messages:
     file_validation: "não pode ser maior que %{size}MB!"
     image_validation: "não pode ser maior que %{size}MB!"
@@ -41,9 +46,8 @@ pt:
     file_extensions: 'tipos de arquivo permitidos: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
     image_maximum: 'tipos de arquivo permitidos: jpg, jpeg, gif, png'
     image_extensions: "tamanho máximo do arquivo: %{size}MB"
-      
-  dashboard:
-    plural: Painel
+  updates:
+    plural: Atualizações Recentes
     updated_status_success: Status atualizado com sucesso!
     status: "Status:"
     recent_updates: Atualizações Recentes
@@ -132,7 +136,7 @@ pt:
   groups:
     singular: Grupo
     plural: Grupos
-    all: Todos
+    all: Todos os Grupos
     new: Novo Grupo
     edit: Editar Grupo
     name: Nome
@@ -152,6 +156,9 @@ pt:
     promote: Promover este grupo
     promote_submit: Promover!
     have_promoted: Você promoveu este grupo para seus seguidores!
+    recent: Grupos Recentes
+    my: Meus Grupos
+    led_by: Liderado por
     documents:
       plural: Documentos do Grupo
       blank: Este grupo não possui documentos!
@@ -208,6 +215,7 @@ pt:
     no_documents: Você ainda não possui documentos.
     users: Usuários
     groups: Grupos
+    recent: Documentos Recentes
     blank:
       users: Esse documento não está na coleção de ninguém
       groups: Esse documento não está sendo compartilhado por nenhum grupo

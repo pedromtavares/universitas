@@ -19,11 +19,10 @@ Universitas::Application.routes.draw do
     end
   end
   
-  resource :dashboard, :only => :show, :controller => 'dashboard' do
-    put :update_status, :as => 'update_status'
-  end
-  
   resources :groups, :except => :destroy do
+    collection do
+      get :my
+    end
 		resources :documents, :except => [:edit, :show], :controller => 'group_documents' do
 			collection do
 				post :add_multiple
@@ -55,6 +54,8 @@ Universitas::Application.routes.draw do
 		end
 	end
 	
+	resources :updates, :except => [:update]
+	
 	resources :authentications
 		
 	resource :home, :only => :show, :controller => 'home'
@@ -65,7 +66,6 @@ Universitas::Application.routes.draw do
 	get 'users/:id' => 'users#show', :as => 'profile'
   get ':id' => 'groups#show', :as => 'group'
 	put ':id' => 'groups#update', :as => 'group'
-	delete 'dashboard/:id/destroy' => 'dashboard#destroy', :as => 'delete_update'
 	
 	match '/auth/:provider/callback' => 'authentications#create'
 	match '/auth/failure' => 'authentications#failure'

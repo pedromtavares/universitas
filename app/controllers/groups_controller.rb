@@ -10,6 +10,16 @@ class GroupsController < InheritedResources::Base
 		super
 	end
 	
+	def my
+	 @groups = if params[:search]
+	   paginate(Group.search(params[:search], current_user))
+   else
+     paginate(current_user.groups)
+   end
+	 @filter = 'my'
+	 render :index
+	end
+	
 	def show
 		@timeline = @group.timeline
 		@modules = @group.modules
@@ -48,7 +58,7 @@ class GroupsController < InheritedResources::Base
 	def timeline
 		@feed = resource.timeline(Time.parse(params[:last]))
 		respond_to do |format|
-			format.js{ render 'dashboard/show'}
+			format.js{ render 'updates/index'}
 		end
 	end
 	

@@ -6,15 +6,33 @@ $(function(){
 		fireOnce: true,
 		fireDelay: 1500,
 		ceaseFire: function(){
-			return $('#infinite-scroll').length && !$(this).closest('.ui-tabs-panel').hasClass('ui-tabs-hide') ? false : true;
+			return $('#infinite-scroll').length ? false : true;
 		},
 		bottomPixels:500,
 	  callback: function(){
 	    $.ajax({
-		  url: $(this).attr('url'),
+		  url: $(this).data('url'),
 		  data: {
-				last: $(this).attr('last'),
-				type: $(this).attr('type')
+				last: $(this).data('last'),
+				type: $(this).data('type')
+			},
+			dataType: 'script'
+		 });
+	  }
+	});
+	
+	$('.endless').endlessScroll({
+		fireOnce: true,
+		fireDelay: 1500,
+		ceaseFire: function(){
+			return $('#infinite-scroll').length ? false : true;
+		},
+		bottomPixels:500,
+	  callback: function(){
+	    $.ajax({
+		  url: $(this).data('url'),
+		  data: {
+				page: $(this).data('page'),
 			},
 			dataType: 'script'
 		 });
@@ -27,15 +45,17 @@ $(function(){
 		$(this).addClass('none');
 	});
 	
-	/******* jQuery UI *******/
-	
-	$("#tabs").tabs();
-	
-	$("#tabs").bind('tabsselect', function(event, ui){
-		list = $('.updates');
-		list.find('li').hide();
-		showUpdatesFor($(ui.tab).attr('target'));
-	});
+	/******* Updates *******/
+  
+  $("#update-filters > a").click(function() {
+    showUpdatesFor($(this).attr('target'), true);
+    $("#update-filters a").removeClass('button-green');
+    $(this).addClass('button-green');
+    return false;
+  });
+    
+  showUpdatesFor('all');
+  
 	
 	/******* Group document sharing UI *******/
 	
@@ -123,8 +143,14 @@ $(function(){
 
 /******* Helper Functions *******/
 
-function showUpdatesFor(type){
-	if(type == ''){type = 'all'}
+function showUpdatesFor(type, fadeIn){
+	if(type == '' || !type){type = 'all'}
+	$('#latest-updates > div').hide();
+  if (fadeIn){
+    $('#'+type).fadeIn('slow');
+  }else{
+    $('#'+type).show();
+  }
 	list = $('#'+type+' .updates');
 	list.find('li').hide();
 	switch(type){
