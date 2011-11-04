@@ -19,6 +19,12 @@
         <div class="container_8 clearfix">
             <%= render :partial => 'shared/left_sidebar'%>
             <section class="main-section grid_7">
+              <% flash.each do |type, message| -%>
+                <div class="message <%= type %> center closeable">
+                  <span class="message-close"></span>
+                  <h3><%= message %></h3>
+                </div>
+              <% end -%>
               <%= yield %>
             </section>
         </div>
