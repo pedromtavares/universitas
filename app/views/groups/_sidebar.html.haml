@@ -1,2 +1,17 @@
-= render :partial => 'side_info'
-= render :partial => 'side_tips'
+.preview-pane.grid_3.omega
+  .content
+    %h3= t('tips.self') 
+    .message.info
+      %h3= t('tips.groups.tip')
+      = tip_icon
+      %p=t('tips.groups.tip_text')
+    .message.info
+      %h3= t('tips.groups.tip2')
+      = tip_icon
+      %p=t('tips.groups.tip2_text')
+    .message.info
+      %h3= t('tips.groups.tip3')
+      = tip_icon
+      %p=t('tips.groups.tip3_text')
+    
+    .preview

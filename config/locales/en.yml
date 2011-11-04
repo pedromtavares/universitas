@@ -107,7 +107,7 @@ en:
     plural: Users
     connections: "'s connections"
     my_connections: "My connections"
-    all: All
+    all: All Users
     login: Login
     name: Name
     email: E-mail
@@ -209,12 +209,13 @@ en:
     edit: Edit Document
     documents_for: Documents for
     documents_uploaded: Documents You Uploaded
-    all: All
+    all: All Documents
     new: New Document
     add: Add To My Collection
     remove: Remove From My Collection
     blank: No document results matched your search.
     uploader: Uploaded By
+    uploaded: Uploaded Documents
     uploaded_at: Uploaded At
     size: Size
     type: Type

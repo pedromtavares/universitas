@@ -1,0 +1,25 @@
+.preview-pane.grid_3.omega
+  .content    
+    %h2{:style => 'margin-top:0'}=t('users.my_connections')
+    %h3=t('users.following')
+    .sidebar-box  
+      - unless current_user.following.empty?
+        - current_user.following.each do |user|
+          =link_to avatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+      - else
+        %p=t('users.not_following')
+      %br.clear
+    %h3=t('users.followers')
+    .sidebar-box
+      - unless current_user.followers.empty?
+        - current_user.followers.each do |user|
+          =link_to avatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+      - else
+        %p=t('users.no_followers')
+    %br.clear
+    %br.clear
+    .message.info
+      %h3= t('tips.self')
+      = tip_icon
+      %p=t('tips.users.tip_text')
+    .preview

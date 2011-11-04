@@ -3,6 +3,14 @@
     - pages = %w{home about}
     - pages.each do |page|
       %li{:class => "#{controller_name == page ? 'active' : ''}"}= link_to t("#{page}.plural"), url_for(send(page+"_path"))
+    %li.action{:style => "margin-left:10px"}
+      = link_to "javascript:void(0)", :class => "has-popupballoon button button-blue" do
+        %span.add
+        = t('groups.new')
+      .popupballoon.top
+        %h3 New Group
+        %button.button.button-orange Add
+        %button.button.button-gray.close Cancel
     %li.fr
       - if current_user
         =link_to profile_path(current_user) do
@@ -19,7 +27,7 @@
           - on_each_provider do |provider|
             %li
               = link_to "/auth/#{provider}" do
-                = image_tag("auth/signin_#{provider}_small.png", :title => t("auth.signin_#{provider}"), :style => 'margin-bottom:-5px')
+                = image_tag("auth/signin_#{provider}_small.png", :alt => t("auth.signin_#{provider}"), :style => 'margin-bottom:-5px')
                 = "#{t('shared.with')} #{provider.titleize}"
         %li.fr= link_to t("shared.signup"), new_user_registration_path
       %li.fr{:class => "#{current_locale == :pt ? 'active' : ''}"}= link_to image_tag('icons/pt.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :pt)), :title => "Português"

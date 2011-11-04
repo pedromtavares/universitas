@@ -4,12 +4,16 @@ module ApplicationHelper
 		image_tag('loading.gif', :class => 'loading none')
 	end
 	
-	def on_each_provider(&block)
-		Authentication::PROVIDERS.each(&block)
+	def tip_icon
+	  image_tag('lightbulb_32.png', :class => 'fl')
 	end
 	
-	def full_page?
-		!user_signed_in? && !['home', 'about'].include?(controller.controller_name)
+	def render_sidebar
+	  render :partial => 'sidebar'
+	end
+	
+	def on_each_provider(&block)
+		Authentication::PROVIDERS.each(&block)
 	end
 	
 	def button_link_to(*args, &block)
@@ -23,10 +27,27 @@ module ApplicationHelper
 		link_to(*args, &block)
 	end
 	
+	# refer to forms.css file
+	def action_button(label, action, options = {})
+	  path = options.delete(:path) || 'javascript:void(0)'
+	  link_to path, {:class => 'action-button-link'}.merge(options) do
+	    content_tag(:button, {:class => 'button button-gray'}) do
+  	    content_tag(:span, '', :class => action) + label
+  	  end
+	  end
+	end
+	
 	def submit_button(options = {}, &block)
 		klass = 'button button-gray fr'
 		klass += options.delete(:class) if options[:class]
 		content_tag(:button, {:type => 'submit', :class => klass}.merge(options), &block)
+	end
+	
+	def search_button
+		submit_button do
+		  content_tag(:span, '', :class => "search") + 
+      t('shared.search')
+		end
 	end
 	
 	# for more icons check out the bottom of http://jqueryui.com/themeroller/
@@ -78,13 +99,6 @@ module ApplicationHelper
 		klass += options.delete(:class) if options[:class]
 		link_to(path, options.merge(:class => klass)) do
 			content_tag(:span, "", :class => "ui-icon ui-icon-#{icon_for(icon)} left spaced-right") + text
-		end
-	end
-	
-	def search_button
-		submit_button(:small => true) do
-		  content_tag(:span, '', :class => "search") + 
-      t('shared.search')
 		end
 	end
 	

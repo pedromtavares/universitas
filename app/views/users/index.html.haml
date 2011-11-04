@@ -1,32 +1,26 @@
-.content
-  %h2.title= t('users.plural')
-  .inner
-    = form_tag users_path, :class => 'form', :method => 'get' do
-      .small-box= text_field_tag :search, params[:search], :class => 'text_field'
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      %li= action_button(t('shared.profile'), :profile, :path => profile_path(current_user)) if current_user
+    .view-switcher
+      %h2
+        = user_title_for(@filter)
+        =link_to "&darr;", 'javascript:void(0)'
+      %ul
+        %li=link_to t('users.all'), users_path
+        - if current_user
+          %li=link_to t('users.following'), following_users_path
+          %li=link_to t('users.followers'), followers_users_path
+  %section
+    = form_tag user_path_for(@filter), :class => 'form', :method => 'get' do
+      = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
-    %br
-    %br
+    %br.clear
     - unless collection.blank?
-      %table.table
-        %tr
-          %th.first
-          %th= t('users.login')
-          %th= t('users.name')
-          - if user_signed_in?
-            %th.last
-        - collection.each do |user|
-          %tr{:class => cycle("odd","even")}
-            %td.first= avatar_for user
-            %td= link_to user.login, profile_path(user)
-            %td= user.name
-            - if user_signed_in? && current_user != user
-              - if current_user.following?(user)
-                %td= button_to_icon :remove, t('users.unfollow'), unfollow_user_path(user), :method => :delete 
-              - else
-                %td= button_to_icon :add, t('users.follow'), follow_user_path(user), :method => :post
-      .actions-bar.wat-cf
-        .actions
-        .pagination
-          = paginate collection
+      #infinite-scroll.none
+      %ul.listing.list-view.clearfix.endless{'data-url' => user_path_for(@filter)}
+        = render collection
+      .center= loading_icon
     - else
-      =t('users.blank')
+      = t('users.blank')
+= render_sidebar

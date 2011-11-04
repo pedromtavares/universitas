@@ -1,17 +1,37 @@
 class UsersController < InheritedResources::Base
-	before_filter :load_presenter
+  respond_to :html, :js
 	
 	def index
-		@users = paginate(User.search(params[:search])) if params[:search]
+		@users = paginate(User.search(params[:search])) if params[:search].present?
 		@user ||= current_user
 		super
 	end
 	
 	def show
-		@documents = @user.documents
-		@groups = @user.groups
-		@timeline = @user.timeline
+		@documents = resource.documents
+		@groups = resource.groups
+		@timeline = resource.timeline
 		super
+	end
+	
+	def following
+	  @filter = 'following'
+    @users = if params[:search].present?
+  	  current_user.following.search(params[:search])
+  	else
+  		current_user.following
+  	end
+  	render :index
+	end
+	
+	def followers
+	  @filter = 'following'
+    @users = if params[:search].present?
+  	  current_user.followers.search(params[:search])
+  	else
+  		current_user.followers
+  	end
+  	render :index
 	end
   
   def follow
@@ -40,10 +60,6 @@ class UsersController < InheritedResources::Base
   protected
   
   def collection
-    @users ||= paginate(end_of_association_chain.order('created_at asc'))
+    @users ||= paginate(end_of_association_chain.order('created_at desc'))
   end
-
-	def load_presenter
-		@presenter = UsersPresenter.new(current_user)
-	end
 end

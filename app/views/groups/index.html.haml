@@ -1,29 +1,25 @@
 .main-content.grid_4.alpha
   %header
+    %ul.action-buttons.clearfix.fr
+      / %li= action_button(t('groups.new'), :add)
     .view-switcher
       %h2
+        - path = @filter ? my_groups_path : groups_path
         = @filter ? t("groups.#{@filter}") : t('groups.all')
         =link_to "&darr;", 'javascript:void(0)'
       %ul
         %li=link_to t('groups.all'), groups_path
-        %li=link_to t('groups.my'), my_groups_path
+        %li=link_to t('groups.my'), my_groups_path if current_user
   %section
+    = form_tag path, :class => 'form', :method => 'get' do
+      = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
+      = search_button
+    %br.clear
     - unless collection.blank?
-      = form_tag groups_path, :class => 'form', :method => 'get' do
-        = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
-        = search_button
-      %br.clear
       #infinite-scroll.none
-      %ul.action-buttons.clearfix.fr
-      %ul.listing.list-view.clearfix.endless{'data-page' => 1}
-        - collection.each do |group|
-          %li.group-list.clearfix
-            .avatar= image_tag group.image_url
-            = link_to "&raquo;", group_path(group), :class => "more"
-            %span.timestamp= group.created_at.strftime("%b %d, %Y")
-            = link_to group.name, group_path(group), :class => "name"
-            .entry-meta
-              = t('groups.led_by') 
-              = link_to group.leader
+      %ul.listing.list-view.clearfix.endless{'data-url' => path}
+        = render collection
+      .center= loading_icon
     - else
       = t('groups.blank')
+= render_sidebar

@@ -1,9 +1,0 @@
-.block
-  %h2=t('users.documents.uploaded.i')
-  .content.sidebar-box
-    %h3=t('users.documents.click_to_edit')
-    - unless @presenter.uploaded_documents.blank?
-      - @presenter.uploaded_documents.each do |document|
-        = link_to document_icon_for(document, false, :class => 'spaced left', :title => document.name), edit_resource_path(document)
-    - else
-      %p=t('documents.no_documents')

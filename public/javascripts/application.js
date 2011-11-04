@@ -28,11 +28,12 @@ $(function(){
 			return $('#infinite-scroll').length ? false : true;
 		},
 		bottomPixels:500,
-	  callback: function(){
+	  callback: function(fireSequence){
 	    $.ajax({
 		  url: $(this).data('url'),
 		  data: {
-				page: $(this).data('page'),
+				page: fireSequence + 1,
+				search: $('#search').val()
 			},
 			dataType: 'script'
 		 });

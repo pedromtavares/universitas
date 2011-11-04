@@ -1,0 +1,12 @@
+- unless update.target.blank?
+  %li{:class => "#{update.id} #{update_creator(update)}", :creator => update_creator(update)}
+    =link_to '&raquo;', update_path(update), :class => 'more'
+    %span.timestamp
+      = time_ago_in_words(update.created_at)
+      = t('shared.ago')
+    =link_to update.creator.name, update.creator unless update.to_forum?
+    =render_update_content(update)
+    .entry-meta
+      - if user_signed_in? && (update.creator == current_user || current_user.leader_of?(update.creator)) && !update.to_forum?
+        =link_to t('updates.delete_update'), update_path(update), :method => :delete, :remote => :true, :confirm => t('updates.are_you_sure'), :class => 'fr timestamp'
+        %br.clear

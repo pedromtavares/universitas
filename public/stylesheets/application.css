@@ -371,25 +371,41 @@
 }
 
 .endless{
-	height:450px;
+	height:550px;
 	overflow:auto;
 }
 
 /* Overwrites */
 
-.list-view li.group-list{
-    padding: 30px 30px 10px 55px;
+.list-view li.custom{
+    padding: 10px 30px 10px 55px;
 }
 
-.list-view li.group-list .avatar {
+.list-view li.custom .avatar {
     border: 0;
     float: left;
     height: auto;
     width: auto;
-    margin: -15px 10px 0px -30px;
+    margin: 0px 10px 0px -30px;
 }
 
-.list-view li.group-list .avatar img {
+.list-view li.custom .avatar img {
     width: auto;
     height: auto;
+}
+
+.list-view li.custom .entry-meta{
+  margin-top:5px;
+}
+
+.list-view li.custom .entry-meta button{
+  margin-top:5px;
+}
+
+ul.action-buttons li {
+  width:auto;
+}
+
+.action-button-link:hover {
+  text-decoration:none;
 }

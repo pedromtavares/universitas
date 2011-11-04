@@ -2,17 +2,18 @@ class GroupsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show, :timeline]
   before_filter :check_leader, :only => [:edit, :update] 
 	before_filter :load_presenter
+	respond_to :html, :js
 
   actions :all, :except => :delete
 
 	def index
-		@groups = paginate(Group.search(params[:search])) if params[:search]
+		@groups = paginate(Group.search(params[:search])) if params[:search].present?
 		super
 	end
 	
 	def my
-	 @groups = if params[:search]
-	   paginate(Group.search(params[:search], current_user))
+	 @groups = if params[:search].present?
+	   paginate(current_user.groups.search(params[:search]))
    else
      paginate(current_user.groups)
    end
@@ -21,10 +22,10 @@ class GroupsController < InheritedResources::Base
 	end
 	
 	def show
-		@timeline = @group.timeline
-		@modules = @group.modules
-		@accepted_docs = @group.group_documents.accepted
-		@members = @group.members
+		@timeline = resource.timeline
+		@modules = resource.modules
+		@accepted_docs = resource.group_documents.accepted
+		@members = resource.members
 		add_breadcrumb(t('forums.plural'), lambda { group_forums_path(resource) })
 		super
 	end
@@ -70,7 +71,7 @@ class GroupsController < InheritedResources::Base
   protected
   
   def collection
-    @groups ||= paginate(end_of_association_chain.includes(:leader))
+    @groups ||= paginate(end_of_association_chain.includes(:leader).order('created_at desc'))
   end
   
   def check_leader

@@ -25,4 +25,26 @@ module DocumentsHelper
 		file = small ? "docs/small/#{file}.png" : "docs/#{file}.png"
 		image_tag(file, options)
 	end
+	
+	def document_title_for(filter)
+	 case filter
+   when 'my'
+     t('documents.my_documents')
+   when 'uploaded'
+     t('documents.uploaded')
+   else
+     t('documents.all')
+   end
+	end
+	
+	def document_path_for(filter, user = false)
+	 case filter
+    when 'my'
+      user_documents_path(user)
+    when 'uploaded'
+      uploaded_user_documents_path(user)
+    else
+      documents_path
+    end
+	end
 end

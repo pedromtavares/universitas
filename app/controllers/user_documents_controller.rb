@@ -2,16 +2,27 @@ class UserDocumentsController < InheritedResources::Base
 	defaults :route_collection_name => 'documents', :route_instance_name => 'document'
 	before_filter :authenticate_user!, :except => [:index, :show]
 	before_filter :check_uploader, :only => [:edit, :update] 
-	before_filter :load_presenter
-	before_filter :set_breadcrumbs, :except => [:add, :remove]
 	belongs_to :user
+	respond_to :html, :js
 	
-	def search
-		@documents = if params[:search]
+	def index
+	 @filter = 'my'
+	 @documents = if params[:search].present?
 			current_user.documents.search(params[:search])
 		else
 			current_user.documents
 		end
+	 render "documents/index"
+	end
+	
+	def uploaded
+	  @filter = 'uploaded'
+	  @documents = if params[:search].present?
+		  current_user.uploaded_documents.search(params[:search])
+		else
+			current_user.uploaded_documents
+		end
+	  render "documents/index"
 	end
 	
 	def create
@@ -50,7 +61,7 @@ class UserDocumentsController < InheritedResources::Base
 	end
 
 	def collection
-		@user_documents = paginate(parent.user_documents.includes(:user, :document))
+		@user_documents = paginate(parent.user_documents.includes(:user, :document).order('created_at desc'))
 	end
 	
 	def check_uploader
@@ -58,17 +69,6 @@ class UserDocumentsController < InheritedResources::Base
 			flash[:error] = t('users.documents.no_permission')
 			redirect_to user_documents_path(current_user)
 		end
-	end
-	
-	def load_presenter
-		@presenter = UserDocumentsPresenter.new(current_user)
-	end
-	
-	def set_breadcrumbs
-		add_breadcrumb(parent.name, :parent_url) if parent?
-		add_breadcrumb(I18n.t("documents.all"), :collection_path)
-		add_breadcrumb(I18n.t("documents.new"), :new_resource_path)
-		add_breadcrumb(resource.document.to_s.truncate(50), lambda { edit_resource_path(resource) }) if params[:id]
 	end
 
 end

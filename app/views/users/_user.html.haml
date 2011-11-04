@@ -1,10 +1,13 @@
-%li
-  .left= link_to(avatar_for(user), user)
-  .item
-    %h3= link_to user.name, user
-    - unless user == current_user || !user_signed_in?
+%li.custom.clearfix
+  .avatar= avatar_for(user)
+  = link_to "&raquo;", user_path(user), :class => "more"
+  %span.timestamp= user.created_at.strftime("%b %d, %Y")
+  = link_to user, user_path(user), :class => "name"
+  .entry-meta
+    = user.name
+    - if user_signed_in?
+      %br
       - if current_user.following?(user)
-        %p= button_to_icon :remove, t('users.unfollow'), unfollow_user_path(user), :method => :delete 
+        = action_button t('users.unfollow'), :remove, :path => unfollow_user_path(user), :method => :delete
       - else
-        %p= button_to_icon :add, t('users.follow'), follow_user_path(user), :method => :post
-      %br.clear
+        = action_button t('users.follow'), :add, :path => follow_user_path(user), :method => :post

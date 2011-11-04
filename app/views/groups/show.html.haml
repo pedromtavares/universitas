@@ -76,7 +76,7 @@
           %h1.center=t('groups.documents.share')
           .share-box.ui-state-default#search-box
             %h2.center=t('groups.documents.search')
-            = form_tag search_user_documents_path(current_user), :remote => true, :method => :get, :class => 'form' do
+            = form_tag user_documents_path(current_user), :remote => true, :method => :get, :class => 'form' do
               .small-box= text_field_tag :search, '', :class => 'text_field'
               = submit_button(:small => true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
                 = button_icon :search

@@ -9,13 +9,17 @@ Universitas::Application.routes.draw do
 				delete :remove
 			end
 			collection do
-				get :search
+				get :uploaded
 			end
 		end
     member do
 			get :timeline
       post :follow
  			delete :unfollow
+    end
+    collection do
+      get :following
+      get :followers
     end
   end
   

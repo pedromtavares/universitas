@@ -1,0 +1,5 @@
+- type ||= nil
+- url  ||= updates_path
+%ul.listing.list-view.updates{'data-type' => type, 'data-last' => feed.to_a.last.try(:created_at), 'data-url' => url}
+  = render :partial => 'updates/update', :collection => feed
+.center= loading_icon
