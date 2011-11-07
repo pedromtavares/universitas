@@ -12,7 +12,8 @@
           %li=link_to t('users.following'), users_path(:filter => 'following')
           %li=link_to t('users.followers'), users_path(:filter => 'followers')
   %section
-    = form_tag users_path(:filter => @filter), :class => 'form', :method => 'get' do
+    = form_tag users_path, :class => 'form', :method => 'get' do
+      = hidden_field_tag :filter, @filter
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear

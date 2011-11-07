@@ -12,7 +12,8 @@
           %li=link_to t('documents.my_documents'), documents_path(:filter => 'my')
           %li=link_to t('documents.uploaded'), documents_path(:filter => 'uploaded')
   %section
-    = form_tag documents_path(:filter => @filter), :class => 'form', :method => 'get' do
+    = form_tag documents_path, :class => 'form', :method => 'get' do
+      = hidden_field_tag :filter, @filter
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear

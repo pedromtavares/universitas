@@ -10,7 +10,8 @@
         %li=link_to t('groups.all'), groups_path
         %li=link_to t('groups.my'), groups_path(:filter => 'my') if current_user
   %section
-    = form_tag groups_path(:filter => @filter), :class => 'form', :method => 'get' do
+    = form_tag groups_path, :class => 'form', :method => 'get' do
+      = hidden_field_tag :filter, @filter
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear
