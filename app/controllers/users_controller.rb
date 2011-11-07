@@ -2,9 +2,13 @@ class UsersController < InheritedResources::Base
   respond_to :html, :js
 	
 	def index
-		@users = paginate(User.search(params[:search])) if params[:search].present?
-		@user ||= current_user
-		super
+	  @filter = params[:filter]
+		scope = paginate(scope_for(@filter).order('created_at desc'))
+		@users = if params[:search].present?
+		  scope.search(params[:search])
+	  else
+	    scope
+    end
 	end
 	
 	def show
@@ -12,26 +16,6 @@ class UsersController < InheritedResources::Base
 		@groups = resource.groups
 		@timeline = resource.timeline
 		super
-	end
-	
-	def following
-	  @filter = 'following'
-    @users = if params[:search].present?
-  	  current_user.following.search(params[:search])
-  	else
-  		current_user.following
-  	end
-  	render :index
-	end
-	
-	def followers
-	  @filter = 'following'
-    @users = if params[:search].present?
-  	  current_user.followers.search(params[:search])
-  	else
-  		current_user.followers
-  	end
-  	render :index
 	end
   
   def follow
@@ -59,7 +43,14 @@ class UsersController < InheritedResources::Base
   
   protected
   
-  def collection
-    @users ||= paginate(end_of_association_chain.order('created_at desc'))
+  def scope_for(filter)
+    case filter
+    when 'following'
+      current_user.following
+    when 'followers'
+    	current_user.followers
+    else
+      User
+    end
   end
 end

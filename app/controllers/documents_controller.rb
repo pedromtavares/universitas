@@ -2,8 +2,13 @@ class DocumentsController < InheritedResources::Base
 	respond_to :html, :js
 	
 	def index
-		@documents = paginate(Document.search(params[:search])) if params[:search].present?
-		super
+		@filter = params[:filter]
+		scope = paginate(scope_for(@filter).order('created_at desc'))
+		@documents = if params[:search].present?
+		  scope.search(params[:search])
+	  else
+	    scope
+    end
 	end
 	
 	def show
@@ -20,8 +25,15 @@ class DocumentsController < InheritedResources::Base
 	
 	private
 	
-	def collection
-    @documents ||= paginate(end_of_association_chain.includes(:uploader).order('created_at desc'))
+	def scope_for(filter)
+    case filter
+    when 'my'
+      current_user.documents
+    when 'uploaded'
+    	current_user.uploaded_documents
+    else
+      Document
+    end
   end
 
 end

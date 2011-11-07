@@ -36,15 +36,4 @@ module DocumentsHelper
      t('documents.all')
    end
 	end
-	
-	def document_path_for(filter, user = false)
-	 case filter
-    when 'my'
-      user_documents_path(user)
-    when 'uploaded'
-      uploaded_user_documents_path(user)
-    else
-      documents_path
-    end
-	end
 end

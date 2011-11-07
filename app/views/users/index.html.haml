@@ -9,16 +9,16 @@
       %ul
         %li=link_to t('users.all'), users_path
         - if current_user
-          %li=link_to t('users.following'), following_users_path
-          %li=link_to t('users.followers'), followers_users_path
+          %li=link_to t('users.following'), users_path(:filter => 'following')
+          %li=link_to t('users.followers'), users_path(:filter => 'followers')
   %section
-    = form_tag user_path_for(@filter), :class => 'form', :method => 'get' do
+    = form_tag users_path(:filter => @filter), :class => 'form', :method => 'get' do
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear
     - unless collection.blank?
       #infinite-scroll.none
-      %ul.listing.list-view.clearfix.endless{'data-url' => user_path_for(@filter)}
+      %ul.listing.list-view.clearfix.endless{'data-url' => users_path(:filter => @filter)}
         = render collection
       .center= loading_icon
     - else

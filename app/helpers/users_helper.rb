@@ -21,15 +21,4 @@ module UsersHelper
      t('users.all')
    end
 	end
-	
-	def user_path_for(filter)
-	 case filter
-    when 'following'
-      following_users_path
-    when 'uploaded'
-      followers_users_path
-    else
-      users_path
-    end
-	end
 end

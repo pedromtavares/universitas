@@ -8,25 +8,15 @@ Universitas::Application.routes.draw do
 				post :add
 				delete :remove
 			end
-			collection do
-				get :uploaded
-			end
 		end
     member do
 			get :timeline
       post :follow
  			delete :unfollow
     end
-    collection do
-      get :following
-      get :followers
-    end
   end
   
   resources :groups, :except => :destroy do
-    collection do
-      get :my
-    end
 		resources :documents, :except => [:edit, :show], :controller => 'group_documents' do
 			collection do
 				post :add_multiple

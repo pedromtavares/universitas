@@ -9,16 +9,16 @@
       %ul
         %li=link_to t('documents.all'), documents_path
         - if current_user
-          %li=link_to t('documents.my_documents'), user_documents_path(current_user)
-          %li=link_to t('documents.uploaded'), uploaded_user_documents_path(current_user)
+          %li=link_to t('documents.my_documents'), documents_path(:filter => 'my')
+          %li=link_to t('documents.uploaded'), documents_path(:filter => 'uploaded')
   %section
-    = form_tag document_path_for(@filter), :class => 'form', :method => 'get' do
+    = form_tag documents_path(:filter => @filter), :class => 'form', :method => 'get' do
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear
     - unless collection.blank?
       #infinite-scroll.none
-      %ul.listing.list-view.clearfix.endless{'data-url' => document_path_for(@filter)}
+      %ul.listing.list-view.clearfix.endless{'data-url' => documents_path(:filter => @filter)}
         = render :partial => "documents/document", :collection => @documents
       .center= loading_icon
     - else

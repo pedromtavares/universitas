@@ -1,24 +1,18 @@
 class GroupsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show, :timeline]
   before_filter :check_leader, :only => [:edit, :update] 
-	before_filter :load_presenter
 	respond_to :html, :js
 
   actions :all, :except => :delete
 
 	def index
-		@groups = paginate(Group.search(params[:search])) if params[:search].present?
-		super
-	end
-	
-	def my
-	 @groups = if params[:search].present?
-	   paginate(current_user.groups.search(params[:search]))
-   else
-     paginate(current_user.groups)
-   end
-	 @filter = 'my'
-	 render :index
+		@filter = params[:filter]
+		scope = paginate(scope_for(@filter).order('created_at desc'))
+		@groups = if params[:search].present?
+		  scope.search(params[:search])
+	  else
+	    scope
+    end
 	end
 	
 	def show
@@ -70,8 +64,13 @@ class GroupsController < InheritedResources::Base
   
   protected
   
-  def collection
-    @groups ||= paginate(end_of_association_chain.includes(:leader).order('created_at desc'))
+  def scope_for(filter)
+    case filter
+    when 'my'
+      current_user.groups
+    else
+      Group
+    end
   end
   
   def check_leader
@@ -80,8 +79,4 @@ class GroupsController < InheritedResources::Base
       redirect_to group
     end
   end
-
-	def load_presenter
-		@presenter = GroupsPresenter.new(current_user)
-	end
 end

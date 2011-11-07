@@ -4,20 +4,19 @@
       / %li= action_button(t('groups.new'), :add)
     .view-switcher
       %h2
-        - path = @filter ? my_groups_path : groups_path
         = @filter ? t("groups.#{@filter}") : t('groups.all')
         =link_to "&darr;", 'javascript:void(0)'
       %ul
         %li=link_to t('groups.all'), groups_path
-        %li=link_to t('groups.my'), my_groups_path if current_user
+        %li=link_to t('groups.my'), groups_path(:filter => 'my') if current_user
   %section
-    = form_tag path, :class => 'form', :method => 'get' do
+    = form_tag groups_path(:filter => @filter), :class => 'form', :method => 'get' do
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear
     - unless collection.blank?
       #infinite-scroll.none
-      %ul.listing.list-view.clearfix.endless{'data-url' => path}
+      %ul.listing.list-view.clearfix.endless{'data-url' => groups_path(:filter => @filter)}
         = render collection
       .center= loading_icon
     - else
