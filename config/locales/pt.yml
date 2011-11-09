@@ -102,7 +102,7 @@ pt:
     plural: Usuários
     connection: Conexões de
     my_connections: "Minhas conexões"
-    all: Todos
+    all: Todos os Usuários
     login: Login
     name: Nome
     email: E-mail
@@ -204,7 +204,7 @@ pt:
     edit: Editar Documento
     documents_for: Documentos para
     documents_uploaded: Documents que Você Enviou
-    all: Todos
+    all: Todos os Documentos
     new: Novo Documento
     add: Adicionar à minha coleção
     remove: Remover da minha coleção
