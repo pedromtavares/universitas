@@ -3,7 +3,7 @@ class DocumentsController < InheritedResources::Base
 	
 	def index
 		@filter = params[:filter]
-		scope = paginate(scope_for(@filter).order('created_at desc'))
+		scope = paginate(scope_for(params).order('created_at desc'))
 		@documents = if params[:search].present?
 		  scope.search(params[:search])
 	  else
@@ -25,14 +25,21 @@ class DocumentsController < InheritedResources::Base
 	
 	private
 	
-	def scope_for(filter)
-    case filter
+	def scope_for(params)
+    case params[:filter]
     when 'my'
       current_user.documents
     when 'uploaded'
     	current_user.uploaded_documents
     else
-      Document
+      case params[:type]
+      when 'user'
+        User.find(params[:id]).documents
+      when 'group'
+        Group.find(params[:id]).documents
+      else
+        Document
+      end
     end
   end
 

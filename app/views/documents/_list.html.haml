@@ -1,2 +1,8 @@
-%ul.list
-  = render documents
+- filter ||= nil; type ||= nil; id ||= nil;
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless{'data-url' => documents_path(:filter => filter, :type => type, :id => id)}
+    = render collection
+  .center= loading_icon
+- else
+  = t('documents.blank')

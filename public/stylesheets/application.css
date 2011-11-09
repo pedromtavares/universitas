@@ -375,6 +375,15 @@
 	overflow:auto;
 }
 
+#lists .endless{
+  height:400px;
+}
+
+.filters{
+  width:440px;
+  margin-left:-15px;
+}
+
 /* Overwrites on theme */
 
 .list-view li.custom{

@@ -7,7 +7,7 @@ class GroupsController < InheritedResources::Base
 
 	def index
 		@filter = params[:filter]
-		scope = paginate(scope_for(@filter).order('created_at desc'))
+		scope = paginate(scope_for(params).order('created_at desc'))
 		@groups = if params[:search].present?
 		  scope.search(params[:search])
 	  else
@@ -64,12 +64,19 @@ class GroupsController < InheritedResources::Base
   
   protected
   
-  def scope_for(filter)
-    case filter
+  def scope_for(params)
+    case params[:filter]
     when 'my'
       current_user.groups
     else
-      Group
+      case params[:type]
+      when 'user'
+        User.find(params[:id]).groups
+      when 'document'
+        Document.find(params[:id]).groups
+      else
+        Group
+      end
     end
   end
   

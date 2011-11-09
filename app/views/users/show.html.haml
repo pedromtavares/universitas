@@ -1,66 +1,36 @@
-.content
-  %h2.title
-    = resource.name
-    - ['website', 'twitter', 'facebook'].each do |service|
-      - if resource.send("#{service}?")
-        = link_to image_tag("auth/signin_#{service}_small.png"), resource.send(service)
-  %div{:style => 'margin:15px'}= avatar_for(resource)
-  .inner
-    - if resource.status?
-      %p
-        %span.gray= "\"#{resource.status}\""
-    %p
-      - if resource.email? && resource.show_email
-        %strong=t('users.email')
-        =resource.email
-    - ['description', 'location'].each do |attr|
-      - if resource.send("#{attr}?")
-        %p
-          %strong=t("users.#{attr}")
-          = resource.send(attr)
-    - unless resource == current_user || !user_signed_in?
-      - if current_user.following?(resource)
-        %p= button_to_icon :remove, t('users.unfollow'), unfollow_user_path(resource), :method => :delete 
-      - else
-        %p= button_to_icon :add, t('users.follow'), follow_user_path(resource), :method => :post
+.main-content.grid_4.alpha
+  %header.clearfix
+    %span.avatar=avatar_for(resource)
+    %hgroup
+      %h2
+        %ul.action-buttons.clearfix.fr
+          %li= action_button("#{t('shared.edit')} #{t('shared.profile')}", :edit, :path => edit_profile_path) if current_user && resource == current_user
+          - if current_user && resource != current_user
+            - if current_user.following?(resource)
+              =action_button(t('users.unfollow'), :remove, :path => unfollow_user_path(resource), :method => :delete)
+            - else
+              =action_button(t('users.follow'), :add, :path => follow_user_path(resource), :method => :post)
+        = resource.name
+      %h4=resource.location
+      - ['website', 'twitter', 'facebook'].each do |service|
+        - if resource.send("#{service}?")
+          = link_to image_tag("auth/signin_#{service}_small.png"), resource.send(service)
       %br.clear
+      %br.clear
+      %h4
+        %em=resource.description
+  %section
+    %h3.center{:style => 'margin-top:0'}="\"#{resource.status}\"" if resource.status.present?
+    .filters.center#user-filters
+      - options = {:type => :user, :id => resource.id}
+      =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => groups_path(options)
+      =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => documents_path(options)
+      =button_link_to t('users.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
+      =button_link_to t('users.following'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options.merge(:filter => :following))
+      =button_link_to t('users.followers'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options.merge(:filter => :followers))
+      %br
+      %br
+      =loading_icon
+    #lists= partial('groups/list', {:collection => resource.groups}.merge(options))
     
-    -if resource == current_user
-      .wat-cf
-        = button_to_icon :edit, "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path
-        = button_to_icon :folder, "#{t('shared.manage')} #{t('documents.plural')}", user_documents_path(resource)
-  %br.clear    
-  #tabs
-    %ul
-      %li=link_to t('users.timeline'), "#all"
-      %li=link_to t('documents.plural'), "#documents"
-      %li=link_to t('groups.plural'), "#groups"
-      %li=link_to t('users.following'), "#following"
-      %li=link_to t('users.followers'), "#followers"
-
-    #all
-      - unless @timeline.blank?
-        #infinite-scroll.none
-        = render :partial => 'updates/list', :locals => {:feed => @timeline, :url => timeline_user_path(resource)}
-      -else
-        %p=t('users.blank_timeline')
-    #documents
-      - unless @documents.blank?
-        = render :partial => 'documents/list', :locals => {:documents => @documents}
-      - else
-        %p=t('users.documents.blank')
-    #groups
-      - unless @groups.blank?
-        = render :partial => 'groups/list', :locals => {:groups => @groups}
-      - else
-        %p=t('users.groups.blank')
-    #following
-      - unless resource.following.blank?
-        = render :partial => 'users/list', :locals => {:users => resource.following}
-      - else
-        %p=t('users.not_following')
-    #followers
-      - unless resource.followers.blank?
-        = render :partial => 'users/list', :locals => {:users => resource.followers}
-      - else
-        %p=t('users.no_followers')
+=render_sidebar

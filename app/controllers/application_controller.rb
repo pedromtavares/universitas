@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   layout :define_layout
     
   def paginate(model, per=10)
-    model.page(params[:page]).per(per)
+    @page = params[:page]
+    model.page(@page).per(per)
   end
 
 	private

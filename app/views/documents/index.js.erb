@@ -1,12 +1,15 @@
-$('.endless').each(function(index, element){
+<% if @page.blank? || @page == 1 %>
+  $('#lists').html("<%= escape_javascript(partial('list', :collection => collection, :type => params[:type], :id => params[:id]))%>");
+<% else %>
+  element = $('.endless');
 	if ($(element).find('.endless_scroll_inner_wrap').length){
 		var div = '.endless_scroll_inner_wrap';
 	}else{
 		var div = element;
 	}
-	$(div).append("<%= escape_javascript(render :partial => 'documents/document', :collection => collection)%>");
-});
+	$(div).append("<%= escape_javascript(render collection)%>");
 
-<% if collection.blank? %>
-	$('#infinite-scroll').detach();
+  <% if collection.blank? %>
+  	$('#infinite-scroll').detach();
+  <% end %>
 <% end %>

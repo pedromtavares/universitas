@@ -3,19 +3,12 @@ class UsersController < InheritedResources::Base
 	
 	def index
 	  @filter = params[:filter]
-		scope = paginate(scope_for(@filter).order('created_at desc'))
+		scope = paginate(scope_for(params).order('created_at desc'))
 		@users = if params[:search].present?
 		  scope.search(params[:search])
 	  else
 	    scope
     end
-	end
-	
-	def show
-		@documents = resource.documents
-		@groups = resource.groups
-		@timeline = resource.timeline
-		super
 	end
   
   def follow
@@ -43,14 +36,21 @@ class UsersController < InheritedResources::Base
   
   protected
   
-  def scope_for(filter)
-    case filter
+  def scope_for(params)
+    case params[:filter]
     when 'following'
       current_user.following
     when 'followers'
     	current_user.followers
     else
-      User
+      case params[:type]
+      when 'document'
+        Document.find(params[:id]).users
+      when 'group'
+        Group.find(params[:id]).users
+      else
+        User
+      end
     end
   end
 end

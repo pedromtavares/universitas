@@ -54,6 +54,7 @@ en:
       not_locked: "was not locked"
   updates:
     plural: Latest Updates
+    blank: No updates were retrieved.
     updated_status_success: You have updated your status successfully.
     status: "Update your status..."
     recent_updates: Recent Updates
@@ -105,7 +106,7 @@ en:
   users:
     singular: User
     plural: Users
-    connections: "'s connections"
+    connections: "Connections for"
     my_connections: "My connections"
     all: All Users
     login: Login

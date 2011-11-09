@@ -1,10 +1,10 @@
-class UpdatesController < ApplicationController
+class UpdatesController < InheritedResources::Base
 	respond_to :html, :js 
   before_filter :authenticate_user!
   
   def index
-		last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
-    @feed = current_user.feed(last)
+    @updates = scope_for(params)
+    super
   end
   
   def create
@@ -12,12 +12,19 @@ class UpdatesController < ApplicationController
     redirect_to updates_path, :notice => t('updates.updated_status_success')
   end
   
-  def show
-    @update = Update.find(params[:id])
+  protected
+  
+  def scope_for(params)
+    last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
+    if params[:id]
+      case params[:type]
+      when 'user'
+        User.find(params[:id]).timeline(last)
+      when 'group'
+        Group.find(params[:id]).timeline(last)
+      end
+    else
+      current_user.feed(last, params[:type])
+    end
   end
-
-	def destroy
-		@update = Update.find(params[:id])
-		@update.destroy
-	end
 end

@@ -78,8 +78,22 @@ class User < ActiveRecord::Base
     self.updates.create!(:target => self, :custom_message => msg)    
   end
   
-  def feed(last = Time.now + 1.second)
-		Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups).where('created_at < ?', last).limit(20).order('created_at desc')
+  def feed(last = Time.now + 1.second, type = nil)
+		all = Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups)
+		user = Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User')", self.following, self.id)
+		group = Update.where("(creator_id in (?) and creator_type='Group')", self.groups)
+		forum = group.where("(target_type='Topic' or target_type='Post')")
+		result = case type
+	  when 'user'
+      user
+    when 'group'
+      group.where("NOT(target_type='Topic' or target_type='Post')")
+    when 'forum'
+      forum
+    else
+      all
+    end
+    result.where('created_at < ?', last).limit(30).order('created_at desc')
   end
 
 	def timeline(last = Time.now + 1.second)

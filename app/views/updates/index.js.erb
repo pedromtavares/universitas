@@ -1,16 +1,20 @@
-$('.updates').each(function(index, element){
-	if ($(element).find('.endless_scroll_inner_wrap').length){
-		var div = '.endless_scroll_inner_wrap';
-	}else{
-		var div = element;
-	}
-	$(div).append("<%= escape_javascript(render :partial => 'updates/update', :collection => @feed)%>");
-	showUpdatesFor("<%=params[:type]%>");
-	<% unless @feed.blank? %>
-		$(element).attr('data-last', '<%=@feed.to_a.last.created_at%>')
-	<% end %>
-});
+<% if params[:last].blank? %>
+  $('#lists').html("<%= escape_javascript(partial('list', :collection => collection, :type => params[:type], :last => params[:last], :id => params[:id]))%>");
+<% else %>
+  element = $('.updates');
 
-<% if @feed.blank? %>
-	$('#infinite-scroll').detach();
+  if ($(element).find('.endless_scroll_inner_wrap').length){
+  	var div = '.endless_scroll_inner_wrap';
+  }else{
+  	var div = element;
+  }
+
+  <% if collection.blank? %>
+  	$('#infinite-scroll').detach();
+  <% else %>
+    // console.log('<%=collection.to_a.last.created_at%>')
+    element.attr('last', '<%=collection.to_a.last.created_at%>')
+  <% end %>
+
+  $(div).append("<%= escape_javascript(render collection) %>");
 <% end %>

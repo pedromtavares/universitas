@@ -48,6 +48,7 @@ pt:
     image_extensions: "tamanho máximo do arquivo: %{size}MB"
   updates:
     plural: Atualizações Recentes
+    blank: Nenhuma atualização foi retornada.
     updated_status_success: Status atualizado com sucesso!
     status: "Status:"
     recent_updates: Atualizações Recentes
@@ -99,6 +100,7 @@ pt:
   users:
     singular: Usuário
     plural: Usuários
+    connection: Conexões de
     my_connections: "Minhas conexões"
     all: Todos
     login: Login

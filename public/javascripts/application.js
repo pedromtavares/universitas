@@ -2,61 +2,83 @@ $(function(){
 	
 	/******* General Code *******/
 	
-	$('.updates').endlessScroll({
-		fireOnce: true,
-		fireDelay: 1500,
-		ceaseFire: function(){
-			return $('#infinite-scroll').length ? false : true;
-		},
-		bottomPixels:500,
-	  callback: function(){
-	    $.ajax({
-		  url: $(this).data('url'),
-		  data: {
-				last: $(this).data('last'),
-				type: $(this).data('type')
-			},
-			dataType: 'script'
-		 });
-	  }
-	});
-	
-	$('.endless').endlessScroll({
-		fireOnce: true,
-		fireDelay: 1500,
-		ceaseFire: function(){
-			return $('#infinite-scroll').length ? false : true;
-		},
-		bottomPixels:500,
-	  callback: function(fireSequence){
-	    $.ajax({
-		  url: $(this).data('url'),
-		  data: {
-				page: fireSequence + 1,
-				search: $('#search').val()
-			},
-			dataType: 'script'
-		 });
-	  }
-	});
-	
 	$("img.loading").ajaxStart(function(){
 		$(this).removeClass('none');
 	}).ajaxComplete(function(){
 		$(this).addClass('none');
 	});
 	
-	/******* Updates *******/
+	/******* Endless Scroll *******/
+	
+	var scrollLock = true;
+	
+	var updatesOptions = {
+		fireOnce: true,
+		fireDelay: 1500,
+		ceaseFire: function(){
+			return $('#infinite-scroll').length ? false : true;
+		},
+		bottomPixels:300,
+	  callback: function(){
+	    if (scrollLock){
+	      scrollLock = false;
+	      $.ajax({
+  		    url: $(this).data('url'),
+  		    data: {
+  				  last: $(this).attr('last')			
+  			  },
+          dataType: 'script',
+          success: function(data, status){
+            scrollLock = true;
+          }
+  		  });
+	    }
+	    
+	  }
+	}
+	
+	$('.updates').endlessScroll(updatesOptions);
+	
+	var endlessOptions = {
+		fireOnce: true,
+		fireDelay: 1500,
+		ceaseFire: function(){
+			return $('#infinite-scroll').length ? false : true;
+		},
+		bottomPixels:300,
+	  callback: function(fireSequence){
+	    $.ajax({
+		    url: $(this).data('url'),
+		    data: {
+				  page: fireSequence + 1,
+				  search: $('#search').val()
+			  },
+			  dataType: 'script'
+		  });
+	  }
+	}
+	$('.endless').endlessScroll(endlessOptions);
+	
+	/******* Filters *******/
   
-  $("#update-filters > a").click(function() {
-    showUpdatesFor($(this).attr('target'), true);
-    $("#update-filters a").removeClass('button-green');
+  $(".filters > a").click(function() {
+    $(".filters a").removeClass('button-green');
     $(this).addClass('button-green');
     return false;
   });
-    
-  showUpdatesFor('all');
   
+  $("#update-filters a").click(function(){
+    $.getScript($(this).data('url'), function(data, status){
+      $('.updates').endlessScroll(updatesOptions);
+    });
+  });
+  
+  $("#user-filters a").click(function(){
+    $.getScript($(this).data('url'), function(data, status){
+      $('.endless').endlessScroll(endlessOptions);
+      $('.updates').endlessScroll(updatesOptions);
+    });
+  });  
 	
 	/******* Group document sharing UI *******/
 	
@@ -143,31 +165,6 @@ $(function(){
 
 
 /******* Helper Functions *******/
-
-function showUpdatesFor(type, fadeIn){
-	if(type == '' || !type){type = 'all'}
-	$('#latest-updates > div').hide();
-  if (fadeIn){
-    $('#'+type).fadeIn('slow');
-  }else{
-    $('#'+type).show();
-  }
-	list = $('#'+type+' .updates');
-	list.find('li').hide();
-	switch(type){
-		case 'user':
-			list.find('[creator=user]').show();
-			break;
-		case 'group':
-			list.find('[creator=group]').show();
-			break;
-		case 'forum':
-			list.find('[creator=forum]').show();
-			break;
-		default:
-			list.find('li').show();
-	}
-}
 
 function toggleNone(elements){
 	$.each(elements, function (index, element){

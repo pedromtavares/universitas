@@ -1,0 +1,7 @@
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless{'data-url' => users_path(:filter => @filter)}
+    = render collection
+  .center= loading_icon
+- else
+  = t('users.blank')

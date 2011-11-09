@@ -5,7 +5,7 @@
   = link_to document.name, document_path(document), :class => "name"
   .entry-meta
     = t('documents.uploader') 
-    = link_to document.uploader
+    = link_to document.uploader, document.uploader
     - if user_signed_in?
       %br
       - unless current_user.has_document?(document)

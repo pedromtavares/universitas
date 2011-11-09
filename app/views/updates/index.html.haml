@@ -8,20 +8,12 @@
         =t('shared.update')
     %br.clear
     %br.clear
-    #infinite-scroll.none
-    #update-filters.center
-      =button_link_to t('updates.all'), "javascript:void(0)", :target => 'all', :color => 'blue button-green'
-      =button_link_to t('users.plural'), "javascript:void(0)", :target => 'user', :color => 'blue'
-      =button_link_to t('groups.plural'), "javascript:void(0)", :target => 'group', :color => 'blue'
-      =button_link_to t('forums.plural'), "javascript:void(0)", :target => 'forum', :color => 'blue'
+    .filters.center#update-filters
+      =button_link_to t('updates.all'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => updates_path
+      =button_link_to t('users.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :user)
+      =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :group)
+      =button_link_to t('forums.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :forum)
     %br.clear
-    #latest-updates
-      #all
-        = render :partial => 'list', :locals => {:feed => @feed}
-      #user
-        = render :partial => 'list', :locals => {:feed => @feed, :type => 'user'}
-      #group
-        = render :partial => 'list', :locals => {:feed => @feed, :type => 'group'}
-      #forum
-        = render :partial => 'list', :locals => {:feed => @feed, :type => 'forum'}
+    .center= loading_icon
+    #lists= partial('list', :collection => collection)
 = render_sidebar

@@ -1,5 +1,5 @@
 - unless update.target.blank?
-  %li{:class => "#{update.id} #{update_creator(update)}", :creator => update_creator(update)}
+  %li{:id => update.id, :class => update_creator(update)}
     =link_to '&raquo;', update_path(update), :class => 'more'
     %span.timestamp
       = time_ago_in_words(update.created_at)

@@ -17,11 +17,5 @@
       = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
     %br.clear
-    - unless collection.blank?
-      #infinite-scroll.none
-      %ul.listing.list-view.clearfix.endless{'data-url' => documents_path(:filter => @filter)}
-        = render :partial => "documents/document", :collection => @documents
-      .center= loading_icon
-    - else
-      = t('documents.blank')
+    = partial('list', :collection => collection, :filter => @filter)
 = render_sidebar
