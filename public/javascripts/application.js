@@ -64,21 +64,12 @@ $(function(){
   $(".filters > a").click(function() {
     $(".filters a").removeClass('button-green');
     $(this).addClass('button-green');
-    return false;
-  });
-  
-  $("#update-filters a").click(function(){
-    $.getScript($(this).data('url'), function(data, status){
-      $('.updates').endlessScroll(updatesOptions);
-    });
-  });
-  
-  $("#user-filters a").click(function(){
     $.getScript($(this).data('url'), function(data, status){
       $('.endless').endlessScroll(endlessOptions);
       $('.updates').endlessScroll(updatesOptions);
     });
-  });  
+    return false;
+  });
 	
 	/******* Group document sharing UI *******/
 	

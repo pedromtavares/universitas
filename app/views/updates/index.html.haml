@@ -8,7 +8,7 @@
         =t('shared.update')
     %br.clear
     %br.clear
-    .filters.center#update-filters
+    .filters.center
       =button_link_to t('updates.all'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => updates_path
       =button_link_to t('users.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :user)
       =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :group)

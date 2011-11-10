@@ -1,109 +1,48 @@
-.content
-  %h2.title= resource.name
-  .inner
-    %p
-      =image_tag resource.image_url, :class => 'left spaced'
-      %em= resource.description
-    %p  
-      %strong= t('groups.leader')
-      = link_to resource.leader.name, resource.leader
-    %br.clear
-    = button_to_icon :message, t('forums.plural'), group_forums_path(resource), :class => "button" 
-    %br.clear  
-    - if user_signed_in? && !current_user.leader_of?(resource)
-      - unless current_user.member_of?(resource)
-        %p= button_to_icon :key, t('groups.join'), join_group_path, :method => :post
-      - else
-        %p= button_to_icon :cancel, t('groups.leave'), leave_group_path, :method => :delete
-    %br.clear    
-    - if user_signed_in? && current_user.leader_of?(resource)
-      = render :partial => 'leader_menu'
-    %br.clear
-    - if user_signed_in? && current_user.member_of?(resource)
-      = render :partial => 'member_menu'
-    %br.clear
-    - unless resource.status.blank?
-      %p.center      
-        %span.gray= "\"#{resource.status}\"" 
-    #tabs.ui-tabs
-      %ul
-        %li=link_to t('groups.timeline'), "#all"
-        %li=link_to t('modules.plural'), "#modules"
-        %li=link_to t('documents.plural'), "#documents"
-        %li=link_to t('members.plural'), "#members"
-        %li=link_to t('shared.share'), "#share"
-      #all.ui-tabs-hide
-        - unless @timeline.blank?
-          #infinite-scroll.none
-          = render :partial => 'updates/list', :locals => {:feed => @timeline, :url => timeline_group_path(resource)}
-        -else
-          %p=t('groups.blank_timeline')
-      #modules.ui-tabs-hide
-        - unless @modules.blank?
-          - @modules.each do |m|
-            #module-box.ui-state-default
-              .left
-              %h2=m.name
-              - unless m.group_documents.accepted.blank?
-                %p.left=m.description
-                .right
-                  #doc-box.ui-state-active
-                    - m.group_documents.accepted.each do |group_document|
-                      .doc.ui-state-hover{:title => group_document.name}
-                        =link_to document_icon_for(group_document.document, true), group_document.file_url, :title => t('shared.click_to_download')
-                        .name= group_document.name.truncate(38) 
-                        .options
-                          - unless !user_signed_in? || current_user.has_document?(group_document.document)
-                            =link_to_icon(:add, t('documents.add'), add_user_document_path(current_user,group_document.document), :method => :post)
-              - else
-                %p=m.description
-            %br.clear
-        - else
-          %p=t('modules.blank')
-      #members.ui-tabs-hide
-        - unless @members.blank?
-          = render :partial => 'users/list', :locals => {:users => resource.users}
-        - else
-          %p=t('members.blank')
-  
-      #documents.ui-tabs-hide
-        - unless @accepted_docs.blank?
-          = render :partial => 'documents/list', :locals => {:documents => @accepted_docs.includes(:document).map(&:document)}
-        - else
-          %p=t('groups.documents.blank')
-      #share.ui-tabs-hide
-        - if user_signed_in? && current_user.member_of?(resource)
-          %h1.center=t('groups.documents.share')
-          .share-box.ui-state-default#search-box
-            %h2.center=t('groups.documents.search')
-            = form_tag user_documents_path(current_user), :remote => true, :method => :get, :class => 'form' do
-              .small-box= text_field_tag :search, '', :class => 'text_field'
-              = submit_button(:small => true, :id => 'search-button', :onclick => "$('#new-form').hide();$('#search-docs').show();$('#new-button').show()") do
-                = button_icon :search
-                =t('shared.search')
-              = button_link_to('javascript:void(0)', :id => 'new-button', :onclick => "$('#new-form').show();$('#search-docs').hide();$(this).hide();", :small => true) do
-                = button_icon :add
-                =t('groups.documents.create')
-              = loading_icon
-              %br.clear
-              #search-docs
-                = render(:partial => 'search_list', :locals => {:documents => current_user.documents})
-            #new-form.none
-              = simple_form_for(GroupDocument.new(:document => params[:document] || Document.new), :url => group_documents_path(resource), :html => {:class => :form, :multipart => true }) do |f|
-                = render :partial => 'group_documents/form', :locals => {:f => f}
-              %br.clear
-          .share-box.ui-state-default#chosen-box
-            %h2.center=t('groups.documents.chosen')
-            %p#message.none=t('groups.documents.created')
-            = form_tag add_multiple_group_documents_path(resource), :remote => true, :method => :post, :id => 'chosen-form', :class => 'form none' do
-              ="#{t('modules.singular')}:"
-              = select_tag "module", options_from_collection_for_select(@modules, :id, :name), :class => 'select'
-              = loading_icon
-              = submit_button(:small => true, :class => 'right') do
-                = button_icon :check
-                = t('shared.save')
-              #chosen-docs
-              %br.clear
-        -else
-          %h1.center=t('groups.documents.must_be_member')
-        %br.clear
+.main-content.grid_4.alpha
+  %header.clearfix
+    %span.custom-avatar=image_tag resource.image_url
+    %hgroup
+      %h2
+        = resource.name
+        %ul.action-buttons.clearfix.fr
+          %li= action_button(t('forums.plural'), :forums, :path => group_forums_path(resource))
+      %h4
+        = t('groups.led_by')
+        = link_to resource.leader.name, resource.leader
+      %br
+      %ul.action-buttons.clearfix
+        - if current_user && current_user.leader_of?(resource)
+          %li= action_button(t('shared.edit'), :edit, :path => edit_resource_url)
+          %li= action_button("#{t('shared.manage')} #{t('groups.documents.plural')}", 'manage-documents', :path => group_documents_path(resource))
+        - if current_user && !current_user.leader_of?(resource)
+          - if current_user.member_of?(resource)
+            =action_button(t('groups.leave'), :remove, :path => leave_group_path(resource), :method => :delete)
+          - else
+            =action_button(t('groups.join'), :key, :path => join_group_path(resource), :method => :post)
+      %br.clear
+      %br.clear
+      %h4
+        %em=resource.description
+      %br.clear
+      .center=button_link_to t('documents.share'), "javascript:void(0)", :color => 'red'
+  %section
+    - if current_user && current_user.leader_of?(resource)
+      = form_tag update_status_group_path(resource), :method => :put do
+        = text_field_tag :status, resource.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
+        = submit_button do
+          =t('shared.update')
+      %br.clear
+      %br.clear
+    - else
+      %h3.center{:style => 'margin-top:0'}="\"#{resource.status}\"" if resource.status.present?
+    .filters.center
+      - options = {:type => :group, :id => resource.id}
+      =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => documents_path(options)
+      =button_link_to t('members.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options)
+      =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
+      %br
+      %br
+      =loading_icon
+    #lists= partial('documents/list', {:collection => resource.documents}.merge(options))
+    
+=render_sidebar

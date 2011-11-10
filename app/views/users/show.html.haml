@@ -21,7 +21,7 @@
         %em=resource.description
   %section
     %h3.center{:style => 'margin-top:0'}="\"#{resource.status}\"" if resource.status.present?
-    .filters.center#user-filters
+    .filters.center
       - options = {:type => :user, :id => resource.id}
       =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => groups_path(options)
       =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => documents_path(options)

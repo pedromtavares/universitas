@@ -1,5 +1,5 @@
 class GroupsController < InheritedResources::Base
-  before_filter :authenticate_user!, :except => [:index, :show, :timeline]
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :check_leader, :only => [:edit, :update] 
 	respond_to :html, :js
 
@@ -13,15 +13,6 @@ class GroupsController < InheritedResources::Base
 	  else
 	    scope
     end
-	end
-	
-	def show
-		@timeline = resource.timeline
-		@modules = resource.modules
-		@accepted_docs = resource.group_documents.accepted
-		@members = resource.members
-		add_breadcrumb(t('forums.plural'), lambda { group_forums_path(resource) })
-		super
 	end
   
   def create
@@ -48,13 +39,6 @@ class GroupsController < InheritedResources::Base
 	def update_status
 		resource.update_status(params[:status])
 		redirect_to resource_path
-	end
-	
-	def timeline
-		@feed = resource.timeline(Time.parse(params[:last]))
-		respond_to do |format|
-			format.js{ render 'updates/index'}
-		end
 	end
 	
 	def promote

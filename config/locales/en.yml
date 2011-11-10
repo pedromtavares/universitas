@@ -158,7 +158,7 @@ en:
     have_left: You have left the group
     my_groups: My Groups
     joined_none: "You haven't joined any groups yet."
-    status: "Group Status:"
+    status: "Group Status"
     timeline: Timeline
     blank_timeline: There are no updates from this group yet!
     promote: Promote this group
@@ -169,7 +169,7 @@ en:
     led_by: Led by
     documents:
       plural: Group Documents
-      blank: This group has no documents!
+      blank: This group has no documents.
       no_module: No module selected.
       add: Add to chosen list.
       remove: Remove from chosen list.
@@ -225,7 +225,9 @@ en:
     users: Users
     groups: Groups
     recent: Recent Documents
+    share: Share documents with this group
     blank:
+      any: No documents were retrieved.
       users: This document is not collected by any users
       groups: This document is not shared to any groups 
   modules:
@@ -297,9 +299,9 @@ en:
       tip3_text: "Every document you add to the group will be automatically accepted. If you already own a document and wish to add it to the group, use the sharing UI on the group's page instead to avoid having duplicate documents associated with your account."
     groups:
       tip: As a Group Member
-      tip_text: "You can share documents with the group, promote the group with a message to all your followers and post in the group forums. All documents shared with the group has to be approved by the Group Leader, so if you share a document and it doesn't immediately show up on the group document list, be patient."
+      tip_text: "You can share documents with the group and post in the group forums. The Group Leader may remove any documents you share and moderate anything you post."
       tip2: As a Group Leader
-      tip2_text: "You can edit the group's information (including module information), accept or decline documents that were shared with the group, update the group's status (this update will appear on all members' dashboard) and edit/moderate the group forums. Group leaders can, obviously, also do everything group members do."
+      tip2_text: "You can edit the group's information, remove documents that were shared with the group, update the group's status (this update will appear on all members' dashboard) and edit/moderate the group forums."
       tip3: Sharing documents with a group
       tip3_text: "To share documents you already own, use the search box to find the specific documents you want to share and click the '+' icon. After you're done, select the target group module (or leave it blank if you want) and click 'Save'. On the other hand, if you want to upload a new document on the fly, click the 'Create' button and fill out the form. On both cases, the document will be sent to the group leader for approval."
     registrations:

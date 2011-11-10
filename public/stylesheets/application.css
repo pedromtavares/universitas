@@ -384,6 +384,11 @@
   margin-left:-15px;
 }
 
+.custom-avatar{
+  float:left;
+  margin-right:10px;
+}
+
 /* Overwrites on theme */
 
 .list-view li.custom{

@@ -26,13 +26,6 @@ class UsersController < InheritedResources::Base
     end
     redirect_to :back
   end
-
-	def timeline
-		@feed = resource.timeline(Time.parse(params[:last]))
-		respond_to do |format|
-			format.js{ render 'updates/index'}
-		end
-	end
   
   protected
   

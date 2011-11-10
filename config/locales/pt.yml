@@ -152,7 +152,7 @@ pt:
     have_left: Você saiu do grupo
     my_groups: Meus Grupos
     joined_none: "Você ainda não entrou em nenhum grupo."
-    status: "Status do Grupo:"
+    status: "Status do Grupo"
     timeline: Atualizações
     blank_timeline: Ainda não há atualizações deste grupo!
     promote: Promover este grupo
@@ -219,7 +219,9 @@ pt:
     users: Usuários
     groups: Grupos
     recent: Documentos Recentes
+    share: Compartilhar documentos com esse grupo
     blank:
+      any: Nenhum documento foi retornado.
       users: Esse documento não está na coleção de ninguém
       groups: Esse documento não está sendo compartilhado por nenhum grupo
   modules:
@@ -291,9 +293,9 @@ pt:
       tip3_text: "Todo documento que você adiciona ao grupo será automaticamente aceito. Se você já tem um documento e deseja adicioná-lo ao grupo, use a tabela de compartilhamento na página do grupo para evitar documentos duplicados associados a sua conta."
     groups:
       tip: Como um membro do grupo
-      tip_text: "Você pode compartilhar documentos com o grupo, promover o grupo com uma mensagem para seus seguidores and postar nos fóruns do grupo. Todos os documentos compartilhados com o grupo precisam ser aprovador pelo Líder do grupo, então se você compartilhar um documento e este não aparecer imediatamente na lista de documentos do grupo, seja paciente."
+      tip_text: "Você pode compartilhar documentos com o grupo e postar nos fóruns do mesmo. O Líder do Grupo poderá remover qualquer documento compartilhado e moderar qualquer post nos fóruns."
       tip2: Como o Líder do grupo
-      tip2_text: "Você pode editar qualquer informação relativa ao grupo (inclusive módulos), aceitar ou recusar documentos que foram enviados pro grupo, atualizar o status do grupo (que vai aparecer no painel de todos os seus membros), e editar/moderar os fóruns do grupo. Líderes de grupo podem, obviamente, também fazer tudo o que os membros fazem."
+      tip2_text: "Você pode editar qualquer informação relativa ao grupo, remover documentos que foram enviados pro grupo, atualizar o status do grupo (que vai aparecer no painel de todos os seus membros), e editar/moderar os fóruns do grupo."
       tip3: Compartilhando documentos com um grupo
       tip3_text: "Para compartilhar documentos que você já tem, use a caixa de busca para achar os documentos que queira compartilhar e clique no ícone '+'. Depois de escolher os documentos, escolha o módulo que estes devem pertencer e clique 'Salvar'. Você também pode fazer upload de um documento novo, basta clicar no botão de 'Criar' e preencher o formulário. Em ambos os casos, os documentos serão enviados para o Líder do grupo para aprovação."
     registrations:

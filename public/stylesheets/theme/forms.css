@@ -279,7 +279,18 @@ a.button.no-text {
 .button span.key {
     background: transparent url(../../images/icons/key.png) no-repeat center center;
 }
-
+.button span.document {
+    background: transparent url(../../images/icons/book.png) no-repeat center center;
+}
+.button span.manage-documents {
+    background: transparent url(../../images/icons/book_key.png) no-repeat center center;
+}
+.button span.share-documents {
+    background: transparent url(../../images/icons/book_add.png) no-repeat center center;
+}
+.button span.forums {
+    background: transparent url(../../images/icons/comments.png) no-repeat center center;
+}
 /**
  * Pagination
  */

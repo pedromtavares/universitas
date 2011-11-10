@@ -5,4 +5,12 @@
     = render collection
   .center= loading_icon
 - else
-  = t('documents.blank')
+  .center
+    - case type.to_s
+    - when 'user'
+      = t('users.documents.blank')
+    - when 'group'
+      = t('groups.documents.blank')
+    - else
+      = t('documents.blank.any')
+    
