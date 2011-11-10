@@ -6,9 +6,9 @@
         = resource.name
         %ul.action-buttons.clearfix.fr
           %li= action_button(t('forums.plural'), :forums, :path => group_forums_path(resource))
-      %h4
+      %h4.spaced-top
         = t('groups.led_by')
-        = link_to resource.leader.name, resource.leader
+        = link_to resource.leader, resource.leader
       %br
       %ul.action-buttons.clearfix
         - if current_user && current_user.leader_of?(resource)
@@ -19,7 +19,6 @@
             =action_button(t('groups.leave'), :remove, :path => leave_group_path(resource), :method => :delete)
           - else
             =action_button(t('groups.join'), :key, :path => join_group_path(resource), :method => :post)
-      %br.clear
       %br.clear
       %h4
         %em=resource.description

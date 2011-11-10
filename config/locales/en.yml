@@ -32,6 +32,7 @@ en:
     footer_note: "Universitas - This project is <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. All rights reserved."
     with: with
     get_started: Get Started
+    view: View
     pagination:
       prev: « Prev
       next: Next »
@@ -112,7 +113,6 @@ en:
     login: Login
     name: Name
     email: E-mail
-    blank: No user matched your search results.
     following: Following
     not_following: Not following anyone yet.
     followers: Followers
@@ -125,8 +125,10 @@ en:
     blank_timeline: There are no updates from this user yet!
     location: Location
     description: Bio
-    groups:
-      blank: This user is in no groups yet.
+    blank:
+      groups: This group has no members yet.
+      documents: This document isn't being collected by anyone.
+      any: No users were retrieved.
     documents:
       uploaded:
         singular: Uploaded Document
@@ -150,7 +152,6 @@ en:
     name: Name
     description: Description
     leader: Leader
-    blank: No group matched your search results.
     join: Join this group
     leave: Leave this group
     have_joined: You have joined the group 
@@ -167,6 +168,10 @@ en:
     recent: Recent Groups
     my: My Groups
     led_by: Led by
+    blank:
+      any: No groups were retrieved.
+      users: This user has no groups yet.
+      documents: This document is not shared by any group.
     documents:
       plural: Group Documents
       blank: This group has no documents.
@@ -212,10 +217,10 @@ en:
     documents_uploaded: Documents You Uploaded
     all: All Documents
     new: New Document
-    add: Add To My Collection
-    remove: Remove From My Collection
+    add: Add to my collection
+    remove: Remove from my collection
     blank: No document results matched your search.
-    uploader: Uploaded By
+    uploader: Uploaded by
     uploaded: Uploaded Documents
     uploaded_at: Uploaded At
     size: Size
@@ -226,10 +231,11 @@ en:
     groups: Groups
     recent: Recent Documents
     share: Share documents with this group
+    view: View this document
     blank:
       any: No documents were retrieved.
-      users: This document is not collected by any users
-      groups: This document is not shared to any groups 
+      users: This user has no documents yet.
+      groups: This user is not in any group yet.
   modules:
     singular: Module
     plural: Modules

@@ -17,6 +17,8 @@
           = current_user
           %span.arrow-down
         %ul
+          %li= link_to t('groups.my'), groups_path(:filter => :my)
+          %li= link_to t('documents.my_documents'), documents_path(:filter => :my)
           %li= link_to "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path
           %li= link_to t("shared.signout"), destroy_user_session_path
       - else

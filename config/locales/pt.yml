@@ -30,6 +30,7 @@ pt:
     add: Adicionar
     footer_note: "Universitas - Este projeto é <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. Direitos autorais."
     with: pelo
+    view: Ver
   views:
     pagination:
       previous: ‹ Ant
@@ -119,8 +120,10 @@ pt:
     blank_timeline: Não há atualizaçoes deste usuário.
     location: Localidade
     description: Bio
-    groups:
-      blank: Este usuário não está em nenhum grupo ainda.
+    blank:
+      groups: Este grupo ainda não possui membros.
+      documents: Este documento não está na coleção de ninguém.
+      any: Nenhum usuário foi retornado.
     documents:
       uploaded:
         singular: Documento Enviado
@@ -144,7 +147,6 @@ pt:
     name: Nome
     description: Descrição
     leader: Líder
-    blank: Nenhum grupo correspondeu à sua busca.
     join: Entrar neste grupo
     leave: Sair deste grupo
     have_joined: Você entrou no grupo 
@@ -161,6 +163,10 @@ pt:
     recent: Grupos Recentes
     my: Meus Grupos
     led_by: Liderado por
+    blank:
+      any: Nenhum grupo foi retornado.
+      users: Este usuário não está em nenhum grupo.
+      documents: Este documento não é compartilhado por nenhum grupo.
     documents:
       plural: Documentos do Grupo
       blank: Este grupo não possui documentos!
@@ -208,8 +214,7 @@ pt:
     new: Novo Documento
     add: Adicionar à minha coleção
     remove: Remover da minha coleção
-    blank: Nenhum resultado correspondeu à sua busca.
-    uploader: Enviado Por
+    uploader: Enviado por
     uploaded: Documentos Enviados
     uploaded_at: Enviado
     size: Tamanho
@@ -220,6 +225,7 @@ pt:
     groups: Grupos
     recent: Documentos Recentes
     share: Compartilhar documentos com esse grupo
+    view: Visualizar este documento
     blank:
       any: Nenhum documento foi retornado.
       users: Esse documento não está na coleção de ninguém
