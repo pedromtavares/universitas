@@ -5,7 +5,7 @@
   = link_to user, user_path(user), :class => "name"
   .entry-meta
     = user.name
-    - if user_signed_in?
+    - if current_user && current_user != user
       %br
       - if current_user.following?(user)
         = action_button t('users.unfollow'), :remove, :path => unfollow_user_path(user), :method => :delete
