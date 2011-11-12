@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-	before_filter :load_presenter
   def create
 		unless params[:honeypot].blank?
 			redirect_to root_path 
@@ -15,10 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
 	end
 
   private
-
-	def load_presenter
-		@presenter = RegistrationsPresenter.new(current_user)
-	end
   
   def build_resource(*args)
     super
@@ -26,5 +21,9 @@ class RegistrationsController < Devise::RegistrationsController
 			omniauth = session[:omniauth]
       @user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     end
+  end
+  
+  def after_update_path_for(resource)
+    edit_profile_path
   end
 end

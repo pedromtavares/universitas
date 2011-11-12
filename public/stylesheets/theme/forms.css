@@ -792,7 +792,7 @@ fieldset legend {
     clear: left;
 }
 
-.form label small {
+.form small {
     color:#666666;
     display:block;
     font-size:11px;
@@ -800,6 +800,7 @@ fieldset legend {
     line-height: 11px;
     text-align:right;
     width:160px;
+    height:10px;
 }
 
 .form .action {
@@ -829,7 +830,7 @@ input.full,select.full,textarea.full {
 input {
     position: relative;
 }
-select, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=date], input[type=number], input[type=time], input[type=date], input.date {
+select, textarea, input[type=text], input[type=password], input[type=email], input[type=url], input[type=date], input[type=number], input[type=time], input[type=date], input.date, input[type="file"] {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;

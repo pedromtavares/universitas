@@ -15,6 +15,6 @@
         = submit_button do
           = t 'shared.signin'
     - on_each_provider do |provider|
-      = link_to image_tag("auth/signin_#{provider}.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
+      = link_to image_tag("auth/signin_#{provider}.png", :alt => t("auth.signin_#{provider}")), "/auth/#{provider}"
     %br
     =render :partial => "devise/shared/links"

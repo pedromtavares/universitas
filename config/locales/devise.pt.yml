@@ -21,6 +21,7 @@ pt:
     passwords:
       send_instructions: 'Você receberá um e-mail com instruções de como resetar sua senha em alguns minutos.'
       updated: 'Sua senha foi atualizada com sucesso. Você está logado.'
+      email: 'Favor preencher seu e-mail'
     confirmations:
       send_instructions: 'Você receberá um e-mail com instruções de como confirmar sua conta em alguns minutos.'
       confirmed: 'Sua conta foi confirmada com sucesso. Você está logado.'

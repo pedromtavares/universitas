@@ -9,11 +9,19 @@ en:
       email: "E-mail"
       name: 'Name'
       text: "Text"
+      remote_image_url: Image URL
+      show_email: "Show e-mail address on your profile"
     hints:
       user:
         edit:
-          password: (leave blank if you don't want to change it)
-          current_password: (we need your current password to confirm your changes)
+          password: Leave blank if you don't want to change it
+          current_password: We need your current password to confirm your changes
+          image: Or you can supply an image URL below
+          remote_image_url: A link to an image of you
+          location: Where are you at?
+          twitter: "Your Twitter link - Ex: http://twitter.com/universitas"
+          facebook: "Your FB link - Ex: http://www.facebook.com/universitas"
+          description: 'A short bio of yourself'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'

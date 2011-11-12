@@ -51,7 +51,7 @@ pt:
     plural: Atualizações Recentes
     blank: Nenhuma atualização foi retornada.
     updated_status_success: Status atualizado com sucesso!
-    status: "Status:"
+    status: "Atualize seu Status"
     recent_updates: Atualizações Recentes
     updated_status: atualizou status para
     created_group: criou um grupo chamado 
@@ -71,11 +71,9 @@ pt:
     personal: Pessoal
     errors: Houveram alguns erros atualizando seu perfil. Por favor cheque todas as abas.
     cancel: Cancelar minha conta
-    description_hint: 'Uma pequena biografia sobre você.'
-    twitter_hint: "Ex: http://twitter.com/universitas"
-    facebook_hint: "Ex: http://www.facebook.com/universitas"
-    show_email: "Mostrar e-mail no seu perfil"
-    or_remote_url: "ou URL da imagem:"
+    core_info: Mude as informações mais importantes da sua conta
+    personal_info: Mude infomações pessoais e opcionais
+    options_info: Adicione e remova diferentes serviços de autenticação
   auth:
     signed_in: "Autenticação feita com sucesso!"
     edit_profile: " Por favor <a href='/profile/edit'>edite seu perfil</a> e o atualize com um endereço de e-mail para ser possível recuperar sua conta no futuro."

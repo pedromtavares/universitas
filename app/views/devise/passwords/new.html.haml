@@ -1,21 +1,11 @@
-#box
-  .block#block-login
-    %h2=t 'devise.forgot_password'
-    .content.login
-      .flash
-        - resource.errors.each do |field, message|
-          .message{:class => 'error'}
-            %p="#{field} #{message}".humanize
-      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => 'form login'}) do |f|    
-        .group.wat-cf
-          .left= f.label :email, :class => 'label right'
-          .right= f.text_field :email, :class => 'text_field'
-          %br  
-          %br  
-        .group.navform.wat-cf
-          .right
-            = submit_button do
-              = image_tag("icons/key.png", :alt => "Login") 
-              = t 'devise.send_me_password'    
-        %br
-        =render :partial => "devise/shared/links"
+.login-box.main-content{:style => 'top:40%;'}
+  %header
+    %h2=t('devise.forgot_password')
+  %section
+    = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => 'clearfix'}) do |f|
+      = f.input :email, :placeholder => t('devise.passwords.email'), :style => "width:95%", :required => true
+      %p.clearfix
+        = submit_button do
+          = t('devise.send_me_password')
+    %br
+    =render :partial => "devise/shared/links"

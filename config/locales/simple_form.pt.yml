@@ -19,9 +19,17 @@ pt:
       file: Arquivo
       module: Módulo
       title: Título
+      remote_image_url: URL da Imagem
+      show_email: "Mostrar e-mail no seu perfil"
     hints:
       user:
         edit:
-          password: (deixe em branco caso não queira mudá-la)
-          current_password: (precisamos da sua senha atual para confirmar suas mudanças)
+          password: Deixe em branco caso não queira mudá-la
+          current_password: Precisamos da sua senha atual para confirmar suas mudanças
+          image: Ou você pode informar uma URL da imagem abaixo
+          remote_image_url: Um link de uma imagem sua
+          location: Onde você está?
+          twitter: "Seu link no Twitter - Ex: http://twitter.com/universitas"
+          facebook: "Seu link no FB - Ex: http://www.facebook.com/universitas"
+          description: 'Uma pequena biografia sobre você'
 

@@ -64,11 +64,21 @@ $(function(){
   $(".filters > a").click(function() {
     $(".filters a").removeClass('button-green');
     $(this).addClass('button-green');
-    $.getScript($(this).data('url'), function(data, status){
-      $('.endless').endlessScroll(endlessOptions);
-      $('.updates').endlessScroll(updatesOptions);
-    });
+    var url = $(this).data('url');
+    if (url && url!=''){
+      $.getScript($(this).data('url'), function(data, status){
+        $('.endless').endlessScroll(endlessOptions);
+        $('.updates').endlessScroll(updatesOptions);
+      });
+    }
     return false;
+  });
+  
+  $("#account-filters a").click(function(){
+    $('#account').slideUp();
+    $('#personal').slideUp();
+    $('#options').slideUp();
+    $('#' + $(this).data('target')).slideDown();
   });
 	
 	/******* Group document sharing UI *******/

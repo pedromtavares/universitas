@@ -57,7 +57,7 @@ en:
     plural: Latest Updates
     blank: No updates were retrieved.
     updated_status_success: You have updated your status successfully.
-    status: "Update your status..."
+    status: "Update your Status"
     recent_updates: Recent Updates
     updated_status: updated status to
     created_group: created a group called 
@@ -77,11 +77,9 @@ en:
     personal: Personal
     errors: There were errors when updating your profile. Please check all tabs.
     cancel: Cancel my account
-    description_hint: 'A short bio of yourself'
-    twitter_hint: "Ex: http://twitter.com/universitas"
-    facebook_hint: "Ex: http://www.facebook.com/universitas"
-    show_email: "Show e-mail address on your profile"
-    or_remote_url: "or image URL:"
+    core_info: Change your core profile information
+    personal_info: Change your personal and optional information
+    options_info: Add and remove different authentication services
   auth:
     signed_in: "Signed in successfully."
     edit_profile: " Please visit your <a href='/profile/edit'>edit profile page</a> and update your e-mail address for future account recovery."

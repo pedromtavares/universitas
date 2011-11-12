@@ -40,7 +40,7 @@ $(document).ready(function() {
         }
     });
 
-    $('[title]').tooltip({effect: 'slide', offset: [-14, 0]});
+    $('[title]:not(abbr)').tooltip({effect: 'slide', offset: [-14, 0]});
 
     // html element for the help popup
     $('body').append('<div class="apple_overlay black" id="overlay"><iframe class="contentWrap" style="width: 100%; height: 500px"></iframe></div>');

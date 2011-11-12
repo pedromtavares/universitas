@@ -389,6 +389,32 @@
   margin-right:10px;
 }
 
+/* Forms */
+
+form .error{
+  float:left;
+  color:red;
+  margin-left:2px;
+}
+
+p.fieldWithErrors{
+  float:left;
+  margin:0;
+}
+
+.required abbr{
+  color:red;
+}
+
+form label{
+  font-weight:bold;
+}
+
+#account-filters{
+  text-align:center;
+  margin:auto;
+}
+
 /* Overwrites on theme */
 
 .list-view li.custom{
