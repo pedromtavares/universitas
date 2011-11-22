@@ -4,7 +4,7 @@
     - pages.each do |page|
       %li{:class => "#{controller_name == page ? 'active' : ''}"}= link_to t("#{page}.plural"), url_for(send(page+"_path"))
     %li.action{:style => "margin-left:10px"}
-      = link_to "javascript:void(0)", :class => "has-popupballoon button button-blue" do
+      = link_to new_group_path, :class => "_has-popupballoon button button-blue" do
         %span.add
         = t('groups.new')
       .popupballoon.top

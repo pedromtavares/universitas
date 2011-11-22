@@ -75,5 +75,5 @@
         - on_each_provider do |provider|
           - unless current_user.has_provider?(provider)
             =link_to "/auth/#{provider}", :class => 'provider' do
-              = image_tag("auth/#{provider}.png", :title => t("auth.#{provider}"))
+              = image_tag("auth/#{provider}.png", :alt => t("auth.#{provider}"))
               %strong= t("auth.#{provider}")

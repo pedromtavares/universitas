@@ -1,14 +1,14 @@
 class ForumsController < InheritedResources::Base
-	before_filter :load_presenter
 	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
 	belongs_to :group
+	respond_to :html, :js
 	
 	def create
 		create!{collection_url}
 	end
 	
 	def show
-		@topics = paginate(resource.topics)
+		@topics = resource.topics
 		super
 	end
   
@@ -19,15 +19,5 @@ class ForumsController < InheritedResources::Base
 			flash[:error] = t('forums.not_allowed')
 			redirect_to group_path(parent)
 		end
-	end
-
-	def load_presenter
-		@presenter = ForumsPresenter.new(current_user, parent)
-	end
-	
-	def set_breadcrumbs
-		add_breadcrumb(parent.name.truncate(50), :parent_url) if parent?
-		add_breadcrumb(I18n.t("forums.all"), :collection_path)
-		add_breadcrumb(resource.to_s.truncate(50), :resource_path) if params[:id]
 	end
 end

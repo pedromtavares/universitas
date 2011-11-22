@@ -1,5 +1,7 @@
-.content
-  %h2.title=t('documents.edit')
-  .inner
-    = simple_form_for(resource, :url => resource_url, :html => { :class => :form, :multipart => true }) do |f|
-      = render :partial => "form", :locals => {:f => f}  
+.main-content
+  %header
+    %h2= t('documents.edit')
+  %section.container_6.clearfix
+    .grid_6
+      = simple_form_for(resource, :url => resource_url,  :html => {:class => 'form grid_6', :multipart => true }) do |f|
+        = render :partial => "form", :locals => {:f => f} 

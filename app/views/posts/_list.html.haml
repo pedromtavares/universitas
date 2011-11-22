@@ -1,0 +1,7 @@
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless.posts{'data-url' => topic_path(resource)}
+    = nested_posts(collection)
+  .center= loading_icon
+- else
+  %p.center= t('posts.blank')

@@ -1,0 +1,31 @@
+%h3.no-top
+  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#posts').slideUp(); $('#group_show').slideDown()"
+  \->
+  =link_to t('forums.plural'), group_forums_path(resource.forum.group), :remote => true
+  \->
+  = link_to resource.forum, group_forum_path(resource.forum.group, resource.forum), :remote => true
+  \->
+  = resource
+= partial('posts/list', :collection => @posts.arrange(:order => :created_at), :resource => resource)
+%hr
+#in-reply-to{:style => 'display:none'}
+  %h3
+    =t('posts.in_reply_to')
+    %span#reply-author
+    .right=action_button t('shared.cancel'), :remove, :title => t('shared.cancel'), :id => "cancel-reply"
+  #reply-text.message.warning
+  %br.clear
+#post-errors.message.alert{:style => 'display:none'}
+.center=loading_icon
+%h3#reply.center=t('posts.reply')
+.reply
+  = form_tag group_forum_topic_posts_path(parent.group, parent, resource), :remote => true do
+    = hidden_field_tag 'parent_id', ''
+    = text_area_tag :text, ''
+    %br.clear
+    .left
+      = submit_button do
+        = t('posts.post')
+    .right
+      = textile_guide
+%br.clear

@@ -1,0 +1,10 @@
+%h3.no-top
+  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#new_topic').slideUp(); $('#group_show').slideDown()"
+  \->
+  =link_to t('forums.plural'), group_forums_path(resource.forum.group), :remote => true
+  \->
+  = t('topics.new')
+  = t('shared.for')
+  = link_to resource.forum, group_forum_path(resource.forum.group, resource.forum), :remote => true
+= simple_form_for(resource, :url => group_forum_topics_url, :html => { :method => :post, :class => 'form grid_6', :style => 'margin-left: -70px'}, :remote => true) do |f|
+  = render :partial => "form", :locals => {:f => f}

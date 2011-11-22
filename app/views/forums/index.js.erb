@@ -1,0 +1,3 @@
+slideToAction('forums', function() {
+  $('#forums').html("<%= escape_javascript(partial('forums/index', :collection => collection, :parent => parent))%>");
+});

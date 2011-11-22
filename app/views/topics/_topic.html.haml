@@ -1,23 +1,20 @@
-%tr.topic{:class => cycle("odd","even"), :id => topic.id}
-  %td.first
-    - if current_user
-      - if current_user.leader_of?(topic.forum.group) || current_user == topic.first_post.author
-        =link_to_icon :edit, t('topics.edit'), 'javascript:void(0)', :class => 'edit-topic'
-      - if current_user.leader_of?(topic.forum.group)
-        =link_to_icon :remove, t('topics.delete'), topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :class => 'remove'
+%tr.topic{:id => topic.id}
   %td
-    .title= link_to topic.title, topic_path(topic)
+    .title= link_to topic.title, topic_path(topic), :remote => true
     = form_tag topic_path(topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do
-      .input= text_field_tag :title, topic.title, :maxlength => 100, :class => 'text-field'
-      = submit_button(:small => true, :onclick => "$('.loading').removeClass('none');") do
-        =t('shared.update')
-      = loading_icon
-  %td= topic.posts_count
+      .spaced-top
+        = text_field_tag :title, topic.title, :maxlength => 100, :style => 'width: 150px'
+        = submit_button(:onclick => "$('.loading').removeClass('none');", :style => 'margin-top:1px') do
+          =t('shared.update')
   %td
     - unless topic.posts.blank?
-      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", post_path(topic.last_post)
+      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", post_path(topic.last_post), :remote => true
       %br
       = t('shared.by')
       = link_to topic.last_post.author, topic.last_post.author
     - else
       = t('topics.no_last_post')
+  %td.center
+    %ul.action-buttons
+      %li=action_link '', :edit, :title => t('forums.edit'), :class => 'edit-topic'
+      %li=action_link '', :remove, :path => topic_path(topic), :method => :delete, :confirm => t('topics.are_you_sure'), :remote => true

@@ -1,10 +1,10 @@
 = f.input :title
 = f.simple_fields_for :post do |post|
   = post.input :text, :as => :text
-=textile_guide
-%br
-%br
-.group.navform.wat-cf
-  = submit_button do
-    = image_tag("icons/tick.png", :alt => t('shared.submit')) 
+%br.clear  
+%div{:style => 'margin-left: 170px'}=textile_guide
+%br.clear
+.action
+  = submit_button(:style => 'float:none !important') do
     = t('shared.submit')
+%br.clear

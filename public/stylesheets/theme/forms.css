@@ -291,10 +291,16 @@ a.button.no-text {
 .button span.forums {
     background: transparent url(../../images/icons/comments.png) no-repeat center center;
 }
-
+.button span.add-forum {
+    background: transparent url(../../images/icons/comments_add.png) no-repeat center center;
+}
 .button span.view {
     background: transparent url(../../images/icons/zoom.png) no-repeat center center;
 }
+.button span.reply {
+    background: transparent url(../../images/icons/arrow_redo.png) no-repeat center center;
+}
+
 /**
  * Pagination
  */

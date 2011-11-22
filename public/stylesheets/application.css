@@ -35,6 +35,9 @@
 .red{
 	color:red !important;
 }
+.no-top{
+  margin-top:0;
+}
 
 /******* General Custom CSS *******/
 
@@ -66,8 +69,8 @@
 	padding:5px;
 }
 
-.updates li:hover {
-  background-color:#ebebeb;
+.updates li:hover, .endless li:hover {
+  background-color:#DDD;
 }
 
 #status{
@@ -311,43 +314,61 @@
 
 /******* Forums *******/
 
-.post .author{
-	float:left;
-	width:200px;
-	height:100%;
-}
-
-.post .text{
-	margin-left:200px;
-	width:500px;
-}
-
-.post .actions{
-	float:left;
-	font-size: 10px;
-	color: gray;
-	padding:5px;
-}
-
-.post .actions a{
-	margin-left: 20px;
-}
-
-.post .edit-form{
-	width:500px;
-	float:left;
+.post .edit-form textarea{
+	width:300px;
+	height:100px;
+	float:right;
 }
 
 .reply{
-	width: 100%;
+	width: 390px;
+	margin:auto;
+}
+
+.reply textarea{
+  width:390px;
+  margin-bottom:5px;
+  margin-left:-10px;
+  height:150px;
 }
 
 .nested-posts {
   margin-left: 30px;
 }
 
-.nested-posts .nested-posts .nested-posts .nested-posts {
+.nested-posts .post{
+  border-left: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+}
+
+.nested-posts .nested-posts .nested-posts{
   margin-left: 0;
+}
+
+li.post{
+  border-top:1px solid #DDD;
+  border-bottom: none;
+}
+
+.post li{
+  margin:0;
+  padding:0;
+  border:none;
+}
+
+.post .text{
+  clear:right;
+  margin-left:30px;
+}
+
+.post .entry-meta{
+  font-size:8pt;
+  font-style:italic;
+}
+
+.posts{
+  height:auto !important;
+  max-height: 550px;
 }
 
 /* Misc */
@@ -446,6 +467,16 @@ ul.action-buttons li {
   width:auto;
 }
 
+table ul.action-buttons li {
+  width:24px;
+}
+
 .action-button-link:hover {
   text-decoration:none;
+}
+
+button img{
+  margin:0;
+  margin-right:5px;
+  height:16px;
 }

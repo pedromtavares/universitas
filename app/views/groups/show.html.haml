@@ -5,7 +5,7 @@
       %h2
         = resource.name
         %ul.action-buttons.clearfix.fr
-          %li= action_button(t('forums.plural'), :forums, :path => group_forums_path(resource))
+          %li.history= action_button(t('forums.plural'), :forums, :path => group_forums_path(resource), :remote => true)
       %h4.spaced-top
         = t('groups.led_by')
         = link_to resource.leader, resource.leader
@@ -24,24 +24,32 @@
         %em=resource.description
       %br.clear
       .center=button_link_to t('documents.share'), "javascript:void(0)", :color => 'red'
+      %br
+      .center=loading_icon
   %section
-    - if current_user && current_user.leader_of?(resource)
-      = form_tag update_status_group_path(resource), :method => :put do
-        = text_field_tag :status, resource.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
-        = submit_button do
-          =t('shared.update')
-      %br.clear
-      %br.clear
-    - else
-      %h3.center{:style => 'margin-top:0'}="\"#{resource.status}\"" if resource.status.present?
-    .filters.center
-      - options = {:type => :group, :id => resource.id}
-      =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => documents_path(options)
-      =button_link_to t('members.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options)
-      =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
-      %br
-      %br
-      =loading_icon
-    #lists= partial('documents/list', {:collection => resource.documents}.merge(options))
+    #forums{:style => 'display:none'}
+    #new{:style => 'display:none'}
+    #edit{:style => 'display:none'}
+    #forum_show{:style => 'display:none'}
+    #posts{:style => 'display:none'}
+    #new_topic{:style => 'display:none'}
+    #group_show
+      - if current_user && current_user.leader_of?(resource)
+        = form_tag update_status_group_path(resource), :method => :put do
+          = text_field_tag :status, resource.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
+          = submit_button do
+            =t('shared.update')
+        %br.clear
+        %br.clear
+      - else
+        %h3.center{:style => 'margin-top:0'}="\"#{resource.status}\"" if resource.status.present?
+      .filters.center
+        - options = {:type => :group, :id => resource.id}
+        =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => documents_path(options)
+        =button_link_to t('members.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options)
+        =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
+        %br
+        %br
+      #lists= partial('documents/list', {:collection => resource.documents}.merge(options))
     
 =render_sidebar

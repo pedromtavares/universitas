@@ -1,9 +1,7 @@
 = f.input :title
 = f.input :description, :as => :text
-
-%br
-%br
-.group.navform.wat-cf
-  = submit_button do
-    = image_tag("icons/tick.png", :alt => t('shared.submit')) 
+%br.clear
+.action
+  = submit_button(:style => 'float:none !important') do
     = t('shared.submit')
+%br.clear

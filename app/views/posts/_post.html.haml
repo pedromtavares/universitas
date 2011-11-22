@@ -1,37 +1,38 @@
-%li.post{:id => post.id}
-  .author
-    = link_to profile_path(post.author) do
+%li.custom.clearfix.post{:id => post.id}
+  .content
+    .avatar{:style => "clear:left"}
       = avatar_for(post.author)
-      %br.clear
-      .spaced= post.author
-  .text
-    .content=textilize(post.text).html_safe
-    .small.gray
-      =t('posts.posted')
-      =time_ago_in_words post.created_at
-      =t('shared.ago')
-      - if post.parent
-        =t('posts.in_reply_to').downcase
-        =post.parent.author 
-      - if post.created_at != post.updated_at
-        %br
-        =t('posts.edited')
-        =time_ago_in_words post.updated_at
+      %br
+      .center.author= link_to post.author, user_path(post.author)
+    = link_to "&raquo;", post_path(post), :class => "more"
+    %span.timestamp
+      .left.spaced-right
+        =t('posts.posted')
+        =time_ago_in_words post.created_at
         =t('shared.ago')
+        - if post.parent
+          =t('posts.in_reply_to').downcase
+          =post.parent.author
+      - if post.created_at != post.updated_at
+        .left.spaced-left
+          =t('posts.edited')
+          =time_ago_in_words post.updated_at
+          =t('shared.ago')
+    .text= textilize(post.text).html_safe
+  .entry-meta.actions
+    - if current_user
       %br.clear
-  - if current_user
-    .actions
-      =button_to_icon :reply, t('posts.reply_to'), '#in-reply-to', :class => 'reply-to'
-      =button_to_icon :edit, t('posts.edit'), 'javascript:void(0)', :class => 'edit-post' if post.author == current_user || current_user.leader_of?(post.topic.forum.group)
-      =button_to_icon :remove, t('posts.delete'), group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :delete, :confirm => t('posts.are_you_sure'), :title => t('posts.delete'), :class => 'remove' if current_user.leader_of?(post.topic.forum.group)
-    = form_tag group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :put, :remote => true, :class => 'form none edit-form', :id => "edit-#{post.id}" do
-      = hidden_field_tag :parent_id, post.parent_id, :id => nil
-      = text_area_tag :text, post.text
-      = submit_button(:onclick => "$('.loading').removeClass('none');") do
+      .right
+        = action_button t('posts.reply_to'), :reply, :class => 'reply-to' unless post == post.topic.first_post
+        = action_button t('posts.edit'), :edit, :path => 'javascript:void(0)', :class => 'edit-post' if post.author == current_user || current_user.leader_of?(post.topic.forum.group)
+        = action_button t('posts.delete'), :remove, :path => group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :delete, :confirm => t('posts.are_you_sure'), :title => t('posts.delete'), :class => 'remove' if current_user.leader_of?(post.topic.forum.group)
+      
+  = form_tag group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post), :method => :put, :remote => true, :class => 'form none edit-form', :id => "edit-#{post.id}" do
+    = hidden_field_tag :parent_id, post.parent_id, :id => nil
+    = text_area_tag :text, post.text
+    %br.clear
+    .right
+      = submit_button(:onclick => "$('.loading').removeClass('none');", :style => "float:none !important") do
         = image_tag("icons/tick.png", :alt => t('posts.update')) 
         = t('posts.update')
-      =link_to 'javascript:void(0)', :class => 'button cancel-edit-form' do
-        = image_tag("icons/cross.png", :alt => t('shared.cancel')) 
-        = t('shared.cancel')
-      .spaced= loading_icon
-  %br.clear
+      = action_button t('shared.cancel'), :remove, :class => 'button cancel-edit-form'
