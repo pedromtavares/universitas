@@ -1,27 +1,29 @@
+= content_for :javascripts do
+  = javascript_include_tag 'history'
 .main-content.grid_4.alpha
   %header.clearfix
-    %span.custom-avatar=image_tag resource.image_url
+    %span.custom-avatar=image_tag @group.image_url
     %hgroup
       %h2
-        = resource.name
+        = @group.name
         %ul.action-buttons.clearfix.fr
-          %li.history= action_button(t('forums.plural'), :forums, :path => group_forums_path(resource), :remote => true)
+          %li.history= action_button(t('forums.plural'), :forums, :path => group_forums_path(@group), :remote => true, :class => 'history')
       %h4.spaced-top
         = t('groups.led_by')
-        = link_to resource.leader, resource.leader
+        = link_to @group.leader, @group.leader
       %br
       %ul.action-buttons.clearfix
-        - if current_user && current_user.leader_of?(resource)
-          %li= action_button(t('shared.edit'), :edit, :path => edit_resource_url)
-          %li= action_button("#{t('shared.manage')} #{t('groups.documents.plural')}", 'manage-documents', :path => group_documents_path(resource))
-        - if current_user && !current_user.leader_of?(resource)
-          - if current_user.member_of?(resource)
-            =action_button(t('groups.leave'), :remove, :path => leave_group_path(resource), :method => :delete)
+        - if current_user && current_user.leader_of?(@group)
+          %li= action_button(t('shared.edit'), :edit, :path => edit_group_path(@group))
+          %li= action_button("#{t('shared.manage')} #{t('groups.documents.plural')}", 'manage-documents', :path => group_documents_path(@group))
+        - if current_user && !current_user.leader_of?(@group)
+          - if current_user.member_of?(@group)
+            =action_button(t('groups.leave'), :remove, :path => leave_group_path(@group), :method => :delete)
           - else
-            =action_button(t('groups.join'), :key, :path => join_group_path(resource), :method => :post)
+            =action_button(t('groups.join'), :key, :path => join_group_path(@group), :method => :post)
       %br.clear
       %h4
-        %em=resource.description
+        %em=@group.description
       %br.clear
       .center=button_link_to t('documents.share'), "javascript:void(0)", :color => 'red'
       %br
@@ -34,22 +36,22 @@
     #posts{:style => 'display:none'}
     #new_topic{:style => 'display:none'}
     #group_show
-      - if current_user && current_user.leader_of?(resource)
-        = form_tag update_status_group_path(resource), :method => :put do
-          = text_field_tag :status, resource.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
+      - if current_user && current_user.leader_of?(@group)
+        = form_tag update_status_group_path(@group), :method => :put do
+          = text_field_tag :status, @group.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
           = submit_button do
             =t('shared.update')
         %br.clear
         %br.clear
       - else
-        %h3.center{:style => 'margin-top:0'}="\"#{resource.status}\"" if resource.status.present?
+        %h3.center{:style => 'margin-top:0'}="\"#{@group.status}\"" if @group.status.present?
       .filters.center
-        - options = {:type => :group, :id => resource.id}
+        - options = {:type => :group, :id => @group.id}
         =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => documents_path(options)
         =button_link_to t('members.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options)
         =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
         %br
         %br
-      #lists= partial('documents/list', {:collection => resource.documents}.merge(options))
+      #lists= partial('documents/list', {:collection => @group.documents}.merge(options))
     
-=render_sidebar
+=render_sidebar('groups')

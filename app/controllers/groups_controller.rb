@@ -14,6 +14,10 @@ class GroupsController < InheritedResources::Base
 	    scope
     end
 	end
+	
+	def show
+	  @group = Group.find params[:id]
+	end
   
   def create
     @group = Group.new(params[:group].merge(:leader => current_user))

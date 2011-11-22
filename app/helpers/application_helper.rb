@@ -12,8 +12,8 @@ module ApplicationHelper
 	  image_tag('lightbulb_32.png', :class => 'fl')
 	end
 	
-	def render_sidebar
-	  partial :sidebar
+	def render_sidebar(from = nil)
+	  from ? partial("#{from}/sidebar") : partial(:sidebar)
 	end
 	
 	def on_each_provider(&block)
@@ -35,7 +35,9 @@ module ApplicationHelper
 	def action_button(label, action, options = {})
 	  path = options.delete(:path) || 'javascript:void(0)'
 	  no_text = label.blank? ? 'no-text' : ''
-	  link_to path, {:class => 'action-button-link'}.merge(options) do
+	  klass = "action-button-link "
+		klass += options.delete(:class) if options[:class]
+	  link_to path, {:class => klass}.merge(options) do
 	    content_tag(:button, {:class => "button button-gray #{no_text}"}) do
   	    content_tag(:span, '', :class => action) + label
   	  end

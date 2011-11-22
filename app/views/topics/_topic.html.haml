@@ -1,6 +1,6 @@
 %tr.topic{:id => topic.id}
   %td
-    .title= link_to topic.title, topic_path(topic), :remote => true
+    .title= link_to topic.title, topic_path(topic), :remote => true, :class => 'history'
     = form_tag topic_path(topic), :method => :put, :remote => true, :class => 'form edit-form none', :id => "edit-#{topic.id}" do
       .spaced-top
         = text_field_tag :title, topic.title, :maxlength => 100, :style => 'width: 150px'
@@ -8,7 +8,7 @@
           =t('shared.update')
   %td
     - unless topic.posts.blank?
-      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", post_path(topic.last_post), :remote => true
+      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", post_path(topic.last_post), :remote => true, :class => 'history'
       %br
       = t('shared.by')
       = link_to topic.last_post.author, topic.last_post.author

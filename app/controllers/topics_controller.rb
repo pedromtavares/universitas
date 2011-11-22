@@ -3,6 +3,13 @@ class TopicsController < InheritedResources::Base
 	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
 	belongs_to :forum
 	
+	def new
+	  @group = Group.find params[:group_id]
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
+	
 	def create
 		@topic = parent.topics.build(:title => params[:topic][:title])
 		if @topic.save && @topic.create_post(params[:topic][:post].merge(:author => current_user))
@@ -23,8 +30,11 @@ class TopicsController < InheritedResources::Base
 	end
 	
 	def show
+	  @group = Group.find params[:group_id]
 		@posts = paginate(resource.posts, 50)
-		super
+		super do |format|
+	   format.html {render "groups/show"}
+	  end
 	end
 	
 	def destroy

@@ -1,9 +1,9 @@
 %h3.no-top
-  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#posts').slideUp(); $('#group_show').slideDown()"
+  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#posts').slideUp(); $('#group_show').slideDown()", :class => 'custom-history', :'data-history' => group_path(resource.forum.group)
   \->
-  =link_to t('forums.plural'), group_forums_path(resource.forum.group), :remote => true
+  =link_to t('forums.plural'), group_forums_path(resource.forum.group), :remote => true, :class => 'history'
   \->
-  = link_to resource.forum, group_forum_path(resource.forum.group, resource.forum), :remote => true
+  = link_to resource.forum, group_forum_path(resource.forum.group, resource.forum), :remote => true, :class => 'history'
   \->
   = resource
 = partial('posts/list', :collection => @posts.arrange(:order => :created_at), :resource => resource)

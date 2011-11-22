@@ -1,13 +1,13 @@
 %h3.no-top
-  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#forum_show').slideUp(); $('#group_show').slideDown()"
+  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#forum_show').slideUp(); $('#group_show').slideDown()", :class => 'custom-history', :'data-history' => group_path(parent)
   \->
-  =link_to t('forums.plural'), group_forums_path(parent), :remote => true
+  =link_to t('forums.plural'), group_forums_path(parent), :remote => true, :class => 'history'
   \->
   = resource.title
 - if current_user && current_user.leader_of?(parent)
-  .fr= action_button t('forums.edit'), :edit, :path => edit_group_forum_path(parent, resource), :remote => true, :class => 'spaced-left'
+  .fr= action_button t('forums.edit'), :edit, :path => edit_group_forum_path(parent, resource), :remote => true, :class => 'spaced-left history'
 - if current_user && current_user.member_of?(parent)   
-  .fr= action_button t('topics.new'), 'add-forum', :path => new_group_forum_topic_path(parent, resource), :remote => true
+  .fr= action_button t('topics.new'), 'add-forum', :path => new_group_forum_topic_path(parent, resource), :remote => true, :class => 'history'
   %br.clear
   %br.clear
 - unless topics.blank?

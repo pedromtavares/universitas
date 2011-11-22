@@ -1,7 +1,25 @@
 class ForumsController < InheritedResources::Base
 	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
 	belongs_to :group
-	respond_to :html, :js
+	respond_to :js
+	
+	def index
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
+	
+	def new
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
+	
+	def edit
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
 	
 	def create
 		create!{collection_url}
@@ -9,7 +27,9 @@ class ForumsController < InheritedResources::Base
 	
 	def show
 		@topics = resource.topics
-		super
+		super do |format|
+	   format.html {render "groups/show"}
+	  end
 	end
   
   protected
