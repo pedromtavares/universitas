@@ -100,7 +100,7 @@ $(document).ready(function() {
     
     //$('.list-view > li a:not(.more)').click(function(e){ e.stopPropagation();});
     
-    $('.list-view li .content').live('click', function(){
+    $('.list-view li:not(.post), .post .content').live('click', function(){
         var url = $(this).find('.more').attr('href');
         if (!$(this).hasClass('current')) {
             $('.preview-pane .preview').animate({left: "-375px"}, 300, function(){
