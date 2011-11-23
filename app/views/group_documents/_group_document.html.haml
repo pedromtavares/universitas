@@ -1,0 +1,12 @@
+%li.custom.clearfix{:id => group_document.id}
+  .avatar=link_to document_icon_for(group_document.document), group_document.document.file.url, :title => t('shared.click_to_download')
+  = link_to "&raquo;", document_path(group_document.document), :class => "more"
+  %span.timestamp= group_document.created_at.strftime("%b %d, %Y")
+  = link_to group_document.document.name, document_path(group_document.document), :class => "name"
+  .entry-meta
+    = t('groups.documents.sent_by') 
+    = preview_link group_document.sender, group_document.sender
+    %br
+    = action_button t('documents.view'), :view
+    = action_button t('groups.documents.remove'), :remove, :path => group_document_path(group_document.group, group_document), :method => :delete, :remote => :true, :confirm => t('groups.documents.sure')
+    

@@ -12,12 +12,11 @@ class TopicsController < InheritedResources::Base
 	
 	def create
 		@topic = parent.topics.build(:title => params[:topic][:title])
-		if @topic.save && @topic.create_post(params[:topic][:post].merge(:author => current_user))
-			flash[:notice] = t('topics.created')
-			redirect_to group_forum_topic_path(parent.group, parent, @topic)
-		else
-			render :new
-		end
+		begin
+		  @topic.save && @topic.create_post(params[:topic][:post].merge(:author => current_user))
+    rescue
+      @error = true
+	  end
 	end
 	
 	def update

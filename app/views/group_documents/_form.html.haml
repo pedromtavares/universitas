@@ -2,10 +2,8 @@
   = document.input :name
   = document.input :description, :as => :text
   = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")
-= f.association :module, :collection => @group.modules_with_blank, :prompt => false
-
-%br      
-.group.navform.wat-cf
-  = submit_button do
-    = image_tag("icons/tick.png", :alt => t('shared.submit')) 
+%br.clear
+.action
+  = submit_button(:style => 'float:none !important') do
     = t('shared.submit')
+%br.clear

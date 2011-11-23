@@ -1,0 +1,9 @@
+%h3.no-top
+  =link_to t('groups.singular'), 'javascript:void(0)', :id => 'group-breadcrumb', :class => 'custom-history', :'data-history' => group_path(parent)
+  \->
+  =link_to "#{t('shared.manage')} #{t('groups.documents.plural')}", group_documents_path(parent), :remote => true, :class => 'history'
+  \->
+  = t('groups.documents.new')
+#errors.message.alert{:style => 'display:none'}
+= simple_form_for(resource, :url => collection_url, :html => { :method => :post, :class => 'form grid_6', :style => 'margin-left: -30px', :multipart => true}, :remote => true) do |f|
+  = render :partial => "form", :locals => {:f => f}

@@ -170,7 +170,6 @@ pt:
       blank: Este grupo não possui documentos!
       no_module: Nehum módulo selecionado.
       add: Adicionar para lista dos escolhidos.
-      remove: Remover da lista dos escolhidos.
       new: Novo Documento de Grupo
       create: Criar
       created: Documentos mandados com sucesso para aprovação do líder do grupo. Você pode continuar compartilhando documentos se quiser.
@@ -181,7 +180,7 @@ pt:
       accepted:
         plural: Documentos Aceitos
         blank: Não há documentos aceitos neste grupo.
-      remove: Remover este documento
+      remove: Remover do grupo
       accept: Aceitar este documento
       edit_module: Editar Módulo
       sure: Tem certeza que deseja deletar este documento do grupo?
@@ -194,6 +193,7 @@ pt:
       senders: Remetentes
       no_senders: Ainda não há remetentes de documentos neste grupo.
       no_doc_share: Você não possui documentos para compartilhar!
+      sent_by: Enviado por
   members:
     singular: Membro
     plural: Membros
@@ -283,6 +283,7 @@ pt:
     created: "Post criado com sucesso."
     error: "Houve um problema com seu post."
     no_permission: "Você não tem permissão para fazer isso."
+    blank: Não há posts nesse tópico
   tips:
     self: Dicas
     documents:

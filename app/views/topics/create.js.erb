@@ -1,0 +1,6 @@
+<% if @error %>
+  $('#errors').text("<%=t('topics.error')%>");
+  $('#errors').slideDown('slow');
+<% else %>
+  $.getScript('<%=topic_path(@topic)%>');
+<% end %>

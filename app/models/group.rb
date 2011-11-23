@@ -84,7 +84,7 @@ class Group < ActiveRecord::Base
 	def add_document(document, group_module, sender)
 		document = document.is_a?(Document) ? document.id : document
 		group_module = group_module.is_a?(GroupModule) ? group_module.id : group_module
-		pending = !sender.leader_of?(self)
+		pending = false #!sender.leader_of?(self) # TODO: implement optional pre-approval of documents
 		unless self.has_document?(document)
 			self.group_documents.create(:document_id => document, :pending => pending, :group_module_id => group_module, :sender => sender)
 		end

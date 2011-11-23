@@ -1,0 +1,8 @@
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless{'data-url' => group_documents_path(parent)}
+    = render collection
+  .center= loading_icon
+- else
+  %p.center
+    =t('groups.documents.blank')

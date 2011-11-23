@@ -26,7 +26,7 @@ class Topic < ActiveRecord::Base
 	end
 	
 	def create_post(post)
-		self.posts.create(post)
+		self.posts.create!(post)
 	end
 	
 	def first_post
