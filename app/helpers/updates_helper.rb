@@ -12,9 +12,9 @@ module UpdatesHelper
 		elsif update.to_group_document?
 			"#{t('updates.group_document_added')} #{target.name}"
 		elsif update.to_post?
-			"#{link_to(target.author, target.author)} #{t('updates.posted_topic')} #{link_to(target.topic, target.topic)}: '#{target.text.truncate(100)}'"
+			"#{preview_link(target.author, target.author)} #{t('updates.posted_topic')} #{link_to(target.topic, target.topic)}: '#{target.text.truncate(100)}'"
 		elsif update.to_topic?
-			"#{link_to(target.author, target.author)} #{t('updates.created_topic')} #{link_to(target, target)}: '#{target.text.truncate(100)}'"
+			"#{preview_link(target.author, target.author)} #{t('updates.created_topic')} #{link_to(target, target)}: '#{target.text.truncate(100)}'"
 		elsif update.to_group?
 			if update.from_user?
 				if update.custom_message?
@@ -32,9 +32,9 @@ module UpdatesHelper
 	def render_update_creator(update)
 		creator = update.creator
 		if update.from_user?
-			link_to(avatar_for(creator), creator)
+			preview_link(avatar_for(creator), creator)
 		else
-			link_to(image_tag(creator.image_url, :alt => creator, :title => creator), creator)
+			preview_link(image_tag(creator.image_url, :alt => creator, :title => creator), creator)
 		end
 	end
 	

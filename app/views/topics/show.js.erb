@@ -1,7 +1,5 @@
 <% if @page.blank? || @page == 1%>
-slideToAction('posts', function() {
-  $('#posts').html("<%= escape_javascript(partial('topics/show', :resource => resource))%>");
-});
+  slideContent("<%= escape_javascript(partial('topics/show', :resource => resource))%>");
 <% else %>
   element = $('.endless');
 	if ($(element).find('.endless_scroll_inner_wrap').length){

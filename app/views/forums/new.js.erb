@@ -1,3 +1,1 @@
-slideToAction('new', function() {
-  $('#new').html("<%= escape_javascript(partial('forums/new', :resource => resource, :parent => parent))%>");
-});
+slideContent("<%= escape_javascript(partial('forums/new', :resource => resource, :parent => parent))%>");

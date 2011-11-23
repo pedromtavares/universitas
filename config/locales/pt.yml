@@ -223,11 +223,11 @@ pt:
     groups: Grupos
     recent: Documentos Recentes
     share: Compartilhar documentos com esse grupo
-    view: Visualizar este documento
+    view: Visualizar
     blank:
       any: Nenhum documento foi retornado.
-      users: Esse documento não está na coleção de ninguém
-      groups: Esse documento não está sendo compartilhado por nenhum grupo
+      users: Este usuário não possui documentos.
+      groups: Este grupo não possui documentos.
   modules:
     singular: Módulo
     plural: Módulos
@@ -252,7 +252,7 @@ pt:
     delete: Deletar este fórum
     are_you_sure: Tem certeza que deseja deletar este fórum?
     edit: Editar este fórum
-    not_allowed: Apenas membros deste grupo podem acessar os fóruns do mesmo.
+    not_allowed: Apenas o líder deste grupo pode tomar esta ação.
     new_topics: Tópicos Recentes
     no_new_topics: Este grupo ainda não possui tópicos.
   topics:
@@ -270,7 +270,7 @@ pt:
   posts:
     singular: Post
     new: Novo Post
-    delete: Deletar este post
+    delete: Deletar
     are_you_sure: Tem certeza que desejar deletar este post?
     post: Postar
     reply: Responder

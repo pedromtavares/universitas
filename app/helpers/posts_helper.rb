@@ -12,6 +12,6 @@ module PostsHelper
 	end
 	
 	def post_path(post)
-		group_forum_topic_path(post.topic.forum.group, post.topic.forum, post.topic) # + "##{post.id}"
+		group_forum_topic_post_path(post.topic.forum.group, post.topic.forum, post.topic, post)
 	end
 end

@@ -8,10 +8,10 @@
           =t('shared.update')
   %td
     - unless topic.posts.blank?
-      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", post_path(topic.last_post), :remote => true, :class => 'history'
+      = link_to "#{time_ago_in_words(topic.last_post.created_at)} #{t('shared.ago')}", topic_path(topic), :remote => true, :class => 'history'
       %br
       = t('shared.by')
-      = link_to topic.last_post.author, topic.last_post.author
+      = preview_link topic.last_post.author, topic.last_post.author
     - else
       = t('topics.no_last_post')
   %td.center

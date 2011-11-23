@@ -1,5 +1,5 @@
 %h3.no-top
-  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#posts').slideUp(); $('#group_show').slideDown()", :class => 'custom-history', :'data-history' => group_path(resource.forum.group)
+  =link_to t('groups.singular'), 'javascript:void(0)', :id => 'group-breadcrumb', :class => 'custom-history', :'data-history' => group_path(resource.forum.group)
   \->
   =link_to t('forums.plural'), group_forums_path(resource.forum.group), :remote => true, :class => 'history'
   \->

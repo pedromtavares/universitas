@@ -229,11 +229,11 @@ en:
     groups: Groups
     recent: Recent Documents
     share: Share documents with this group
-    view: View this document
+    view: View
     blank:
       any: No documents were retrieved.
       users: This user has no documents yet.
-      groups: This user is not in any group yet.
+      groups: This group has no documents yet.
   modules:
     singular: Module
     plural: Modules
@@ -258,7 +258,7 @@ en:
     delete: Delete this forum
     are_you_sure: Are you sure you want to delete this forum?
     edit: Edit this forum
-    not_allowed: Only members of this group are allowed in its forums.
+    not_allowed: Only the leader of this group is allowed to perform that action.
     new_topics: Recent Topics
     no_new_topics: This group doesn't have any topics yet.
   topics:

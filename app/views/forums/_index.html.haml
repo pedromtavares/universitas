@@ -1,5 +1,5 @@
 %h3.no-top
-  =link_to t('groups.singular'), 'javascript:void(0)', :onclick => "$('#forums').slideUp(); $('#group_show').slideDown()", :class => 'custom-history', :'data-history' => group_path(parent)
+  =link_to t('groups.singular'), 'javascript:void(0)', :id => 'group-breadcrumb', :class => 'custom-history', :'data-history' => group_path(parent)
   \->
   = t('forums.plural')
 - if current_user && current_user.leader_of?(parent)
@@ -22,13 +22,13 @@
             .gray= resource.description
           %td
             - unless resource.posts.blank?
-              = link_to "#{time_ago_in_words(resource.last_post.created_at)} #{t('shared.ago')}", post_path(resource.last_post), :remote => true, :class => 'history'
+              = link_to "#{time_ago_in_words(resource.last_post.created_at)} #{t('shared.ago')}", topic_path(resource.last_post.topic), :remote => true, :class => 'history'
               %br
               = t('shared.in')
               = link_to resource.last_post.topic.to_s.truncate(50), topic_path(resource.last_post.topic), :remote => true, :class => 'history'
               %br
               = t('shared.by')
-              = link_to resource.last_post.author, resource.last_post.author
+              = link_to resource.last_post.author, resource.last_post.author, :remote => true, :class => 'activate-preview'
             - else
               = t('forums.no_last_post')
           - if current_user && current_user.leader_of?(parent)

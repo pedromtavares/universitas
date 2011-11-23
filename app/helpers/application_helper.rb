@@ -16,6 +16,12 @@ module ApplicationHelper
 	  from ? partial("#{from}/sidebar") : partial(:sidebar)
 	end
 	
+	def preview_link(label, path, options = {})
+	  klass = "activate-preview "
+		klass += options.delete(:class) if options[:class]
+	  link_to label, path, options.merge(:remote => true, :class => klass)
+	end
+	
 	def on_each_provider(&block)
 		Authentication::PROVIDERS.each(&block)
 	end

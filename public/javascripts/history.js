@@ -1,7 +1,6 @@
 if (history && history.pushState) {
   $(function() {
     $(".history").live("click", function(e) {
-      $.getScript(this.href);
       history.pushState(null, document.title, this.href);
       e.preventDefault();
     });

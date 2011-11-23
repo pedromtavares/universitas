@@ -66,7 +66,7 @@ class UserDocumentsController < InheritedResources::Base
 	
 	def check_uploader
 		unless current_user.uploaded_document?(resource.document)
-			flash[:error] = t('users.documents.no_permission')
+			flash[:alert] = t('users.documents.no_permission')
 			redirect_to user_documents_path(current_user)
 		end
 	end

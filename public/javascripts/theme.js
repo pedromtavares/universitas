@@ -98,7 +98,7 @@ $(document).ready(function() {
 
     // preview pane setup
     
-    //$('.list-view > li a:not(.more)').click(function(e){ e.stopPropagation();});
+    $('.list-view > li a[data-remote="false"]').click(function(e){ e.stopPropagation();});
     
     $('.list-view li:not(.post), .post .content').live('click', function(){
         var url = $(this).find('.more').attr('href');
@@ -112,6 +112,13 @@ $(document).ready(function() {
         }
         $(this).toggleClass('current').siblings().removeClass('current');
         //return false;
+    });
+    
+    $('.activate-preview').live('click', function() {
+      $('.preview-pane .preview').animate({left: "-375px"}, 300, function(){
+          $(this).animate({left: "-22px"}, 500).html('<div class="center"><img src="/images/loading.gif"/></div>');
+      });
+      return false;
     });
     
     $('.list-view li .more').live('click', function(){

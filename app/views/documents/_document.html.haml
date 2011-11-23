@@ -5,9 +5,10 @@
   = link_to document.name, document_path(document), :class => "name"
   .entry-meta
     = t('documents.uploader') 
-    = link_to document.uploader, document.uploader
+    = preview_link document.uploader, document.uploader
+    %br
+    = action_button t('documents.view'), :view
     - if user_signed_in?
-      %br
       - unless current_user.has_document?(document)
         = action_button t('documents.add'), :add, :path => add_user_document_path(current_user, document), :method => :post
       - else

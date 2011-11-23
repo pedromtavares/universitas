@@ -29,13 +29,8 @@
       %br
       .center=loading_icon
   %section
-    #forums{:style => 'display:none'}
-    #new{:style => 'display:none'}
-    #edit{:style => 'display:none'}
-    #forum_show{:style => 'display:none'}
-    #posts{:style => 'display:none'}
-    #new_topic{:style => 'display:none'}
-    #group_show
+    #slide-content{:style => 'display:none'}
+    #group-show
       - if current_user && current_user.leader_of?(@group)
         = form_tag update_status_group_path(@group), :method => :put do
           = text_field_tag :status, @group.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'

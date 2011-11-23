@@ -4,7 +4,7 @@
       / %li= action_button(t('groups.new'), :add)
     .view-switcher
       %h2
-        = @filter ? t("groups.#{@filter}") : t('groups.all')
+        = @filter.present? ? t("groups.#{@filter}") : t('groups.all')
         =link_to "&darr;", 'javascript:void(0)'
       %ul
         %li=link_to t('groups.all'), groups_path

@@ -45,7 +45,7 @@ class TopicsController < InheritedResources::Base
 
 	def allow_members_only
 		unless current_user.member_of?(parent.group)
-			flash[:error] = t('forums.not_allowed')
+			flash[:alert] = t('forums.not_allowed')
 			redirect_to group_path(parent.group)
 		end
 	end

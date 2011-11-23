@@ -1,3 +1,5 @@
+/* Endless scroll helper variables */
+
 var scrollLock = true;
 
 var updatesOptions = {
@@ -53,12 +55,15 @@ $(function(){
 	}).ajaxComplete(function(){
 		$(this).addClass('none');
 	});
-	
-	/******* Endless Scroll *******/
-	
+		
 	$('.updates').endlessScroll(updatesOptions);
 	
 	$('.endless').endlessScroll(endlessOptions);
+	
+	$("#group-breadcrumb").live('click', function() {
+	  $('#slide-content').slideUp('slow');
+	  $('#group-show').slideDown('slow');
+	});
 	
 	/******* Filters *******/
   
@@ -81,45 +86,6 @@ $(function(){
     $('#options').slideUp();
     $('#' + $(this).data('target')).slideDown();
   });
-	
-	/******* Group document sharing UI *******/
-	
-	$("#search-docs .doc .options a").live('click', function(event){
-		var target = $(event.target).parent();
-		var doc = target.parent().parent();
-		var array = target.attr('id').split('_');
-		var id = array[1];
-		if (array[0] == 'add'){
-			chosen = $('#remove_'+id);
-			if (chosen.length == 0){
-				$('#message').hide();
-				$('#chosen-form').show();
-				$('#chosen-docs').append(target.attr('chosen'));
-			}
-			doc.detach();	
-		}
-	});
-	
-	$("#chosen-form .doc .options a").live('click', function(event){
-		var target = $(event.target).parent();
-		var doc = target.parent().parent();
-		$(doc).detach();
-		if ($('#chosen-form .doc').length == 0){
-			$('#chosen-form').hide();
-		}
-	});
-	
-	/******* Group document management UI *******/
-	
-	$(".table .edit-module").live('click', function(){
-		var td = $(this).closest('tr').find('.module');
-		td.find('.update-module').removeClass('none');
-		td.find('.name').addClass('none');
-	});
-	
-	$(".table .update-module").change(function(){
-		$(this).closest('form').submit();
-	});
 	
 	/******* Group forums *******/
 
@@ -180,14 +146,12 @@ function toggleNone(elements){
 	});
 }
 
-function slideToAction(action, callback){
-  var actions = ['forums', 'new', 'edit', 'forum_show', 'posts', 'new_topic', 'group_show'];
-  $.each(actions, function(index, value) {
-    if (value != action){
-      $('#'+value).slideUp();
-    }
+function slideContent(content){
+  $('#slide-content').slideUp('slow', function() {
+    $('#group-show').slideUp('slow');
+    $('#slide-content').html(content);
+    $('#slide-content').slideDown('slow');
   });
-  callback();
-  $('#'+action).slideDown();
+  
   $('.endless').endlessScroll(endlessOptions);
 }

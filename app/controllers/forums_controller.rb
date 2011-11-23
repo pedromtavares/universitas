@@ -1,5 +1,6 @@
 class ForumsController < InheritedResources::Base
-	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
+	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :allow_leader_only, :only => [:new, :edit, :create, :update]
 	belongs_to :group
 	respond_to :js
 	
@@ -33,10 +34,10 @@ class ForumsController < InheritedResources::Base
 	end
   
   protected
-
-	def allow_members_only
-		unless current_user.member_of?(parent)
-			flash[:error] = t('forums.not_allowed')
+	
+	def allow_leader_only
+	 	unless current_user.leader_of?(parent)
+			flash[:alert] = t('forums.not_allowed')
 			redirect_to group_path(parent)
 		end
 	end
