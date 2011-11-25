@@ -28,6 +28,6 @@
       %br
       %br
       =loading_icon
-    #lists= partial('groups/list', {:collection => resource.groups}.merge(options))
+    #lists= partial('groups/list', {:collection => resource.groups.order('created_at desc')}.merge(options))
     
 =render_sidebar

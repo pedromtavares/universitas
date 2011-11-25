@@ -47,6 +47,6 @@
         =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
         %br
         %br
-      #lists= partial('documents/list', {:collection => @group.documents}.merge(options))
+      #lists= partial('documents/list', {:collection => @group.documents.order('created_at desc')}.merge(options))
     
 =render_sidebar('groups')

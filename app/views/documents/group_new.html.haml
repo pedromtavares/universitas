@@ -42,7 +42,7 @@
         %br.clear
         %br.clear
         #complete{:style => 'display:none'}
-          %h4.center=link_to t('documents.proceed'), documents_path(:filter => :my) 
+          %h4.center=link_to t('groups.documents.proceed'), group_path(@group) 
           %h3= t('documents.completed')
           #files
       #collection-docs{:style => 'display:none'}

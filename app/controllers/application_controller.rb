@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :define_layout
     
-  def paginate(model, per=10)
+  def paginate(model, per=30)
     @page = params[:page]
     model.page(@page).per(per)
   end

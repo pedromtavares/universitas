@@ -35,14 +35,20 @@ var endlessOptions = {
 	},
 	bottomPixels:300,
   callback: function(fireSequence){
-    $.ajax({
-	    url: $(this).data('url'),
-	    data: {
-			  page: fireSequence + 1,
-			  search: $('#search').val()
-		  },
-		  dataType: 'script'
-	  });
+    if (scrollLock){
+      scrollLock = false;
+      $.ajax({
+  	    url: $(this).data('url'),
+  	    data: {
+  			  page: fireSequence + 1,
+  			  search: $('#search').val()
+  		  },
+  		  dataType: 'script',
+        success: function(data, status){
+          scrollLock = true;
+        }
+  	  });
+	  }
   }
 }
 

@@ -8,9 +8,9 @@ class UserDocumentsController < InheritedResources::Base
 	def index
 	 @filter = 'my'
 	 @documents = if params[:search].present?
-			current_user.documents.search(params[:search])
+			current_user.documents.search(params[:search]).order('created_at desc')
 		else
-			current_user.documents
+			current_user.documents.order('created_at desc')
 		end
 	 render "documents/index"
 	end
@@ -18,9 +18,9 @@ class UserDocumentsController < InheritedResources::Base
 	def uploaded
 	  @filter = 'uploaded'
 	  @documents = if params[:search].present?
-		  current_user.uploaded_documents.search(params[:search])
+		  current_user.uploaded_documents.search(params[:search]).order('created_at desc')
 		else
-			current_user.uploaded_documents
+			current_user.uploaded_documents.order('created_at desc')
 		end
 	  render "documents/index"
 	end

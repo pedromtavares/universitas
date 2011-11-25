@@ -207,6 +207,7 @@ en:
       no_docs: "You have no documents in your collection to share."
       save: "Save and send document selection to group"
       saved_selection: "Successfully sent your document selection to the group."
+      proceed: Proceed to group
   members:
     singular: Member
     plural: Members
