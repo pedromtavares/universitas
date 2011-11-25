@@ -2,7 +2,6 @@
   =link_to t('groups.singular'), 'javascript:void(0)', :id => 'group-breadcrumb', :class => 'custom-history', :'data-history' => group_path(parent)
   \->
   = "#{t('shared.manage')} #{t('groups.documents.plural')}"
-.fr= action_button t('groups.documents.new'), 'share-documents', :path => new_group_document_path(parent), :remote => true, :class => 'history'
 %br.clear
 %br.clear
 = partial('list', :collection => collection)

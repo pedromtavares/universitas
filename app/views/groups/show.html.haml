@@ -15,7 +15,7 @@
       %ul.action-buttons.clearfix
         - if current_user && current_user.leader_of?(@group)
           %li= action_button(t('shared.edit'), :edit, :path => edit_group_path(@group))
-          %li= action_button("#{t('shared.manage')} #{t('groups.documents.plural')}", 'manage-documents', :path => group_documents_path(@group), :remote => true)
+          %li= action_button("#{t('shared.manage')} #{t('groups.documents.plural')}", 'manage-documents', :path => group_documents_path(@group), :remote => true, :class => 'history')
         - if current_user && !current_user.leader_of?(@group)
           - if current_user.member_of?(@group)
             =action_button(t('groups.leave'), :remove, :path => leave_group_path(@group), :method => :delete)
@@ -25,7 +25,7 @@
       %h4
         %em=@group.description
       %br.clear
-      .center=button_link_to t('documents.share'), "javascript:void(0)", :color => 'red'
+      .center=button_link_to t('documents.share'), new_document_path(:group_id => @group.id), :color => 'red overlay', :rel => "#overlay"
       %br
       .center=loading_icon
   %section

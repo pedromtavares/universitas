@@ -31,6 +31,7 @@ pt:
     footer_note: "Universitas - Este projeto é <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. Direitos autorais."
     with: pelo
     view: Ver
+    type: Tipo
   views:
     pagination:
       previous: ‹ Ant
@@ -194,6 +195,13 @@ pt:
       no_senders: Ainda não há remetentes de documentos neste grupo.
       no_doc_share: Você não possui documentos para compartilhar!
       sent_by: Enviado por
+      new_instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados na coleção de documentos do grupo assim que terminarem de serem enviados"
+      collection_instructions: "Abaixo está a lista de todos os documentos da sua coleção, favor selecionar os que você deseja compartilhar com o grupo e clique 'Salvar' quando acabar."
+      upload_new: Enviar novos documentos
+      from_collection: Escolher da sua coleção
+      no_docs: "Você não tem documentos na sua coleção para compartilhar."
+      save: "Salvar e enviar seleção de documentos"
+      saved_selection: "Sua seleção de documentos foi enviada pro grupo com sucesso."
   members:
     singular: Membro
     plural: Membros
@@ -209,9 +217,11 @@ pt:
     documents_for: Documentos para
     documents_uploaded: Documents que Você Enviou
     all: Todos os Documentos
-    new: Novo Documento
+    new: Adicionar Documentos
     add: Adicionar à minha coleção
+    add_your: Adicionar documentos a sua coleção
     remove: Remover da minha coleção
+    upload: Escolher Documentos
     uploader: Enviado por
     uploaded: Documentos Enviados
     uploaded_at: Enviado
@@ -224,6 +234,12 @@ pt:
     recent: Documentos Recentes
     share: Compartilhar documentos com esse grupo
     view: Visualizar
+    view_this: Visualizar este documento
+    completed: Envios completos
+    proceed: Continuar para sua coleção de documentos
+    error: "Houve um erro ao salvar um de seus documentos, veja se o formato do documento é permitido e se ele está dentro dos limites de tamanho do arquivo."
+    instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a sua coleção de documentos assim que terminarem de serem enviados."
+    updated: Seu documento foi atualizado com sucesso.
     blank:
       any: Nenhum documento foi retornado.
       users: Este usuário não possui documentos.

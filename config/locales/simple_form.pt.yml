@@ -21,6 +21,7 @@ pt:
       title: Título
       remote_image_url: URL da Imagem
       show_email: "Mostrar e-mail no seu perfil"
+      current_file: "Arquivo Atual"
     hints:
       user:
         edit:

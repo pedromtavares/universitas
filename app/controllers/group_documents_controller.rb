@@ -1,6 +1,6 @@
 class GroupDocumentsController < InheritedResources::Base
 	defaults :route_collection_name => 'documents', :route_instance_name => 'document'
-	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :authenticate_user!, :check_leader
 	belongs_to :group
 	respond_to :html, :js
 	
@@ -11,19 +11,13 @@ class GroupDocumentsController < InheritedResources::Base
 	  end
 	end
 	
-	def new
-	  @group = parent
-	  super do |format|
-	   format.html {render "groups/show"}
+	def add_multiple
+	  ids = params[:chosen_documents]
+	  ids.each do |document_id|
+	    parent.add_document(document_id, current_user)
 	  end
 	end
-	
-	def create
-		params[:group_document].merge!(:sender => current_user, :pending => false)
-		params[:group_document][:document_attributes].merge!(:uploader => current_user)
-		create!{group_documents_path(parent)}
-	end
-	
+
 	private
 
 	def resource
@@ -37,5 +31,12 @@ class GroupDocumentsController < InheritedResources::Base
 	def collection
 		paginate(@group_documents = parent.group_documents.includes([:document, :module, :group]).order('created_at desc'))
 	end
+	
+	def check_leader
+    unless current_user.leader_of?(parent)
+      flash[:alert] = t('shared.no_permission')
+      redirect_to parent
+    end
+  end
 
 end

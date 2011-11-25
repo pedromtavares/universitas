@@ -11,6 +11,27 @@ class DocumentsController < InheritedResources::Base
     end
 	end
 	
+	def new
+	  if params[:group_id]
+	    @group = Group.find(params[:group_id])
+	    @documents = current_user.documents.order('created_at desc')
+	    render 'group_new', :layout => 'overlay'
+    else
+      render :layout => 'overlay'
+    end
+	end
+	
+	def create
+	  name = params[:Filename].split('.').first
+	  name = "#{name}-#{current_user.login}" if name.length < 4
+	  @document = Document.new(:name => name, :file => params[:file], :uploader => current_user)
+    if @document.save
+      current_user.add_document(@document)
+      Group.find(params[:group_id]).add_document(@document, current_user) if params[:group_id].present?
+	    render(:text => render_to_string(:partial => 'form_document', :locals => {:document => resource}))
+	  end
+	end
+	
 	def show
 	  @users = resource.users
 	  @groups = resource.groups

@@ -3,7 +3,7 @@ Universitas::Application.routes.draw do
     get 'profile/edit', :to => 'registrations#edit', :as => 'edit_profile'
   end
   resources :users, :only => [:index, :show] do
-		resources :documents, :controller => 'user_documents' do
+		resources :documents, :controller => 'user_documents', :except => [:new, :create, :destroy] do
 			member do
 				post :add
 				delete :remove
@@ -17,7 +17,7 @@ Universitas::Application.routes.draw do
   end
   
   resources :groups, :except => :destroy do
-		resources :documents, :except => [:edit, :show], :controller => 'group_documents' do
+		resources :documents, :only => [:index, :destroy], :controller => 'group_documents' do
 			collection do
 				post :add_multiple
 			end
@@ -42,7 +42,7 @@ Universitas::Application.routes.draw do
     end
   end
 
-	resources :documents, :only => [:index, :show] do
+	resources :documents, :only => [:index, :show, :create, :new] do
 		member do
 			get :download
 		end

@@ -1,6 +1,0 @@
-<% if @group_document.errors.present? %>
-  $('#errors').text("<%=t('groups.documents.invalid')%>");
-  $('#errors').slideDown('slow');
-<% else %>
-  $.getScript('<%=group_documents_path%>');
-<% end %>

@@ -43,10 +43,10 @@ $(document).ready(function() {
     $('[title]:not(abbr)').tooltip({effect: 'slide', offset: [-14, 0]});
 
     // html element for the help popup
-    $('body').append('<div class="apple_overlay black" id="overlay"><iframe class="contentWrap" style="width: 100%; height: 500px"></iframe></div>');
+    $('body').append('<div class="apple_overlay black" id="overlay"><div class="contentWrap" style="width: 100%; height: 500px;overflow:auto;background:#8EC2DA;"></iframe></div>');
 
     // this is the help popup
-    $("a.help[rel]").overlay({
+    $("a.overlay[rel]").overlay({
 
         effect: 'apple',
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
             var wrap = this.getOverlay().find(".contentWrap");
 
             // load the page specified in the trigger
-            wrap.attr('src', this.getTrigger().attr("href"));
+            wrap.load(this.getTrigger().attr("href"));
         }
 
     });
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
     // preview pane setup
     
-    $('.list-view > li a[data-remote="false"]').click(function(e){ e.stopPropagation();});
+    $('.list-view > li a:not([data-remote])').click(function(e){ e.stopPropagation();});
     
     $('.list-view li:not(.post), .post .content').live('click', function(){
         var url = $(this).find('.more').attr('href');

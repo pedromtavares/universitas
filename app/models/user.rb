@@ -32,7 +32,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :token_authenticatable
 
   validates :login, :presence => true, :uniqueness => true, :length => { :minimum => 4, :maximum => 20 }, :exclusion => {:in => Rails.application.routes.routes.map{|r| r.path.split('/').third.try(:gsub, /\(.*\)/, '')}.uniq}
   validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }

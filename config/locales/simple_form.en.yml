@@ -11,6 +11,7 @@ en:
       text: "Text"
       remote_image_url: Image URL
       show_email: "Show e-mail address on your profile"
+      current_file: "Current File"
     hints:
       user:
         edit:

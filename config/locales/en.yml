@@ -33,6 +33,7 @@ en:
     with: with
     get_started: Get Started
     view: View
+    type: Type
     pagination:
       prev: « Prev
       next: Next »
@@ -42,7 +43,7 @@ en:
   custom_messages:
     file_validation: "can't be larger than %{size}MB!"
     image_validation: "can't be larger than %{size}MB!"
-    file_maximum: 'maximum file size: %{size}MB'
+    file_maximum: 'maximum allowed file size: %{size}MB'
     file_extensions: 'allowed file types: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
     image_extensions: 'allowed file types: jpg, jpeg, gif, png'
     image_maximum: 'maximum file size: %{size}MB'
@@ -199,6 +200,13 @@ en:
       no_senders: "There aren't any document senders for this group yet."
       no_doc_share: You have no documents to share!
       sent_by: Sent by
+      upload_new: Upload new documents
+      from_collection: Select from your collection
+      new_instructions: "Click the button below and select as many files as you like. They will be added to the group document collection as soon as they're done uploading."
+      collection_instructions: "Below is the list of all documents in your collection, please select the ones you wish to share with the group and click 'Save' when done."
+      no_docs: "You have no documents in your collection to share."
+      save: "Save and send document selection to group"
+      saved_selection: "Successfully sent your document selection to the group."
   members:
     singular: Member
     plural: Members
@@ -214,10 +222,12 @@ en:
     documents_for: Documents for
     documents_uploaded: Documents You Uploaded
     all: All Documents
-    new: New Document
+    new: Add New Documents
     add: Add to my collection
+    add_your: Add new documents to your collection
     remove: Remove from my collection
     blank: No document results matched your search.
+    upload: Choose Documents
     uploader: Uploaded by
     uploaded: Uploaded Documents
     uploaded_at: Uploaded At
@@ -229,7 +239,13 @@ en:
     groups: Groups
     recent: Recent Documents
     share: Share documents with this group
+    view_this: View this document
     view: View
+    completed: Completed Uploads
+    proceed: Proceed to your document collection
+    error: "There was an error while saving one of your documents, please make sure it's an allowed file type and is within permitted file sizes."
+    instructions: "Click the button below and select as many files as you like. They will be added to your document collection as soon as they're done uploading."
+    updated: Your document was successfully updated.
     blank:
       any: No documents were retrieved.
       users: This user has no documents yet.

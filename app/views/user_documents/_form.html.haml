@@ -1,18 +1,7 @@
-%fieldset  
+%fieldset
   = f.simple_fields_for :document do |document|
     = document.input :name
     = document.input :description, :as => :text
-    - if resource.document.persisted?
-      = label_tag :current_file
-      .left.spaced-left
-        = link_to document_icon_for(resource.document), resource.document.file_url, :class => 'fr'
-        %br
-        .center= file_size_from_bytes(resource.document.file_size)
-      %br.clear
-      %br.clear
-        = document.input :file, :as => :file, :required => false, :hint => raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")
-    - else
-      = document.input :file, :as => :file, :hint => raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")
   %br.clear
   .action
     = submit_button(:style => 'float:none !important') do

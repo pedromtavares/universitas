@@ -12,9 +12,9 @@ module UpdatesHelper
 		elsif update.to_group_document?
 			"#{t('updates.group_document_added')} #{target.name}"
 		elsif update.to_post?
-			"#{preview_link(target.author, target.author)} #{t('updates.posted_topic')} #{link_to(target.topic, target.topic)}: '#{target.text.truncate(100)}'"
+			"#{preview_link(target.author, target.author)} #{t('updates.posted_topic')} #{link_to(target.topic, target.topic)}: '#{target.text.try(:truncate,100)}'"
 		elsif update.to_topic?
-			"#{preview_link(target.author, target.author)} #{t('updates.created_topic')} #{link_to(target, target)}: '#{target.text.truncate(100)}'"
+			"#{preview_link(target.author, target.author)} #{t('updates.created_topic')} #{link_to(target, target)}: '#{target.text.try(:truncate,100)}'"
 		elsif update.to_group?
 			if update.from_user?
 				if update.custom_message?

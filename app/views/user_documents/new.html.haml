@@ -1,7 +1,0 @@
-.main-content
-  %header
-    %h2= t('documents.new')
-  %section.container_6.clearfix
-    .grid_6
-      = simple_form_for(resource, :url => collection_url,  :html => {:class => 'form grid_6', :multipart => true }) do |f|
-        = render :partial => "form", :locals => {:f => f}

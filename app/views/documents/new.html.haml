@@ -1,0 +1,44 @@
+= content_for :javascripts do
+  :javascript
+    var upload_params = {
+      '#{request_forgery_protection_token}' : '#{form_authenticity_token}',
+      'auth_token' : '#{current_user.authentication_token}',
+      '_http_accept': 'application/javascript'
+    };
+    $('input#file').uploadify({
+      'uploader'     : '/assets/uploadify.swf',
+      'script'       : '#{documents_path}',
+      'fileDataName' : 'file',
+      'fileExt'      : '*.png;*.jpg;*.gif;*.jpeg;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.pdf;*.txt',
+      'cancelImg'    : '/images/cancel.png',
+      'multi'        : true,
+      'scriptData'   : upload_params,
+      'auto'         : true,
+      'onComplete'   : function(e, id, obj, response, data) {
+        $('#complete').slideDown('slow');
+        $('#files').append(response);
+      },
+      'onError'      : function(e, id, obj, response, data) {
+        $('#upload-error').slideDown('slow');
+      }
+    });
+.main-content
+  %header
+    %h2= t('documents.add_your')
+  %section.clearfix
+    .grid_6
+      %h3= t('documents.instructions')
+      %br.clear
+      #upload-error.message.alert{:style => 'display:none'}=t('documents.error')
+      .center
+        =file_field_tag "file"
+        .hint-box= raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")
+        
+      %br.clear
+      %br.clear
+      #complete{:style => 'display:none'}
+        %h4.center=link_to t('documents.proceed'), documents_path(:filter => :my) 
+        %h3= t('documents.completed')
+        #files
+        %br.clear
+        %br.clear

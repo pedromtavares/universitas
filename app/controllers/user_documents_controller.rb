@@ -25,15 +25,8 @@ class UserDocumentsController < InheritedResources::Base
 	  render "documents/index"
 	end
 	
-	def create
-		params[:user_document][:document_attributes].merge!(:uploader => current_user)
-		create! do |success, failure|
-			success.html{redirect_to collection_url}
-		end
-	end
-	
 	def update
-		update!{collection_path}
+		update!(:notice => t('documents.updated')){document_path(resource.document)}
 	end
 	
 	def add
@@ -54,7 +47,7 @@ class UserDocumentsController < InheritedResources::Base
 
 	def resource
 		@user_document = if params[:id]
-			parent.user_documents.find(params[:id])
+			parent.user_documents.find_by_document_id(params[:id])
 		else
 			@user_document.errors.blank? ? UserDocument.new(:document => Document.new) : @user_document
 		end

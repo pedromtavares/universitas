@@ -1,13 +1,13 @@
 %li.custom.clearfix
-  .avatar=link_to document_icon_for(document), document.file.url, :title => t('shared.click_to_download')
+  .avatar=document_icon_for(document)
   = link_to "&raquo;", document_path(document), :class => "more"
   %span.timestamp= document.created_at.strftime("%b %d, %Y")
   = link_to document.name, document_path(document), :class => "name"
   .entry-meta
     = t('documents.uploader') 
     = preview_link document.uploader, document.uploader
-    %br
-    = action_button t('documents.view'), :view
+    %br.clear
+    = action_button t('documents.view'), :view, :path => document.file_url
     - if user_signed_in?
       - unless current_user.has_document?(document)
         = action_button t('documents.add'), :add, :path => add_user_document_path(current_user, document), :method => :post

@@ -9,4 +9,4 @@
 %br.clear
 #errors.message.alert{:style => 'display:none'}
 = simple_form_for(resource, :url => group_forum_topics_url, :html => { :method => :post, :class => 'form grid_6', :style => 'margin-left: -70px'}, :remote => true) do |f|
-  = render :partial => "form", :locals => {:f => f}
+  = render :partial => "form", :locals => {:f => f, :parent => parent}

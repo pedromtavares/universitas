@@ -1,7 +1,7 @@
 .main-content.grid_4.alpha
   %header
     %ul.action-buttons.clearfix.fr
-      %li= action_button(t('documents.new'), :add, :path => new_user_document_path(current_user)) if current_user
+      %li= action_link(t('documents.new'), :add, :path => new_document_path, :class => 'overlay', :rel => "#overlay") if current_user
     .view-switcher
       %h2
         = document_title_for(@filter)

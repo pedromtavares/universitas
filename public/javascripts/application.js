@@ -65,6 +65,8 @@ $(function(){
 	  $('#group-show').slideDown('slow');
 	});
 	
+	$('a[rel*=facebox]').facebox();
+	
 	/******* Filters *******/
   
   $(".filters > a").click(function() {
@@ -84,6 +86,12 @@ $(function(){
     $('#account').slideUp();
     $('#personal').slideUp();
     $('#options').slideUp();
+    $('#' + $(this).data('target')).slideDown();
+  });
+  
+  $("#doc-filters a").live('click', function(){
+    $('#new-docs').slideUp();
+    $('#collection-docs').slideUp();
     $('#' + $(this).data('target')).slideDown();
   });
 	
