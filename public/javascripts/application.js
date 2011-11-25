@@ -75,7 +75,7 @@ $(function(){
 	
 	/******* Filters *******/
   
-  $(".filters > a").click(function() {
+  $(".filters > a").live('click', function() {
     $(".filters a").removeClass('button-green');
     $(this).addClass('button-green');
     var url = $(this).data('url');

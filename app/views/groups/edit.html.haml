@@ -4,4 +4,15 @@
   %section.container_6.clearfix
     .grid_6
       = simple_form_for(resource, :url => resource_url,  :html => {:class => 'form grid_6', :multipart => true }) do |f|
-        = render :partial => "form", :locals => {:f => f}
+        %fieldset
+          = f.input :name
+          = f.input :description
+          - if resource.persisted?
+            = label_tag :current_image
+            .left.spaced-left= image_tag resource.image_url
+            %br.clear
+          = f.input :image, :as => :file, :hint => raw("#{t('custom_messages.image_maximum', :size => Group::MAXIMUM_IMAGE_SIZE_MB)}<br/>#{t('custom_messages.image_extensions')}")      
+          %br.clear
+          .action
+            = submit_button(:style => 'float:none !important') do
+              = t('shared.submit')

@@ -167,6 +167,10 @@ en:
     recent: Recent Groups
     my: My Groups
     led_by: Led by
+    new_instructions: Now proceed by adding documents to your group by either uploading new ones or selecting them from your collection.
+    created: Your group was successfully created.
+    name_taken: "That group name is already taken, please choose another."
+    create_your: Create your own Group
     blank:
       any: No groups were retrieved.
       users: This user has no groups yet.

@@ -162,6 +162,9 @@ pt:
     recent: Grupos Recentes
     my: Meus Grupos
     led_by: Liderado por
+    new_instructions: "Agora, adicione documentos ao seu grupo através do envio de novos documentos, ou escolhendo documentos que você já possui em sua coleção."
+    name_taken: "Este nome já está sendo usado por outro grupo, favor escolher outro."
+    create_your: Crie seu próprio Grupo
     blank:
       any: Nenhum grupo foi retornado.
       users: Este usuário não está em nenhum grupo.

@@ -50,7 +50,7 @@
         %br.clear
         - if @documents.present?
           = form_tag add_multiple_group_documents_path(@group), :method => :post, :remote => true do
-            %table.datatable.no-style.full{:style => 'color:black'}
+            %table.datatable.no-style.full{:style => 'color:black;width:110%'}
               %thead
                 %tr
                   %th
@@ -61,11 +61,11 @@
                 %tbody
                   %tr
                     %td= check_box_tag 'chosen_documents[]', document.id
-                    %td= document_icon_for(document, true)
+                    %td.type= document_icon_for(document, true)
                     %td= document.name
                     %td= document.created_at.strftime("%b %d, %Y")
             %br.clear
-            = submit_button(:style => 'float:none !important;text-align:center', :id => 'save-selection') do
+            = submit_button(:style => 'float:none !important;text-align:center;margin-left:100px') do
               = t('groups.documents.save')
               = loading_icon
         - else

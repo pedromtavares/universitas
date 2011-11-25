@@ -1,4 +1,5 @@
 %li.form-document.fl
+  = hidden_field_tag 'chosen_documents[]', document.id
   = document_icon_for(document)
   %strong.fl= document.name
   %br

@@ -1,0 +1,5 @@
+<% unless @group.id %>
+  $('#group-error').slideDown();
+<% else %>
+  window.location = '<%=group_path(@group)%>'
+<% end %>

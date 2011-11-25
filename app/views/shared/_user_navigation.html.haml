@@ -4,13 +4,9 @@
     - pages.each do |page|
       %li{:class => "#{controller_name == page ? 'active' : ''}"}= link_to t("#{page}.plural"), url_for(send(page+"_path"))
     %li.action{:style => "margin-left:10px"}
-      = link_to new_group_path, :class => "_has-popupballoon button button-blue" do
+      = link_to new_group_path, :class => "button button-blue overlay", :rel => "#overlay" do
         %span.add
         = t('groups.new')
-      .popupballoon.top
-        %h3 New Group
-        %button.button.button-orange Add
-        %button.button.button-gray.close Cancel
     %li.fr
       - if current_user
         =link_to profile_path(current_user) do

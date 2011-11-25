@@ -15,13 +15,27 @@ class GroupsController < InheritedResources::Base
     end
 	end
 	
+	def new
+	  @group = Group.new
+	  @documents = current_user.documents.order('created_at desc')
+	  render :layout => 'overlay'
+	end
+	
 	def show
 	  @group = Group.find params[:id]
 	end
   
   def create
-    @group = Group.new(params[:group].merge(:leader => current_user))
-    create!
+    @group = Group.create(params[:group].merge(:leader => current_user))
+    if @group.id
+      ids = params[:chosen_documents]
+      if ids.present?
+        ids.each do |document_id|
+          @group.add_document(document_id, current_user)
+        end
+      end
+      flash[:notice] = t('groups.created')
+    end
   end
   
   def join

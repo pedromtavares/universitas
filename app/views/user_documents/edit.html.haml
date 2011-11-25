@@ -4,4 +4,11 @@
   %section.container_6.clearfix
     .grid_6
       = simple_form_for(resource, :url => user_document_path(current_user, resource.document.id),  :html => {:class => 'form grid_6', :multipart => true }) do |f|
-        = render :partial => "form", :locals => {:f => f} 
+        %fieldset
+          = f.simple_fields_for :document do |document|
+            = document.input :name
+            = document.input :description, :as => :text
+          %br.clear
+          .action
+            = submit_button(:style => 'float:none !important') do
+              = t('shared.submit')

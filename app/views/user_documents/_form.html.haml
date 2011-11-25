@@ -1,8 +1,0 @@
-%fieldset
-  = f.simple_fields_for :document do |document|
-    = document.input :name
-    = document.input :description, :as => :text
-  %br.clear
-  .action
-    = submit_button(:style => 'float:none !important') do
-      = t('shared.submit')

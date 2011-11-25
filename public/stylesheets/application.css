@@ -492,3 +492,7 @@ button img{
   margin-right:5px;
   height:16px;
 }
+
+table td.type img{
+  margin-top: 5px;
+}
