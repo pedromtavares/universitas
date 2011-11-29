@@ -30,17 +30,15 @@ class UserDocumentsController < InheritedResources::Base
 	end
 	
 	def add
-		if current_user.has_document?(params[:id])
-			redirect_to :back, :alert => I18n.t("users.documents.already_exists")
-		else
+	  @document = Document.find params[:id]
+		unless current_user.has_document?(params[:id])
 			current_user.add_document(params[:id])
-			redirect_to :back, :notice => I18n.t("users.documents.added_collection")
 		end
 	end
 	
 	def remove
+	  @document = Document.find params[:id]
 		current_user.remove_document(params[:id])
-		redirect_to :back, :notice => I18n.t("users.documents.removed_collection")
 	end
 	
 	private

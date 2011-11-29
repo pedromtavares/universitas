@@ -6,11 +6,7 @@
   .spaced-left= document.name
   %br.clear
 = action_button t('documents.view'), :view, :path => document.file_url
-- if current_user
-  - unless current_user.has_document?(document)
-    = action_button t('documents.add'), :add, :path => add_user_document_path(current_user, document), :method => :post
-  - else
-    = action_button t('documents.remove'), :remove, :path => remove_user_document_path(current_user, document), :method => :delete
+= partial 'documents/actions', :document => document  
 %hr
 %h4= t('groups.recent')
 .sidebar-box

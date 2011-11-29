@@ -8,9 +8,5 @@
     = preview_link document.uploader, document.uploader
     %br.clear
     = action_button t('documents.view'), :view, :path => document.file_url
-    - if user_signed_in?
-      - unless current_user.has_document?(document)
-        = action_button t('documents.add'), :add, :path => add_user_document_path(current_user, document), :method => :post
-      - else
-        = action_button t('documents.remove'), :remove, :path => remove_user_document_path(current_user, document), :method => :delete
-      = action_button t('shared.edit'), :edit, :path => edit_user_document_path(current_user, document.id) if current_user.uploaded_document?(document)
+    = partial 'actions', :document => document
+    = action_button t('shared.edit'), :edit, :path => edit_user_document_path(current_user, document.id) if current_user &&  current_user.uploaded_document?(document)

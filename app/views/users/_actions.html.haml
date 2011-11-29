@@ -1,0 +1,5 @@
+- if current_user && current_user != user
+  - if current_user.following?(user)
+    = action_button t('users.unfollow'), :remove, :path => unfollow_user_path(user), :method => :delete, :remote => true, :class => "unfollow-user-#{user.id}"
+  - else
+    = action_button t('users.follow'), :add, :path => follow_user_path(user), :method => :post, :remote => true, :class => "follow-user-#{user.id}"

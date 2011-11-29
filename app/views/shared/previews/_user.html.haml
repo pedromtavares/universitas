@@ -10,12 +10,8 @@
     %br.clear
     %em= "\"#{user.status}\"" if user.status.present?
   %br.clear
-- if current_user && user != current_user
-  - if current_user.following?(user)
-    =action_button(t('users.unfollow'), :remove, :path => unfollow_user_path(user), :method => :delete)
-  - else
-    =action_button(t('users.follow'), :add, :path => follow_user_path(user), :method => :post)
-  %br.clear
+= partial 'users/actions', :user => user
+%br.clear
 %ul.profile-info
   - if user.show_email? && user.email.present?
     %li.email

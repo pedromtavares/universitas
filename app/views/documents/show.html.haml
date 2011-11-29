@@ -12,9 +12,9 @@
         - if current_user
           %li= action_button t('shared.edit'), :edit, :path => edit_user_document_path(current_user, resource.id) if current_user.uploaded_document?(resource)
           - unless current_user.has_document?(resource)
-            %li= action_button t('documents.add'), :add, :path => add_user_document_path(current_user, resource), :method => :post
+            %li= action_button t('documents.add'), :add, :path => add_user_document_path(current_user, resource), :method => :post, :remote => true, :class => "add-document-#{resource.id}"
           - else
-            %li= action_button t('documents.remove'), :remove, :path => remove_user_document_path(current_user, resource), :method => :delete
+            %li= action_button t('documents.remove'), :remove, :path => remove_user_document_path(current_user, resource), :method => :delete, :remote => true, :class => "remove-document-#{resource.id}"
       %br.clear
       %h4
         %em=resource.description

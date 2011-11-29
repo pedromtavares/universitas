@@ -9,11 +9,7 @@
     = t('groups.led_by')
     = link_to group.leader, group.leader
   %br.clear
-- if current_user && !current_user.leader_of?(group)
-  - if current_user.member_of?(group)
-    =action_button(t('groups.leave'), :remove, :path => leave_group_path(group), :method => :delete)
-  - else
-    =action_button(t('groups.join'), :key, :path => join_group_path(group), :method => :post)
+= partial 'groups/actions', :group => group
 %hr
 %h4= t('documents.recent')
 .sidebar-box

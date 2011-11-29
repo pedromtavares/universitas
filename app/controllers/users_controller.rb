@@ -14,17 +14,13 @@ class UsersController < InheritedResources::Base
   def follow
     unless current_user.following?(resource)
       current_user.follow!(resource)
-      flash[:notice] = "#{t('users.now_following')} #{resource}."
     end
-    redirect_to :back
   end
   
   def unfollow
     if current_user.following?(resource)
       current_user.unfollow!(resource)
-      flash[:notice] = "#{t('users.have_unfollowed')} #{resource}."
     end
-    redirect_to :back
   end
   
   protected

@@ -1,0 +1,5 @@
+- if user_signed_in?
+  - unless current_user.has_document?(document)
+    = action_button t('documents.add'), :add, :path => add_user_document_path(current_user, document), :method => :post, :remote => true, :class => "add-document-#{document.id}"
+  - else
+    = action_button t('documents.remove'), :remove, :path => remove_user_document_path(current_user, document), :method => :delete, :remote => true, :class => "remove-document-#{document.id}"

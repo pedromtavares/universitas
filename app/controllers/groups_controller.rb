@@ -47,16 +47,12 @@ class GroupsController < InheritedResources::Base
     @group = Group.find params[:id]
     unless current_user.member_of?(@group)
 			@group.create_member(current_user)
-      redirect_to @group, :notice => "#{t('groups.have_joined')} #{@group}"
-    else
-      redirect_to @group, :error => t('groups.already_in')
     end
   end
   
   def leave
     @group = Group.find params[:id]
 		@group.remove_member(current_user)
-    redirect_to groups_path, :notice => "#{t('groups.have_left')} #{@group}"
   end
 
 	def update_status

@@ -6,9 +6,5 @@
   .entry-meta
     = t('groups.led_by') 
     = preview_link group.leader, group.leader
-    - if user_signed_in?
-      %br
-      - unless current_user.member_of?(group)
-        = action_button t('groups.join'), :key, :path => join_group_path(group), :method => :post
-      - else
-        = action_button t('groups.leave'), :remove, :path => leave_group_path(group), :method => :delete
+    %br
+    = partial 'groups/actions', :group => group
