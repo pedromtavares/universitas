@@ -25,7 +25,7 @@
       %h4
         %em=@group.description
       %br.clear
-      .center=button_link_to t('documents.share'), new_document_path(:group_id => @group.id), :color => 'red overlay', :rel => "#overlay"
+      .center=button_link_to t('documents.share'), new_document_path(:group_id => @group.id), :color => 'red overlay', :rel => "#overlay" if current_user
       %br
       .center=loading_icon
   %section

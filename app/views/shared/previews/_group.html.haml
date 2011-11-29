@@ -1,28 +1,35 @@
-%h4 Update title
+- group ||= update.target
+- documents = group.documents.recent
+- users = group.users.recent
+%h3
+  .fl.spaced-right=image_tag(group.image_url)
+  .spaced-left
+    = group.name
+    %br
+    = t('groups.led_by')
+    = link_to group.leader, group.leader
+  %br.clear
+- if current_user && !current_user.leader_of?(group)
+  - if current_user.member_of?(group)
+    =action_button(t('groups.leave'), :remove, :path => leave_group_path(group), :method => :delete)
+  - else
+    =action_button(t('groups.join'), :key, :path => join_group_path(group), :method => :post)
 %hr
-%ul.profile-info
-  %li.email
-    %span email
-    rofl@copter.com
-  %li.phone
-    %span phone
-    rofl@copter.com
-  %li.mobile
-    %span mobile
-    rofl@copter.com
-%h4 Tasks or something
+%h4= t('documents.recent')
+.sidebar-box
+  - if documents.present?
+    - documents.each do |document|
+      =link_to document_icon_for(document), document, :title => document.name, :class => 'spaced left'
+  - else
+    %p= t('documents.blank.groups')
 %hr
-None
-= link_to "Add One Now", "javascript:void(0)"
-%h4 Additional info
+%h4= t('groups.recent_members')
+.sidebar-box
+  - if users.present?
+    - users.each do |user|
+      =link_to avatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+  - else
+    %p= t('users.blank.groups')
+
 %hr
-%ul.profile-info
-  %li.calendar-day
-    %span birthday
-    January 1, 1991
-  %li.house
-    %span home
-    123 SOme street
-  %li.building
-    %span office
-    234 Other street
+%h3.ac= link_to t('groups.goto'), group

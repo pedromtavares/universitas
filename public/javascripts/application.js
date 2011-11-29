@@ -56,6 +56,10 @@ $(function(){
 	
 	/******* General Code *******/
 	
+  if ($('#activate-new-group').length){
+    $('#new-group-button').click();
+  }
+	
 	$("img.loading").ajaxStart(function(){
 		$(this).removeClass('none');
 	}).ajaxComplete(function(){

@@ -1,1 +1,2 @@
 $('.preview-pane .preview').html("<%= escape_javascript(render :partial => 'shared/previews/group', :locals => {:group => @group})%>");
+$('[title]:not(abbr)').tooltip({effect: 'slide', offset: [-14, 0]});

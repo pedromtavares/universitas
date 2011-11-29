@@ -11,10 +11,15 @@
             - else
               =action_button(t('users.follow'), :add, :path => follow_user_path(resource), :method => :post)
         = resource.name
-      %h4=resource.location
-      - ['website', 'twitter', 'facebook'].each do |service|
-        - if resource.send("#{service}?")
-          = link_to image_tag("auth/signin_#{service}_small.png"), resource.send(service)
+      %h4= resource.location
+      .fl
+        - ['website', 'twitter', 'facebook'].each do |service|
+          - if resource.send("#{service}?")
+            = link_to image_tag("auth/signin_#{service}_small.png"), resource.send(service), :target => "_blank"
+      - if resource.show_email?
+        %h4.fl.spaced-top.spaced-left
+          \-
+          = resource.email
       %br.clear
       %br.clear
       %h4

@@ -1,5 +1,5 @@
 class GroupsController < InheritedResources::Base
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :new]
   before_filter :check_leader, :only => [:edit, :update] 
 	respond_to :html, :js
 
@@ -16,6 +16,11 @@ class GroupsController < InheritedResources::Base
 	end
 	
 	def new
+	  if params[:set_session].present?
+	    session[:new_group] = true;
+	    redirect_to new_user_session_path(:alert => :group)
+	    return
+    end
 	  @group = Group.new
 	  @documents = current_user.documents.order('created_at desc')
 	  render :layout => 'overlay'

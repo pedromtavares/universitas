@@ -63,6 +63,8 @@ class User < ActiveRecord::Base
 	has_many :uploaded_documents, :class_name => 'Document'
 	has_many :authentications, :dependent => :destroy
 	has_many :posts, :dependent => :destroy
+	
+	scope :recent, order('created_at desc').limit(5)
   
   def to_s
     self.login

@@ -1,28 +1,51 @@
-%h4 Update title
-%hr
+- user ||= update.target
+- groups = user.groups.recent
+- documents = user.documents.recent
+%h3
+  .fl.spaced-right=avatar_for(user, :size => 50, :class => 'spaced left')
+  .spaced-top.fl
+    = user.name
+    %br.clear
+    = user.login
+    %br.clear
+    %em= "\"#{user.status}\"" if user.status.present?
+  %br.clear
+- if current_user && user != current_user
+  - if current_user.following?(user)
+    =action_button(t('users.unfollow'), :remove, :path => unfollow_user_path(user), :method => :delete)
+  - else
+    =action_button(t('users.follow'), :add, :path => follow_user_path(user), :method => :post)
+  %br.clear
 %ul.profile-info
-  %li.email
-    %span email
-    rofl@copter.com
-  %li.phone
-    %span phone
-    rofl@copter.com
-  %li.mobile
-    %span mobile
-    rofl@copter.com
-%h4 Tasks or something
+  - if user.show_email? && user.email.present?
+    %li.email
+      %span= t('users.email').downcase
+      = user.email
+  - if user.location.present?
+    %li.house
+      %span= t('users.location').downcase
+      =user.location
+  - ['website', 'twitter', 'facebook'].each do |service|
+    - if user.send("#{service}?")
+      %li{:class => service}
+        %span=service
+        = link_to truncate(user.send(service)), user.send(service), :target => "_blank"
 %hr
-None
-= link_to "Add One Now", "javascript:void(0)"
-%h4 Additional info
+%h4= t('groups.recent')
+.sidebar-box
+  - if groups.present?
+    - groups.each do |group|
+      =link_to image_tag(group.image_url), group, :title => group.name, :class => 'spaced left'
+  - else
+    %p= t('groups.blank.users')
 %hr
-%ul.profile-info
-  %li.calendar-day
-    %span birthday
-    January 1, 1991
-  %li.house
-    %span home
-    123 SOme street
-  %li.building
-    %span office
-    234 Other street
+%h4= t('documents.recent')
+.sidebar-box
+  - if documents.present?
+    - documents.each do |document|
+      =link_to document_icon_for(document), document, :title => document.name, :class => 'spaced left'
+  - else
+    %p= t('documents.blank.users')
+
+%hr
+%h3.ac= link_to t('users.goto'), user

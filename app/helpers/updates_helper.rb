@@ -8,7 +8,7 @@ module UpdatesHelper
 		elsif update.to_group_member?
 			"#{t('updates.joined_group')} #{link_to(target.group, target.group)}"
     elsif update.to_user_document?
-			"#{t('updates.user_document_added')} #{target.name}"
+			"#{t('updates.user_document_added')} #{link_to(target.name, target.document)}"
 		elsif update.to_group_document?
 			"#{t('updates.group_document_added')} #{target.name}"
 		elsif update.to_post?
@@ -53,26 +53,22 @@ module UpdatesHelper
 	  target = update.target
 		creator = update.creator
 		result = if update.to_user?
-			render :partial => 'shared/previews/status', :update => update
+			partial 'shared/previews/status', :update => update
 		elsif update.to_group_member?
-			render :partial => 'shared/previews/group_member', :update => update
+			partial 'shared/previews/group_member', :update => update
     elsif update.to_user_document?
-			render :partial => 'shared/previews/user_document', :update => update
+			partial 'shared/previews/user_document', :update => update
 		elsif update.to_group_document?
-			render :partial => 'shared/previews/group_document', :update => update
+			partial 'shared/previews/group_document', :update => update
 		elsif update.to_post?
-			render :partial => 'shared/previews/post', :update => update
+			partial 'shared/previews/post', :update => update
 		elsif update.to_topic?
-			render :partial => 'shared/previews/topic', :update => update
+			partial 'shared/previews/topic', :update => update
 		elsif update.to_group?
 			if update.from_user?
-				if update.custom_message?
-					render :partial => 'shared/previews/promote', :update => update
-				else
-				  render :partial => 'shared/previews/new_group', :update => update
-				end
+				partial 'shared/previews/new_group', :update => update
 			else
-		    render :partial => 'shared/previews/group_status', :update => update
+		    partial 'shared/previews/group_status', :update => update
 			end
 		end
 		result.html_safe

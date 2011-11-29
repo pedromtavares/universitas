@@ -39,6 +39,15 @@ $(document).ready(function() {
             this.getTip().appendTo('body');
         }
     });
+    
+    $('.other-options a').tooltip({
+        position: 'center left', // position it to the right
+        effect: 'slide', // add a slide effect
+        offset: [30, -45], // adjust the position 30 pixels to the top and 19 pixels to the left
+        onBeforeShow: function() {
+            this.getTip().appendTo('body');
+        }
+    });
 
     $('[title]:not(abbr)').tooltip({effect: 'slide', offset: [-14, 0]});
 
@@ -98,7 +107,7 @@ $(document).ready(function() {
 
     // preview pane setup
     
-    $('.list-view > li a:not([data-remote])').click(function(e){ e.stopPropagation();});
+    $('.list-view > li a:not([data-remote])').live('click', function(e){ e.stopPropagation();});
     
     $('.list-view li:not(.post), .post .content').live('click', function(){
         var url = $(this).find('.more').attr('href');

@@ -4,7 +4,6 @@ pt:
     profile: Perfil
     logout: Sair
     login: Entrar
-    copyright: Direitos Autorais
     signup: Cadastrar
     signin: Entrar
     signout: Sair
@@ -28,10 +27,11 @@ pt:
     for: Para
     cancel: Cancelar
     add: Adicionar
-    footer_note: "Universitas - Este projeto é <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. Direitos autorais."
+    footer_note: "Universitas - Este projeto é <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. Direitos autorais reservados."
     with: pelo
     view: Ver
     type: Tipo
+    send: Enviar
   views:
     pagination:
       previous: ‹ Ant
@@ -119,6 +119,8 @@ pt:
     blank_timeline: Não há atualizaçoes deste usuário.
     location: Localidade
     description: Bio
+    recent: Usuários Recentes
+    goto: "Ir para o perfil deste usuário"
     blank:
       groups: Este grupo ainda não possui membros.
       documents: Este documento não está na coleção de ninguém.
@@ -165,6 +167,9 @@ pt:
     new_instructions: "Agora, adicione documentos ao seu grupo através do envio de novos documentos, ou escolhendo documentos que você já possui em sua coleção."
     name_taken: "Este nome já está sendo usado por outro grupo, favor escolher outro."
     create_your: Crie seu próprio Grupo
+    sign_in_alert: Você deve entrar ou se cadastrar antes de criar um grupo.
+    goto: Ir para a página deste grupo
+    recent_members: Membros Recentes
     blank:
       any: Nenhum grupo foi retornado.
       users: Este usuário não está em nenhum grupo.
@@ -244,6 +249,7 @@ pt:
     error: "Houve um erro ao salvar um de seus documentos, veja se o formato do documento é permitido e se ele está dentro dos limites de tamanho do arquivo."
     instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a sua coleção de documentos assim que terminarem de serem enviados."
     updated: Seu documento foi atualizado com sucesso.
+    goto: "Ir para a página deste documento"
     blank:
       any: Nenhum documento foi retornado.
       users: Este usuário não possui documentos.
@@ -287,6 +293,7 @@ pt:
     created: Tópico criado com sucesso.
     last_post: Último Post
     no_last_post: Este tópico ainda não possui posts.
+    join_discussion: Entre na discussão
   posts:
     singular: Post
     new: Novo Post
@@ -348,29 +355,27 @@ pt:
       tip2_text: "Se você quiser responder a um post específico, clique no botão de 'Responder a este post' no dito post. Dessa forma, sua resposta aparecerá logo abaixo do post alvo, deixando claro sua intenção de responder àquele post."
   home:
     plural: Início
-    faq: Perguntas Frequentes
-    what: O que é Universitas?
-    what_text: "Em resumo, o Universitas é como um Google Groups, só que com bem mais recursos. É uma abordagem mais social e colaborativa quanto a grupos, onde você pode mais facilmente saber de tudo que está acontecendo nos grupos que você tem interesse, como também poder contribuir com eles compartilhando documentos e ideias. Ah, e tudo isso de graça."
-    signup: Não quer se cadastrar?
-    signup_text: "Sem problemas! Universitas tem a intenção de ser uma plataforma aberta e gratuita, sinta-se à vontade e navegue por nossos bancos de usuários, grupos e documentos (você também pode baixar o documento que quiser!) através da barra de navegação no topo do site, e quando você estiver pronto para aproveitar mais a plataforma, <a href='/users/sign_up'>torne-se um membro</a>."
-    features: Recursos da Plataforma
-    doc: Envio e Compartilhamento de Documentos
-    doc_text: "Um dos propósitos do Universitas é ter uma base de dados de documentos enorme, então você como usuário pode enviar quantos documentos quiser e ter sua própria coleção de documentos para compartilhá-la com outras pessoas ou outros grupos."
-    dash: Atualizações no Painel e Rede Interna
-    dash_text: "Vamos supor que você tenha alguns colegas ou pessoas que você admira que também estão no Universitas, você provavelmente gostaria de saber se estas pessoas entraram em um novo grupo ou se enviaram algum documento. Por essa razão, a plataforma provê uma rede interna muito similar ao Twitter, onde você pode seguir outras pessoas e receber atualizações no seu painel referentes não somente às pessoas que você segue, mas aos grupos que você pertence também. Você também pode acompanhar as atualizações de um usuário ou grupo simplesmente acessando a página do mesmo." 
-    group: Grupos Simples e Poderosos
-    group_text: "Os grupos do Universitas possuem uma interface de fácil uso, porém muito poderosa. Logo de cara você recebe uma URL amigável para compartilhar na internet, como universit.as/meugrupo. Você também pode agrupar vários assuntos diferentes do seu grupo em módulos, cada um com sua respectiva coleção de documentos."
-    group_text2: "Compartilhar documentos com grupos é tão fácil quanto selecioná-los da sua própria coleção e adicioná-los na coleção do grupo, ou você pode enviá-los do seu computador diretamente na mesma página. Como o Líder do grupo, você pode gerenciar cada documento que entra através de uma interface bastante similar e instintiva."
-    forum: Fóruns de Grupo
-    forum_text: "O recurso mais importante relacionado a grupos é a discussão: qual o fundamento de ter grupos se você não pode trocar ideias e pensamentos? No Universitas, cada grupo tem seu próprio fórum, onde o Líder do grupo pode criar (e moderar) quantas seções quiser e os membros podem criar tópicos e posts sobre basicamente qualquer coisa."
-    unlimited: "Envio (upload) de documentos ilimitado? Sério?"
-    unlimited_text: "Sério. Você pode armazenar quantos arquivos quiser, se estes estiverem nos tipos de arquivos permitidos (documentos e imagens)."
-    who: Pra quem é o Universitas?
-    who_text: "Para pessoas interessadas em aprender novas coisas e em compartilhar seu conhecimento. Talvez você queira aprender algo e não sabe por onde começar, ou talvez você tenha um monte de material interessante sobre algo e gostaria de ter um lugar central para que outras pessoas possam vir e se interessar também. Até mesmo se você tem um grupo de estudos e precisa de um lugar pra colocar todas as suas pesquisas e discutí-las."
-    get: "O que eu ganho me cadastrando??"
-    get_text: "Você poderá enviar (fazer upload) de documentos, entrar em grupos, postar em fóruns e ver atualizações no seu painel. O máximo que você fará como um usuário não-cadastrado é fazer buscas nos nossos bancos de dados, o que é bom também, mas se cadastrar leva no máximo 30 segundos e lhe dar acesso total ao sistema, fazendo esses 30 segundos bem proveitosos."
-    social: "Mais uma rede social?"
-    social_text: "Não, a rede interna do Universitas está longe de ter o mesmo propósito de vida pessoal do Facebook ou de micro-blogging do Twitter, ou ao menos não foi pra isso que a rede foi feita. As atualizações geradas pela plataforma estão restritas a seus recursos (com exceção da atualização de status), como entrar em um grupo, criar documentos ou postar em fórum."
+    welcome: "Bem-vindo ao Universitas!"
+    get_started: "Comece agora:"
+    create_your: "Crie seu próprio Grupo!"
+    box_desc: "Seja um simples grupo de estudos ou uma grande comunidade, colabore com outras pessoas compartilhando documentos e discussões."
+    header_title: Grupos Colaborativos
+    header_desc: Um único lugar para compartilhar informação
+    shot1_title: Crie um Grupo
+    shot1_desc: "Para hospedar seus documentos e discussões"
+    shot2_title: Compartilhe Documentos
+    shot2_desc: "Envie vários documentos para seu grupo com facilidade"
+    shot3_title: Divulgue!
+    shot3_desc: "Espalhe seu grupo para qualquer pessoa no mundo"
+    other: "E ainda tem mais..."
+    option1_title: "Colaboração ao Máximo"
+    option1_desc: "Outros membros do seu grupo também podem participar e enviar seus próprios documentos pro grupo."
+    option2_title: Atualizações Recentes
+    option2_desc: "Receba atualizações sobre tudo que acontece ao seu redor aqui no Universitas."
+    option3_title: Fóruns de Discussão
+    option3_desc: "Cada grupo tem seu próprio fórum, onde você pode discutir sobre qualquer assunto com outros membros do seu grupo"
+    option4_title: Siga outras Pessoas
+    option4_desc: "Assim como o Twitter, siga outras pessoas e receba atualizações do que elas estão se engajando aqui no Universitas."
   about:
     plural: Sobre
     success: Obrigado por entrar em contato conosco!
@@ -378,11 +383,9 @@ pt:
     contact_us: Entre em Contato
     contact_text: "Sugestões? Reclamações? Quer dar uma mão? Entre em contato pelo endereço <a href='mailto:universitasproject@gmail.com'>universitasproject@gmail.com</a> ou preencha o formulário abaixo com suas informações e nós retornaremos o mais rápido possível!"
     about: Sobre o Universitas
-    about_text: "Universitas é originalmente um projeto pessoal de código aberto. Código aberto significa que todo o código necessário para fazer este projeto está <a href='http://github.com/pedromtavares/universitas'>disponível para o público</a> (desenvolvedores, mais provavelmente) e projeto pessoal significa que ninguém está me pagando para trabalhar nisto, eu simplesmente o faço para experimenar novas coisas (quanto a tecnologias) e pra possivelmente ser responsável por algo útil pra várias pessoas."
+    about_text: "Universitas é uma plataforma (assim como o Facebook e Twitter) com uma abordagem mais social e colaborativa para grupos, onde você pode mais facilmente saber de tudo que está acontecendo nos grupos que você tem interesse, como também poder contribuir com eles compartilhando documentos e ideias. Ah, e tudo isso de graça."
     about2: E quem é você?
-    about2_text: "Meu nome é <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> e eu sou desenvolvedor de software. Sou atualmente a única pessoa por trás do Universitas, tendo desenvolvido o projeto inteiro sozinho além de pagar todas as contas relacionadas (servidor, armazenamento de arquivos)."
-    about3: Você não precisa de ajuda?
-    about3_text: "Preciso. Manter o Universitas atualizado com novas funcionalidades e corrigindo eventuais problemas consome bastante tempo, levei mais de 6 meses para lançar a versão inicial do Universitas simplesmente porque não tive tempo de fazê-lo antes. Se você for um desenvolvedor ou um designer e gostaria de dar uma mão, por favor mande um e-mail ou entre em contato pelo formulário nesta página, estarei em breve fazendo um post 'por favor me ajude' no meu blog com mais detalhes técnicos do projeto e vou atualizar essa página com o link pra esse post assim que ele estiver pronto." 
+    about2_text: "Meu nome é <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> e eu sou desenvolvedor de software. Sou atualmente a única pessoa responsável pela manutenção do Universitas (além de ter desenvolvido tudo e arcado com custos)."
   date: 
     formats: 
       default: "%d/%m/%Y"

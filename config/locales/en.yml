@@ -34,6 +34,7 @@ en:
     get_started: Get Started
     view: View
     type: Type
+    send: Send
     pagination:
       prev: « Prev
       next: Next »
@@ -124,6 +125,8 @@ en:
     blank_timeline: There are no updates from this user yet!
     location: Location
     description: Bio
+    recent: Recent Users
+    goto: "Go to this user's profile"
     blank:
       groups: This group has no members yet.
       documents: This document isn't being collected by anyone.
@@ -171,6 +174,9 @@ en:
     created: Your group was successfully created.
     name_taken: "That group name is already taken, please choose another."
     create_your: Create your own Group
+    sign_in_alert: You must sign in or sign up first before creating a group.
+    goto: Go to this group's page
+    recent_members: Recent Members
     blank:
       any: No groups were retrieved.
       users: This user has no groups yet.
@@ -251,6 +257,7 @@ en:
     error: "There was an error while saving one of your documents, please make sure it's an allowed file type and is within permitted file sizes."
     instructions: "Click the button below and select as many files as you like. They will be added to your document collection as soon as they're done uploading."
     updated: Your document was successfully updated.
+    goto: "Go to this document's page"
     blank:
       any: No documents were retrieved.
       users: This user has no documents yet.
@@ -295,6 +302,7 @@ en:
     last_post: Latest Post
     no_last_post: This topic has no posts yet.
     error: "There was a problem with your topic."
+    join_discussion: Join the discussion
   posts:
     singular: Post
     new: New Post
@@ -356,29 +364,27 @@ en:
       tip2_text: "If you want to reply to a specific post, be sure to click the 'Reply to this post' link on said post. This way your reply will appear nested in its target post."
   home:
     plural: Home
-    what: What is Universitas?
-    faq: Frequently Asked Questions
-    what_text: "In a nutshell, Universitas is a Google Groups on steroids. It's a more social and collaborative approach to groups, where you get to more actively keep track of what's going on in groups you're interested in, along with being able to contribute with them directly by sharing your own documents and ideas. Oh, it's all free too."
-    signup: Not comfortable signing up?
-    signup_text: "No problem! Universitas is meant to be a free and open platform, be our guest and browse freely through our user, group and document databases (you can download any document you want too!) by navigating the top menu and when you're ready for a more thorough experience, <a href='/users/sign_up'>become a member</a>."
-    features: Features
-    doc: Document Upload and Sharing
-    doc_text: "One of the purposes in Universitas is to hold a huge document database, so you as a user can upload as many documents as you want and have your own document collection to share with other people or other groups."
-    dash: Dashboard Updates and Internal Network
-    dash_text: "Say you have some colleagues or people you admire who are also in Universitas, you probably would want to know if they've engaged in a new group or if they uploaded a new document. For that reason the platform has an internal Twitter-like social network, where you can follow other people and get updates on your dashboard referring not only to the people you follow, but to the groups you're in as well. You can also keep up with a user or group's update feed just by visiting their page." 
-    group: Simple Yet Powerful Groups
-    group_text: "Universitas' groups have an easy-to-use, yet powerful user interface. You start by getting a very friendly URL for your group, such as universit.as/mygroup that you can easily share across the web. You can also nest various different subjects on your group into separated modules, each with their own document collection."
-    group_text2: "Sharing documents with groups is as easy as selecting them from your own collection and adding them to the group's collection, or you can just upload them directly from the same place. As a group leader, you get to manage every single document that comes in through a similar and instinctive UI."
-    forum: Group Forums
-    forum_text: "The most important thing related to groups is discussion: what's the point in having groups if you can't exchange thoughts and ideas? In Universitas, each group gets its very own forum (or message board, if you will), where the group leader can create (and moderate) as many sections as he wants and the members can create topics and posts about basically anything they wish to share."
-    unlimited: "Unlimited document upload? Seriously?"
-    unlimited_text: "Yes. You can store as many files as you want, as long as their types are allowed (documents and images)."
-    who: Who is Universitas for?
-    who_text: "People interested in learning new things and in sharing their knowledge. Maybe you want to learn something and don't know where to start, or maybe you have a ton of interesting material about something and would like a central place for it all so other people could come and get interested as well. Heck, even if you just got a study group and need a place to put all your research in and discuss it."
-    get: "What do I get when I sign up?"
-    get_text: "You get to upload documents, to join groups, post in forums and to see updates in your dashboard. The most you do as a guest is search our databases and download documents, which is fine too, but signing up takes like 30 seconds and gets you full access to the system, making those 30 seconds quite worthwhile."
-    social: "Yet another social network? Geez."
-    social_text: "No, Universitas' network is far from having the same personal-life focus purpose of Facebook nor the micro-blogging purpose of Twitter, or at least that's not what it was meant for. Aside from the status update, the updates system is restricted to Universitas' features only, like joining a group or creating a document, and so is the focus of its network."
+    welcome: "Welcome to Universitas!"
+    get_started: "Get Started:"
+    create_your: "Create your own Group!"
+    box_desc: "Be it a simple study group or a wide-spread community, collaborate with other users by sharing documents and discussions."
+    header_title: Collaborative Groups
+    header_desc: A single place to share information
+    shot1_title: Create a Group
+    shot1_desc: "And quickly host your documents & discussions"
+    shot2_title: Share Documents
+    shot2_desc: "Easily upload multiple documents to your group"
+    shot3_title: Spread the Word
+    shot3_desc: "Have an easy and intuitive way to show your group to the world"
+    other: "But that's not all..."
+    option1_title: "Next Level Collaboration"
+    option1_desc: "Other members of your group can just as easily weigh in and share their own documents with it."
+    option2_title: Latest Updates
+    option2_desc: "Get updates on everything that happens around you here on Universitas."
+    option3_title: Group Forums
+    option3_desc: "Each group gets its own forum (message board) where you can host discussions with other group members."
+    option4_title: Follow Users
+    option4_desc: "Like Twitter, follow other users and get updates about what they're engaging in Universitas."
   about:
     plural: About Us
     success: Thanks for contacting us!
@@ -386,8 +392,6 @@ en:
     contact_us: Contact Us
     contact_text: "Suggestions? Complaints? Want to help out? Drop us a line at <a href='mailto:universitasproject@gmail.com'>universitasproject@gmail.com</a> or fill in the form below with your info so we can get back to you!"
     about: About Universitas
-    about_text: "Universitas is originally an open source side project of mine. Open source means that all the source code needed to create this website is <a href='http://github.com/pedromtavares/universitas'>open to the public</a> (developers, more likely) and side project means that nobody is paying me to work on this, I just do it to experiment new things (technology wise) and to possibly be responsible for something useful to a lot of people."
-    about2: And who are you?
-    about2_text: "My name is <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> and I'm a software developer. I am currently the only person behind Universitas, having developed it all by myself and also the one pays all its bills (server and file storage)."
-    about3: Don't you need help?
-    about3_text: "Yes. Keeping Universitas up to date with new features and fixing eventual bugs consumes time, it took me more than 6 months to launch the initial version because I simply didn't have the time to do it sooner. If you are a developer or a designer and would like to help out, please send me an e-mail or contact me through the form on this page, I will be making an official 'please help me' blog post with more technical details about the project and will update this page with it as soon as it's done."
+    about_text: "Universitas is a platform (like Facebook and Twitter) with a more social and collaborative approach to groups, where you get to more actively keep track of what's going on in groups you're interested in, along with being able to contribute with them directly by sharing your own documents and ideas. Oh, it's all free too."
+    about2: "Who's behind all this?"
+    about2_text: "My name is <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> and I'm a software developer. I am currently the only person maintaining Universitas (besides having developed it from the ground up and dealing with costs)."

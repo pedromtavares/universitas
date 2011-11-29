@@ -295,7 +295,7 @@
 /******* Sidebar *******/
 
 .sidebar-box{
-	max-height:60px;
+	max-height:70px;
 	overflow:auto;
 }
 
@@ -495,4 +495,21 @@ button img{
 
 table td.type img{
   margin-top: 5px;
+}
+
+.other-options a h4{
+  color:blue;
+}
+.other-options a:hover h4{
+  color:blue;
+  text-decoration:underline;
+}
+
+.other-options a:hover{
+  text-decoration:none;
+}
+
+.preview{
+  height:400px;
+  overflow:auto;
 }

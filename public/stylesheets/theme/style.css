@@ -897,6 +897,18 @@ body.login {
     background: transparent url(../../images/icons/house.png) no-repeat 0 50%;
 }
 
+.profile-info li.website {
+    background: transparent url(../../images/icons/website.png) no-repeat 0 50%;
+}
+
+.profile-info li.facebook {
+    background: transparent url(../../images/icons/facebook.png) no-repeat 0 50%;
+}
+
+.profile-info li.twitter {
+    background: transparent url(../../images/icons/twitter.png) no-repeat 0 50%;
+}
+
 /**
  * Sidebar
  */

@@ -949,6 +949,15 @@ input.full {
 	border-color:transparent #dd6611;
 }
 
+.tooltip.right:before{
+  top:49px; /* controls vertical position */
+	left:270px; /* value = - border-left-width - border-right-width */
+	bottom:auto;
+	border-width:11px 0 11px 16px;
+	border-style:solid;
+	border-color:transparent #dd6611;
+}
+
 .speech-bubble:after, .tooltip:after, .popupballoon:after {
     content:"";
     display:block; /* reduce the damage in FF3.0 */
@@ -967,6 +976,14 @@ input.full {
     left:-15px; /* value = - border-left-width - border-right-width */
     bottom:auto;
     border-width:10px 15px 10px 0;
+    border-color:transparent #ddd;
+}
+
+.speech-bubble.right:after, .tooltip.right:after {
+    top:50px; /* controls vertical position */
+    left:269px; /* value = - border-left-width - border-right-width */
+    bottom:auto;
+    border-width:10px 0 10px 15px;
     border-color:transparent #ddd;
 }
 
@@ -997,7 +1014,7 @@ input.full {
     zoom: 1;
 }
 
-.tooltip.left:after {
+.tooltip.left:after, .tooltip.right:after{
     border-color: transparent #f9d835;
 }
 
@@ -1005,6 +1022,9 @@ input.full {
     width: 200px;
 }
 
+.tooltip.right {
+    width: 250px;
+}
 .subnav .tooltip.left {
     left: 131px !important;
 }

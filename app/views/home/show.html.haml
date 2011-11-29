@@ -1,42 +1,57 @@
 .main-content
   %header
-    %h2 Welcome to Universitas!
+    %h2= t('home.welcome')
   %section.container_6.clearfix
     .grid_6
       .message.info.ac
         %h3 
-          Get Started:
-          = link_to "Create your own Group!", new_group_path, :class => 'overlay', :rel => "#overlay" 
-        %p Be it a simple study group or a wide-spread community, collaborate with other users by sharing documents and discussions.
+          = t('home.get_started')
+          - if current_user
+            = link_to t('home.create_your'), new_group_path, :class => 'overlay', :rel => "#overlay"
+          - else
+            = link_to t('home.create_your'), new_group_path(:set_session => true)
+        %p= t('home.box_desc')
     %hgroup.grid_6.ac
-      %h2 Collaborative Groups
-      %h4 A single place to share information
+      %h2= t('home.header_title')
+      %h4= t('home.header_desc')
     %figure.grid_2.ac
-      = image_tag 'asset1.jpg'
-      %h3 Create a Group
-      %p And quickly host your documents & discussions
+      = image_tag 'shots/shot1.jpg', :style => "border:1px solid #5F5F5F"
+      %h3= t('home.shot1_title')
+      %p= t('home.shot1_desc')
     %figure.grid_2.ac
-      = image_tag 'asset2.jpg'
-      %h3 Share Documents
-      %p Easily upload multiple documents to your group
+      = image_tag 'shots/shot2.jpg'
+      %h3= t('home.shot2_title')
+      %p= t('home.shot2_desc')
     %figure.grid_2.ac
-      = image_tag 'asset3.jpg'
-      %h3 Spread the Word
-      %p Have an easy and intuitive way to show your group to the world
+      = image_tag 'shots/shot3.jpg'
+      %h3= t('home.shot3_title')
+      %p= t('home.shot3_desc')
     .other-options.grid_6
-      %h3.other But that's not all...
+      %h3.other= t('home.other')
       %ul
         %li
-          %h4=link_to "Next Level Collaboration", '#'
-          %p Other members of your group can just as easily weigh in and share their own documents with it.
+          =link_to "javascript:void(0)" do
+            %h4= t('home.option1_title')
+            %p= t('home.option1_desc')
+          .tooltip.right
+            = image_tag 'shots/shot1.jpg'
         %li
-          %h4=link_to "Latest Updates", '#'
-          %p Get updates on everything that happens around you here on Universitas.
+          = link_to "javascript:void(0)" do
+            %h4= t('home.option2_title')
+            %p= t('home.option2_desc')
+          .tooltip.right
+            = image_tag 'shots/shot2.jpg'
         %li
-          %h4=link_to "Group Forums", '#'
-          %p Each group gets its own forum (message board) where you can host discussions with other group members.
+          = link_to "javascript:void(0)" do
+            %h4= t('home.option3_title')
+            %p= t('home.option3_desc')
+          .tooltip.right
+            = image_tag 'shots/shot3.jpg'
         %li
-          %h4=link_to "Follow Users", '#'
-          %p Like Twitter, follow other users on Universitas and get updates about what they're engaging in Universitas.
+          = link_to "javascript:void(0)" do
+            %h4= t('home.option4_title')
+            %p= t('home.option4_desc')
+          .tooltip.right
+            = image_tag 'shots/shot1.jpg'
         
         

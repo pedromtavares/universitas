@@ -4,13 +4,15 @@
   %section
     - flash.each do |type, message|
       .message{:class => type}=message
+    - if params[:alert]
+      .message{:class => 'alert'}= t('groups.sign_in_alert')
     = form_for(resource, :as => resource_name, :url => user_session_path, :html => {:class => 'clearfix'}) do |f|
       %p= f.text_field :login, :required => 'required', :placeholder => t('registration.login'), :class => 'full'
       %p= f.password_field :password, :required => 'required', :placeholder => t('registration.password'), :class => 'full'
       %p.clearfix
         %span.fl
           - if devise_mapping.rememberable?
-            = f.check_box :remember_me
+            = f.check_box :remember_me, :style => "float:left;margin-right:5px;margin-top:2px"
             = f.label :remember_me, :class => 'choice', :for => :remember_me
         = submit_button do
           = t 'shared.signin'

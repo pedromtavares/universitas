@@ -3,10 +3,16 @@
     - pages = %w{home about}
     - pages.each do |page|
       %li{:class => "#{controller_name == page ? 'active' : ''}"}= link_to t("#{page}.plural"), url_for(send(page+"_path"))
-    %li.action{:style => "margin-left:10px"}
-      = link_to new_group_path, :class => "button button-blue overlay", :rel => "#overlay" do
-        %span.add
-        = t('groups.new')
+    - if current_user
+      %li.action{:style => "margin-left:10px"}
+        = link_to new_group_path, :class => "button button-blue overlay", :rel => "#overlay", :id => 'new-group-button' do
+          %span.add
+          = t('groups.new')
+    - else
+      %li.action{:style => "margin-left:10px"}
+        = link_to new_group_path(:set_session => true), :class => "button button-blue", :id => 'new-group-button' do
+          %span.add
+          = t('groups.new')
     %li.fr
       - if current_user
         =link_to profile_path(current_user) do
