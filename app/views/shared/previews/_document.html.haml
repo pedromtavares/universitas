@@ -3,7 +3,10 @@
 - users = document.users.recent
 %h3
   .fl.spaced-right=document_icon_for(document)
-  .spaced-left= document.name
+  .spaced-left
+    = document.name
+    = t('documents.uploader')
+    = link_to resource.uploader, resource.uploader
   %br.clear
 = action_button t('documents.view'), :view, :path => document.file_url
 = partial 'documents/actions', :document => document  
