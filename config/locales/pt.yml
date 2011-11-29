@@ -44,10 +44,10 @@ pt:
   custom_messages:
     file_validation: "não pode ser maior que %{size}MB!"
     image_validation: "não pode ser maior que %{size}MB!"
-    file_maximum: 'tamanho máximo do arquivo: %{size}MB'
+    file_maximum: "tamanho máximo do arquivo: %{size}MB"
     file_extensions: 'tipos de arquivo permitidos: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
-    image_maximum: 'tipos de arquivo permitidos: jpg, jpeg, gif, png'
-    image_extensions: "tamanho máximo do arquivo: %{size}MB"
+    image_maximum: "tamanho máximo do arquivo: %{size}MB"
+    image_extensions: 'tipos de arquivo permitidos: jpg, jpeg, gif, png'
   updates:
     plural: Atualizações Recentes
     blank: Nenhuma atualização foi retornada.
@@ -368,14 +368,14 @@ pt:
     shot3_title: Divulgue!
     shot3_desc: "Espalhe seu grupo para qualquer pessoa no mundo"
     other: "E ainda tem mais..."
-    option1_title: "Colaboração ao Máximo"
-    option1_desc: "Outros membros do seu grupo também podem participar e enviar seus próprios documentos pro grupo."
-    option2_title: Atualizações Recentes
-    option2_desc: "Receba atualizações sobre tudo que acontece ao seu redor aqui no Universitas."
-    option3_title: Fóruns de Discussão
-    option3_desc: "Cada grupo tem seu próprio fórum, onde você pode discutir sobre qualquer assunto com outros membros do seu grupo"
-    option4_title: Siga outras Pessoas
-    option4_desc: "Assim como o Twitter, siga outras pessoas e receba atualizações do que elas estão se engajando aqui no Universitas."
+    shot4_title: "Colaboração ao Máximo"
+    shot4_desc: "Outros membros do seu grupo também podem participar e enviar seus próprios documentos pro grupo."
+    shot5_title: Atualizações Recentes
+    shot5_desc: "Receba atualizações sobre tudo que acontece ao seu redor aqui no Universitas."
+    shot6_title: Fóruns de Discussão
+    shot6_desc: "Cada grupo tem seu próprio fórum, onde você pode discutir sobre qualquer assunto com outros membros do seu grupo"
+    shot7_title: Siga outras Pessoas
+    shot7_desc: "Assim como o Twitter, siga outras pessoas e receba atualizações do que elas estão se engajando aqui no Universitas."
   about:
     plural: Sobre
     success: Obrigado por entrar em contato conosco!

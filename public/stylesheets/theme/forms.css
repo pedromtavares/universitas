@@ -950,7 +950,7 @@ input.full {
 }
 
 .tooltip.right:before{
-  top:49px; /* controls vertical position */
+  top:19px; /* controls vertical position */
 	left:270px; /* value = - border-left-width - border-right-width */
 	bottom:auto;
 	border-width:11px 0 11px 16px;
@@ -980,7 +980,7 @@ input.full {
 }
 
 .speech-bubble.right:after, .tooltip.right:after {
-    top:50px; /* controls vertical position */
+    top:20px; /* controls vertical position */
     left:269px; /* value = - border-left-width - border-right-width */
     bottom:auto;
     border-width:10px 0 10px 15px;

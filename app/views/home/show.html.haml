@@ -14,44 +14,20 @@
     %hgroup.grid_6.ac
       %h2= t('home.header_title')
       %h4= t('home.header_desc')
-    %figure.grid_2.ac
-      = image_tag 'shots/shot1.jpg', :style => "border:1px solid #5F5F5F"
-      %h3= t('home.shot1_title')
-      %p= t('home.shot1_desc')
-    %figure.grid_2.ac
-      = image_tag 'shots/shot2.jpg'
-      %h3= t('home.shot2_title')
-      %p= t('home.shot2_desc')
-    %figure.grid_2.ac
-      = image_tag 'shots/shot3.jpg'
-      %h3= t('home.shot3_title')
-      %p= t('home.shot3_desc')
+    - [1,2,3].each do |n|
+      %figure.grid_2.ac
+        = image_tag "shots/shot#{n}_#{I18n.locale}.png", :style => "border:1px solid #5F5F5F"
+        %h3= t("home.shot#{n}_title")
+        %p= t("home.shot#{n}_desc")
     .other-options.grid_6
       %h3.other= t('home.other')
       %ul
-        %li
-          =link_to "javascript:void(0)" do
-            %h4= t('home.option1_title')
-            %p= t('home.option1_desc')
-          .tooltip.right
-            = image_tag 'shots/shot1.jpg'
-        %li
-          = link_to "javascript:void(0)" do
-            %h4= t('home.option2_title')
-            %p= t('home.option2_desc')
-          .tooltip.right
-            = image_tag 'shots/shot2.jpg'
-        %li
-          = link_to "javascript:void(0)" do
-            %h4= t('home.option3_title')
-            %p= t('home.option3_desc')
-          .tooltip.right
-            = image_tag 'shots/shot3.jpg'
-        %li
-          = link_to "javascript:void(0)" do
-            %h4= t('home.option4_title')
-            %p= t('home.option4_desc')
-          .tooltip.right
-            = image_tag 'shots/shot1.jpg'
+        -[4,5,6,7].each do |n|
+          %li
+            =link_to "javascript:void(0)" do
+              %h4= t("home.shot#{n}_title")
+              %p= t("home.shot#{n}_desc")
+            .tooltip.right
+              = image_tag "shots/shot#{n}_#{I18n.locale}.png"
         
         

@@ -5,11 +5,8 @@
       %h2
         %ul.action-buttons.clearfix.fr
           %li= action_button("#{t('shared.edit')} #{t('shared.profile')}", :edit, :path => edit_profile_path) if current_user && resource == current_user
-          - if current_user && resource != current_user
-            - if current_user.following?(resource)
-              =action_button(t('users.unfollow'), :remove, :path => unfollow_user_path(resource), :method => :delete)
-            - else
-              =action_button(t('users.follow'), :add, :path => follow_user_path(resource), :method => :post)
+          %li= partial 'users/actions', :user => resource
+          
         = resource.name
       %h4= resource.location
       .fl
@@ -20,7 +17,7 @@
         %h4.fl.spaced-top.spaced-left
           \-
           = resource.email
-      %br.clear
+      %br.clear      
       %br.clear
       %h4
         %em=resource.description

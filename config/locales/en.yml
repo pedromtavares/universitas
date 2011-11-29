@@ -44,10 +44,10 @@ en:
   custom_messages:
     file_validation: "can't be larger than %{size}MB!"
     image_validation: "can't be larger than %{size}MB!"
-    file_maximum: 'maximum allowed file size: %{size}MB'
+    file_maximum: "maximum allowed file size: %{size}MB"
     file_extensions: 'allowed file types: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
     image_extensions: 'allowed file types: jpg, jpeg, gif, png'
-    image_maximum: 'maximum file size: %{size}MB'
+    image_maximum: "maximum file size: %{size}MB"
   errors:
     messages:
       carrierwave_processing_error: failed to be processed
@@ -377,14 +377,14 @@ en:
     shot3_title: Spread the Word
     shot3_desc: "Have an easy and intuitive way to show your group to the world"
     other: "But that's not all..."
-    option1_title: "Next Level Collaboration"
-    option1_desc: "Other members of your group can just as easily weigh in and share their own documents with it."
-    option2_title: Latest Updates
-    option2_desc: "Get updates on everything that happens around you here on Universitas."
-    option3_title: Group Forums
-    option3_desc: "Each group gets its own forum (message board) where you can host discussions with other group members."
-    option4_title: Follow Users
-    option4_desc: "Like Twitter, follow other users and get updates about what they're engaging in Universitas."
+    shot4_title: "Next Level Collaboration"
+    shot4_desc: "Other members of your group can just as easily weigh in and share their own documents with it."
+    shot5_title: Latest Updates
+    shot5_desc: "Get updates on everything that happens around you here on Universitas."
+    shot6_title: Group Forums
+    shot6_desc: "Each group gets its own forum (message board) where you can host discussions with other group members."
+    shot7_title: Follow Users
+    shot7_desc: "Like Twitter, follow other users and get updates about what they're engaging in Universitas."
   about:
     plural: About Us
     success: Thanks for contacting us!
