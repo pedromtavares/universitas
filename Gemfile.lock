@@ -241,7 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth (= 4.2.8)
+  RedCloth
   ancestry
   annotate
   bullet
