@@ -25,4 +25,15 @@ module DocumentsHelper
 		file = small ? "docs/small/#{file}.png" : "docs/#{file}.png"
 		image_tag(file, options)
 	end
+	
+	def document_title_for(filter)
+	 case filter
+   when 'my'
+     t('documents.my_documents')
+   when 'uploaded'
+     t('documents.uploaded')
+   else
+     t('documents.all')
+   end
+	end
 end

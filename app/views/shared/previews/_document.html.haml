@@ -1,0 +1,31 @@
+- document ||= update.target
+- groups = document.groups.recent
+- users = document.users.recent
+%h3
+  .fl.spaced-right=document_icon_for(document)
+  .spaced-left
+    = document.name
+    = t('documents.uploader')
+    = link_to resource.uploader, resource.uploader
+  %br.clear
+= action_button t('documents.view'), :view, :path => document.file_url
+= partial 'documents/actions', :document => document  
+%hr
+%h4= t('groups.recent')
+.sidebar-box
+  - if groups.present?
+    - groups.each do |group|
+      =link_to image_tag(group.image_url), group, :title => group.name, :class => 'spaced left'
+  - else
+    %p= t('groups.blank.documents')
+%hr
+%h4= t('users.recent')
+.sidebar-box
+  - if users.present?
+    - users.each do |user|
+      =link_to avatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+  - else
+    %p= t('users.blank.documents')
+
+%hr
+%h3.ac= link_to t('documents.goto'), document

@@ -1,3 +1,0 @@
-var td = $('#<%=@group_document.id%>').find('.module');
-td.find('.update-module').addClass('none');
-td.find('.name').removeClass('none').html('<%=@group_document.module ? @group_document.module.name : t("groups.documents.blank_prompt")%>');

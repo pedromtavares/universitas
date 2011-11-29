@@ -1,77 +1,79 @@
-.block
-  .content
-    .inner
-      %h2.title
-        = t 'shared.edit'
-        = t 'shared.profile'
-      .red= t('account.errors') unless resource.errors.blank?
-      #tabs
-        %ul
-          %li=link_to t('account.self'), "#account"
-          %li=link_to t('account.personal'), "#personal"
-          %li=link_to t('auth.signin_options'), "#options"
-        #account
-          = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => :form }) do |f|
-            = f.input :login, :required => false
-            = f.input :name, :required => false
-            = f.input :email, :required => false
-            - if current_user.has_no_password
-              = f.input :password, :required => false, :hint => t('devise.no_password')
-            - else
-              = f.input :password, :required => false
-            = f.input :password_confirmation
-            = f.input :current_password, :required => true unless current_user.has_no_password
-            %br
-            .group.navform.wat-cf
-              = submit_button do
-                = image_tag("icons/tick.png", :alt => t('shared.update')) 
-                = t('shared.update')   
-          = link_to t('account.cancel'), registration_path(resource_name), :confirm => t('shared.confirm'), :method => :delete
-        #personal
-          = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => :form, :multipart => true }) do |f|
-            = f.label :image
-            %br.clear
-            = image_tag resource.image_url if resource.image?
-            = f.input_field :image
-            = t('account.or_remote_url')
-            = f.input_field :remote_image_url
-            - if resource.image?
-              .left{:style=>'width:5%'}= f.check_box :remove_image
-              .left.auto= f.label :remove_image
-              %br.clear
-            %br.clear
-            %br.clear
-            = f.input :location
-            = f.input :website
-            = f.input :description, :hint => t('account.description_hint')
-            = f.input :twitter, :hint => t('account.twitter_hint')
-            = f.input :facebook, :hint => t('account.facebook_hint')
-            .left{:style=>'width:5%'}= f.input_field :show_email
-            .left.auto= f.label :show_email, :label => t('account.show_email')
-            %br.clear
-            %br.clear
-            .group.navform.wat-cf
-              = submit_button do
-                = image_tag("icons/tick.png", :alt => t('shared.update')) 
-                = t('shared.update')
-        #options
-          - unless @authentications.blank?
-            %strong= t('auth.signed_in_services')
-            %br.clear
-            .authentications
-              - @authentications.each do |authentication|
-                .authentication
-                  =image_tag "auth/#{authentication.provider}_small.png", :title => t("auth.#{authentication.provider}")
-                  .provider= authentication.provider.titleize
-                  = link_to "X", authentication, :confirm => t('auth.remove'), :method => :delete, :class => "remove"
-            %br.clear
-            %strong=t('auth.add') unless current_user.has_all_providers
+.main-content
+  %header
+    %h2
+      = t 'shared.edit'
+      = t 'shared.profile'
+  %section.container_6.clearfix
+    .grid_6
+      - unless resource.errors.blank?
+        .red.center= t('account.errors')
+        %br
+      .filters#account-filters
+        =button_link_to t('account.self'), "javascript:void(0)", :color => 'blue button-green', :'data-target' => 'account'
+        =button_link_to t('account.personal'), "javascript:void(0)", :color => 'blue', :'data-target' => 'personal'
+        =button_link_to t('auth.signin_options'), "javascript:void(0)", :color => 'blue', :'data-target' => 'options'
+      %br.clear
+    #account
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form grid_6' }) do |f|
+        %fieldset
+          %legend="#{t('account.self')} - #{t('account.core_info')}"
+          = f.input :login, :required => false
+          = f.input :name, :required => false
+          = f.input :email, :required => false
+          - if current_user.has_no_password
+            = f.input :password, :required => false, :hint => t('devise.no_password')
           - else
-            %strong=t('auth.add_alt') unless current_user.has_all_providers
+            = f.input :password, :required => false
+          = f.input :password_confirmation
+          = f.input :current_password, :required => true unless current_user.has_no_password
           %br.clear
-          - on_each_provider do |provider|
-            - unless current_user.has_provider?(provider)
-              =link_to "/auth/#{provider}", :class => 'provider' do
-                = image_tag("auth/#{provider}.png", :title => t("auth.#{provider}"))
-                %strong= t("auth.#{provider}")
+          .action
+            = submit_button(:style => 'float:none !important') do
+              = t('shared.update')
+      %br.clear
+      = link_to t('account.cancel'), registration_path(resource_name), :confirm => t('shared.confirm'), :method => :delete
+      
+    #personal{:style => 'display:none'}
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form grid_6', :multipart => true }) do |f|
+        %fieldset
+          %legend="#{t('account.personal')} - #{t('account.personal_info')}"
+          - if resource.image?
+            = f.input :image, :as => :file, :hint => image_tag(resource.image_url)
+            %br.clear
+            %br.clear
+            = f.input :remove_image, :as => :boolean
+          - else
+            = f.input :image
+          = f.input :remote_image_url
+          = f.input :location
+          = f.input :website
+          = f.input :description
+          = f.input :twitter
+          = f.input :facebook
+          = f.input :show_email
           %br.clear
+          .action
+            = submit_button(:style => 'float:none !important') do
+              = t('shared.update')
+    #options{:style => 'display:none'}
+      %fieldset
+        %legend="#{t('auth.signin_options')} - #{t('account.options_info')}"
+        - unless @authentications.blank?
+          %strong= t('auth.signed_in_services')
+          %br.clear
+          .authentications
+            - @authentications.each do |authentication|
+              .authentication
+                =image_tag "auth/#{authentication.provider}_small.png", :alt => t("auth.#{authentication.provider}")
+                .provider= authentication.provider.titleize
+                = link_to "X", authentication, :confirm => t('auth.remove'), :method => :delete, :class => "remove"
+          %br.clear
+          %strong=t('auth.add') unless current_user.has_all_providers
+        - else
+          %strong=t('auth.add_alt') unless current_user.has_all_providers
+        %br.clear
+        - on_each_provider do |provider|
+          - unless current_user.has_provider?(provider)
+            =link_to "/auth/#{provider}", :class => 'provider' do
+              = image_tag("auth/#{provider}.png", :alt => t("auth.#{provider}"))
+              %strong= t("auth.#{provider}")

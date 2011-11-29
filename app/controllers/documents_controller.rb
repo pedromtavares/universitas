@@ -1,15 +1,40 @@
 class DocumentsController < InheritedResources::Base
-	before_filter :load_presenter
 	respond_to :html, :js
 	
 	def index
-		@documents = paginate(Document.search(params[:search])) if params[:search]
-		super
+		@filter = params[:filter]
+		scope = paginate(scope_for(params).order('created_at desc'))
+		@documents = if params[:search].present?
+		  scope.search(params[:search])
+	  else
+	    scope
+    end
+	end
+	
+	def new
+	  if params[:group_id]
+	    @group = Group.find(params[:group_id])
+	    @documents = current_user.documents.order('created_at desc')
+	    render 'group_new', :layout => 'overlay'
+    else
+      render :layout => 'overlay'
+    end
+	end
+	
+	def create
+	  name = params[:Filename].split('.').first
+	  name = "#{name}-#{current_user.login}" if name.length < 4
+	  @document = Document.new(:name => name, :file => params[:file], :uploader => current_user)
+    if @document.save
+      current_user.add_document(@document)
+      Group.find(params[:group_id]).add_document(@document, current_user) if params[:group_id].present?
+	    render(:text => render_to_string(:partial => 'form_document', :locals => {:document => resource}))
+	  end
 	end
 	
 	def show
-	  @users = @document.users
-	  @groups = @document.groups
+	  @users = resource.users
+	  @groups = resource.groups
 		@user_document = current_user.user_documents.find_by_document_id(params[:id]) if current_user
 	  super
   end
@@ -21,19 +46,22 @@ class DocumentsController < InheritedResources::Base
 	
 	private
 	
-	def collection
-    @documents ||= paginate(end_of_association_chain.includes(:uploader).order('created_at asc'))
+	def scope_for(params)
+    case params[:filter]
+    when 'my'
+      current_user.documents
+    when 'uploaded'
+    	current_user.uploaded_documents
+    else
+      case params[:type]
+      when 'user'
+        User.find(params[:id]).documents
+      when 'group'
+        Group.find(params[:id]).documents
+      else
+        Document
+      end
+    end
   end
-
-	def load_presenter
-		@presenter = DocumentsPresenter.new(current_user)
-	end
-
-	def set_breadcrumbs
-		add_breadcrumb(I18n.t("documents.all"), :collection_path)
-		add_breadcrumb(I18n.t("documents.my_documents"), lambda { |a| user_documents_path(current_user)  })
-		add_breadcrumb(I18n.t("documents.new"), lambda { |a| new_user_document_path(current_user)  })
-		add_breadcrumb(resource.to_s.truncate(50), :resource_path) if params[:id]		
-	end
 
 end

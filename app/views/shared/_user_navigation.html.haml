@@ -1,25 +1,38 @@
-#user-navigation
-  %ul.wat-cf
-    - if user_signed_in?
-      %li= link_to image_tag('icons/en.png', :class => 'flag'), url_for(params.merge(:locale => :en)), :title => "English"
-      %li= link_to image_tag('icons/pt.png', :class => 'flag'), url_for(params.merge(:locale => :pt)), :title => "Português"
-      %li= link_to t("shared.profile"), profile_path(current_user)
-      %li="#{t('layout.logged_in')} #{current_user}"
-      %li= link_to t("shared.signout"), destroy_user_session_path, :class => "logout"
+%nav.grid_5
+  %ul.clearfix
+    - pages = %w{home about}
+    - pages.each do |page|
+      %li{:class => "#{controller_name == page ? 'active' : ''}"}= link_to t("#{page}.plural"), url_for(send(page+"_path"))
+    - if current_user
+      %li.action{:style => "margin-left:10px"}
+        = link_to new_group_path, :class => "button button-blue overlay", :rel => "#overlay", :id => 'new-group-button' do
+          %span.add
+          = t('groups.new')
     - else
-      %li= link_to image_tag('icons/en.png'), url_for(params.merge(:locale => :en)), :title => "English"
-      %li= link_to image_tag('icons/pt.png'), url_for(params.merge(:locale => :pt)), :title => "Português"
-      %li.signin= link_to t("shared.signup"), new_user_registration_path
-      %li.signin= link_to t("shared.signin"), new_user_session_path
-      - on_each_provider do |provider|
-        %li= link_to image_tag("auth/signin_#{provider}_small.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
-#main-navigation
-  %ul.wat-cf
-    - items = user_signed_in? ? %w{home dashboard users groups documents about} : %w{home users groups documents about}
-    - items.each do |type|
-      - url = link_to t("#{type}.plural"), url_for(send(type+"_path"))
-      - if controller_name == type
-        %li.active=url
+      %li.action{:style => "margin-left:10px"}
+        = link_to new_group_path(:set_session => true), :class => "button button-blue", :id => 'new-group-button' do
+          %span.add
+          = t('groups.new')
+    %li.fr
+      - if current_user
+        =link_to profile_path(current_user) do
+          = current_user
+          %span.arrow-down
+        %ul
+          %li= link_to t('groups.my'), groups_path(:filter => :my)
+          %li= link_to t('documents.my_documents'), documents_path(:filter => :my)
+          %li= link_to "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path
+          %li= link_to t("shared.signout"), destroy_user_session_path
       - else
-        %li=url
-        
+        =link_to new_user_session_path do
+          = t("shared.signin")
+          %span.arrow-down
+        %ul
+          - on_each_provider do |provider|
+            %li
+              = link_to "/auth/#{provider}" do
+                = image_tag("auth/signin_#{provider}_small.png", :alt => t("auth.signin_#{provider}"), :style => 'margin-bottom:-5px')
+                = "#{t('shared.with')} #{provider.titleize}"
+        %li.fr= link_to t("shared.signup"), new_user_registration_path
+      %li.fr{:class => "#{current_locale == :pt ? 'active' : ''}"}= link_to image_tag('icons/pt.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :pt)), :title => "Português"
+      %li.fr{:class => "#{current_locale == :en ? 'active' : ''}"}= link_to image_tag('icons/en.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :en)), :title => "English"

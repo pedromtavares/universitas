@@ -17,9 +17,6 @@
 .center{
 	text-align:center !important;
 }
-.full{
-	width:100% !important;
-}
 .auto{
 	width:auto !important;
 }
@@ -38,29 +35,23 @@
 .red{
 	color:red !important;
 }
+.no-top{
+  margin-top:0;
+}
 
 /******* General Custom CSS *******/
 
-.small{
+.hint-box{
 	float:left;
 	font-size: 10px;
 	color: gray;
-	width:200px;
-	padding:5px;
-}
-.small-box{
-	float:left;
-	width:200px;
-	margin:0 5px;
-}
-.small-button{
-	padding: 1.5px 5px !important;
+	margin-left:30px;
 }
 
 /******* Dashboard & Updates *******/
 
 .updates{
-	height:600px;
+	height:450px;
 	overflow:auto;
 }
 
@@ -69,8 +60,8 @@
 	padding:5px;
 }
 
-.updates li:hover {
-  background-color:#ebebeb;
+.updates li:hover, .endless li:hover {
+  background-color:#DDD;
 }
 
 #status{
@@ -304,7 +295,7 @@
 /******* Sidebar *******/
 
 .sidebar-box{
-	max-height:150px;
+	max-height:70px;
 	overflow:auto;
 }
 
@@ -314,44 +305,64 @@
 
 /******* Forums *******/
 
-.post .author{
-	float:left;
-	width:200px;
-	height:100%;
-}
-
-.post .text{
-	margin-left:200px;
-	width:500px;
-}
-
-.post .actions{
-	float:left;
-	font-size: 10px;
-	color: gray;
-	padding:5px;
-}
-
-.post .actions a{
-	margin-left: 20px;
-}
-
-.post .edit-form{
-	width:500px;
-	float:left;
+.post .edit-form textarea{
+	width:300px;
+	height:100px;
+	float:right;
 }
 
 .reply{
-	width: 100%;
+	width: 390px;
+	margin:auto;
+}
+
+.reply textarea{
+  width:390px;
+  margin-bottom:5px;
+  margin-left:-10px;
+  height:150px;
 }
 
 .nested-posts {
   margin-left: 30px;
 }
 
-.nested-posts .nested-posts .nested-posts .nested-posts {
+.nested-posts .post{
+  border-left: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+}
+
+.nested-posts .nested-posts .nested-posts{
   margin-left: 0;
 }
+
+li.post{
+  border-top:1px solid #DDD;
+  border-bottom: none;
+}
+
+.post li{
+  margin:0;
+  padding:0;
+  border:none;
+}
+
+.post .text{
+  clear:right;
+  margin-left:30px;
+}
+
+.post .entry-meta{
+  font-size:8pt;
+  font-style:italic;
+}
+
+.posts{
+  height:auto !important;
+  max-height: 550px;
+}
+
+/* Misc */
 
 .edit-form .input{
 	float:left;
@@ -369,4 +380,136 @@
 .flag{
 	margin-bottom: -10px !important;
 	margin-top: -10px !important;
+}
+
+.endless{
+	height:550px;
+	overflow:auto;
+}
+
+#lists .endless{
+  height:400px;
+}
+
+.filters{
+  width:440px;
+  margin-left:-15px;
+}
+
+.custom-avatar{
+  float:left;
+  margin-right:10px;
+}
+
+#doc-filters{
+  width:100% !important;
+  margin:0 !important;
+}
+
+/* Forms */
+
+form .error{
+  float:left;
+  color:red;
+  margin-left:2px;
+}
+
+form label{
+  float:left;
+}
+
+p.fieldWithErrors{
+  float:left;
+  margin:0;
+}
+
+.required abbr{
+  color:red;
+}
+
+form label{
+  font-weight:bold;
+}
+
+#account-filters{
+  text-align:center;
+  margin:auto;
+}
+.form-document{
+  color: black;
+  list-style: none;
+  margin:5px;
+}
+
+.form-document img{
+  float:left;
+  height:50px;
+  margin:0 5px;
+}
+
+/* Overwrites on theme */
+
+.list-view li.custom{
+    padding: 10px 30px 10px 55px;
+}
+
+.list-view li.custom .avatar {
+    border: 0;
+    float: left;
+    height: auto;
+    width: auto;
+    margin: 0px 10px 0px -30px;
+}
+
+.list-view li.custom .avatar img {
+    width: auto;
+    height: auto;
+}
+
+.list-view li.custom .entry-meta{
+  margin-top:5px;
+  margin-left: -15px;
+}
+
+.list-view li.custom .entry-meta button{
+  margin-top:5px;
+}
+
+ul.action-buttons li {
+  width:auto;
+}
+
+table ul.action-buttons li {
+  width:24px;
+}
+
+.action-button-link:hover {
+  text-decoration:none;
+}
+
+button img{
+  margin:0;
+  margin-right:5px;
+  height:16px;
+}
+
+table td.type img{
+  margin-top: 5px;
+}
+
+.other-options a h4{
+  color:blue;
+}
+.other-options a:hover h4{
+  color:blue;
+  text-decoration:underline;
+}
+
+.other-options a:hover{
+  text-decoration:none;
+}
+
+.preview{
+  height:400px;
+  overflow:auto;
 }

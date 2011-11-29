@@ -32,7 +32,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :token_authenticatable
 
   validates :login, :presence => true, :uniqueness => true, :length => { :minimum => 4, :maximum => 20 }, :exclusion => {:in => Rails.application.routes.routes.map{|r| r.path.split('/').third.try(:gsub, /\(.*\)/, '')}.uniq}
   validates :name, :presence => true, :length => { :minimum => 4, :maximum => 50 }
@@ -63,6 +63,8 @@ class User < ActiveRecord::Base
 	has_many :uploaded_documents, :class_name => 'Document'
 	has_many :authentications, :dependent => :destroy
 	has_many :posts, :dependent => :destroy
+	
+	scope :recent, order('created_at desc').limit(5)
   
   def to_s
     self.login
@@ -73,12 +75,27 @@ class User < ActiveRecord::Base
 	end
   
   def update_status(msg)
+    return if msg.blank? || msg == self.status
     self.update_attribute :status, msg
     self.updates.create!(:target => self, :custom_message => msg)    
   end
   
-  def feed(last = Time.now + 1.second)
-		Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups).where('created_at < ?', last).limit(20).order('created_at desc')
+  def feed(last = Time.now + 1.second, type = nil)
+		all = Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups)
+		user = Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User')", self.following, self.id)
+		group = Update.where("(creator_id in (?) and creator_type='Group')", self.groups)
+		forum = group.where("(target_type='Topic' or target_type='Post')")
+		result = case type
+	  when 'user'
+      user
+    when 'group'
+      group.where("NOT(target_type='Topic' or target_type='Post')")
+    when 'forum'
+      forum
+    else
+      all
+    end
+    result.where('created_at < ?', last).limit(30).order('created_at desc')
   end
 
 	def timeline(last = Time.now + 1.second)
@@ -113,13 +130,13 @@ class User < ActiveRecord::Base
 		self.uploaded_documents.exists?(document_id)
 	end
 	
+	# the reason the Document.find on both methods below is necessary is because we need to use the integer id, not the named slug
 	def add_document(document_id)
 		document = Document.find(document_id)
 		self.user_documents.create(:document => document) unless self.has_document?(document)
 	end
 	
 	def remove_document(document_id)
-		# the reason this find is necessary is because we need to use the integer id on the find_by_document_id(), not the named slug
 		document = Document.find(document_id)
 		self.user_documents.find_by_document_id(document).destroy if self.has_document?(document)
 	end

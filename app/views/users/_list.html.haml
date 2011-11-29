@@ -1,2 +1,8 @@
-%ul.list
-  = render users
+- type ||= nil; id ||= nil; filter ||= nil
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless{'data-url' => users_path(:filter => filter, :type => type, :id => id)}
+    = render collection
+  .center= loading_icon
+- else
+  %p.center= t('users.blank.any')

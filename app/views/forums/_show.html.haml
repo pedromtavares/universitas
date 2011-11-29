@@ -1,0 +1,23 @@
+%h3.no-top
+  =link_to t('groups.singular'), 'javascript:void(0)', :id => 'group-breadcrumb', :class => 'custom-history', :'data-history' => group_path(parent)
+  \->
+  =link_to t('forums.plural'), group_forums_path(parent), :remote => true, :class => 'history'
+  \->
+  = resource.title
+- if current_user && current_user.leader_of?(parent)
+  .fr= action_button t('forums.edit'), :edit, :path => edit_group_forum_path(parent, resource), :remote => true, :class => 'spaced-left history'
+- if current_user && current_user.member_of?(parent)   
+  .fr= action_button t('topics.new'), 'add-forum', :path => new_group_forum_topic_path(parent, resource), :remote => true, :class => 'history'
+  %br.clear
+  %br.clear
+- unless topics.blank?
+  %table.datatable.full.no-style{:style => 'width:110%'}
+    %thead
+      %tr
+        %th{:width => '60%'}= t('topics.singular')
+        %th{:width => '25%'}= t('topics.last_post')
+        %th{:width => '15%'}
+    %tbody
+      = render topics
+- else
+  .center=t('topics.blank')

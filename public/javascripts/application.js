@@ -1,97 +1,128 @@
+/* Endless scroll helper variables */
+
+var scrollLock = true;
+
+var updatesOptions = {
+	fireOnce: true,
+	fireDelay: 1500,
+	ceaseFire: function(){
+		return $('#infinite-scroll').length ? false : true;
+	},
+	bottomPixels:300,
+  callback: function(){
+    if (scrollLock){
+      scrollLock = false;
+      $.ajax({
+		    url: $(this).data('url'),
+		    data: {
+				  last: $(this).attr('last')			
+			  },
+        dataType: 'script',
+        success: function(data, status){
+          scrollLock = true;
+        }
+		  });
+    }
+    
+  }
+}
+
+var endlessOptions = {
+	fireOnce: true,
+	fireDelay: 1500,
+	ceaseFire: function(){
+		return $('#infinite-scroll').length ? false : true;
+	},
+	bottomPixels:300,
+  callback: function(fireSequence){
+    if (scrollLock){
+      scrollLock = false;
+      $.ajax({
+  	    url: $(this).data('url'),
+  	    data: {
+  			  page: fireSequence + 1,
+  			  search: $('#search').val()
+  		  },
+  		  dataType: 'script',
+        success: function(data, status){
+          scrollLock = true;
+        }
+  	  });
+	  }
+  }
+}
+
 $(function(){
 	
 	/******* General Code *******/
 	
-	$('.updates').endlessScroll({
-		fireOnce: true,
-		fireDelay: 1500,
-		ceaseFire: function(){
-			return $('#infinite-scroll').length && !$(this).closest('.ui-tabs-panel').hasClass('ui-tabs-hide') ? false : true;
-		},
-		bottomPixels:500,
-	  callback: function(){
-	    $.ajax({
-		  url: $(this).attr('url'),
-		  data: {
-				last: $(this).attr('last'),
-				type: $(this).attr('type')
-			},
-			dataType: 'script'
-		 });
-	  }
-	});
+  if ($('#activate-new-group').length){
+    $('#new-group-button').click();
+  }
 	
 	$("img.loading").ajaxStart(function(){
 		$(this).removeClass('none');
 	}).ajaxComplete(function(){
 		$(this).addClass('none');
 	});
+		
+	$('.updates').endlessScroll(updatesOptions);
 	
-	/******* jQuery UI *******/
+	$('.endless').endlessScroll(endlessOptions);
 	
-	$("#tabs").tabs();
-	
-	$("#tabs").bind('tabsselect', function(event, ui){
-		list = $('.updates');
-		list.find('li').hide();
-		showUpdatesFor($(ui.tab).attr('target'));
+	$("#group-breadcrumb").live('click', function() {
+	  $('#slide-content').slideUp('slow');
+	  $('#group-show').slideDown('slow');
 	});
 	
-	/******* Group document sharing UI *******/
+	$('a[rel*=facebox]').facebox();
 	
-	$("#search-docs .doc .options a").live('click', function(event){
-		var target = $(event.target).parent();
-		var doc = target.parent().parent();
-		var array = target.attr('id').split('_');
-		var id = array[1];
-		if (array[0] == 'add'){
-			chosen = $('#remove_'+id);
-			if (chosen.length == 0){
-				$('#message').hide();
-				$('#chosen-form').show();
-				$('#chosen-docs').append(target.attr('chosen'));
-			}
-			doc.detach();	
-		}
-	});
-	
-	$("#chosen-form .doc .options a").live('click', function(event){
-		var target = $(event.target).parent();
-		var doc = target.parent().parent();
-		$(doc).detach();
-		if ($('#chosen-form .doc').length == 0){
-			$('#chosen-form').hide();
-		}
-	});
-	
-	/******* Group document management UI *******/
-	
-	$(".table .edit-module").live('click', function(){
-		var td = $(this).closest('tr').find('.module');
-		td.find('.update-module').removeClass('none');
-		td.find('.name').addClass('none');
-	});
-	
-	$(".table .update-module").change(function(){
-		$(this).closest('form').submit();
-	});
+	/******* Filters *******/
+  
+  $(".filters > a").live('click', function() {
+    $(".filters a").removeClass('button-green');
+    $(this).addClass('button-green');
+    var url = $(this).data('url');
+    if (url && url!=''){
+      $.getScript($(this).data('url'), function(data, status){
+        $('.endless').endlessScroll(endlessOptions);
+        $('.updates').endlessScroll(updatesOptions);
+      });
+    }
+    return false;
+  });
+  
+  $("#account-filters a").click(function(){
+    $('#account').slideUp();
+    $('#personal').slideUp();
+    $('#options').slideUp();
+    $('#' + $(this).data('target')).slideDown();
+  });
+  
+  $("#doc-filters a").live('click', function(){
+    $('#new-docs').slideUp();
+    $('#collection-docs').slideUp();
+    $('#' + $(this).data('target')).slideDown();
+  });
 	
 	/******* Group forums *******/
 
 	$('.reply-to').live('click',function(){
 		var post = $(this).closest('.post');
 		var id = post.attr('id');
-		$('#in-reply-to').removeClass('none');
-		$('#reply').addClass('none');
-		$('#in-reply-to').find('p').html(post.find('.content').html());
+		$('#in-reply-to').slideDown('slow');
+		$('#reply').slideUp('slow');
+		$('#reply-text').html(post.find('.text').html());
+		$('#reply-author').text(post.find('.author').text());
 		$('#parent_id').val(id);
+		$('html, body').animate({scrollTop: $('body').height()}, 800);
 	});
 	
-	$('#cancel-reply').click(function(){
-		$('#in-reply-to').addClass('none');
-		$('#reply').removeClass('none');
-		$('#parent_id').val('');
-	});
+  $('#cancel-reply').live('click', function(){
+   $('#in-reply-to').slideUp('slow');
+   $('#reply').slideDown('slow');
+   $('#parent_id').val('');
+  });
 	
 	$('.edit-post').live('click', function(){
 		var post = $(this).closest('.post')
@@ -123,25 +154,6 @@ $(function(){
 
 /******* Helper Functions *******/
 
-function showUpdatesFor(type){
-	if(type == ''){type = 'all'}
-	list = $('#'+type+' .updates');
-	list.find('li').hide();
-	switch(type){
-		case 'user':
-			list.find('[creator=user]').show();
-			break;
-		case 'group':
-			list.find('[creator=group]').show();
-			break;
-		case 'forum':
-			list.find('[creator=forum]').show();
-			break;
-		default:
-			list.find('li').show();
-	}
-}
-
 function toggleNone(elements){
 	$.each(elements, function (index, element){
 		if ($(element).hasClass('none-i')){
@@ -150,4 +162,14 @@ function toggleNone(elements){
 			$(element).addClass('none-i');
 		}
 	});
+}
+
+function slideContent(content){
+  $('#slide-content').slideUp('slow', function() {
+    $('#group-show').slideUp('slow');
+    $('#slide-content').html(content);
+    $('#slide-content').slideDown('slow');
+  });
+  
+  $('.endless').endlessScroll(endlessOptions);
 }

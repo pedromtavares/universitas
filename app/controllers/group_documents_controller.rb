@@ -1,40 +1,23 @@
 class GroupDocumentsController < InheritedResources::Base
 	defaults :route_collection_name => 'documents', :route_instance_name => 'document'
-	before_filter :authenticate_user!, :except => [:index, :show]
-	before_filter :load_presenter
+	before_filter :authenticate_user!, :check_leader
 	belongs_to :group
-	
 	respond_to :html, :js
 	
 	def index
-		@accepted = collection.accepted
-		@pending = collection.pending
-		super
-	end
-	
-	def create
-		params[:group_document].merge!(:sender => current_user, :pending => !current_user.leader_of?(parent))
-		params[:group_document][:document_attributes].merge!(:uploader => current_user)
-		create! do |success, failure|
-			if current_user.leader_of?(parent)
-				success.html {redirect_to collection_url}
-			else
-				success.html {redirect_to parent_url, :notice => I18n.t('groups.documents.created')}
-				failure.html {redirect_to parent_url, :alert => I18n.t('groups.documents.invalid')}
-			end
-		end
+	  @group = parent
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
 	end
 	
 	def add_multiple
-		params[:documents].each do |document|
-			parent.add_document(document, params[:module], current_user)
-		end
+	  ids = params[:chosen_documents]
+	  ids.each do |document_id|
+	    parent.add_document(document_id, current_user)
+	  end
 	end
-	
-	def accept
-		resource.accept
-	end
-	
+
 	private
 
 	def resource
@@ -46,17 +29,14 @@ class GroupDocumentsController < InheritedResources::Base
 	end
 
 	def collection
-		@group_documents = parent.group_documents.includes([:document, :module, :group])
+		paginate(@group_documents = parent.group_documents.includes([:document, :module, :group]).order('created_at desc'))
 	end
 	
-	def load_presenter
-		@presenter = GroupDocumentsPresenter.new(current_user, parent)
-	end
-	
-	def set_breadcrumbs
-		add_breadcrumb(parent.name.truncate(50), :parent_url) if parent?
-		add_breadcrumb(I18n.t("documents.all"), :collection_path)
-		add_breadcrumb(I18n.t("groups.documents.new"), :new_resource_path)
-	end
+	def check_leader
+    unless current_user.leader_of?(parent)
+      flash[:alert] = t('shared.no_permission')
+      redirect_to parent
+    end
+  end
 
 end

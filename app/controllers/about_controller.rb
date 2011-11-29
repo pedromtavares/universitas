@@ -10,7 +10,7 @@ class AboutController < ApplicationController
 			Notifications.contact_us(@contact_form).deliver unless @contact_form.honeypot.present?
 			redirect_to about_path, :notice => t('about.success')
 		else
-			flash.now[:error] = t('about.error')
+			flash.now[:alert] = t('about.error')
 			render :show
 		end
 	end

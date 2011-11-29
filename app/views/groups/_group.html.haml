@@ -1,9 +1,10 @@
-%li
-  .left= link_to(image_tag(group.image_url), group)
-  .item
-    %h3= link_to group.name, group
-    %p
-      %em= group.description.truncate(200)
-    .small= pluralize(group.members_count, t('members.singular'))
-    .small= pluralize(group.documents_count, t('documents.singular'))
-    .small= pluralize(group.modules_count, t('modules.singular'))
+%li.custom.clearfix
+  .avatar= image_tag group.image_url
+  = link_to "&raquo;", group_path(group), :class => "more"
+  %span.timestamp= group.created_at.strftime("%b %d, %Y")
+  = link_to group.name, group_path(group), :class => "name"
+  .entry-meta
+    = t('groups.led_by') 
+    = preview_link group.leader, group.leader
+    %br
+    = partial 'groups/actions', :group => group

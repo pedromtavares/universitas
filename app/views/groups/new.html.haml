@@ -1,5 +1,72 @@
-.content
-  %h2.title= t('groups.new')
-  .inner
-    = simple_form_for(resource, :url => collection_url, :html => { :method => :post, :class => :form, :multipart => true }) do |f|
-      = render :partial => "form", :locals => {:f => f}
+= content_for :javascripts do
+  :javascript
+    var upload_params = {
+      '#{request_forgery_protection_token}' : '#{form_authenticity_token}',
+      'auth_token' : '#{current_user.authentication_token}',
+      '_http_accept': 'application/javascript'
+    };
+    $('input#file').uploadify({
+      'uploader'     : '/assets/uploadify.swf',
+      'script'       : '#{documents_path}',
+      'fileDataName' : 'file',
+      'fileExt'      : '*.png;*.jpg;*.gif;*.jpeg;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.pdf;*.txt',
+      'cancelImg'    : '/images/cancel.png',
+      'multi'        : true,
+      'scriptData'   : upload_params,
+      'auto'         : true,
+      'onComplete'   : function(e, id, obj, response, data) {
+        $('#complete').slideDown('slow');
+        $('#files').append(response);
+      },
+      'onError'      : function(e, id, obj, response, data) {
+        $('#upload-error').slideDown('slow');
+      }
+    });
+.main-content
+  %header
+    %h2= t('groups.create_your')
+  %section.clearfix
+    .grid_6
+      #group-error.message.alert{:style => 'display:none'}=t('groups.name_taken')
+      = simple_form_for(@group, :url => groups_path, :html => {:class => 'form grid_6'}, :remote => true) do |f|
+        = f.input :name, :label_html => {:style => 'margin-left:-70px;margin-top:5px'}
+        .spaced-left.spaced-top= loading_icon
+        %br.clear
+        %h3= t('groups.new_instructions')
+        .filters.center#doc-filters
+          =button_link_to t('groups.documents.upload_new'), "javascript:void(0)", :color => 'blue button-green', :'data-target' => 'new-docs'
+          =button_link_to t('groups.documents.from_collection'), "javascript:void(0)", :color => 'blue', :'data-target'=> 'collection-docs'
+        %br.clear
+        #new-docs
+          #upload-error.message.alert{:style => 'display:none'}=t('documents.error')
+          .center
+            =file_field_tag "file"
+            .hint-box= raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")  
+          %br.clear
+          %br.clear
+          #complete{:style => 'display:none'}
+            %h3= t('documents.completed')
+            #files
+        #collection-docs{:style => 'display:none'}
+          - if @documents.present?
+            %table.datatable.no-style.full{:style => 'color:black;width:110%'}
+              %thead
+                %tr
+                  %th
+                  %th=t('shared.type')
+                  %th=t('documents.singular')
+                  %th{:width => '20%'}=t('documents.uploaded_at')
+              - @documents.each do |document|
+                %tbody
+                  %tr
+                    %td= check_box_tag 'chosen_documents[]', document.id, false, :style => "width:20px;margin:0;float:none"
+                    %td.type= document_icon_for(document, true)
+                    %td= document.name
+                    %td= document.created_at.strftime("%b %d, %Y")
+            %br.clear
+          - else
+            .center= t('groups.documents.no_docs')
+        %br.clear
+        = submit_button(:style => 'float:left !important;text-align:center;margin-left:170px') do
+          = "#{t('shared.save')} #{t('groups.singular')}"
+        .left.spaced-left.spaced-top= loading_icon

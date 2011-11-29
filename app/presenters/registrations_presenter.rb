@@ -1,3 +1,0 @@
-class RegistrationsPresenter < ApplicationPresenter
-	
-end

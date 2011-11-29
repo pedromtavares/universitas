@@ -3,13 +3,10 @@ Universitas::Application.routes.draw do
     get 'profile/edit', :to => 'registrations#edit', :as => 'edit_profile'
   end
   resources :users, :only => [:index, :show] do
-		resources :documents, :controller => 'user_documents' do
+		resources :documents, :controller => 'user_documents', :except => [:new, :create, :destroy] do
 			member do
 				post :add
 				delete :remove
-			end
-			collection do
-				get :search
 			end
 		end
     member do
@@ -19,12 +16,8 @@ Universitas::Application.routes.draw do
     end
   end
   
-  resource :dashboard, :only => :show, :controller => 'dashboard' do
-    put :update_status, :as => 'update_status'
-  end
-  
   resources :groups, :except => :destroy do
-		resources :documents, :except => [:edit, :show], :controller => 'group_documents' do
+		resources :documents, :only => [:index, :destroy], :controller => 'group_documents' do
 			collection do
 				post :add_multiple
 			end
@@ -49,11 +42,13 @@ Universitas::Application.routes.draw do
     end
   end
 
-	resources :documents, :only => [:index, :show] do
+	resources :documents, :only => [:index, :show, :create, :new] do
 		member do
 			get :download
 		end
 	end
+	
+	resources :updates, :except => [:update]
 	
 	resources :authentications
 		
@@ -65,7 +60,6 @@ Universitas::Application.routes.draw do
 	get 'users/:id' => 'users#show', :as => 'profile'
   get ':id' => 'groups#show', :as => 'group'
 	put ':id' => 'groups#update', :as => 'group'
-	delete 'dashboard/:id/destroy' => 'dashboard#destroy', :as => 'delete_update'
 	
 	match '/auth/:provider/callback' => 'authentications#create'
 	match '/auth/failure' => 'authentications#failure'

@@ -1,0 +1,47 @@
+- user ||= update.target
+- groups = user.groups.recent
+- documents = user.documents.recent
+%h3
+  .fl.spaced-right=avatar_for(user, :size => 50, :class => 'spaced left')
+  .spaced-top.fl
+    = user.name
+    %br.clear
+    = user.login
+    %br.clear
+    %em= "\"#{user.status}\"" if user.status.present?
+  %br.clear
+= partial 'users/actions', :user => user
+%br.clear
+%ul.profile-info
+  - if user.show_email? && user.email.present?
+    %li.email
+      %span= t('users.email').downcase
+      = user.email
+  - if user.location.present?
+    %li.house
+      %span= t('users.location').downcase
+      =user.location
+  - ['website', 'twitter', 'facebook'].each do |service|
+    - if user.send("#{service}?")
+      %li{:class => service}
+        %span=service
+        = link_to truncate(user.send(service)), user.send(service), :target => "_blank"
+%hr
+%h4= t('groups.recent')
+.sidebar-box
+  - if groups.present?
+    - groups.each do |group|
+      =link_to image_tag(group.image_url), group, :title => group.name, :class => 'spaced left'
+  - else
+    %p= t('groups.blank.users')
+%hr
+%h4= t('documents.recent')
+.sidebar-box
+  - if documents.present?
+    - documents.each do |document|
+      =link_to document_icon_for(document), document, :title => document.name, :class => 'spaced left'
+  - else
+    %p= t('documents.blank.users')
+
+%hr
+%h3.ac= link_to t('users.goto'), user

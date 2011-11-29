@@ -1,0 +1,8 @@
+<% if @post.errors.present? %>
+  $('#post-errors').text("<%=t('posts.error')%>");
+  $('#post-errors').slideDown('slow');
+<% else %>
+  $('ul.listing').slideToggle('slow', function() {
+    $.getScript('<%=topic_path(@post.topic)%>');
+  });
+<% end %>

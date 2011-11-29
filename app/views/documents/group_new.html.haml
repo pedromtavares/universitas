@@ -1,0 +1,72 @@
+= content_for :javascripts do
+  :javascript
+    var upload_params = {
+      '#{request_forgery_protection_token}' : '#{form_authenticity_token}',
+      'auth_token' : '#{current_user.authentication_token}',
+      'group_id'   : '#{@group.id}',
+      '_http_accept': 'application/javascript'
+    };
+    $('input#file').uploadify({
+      'uploader'     : '/assets/uploadify.swf',
+      'script'       : '#{documents_path}',
+      'fileDataName' : 'file',
+      'fileExt'      : '*.png;*.jpg;*.gif;*.jpeg;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.pdf;*.txt',
+      'cancelImg'    : '/images/cancel.png',
+      'multi'        : true,
+      'scriptData'   : upload_params,
+      'auto'         : true,
+      'onComplete'   : function(e, id, obj, response, data) {
+        $('#complete').slideDown('slow');
+        $('#files').append(response);
+      },
+      'onError'      : function(e, id, obj, response, data) {
+        $('#upload-error').slideDown('slow');
+      }
+    });
+.main-content
+  %header
+    %h2= t('groups.documents.share')
+  %section.clearfix
+    .grid_6
+      .filters.center#doc-filters
+        =button_link_to t('groups.documents.upload_new'), "javascript:void(0)", :color => 'blue button-green', :'data-target' => 'new-docs'
+        =button_link_to t('groups.documents.from_collection'), "javascript:void(0)", :color => 'blue', :'data-target'=> 'collection-docs'
+      %br.clear
+      #new-docs
+        %h3= t('groups.documents.new_instructions')
+        %br.clear
+        #upload-error.message.alert{:style => 'display:none'}=t('documents.error')
+        .center
+          =file_field_tag "file"
+          .hint-box= raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")  
+        %br.clear
+        %br.clear
+        #complete{:style => 'display:none'}
+          %h4.center=link_to t('groups.documents.proceed'), group_path(@group) 
+          %h3= t('documents.completed')
+          #files
+      #collection-docs{:style => 'display:none'}
+        %h3= t('groups.documents.collection_instructions')
+        %br.clear
+        - if @documents.present?
+          = form_tag add_multiple_group_documents_path(@group), :method => :post, :remote => true do
+            %table.datatable.no-style.full{:style => 'color:black;width:110%'}
+              %thead
+                %tr
+                  %th
+                  %th=t('shared.type')
+                  %th=t('documents.singular')
+                  %th{:width => '20%'}=t('documents.uploaded_at')
+              - @documents.each do |document|
+                %tbody
+                  %tr
+                    %td= check_box_tag 'chosen_documents[]', document.id
+                    %td.type= document_icon_for(document, true)
+                    %td= document.name
+                    %td= document.created_at.strftime("%b %d, %Y")
+            %br.clear
+            = submit_button(:style => 'float:none !important;text-align:center;margin-left:100px') do
+              = t('groups.documents.save')
+              = loading_icon
+        - else
+          .center= t('groups.documents.no_docs')

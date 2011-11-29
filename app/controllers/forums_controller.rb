@@ -1,33 +1,44 @@
 class ForumsController < InheritedResources::Base
-	before_filter :load_presenter
-	before_filter :authenticate_user!, :allow_members_only, :except => [:index, :show]
+	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :allow_leader_only, :only => [:new, :edit, :create, :update]
 	belongs_to :group
+	respond_to :js
+	
+	def index
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
+	
+	def new
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
+	
+	def edit
+	  super do |format|
+	   format.html {render "groups/show"}
+	  end
+	end
 	
 	def create
 		create!{collection_url}
 	end
 	
 	def show
-		@topics = paginate(resource.topics)
-		super
+		@topics = resource.topics
+		super do |format|
+	   format.html {render "groups/show"}
+	  end
 	end
   
   protected
-
-	def allow_members_only
-		unless current_user.member_of?(parent)
-			flash[:error] = t('forums.not_allowed')
+	
+	def allow_leader_only
+	 	unless current_user.leader_of?(parent)
+			flash[:alert] = t('forums.not_allowed')
 			redirect_to group_path(parent)
 		end
-	end
-
-	def load_presenter
-		@presenter = ForumsPresenter.new(current_user, parent)
-	end
-	
-	def set_breadcrumbs
-		add_breadcrumb(parent.name.truncate(50), :parent_url) if parent?
-		add_breadcrumb(I18n.t("forums.all"), :collection_path)
-		add_breadcrumb(resource.to_s.truncate(50), :resource_path) if params[:id]
 	end
 end

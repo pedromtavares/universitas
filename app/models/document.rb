@@ -38,6 +38,8 @@ class Document < ActiveRecord::Base
 	validates :file, :presence => true, :length => {:maximum => MAXIMUM_FILE_SIZE, :message => I18n.t('custom_messages.file_validation', :size => MAXIMUM_FILE_SIZE_MB)}
 	validates :description, :length => {:maximum => 1000}
 	
+	scope :recent, order('created_at desc').limit(5)
+	
 	def to_s
 		self.name
 	end

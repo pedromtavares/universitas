@@ -1,0 +1,15 @@
+<% if @page.blank? || @page == 1%>
+  slideContent("<%= escape_javascript(partial('topics/show', :resource => resource))%>");
+<% else %>
+  element = $('.endless');
+	if ($(element).find('.endless_scroll_inner_wrap').length){
+		var div = '.endless_scroll_inner_wrap';
+	}else{
+		var div = element;
+	}
+	$(div).append("<%= escape_javascript(nested_posts(@posts.arrange(:order => :created_at)))%>");
+
+ <% if collection.blank? %>
+ 	$('#infinite-scroll').detach();
+ <% end %>
+<% end %>

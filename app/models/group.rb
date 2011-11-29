@@ -42,13 +42,15 @@ class Group < ActiveRecord::Base
 	validates :name, :presence => true, :uniqueness => true, :length => { :minimum => 4, :maximum => 100 }, :exclusion => {:in => Rails.application.routes.routes.map{|r| r.path.split('/').second.gsub(/\(.*\)/, '')}.uniq}
 	validates :description, :length => {:maximum => 1000}
 	validates :image, :length => {:maximum => MAXIMUM_IMAGE_SIZE, :message => I18n.t('custom_messages.image_validation', :size => MAXIMUM_IMAGE_SIZE_MB)}
+	
+	scope :recent, order('created_at desc').limit(5)
   
   def to_s
     self.name
   end
 
 	def self.search(search)
-		self.where("name like ?", "%#{search}%")
+	  self.where("name like ?", "%#{search}%")
 	end
 
 	def create_member(user)
@@ -81,12 +83,11 @@ class Group < ActiveRecord::Base
 		self.documents.exists?(document)
 	end
 	
-	def add_document(document, group_module, sender)
+	def add_document(document, sender)
 		document = document.is_a?(Document) ? document.id : document
-		group_module = group_module.is_a?(GroupModule) ? group_module.id : group_module
-		pending = !sender.leader_of?(self)
+		pending = false #!sender.leader_of?(self) # TODO: implement optional pre-approval of documents
 		unless self.has_document?(document)
-			self.group_documents.create(:document_id => document, :pending => pending, :group_module_id => group_module, :sender => sender)
+			self.group_documents.create(:document_id => document, :pending => pending, :sender => sender)
 		end
 	end
 	

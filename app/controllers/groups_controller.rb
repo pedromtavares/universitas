@@ -1,55 +1,63 @@
 class GroupsController < InheritedResources::Base
-  before_filter :authenticate_user!, :except => [:index, :show, :timeline]
+  before_filter :authenticate_user!, :except => [:index, :show, :new]
   before_filter :check_leader, :only => [:edit, :update] 
-	before_filter :load_presenter
+	respond_to :html, :js
 
   actions :all, :except => :delete
 
 	def index
-		@groups = paginate(Group.search(params[:search])) if params[:search]
-		super
+		@filter = params[:filter]
+		scope = paginate(scope_for(params).order('created_at desc'))
+		@groups = if params[:search].present?
+		  scope.search(params[:search])
+	  else
+	    scope
+    end
+	end
+	
+	def new
+	  if params[:set_session].present?
+	    session[:new_group] = true;
+	    redirect_to new_user_session_path(:alert => :group)
+	    return
+    end
+	  @group = Group.new
+	  @documents = current_user.documents.order('created_at desc')
+	  render :layout => 'overlay'
 	end
 	
 	def show
-		@timeline = @group.timeline
-		@modules = @group.modules
-		@accepted_docs = @group.group_documents.accepted
-		@members = @group.members
-		add_breadcrumb(t('forums.plural'), lambda { group_forums_path(resource) })
-		super
+	  @group = Group.find params[:id]
 	end
   
   def create
-    @group = Group.new(params[:group].merge(:leader => current_user))
-    create!
+    @group = Group.create(params[:group].merge(:leader => current_user))
+    if @group.id
+      ids = params[:chosen_documents]
+      if ids.present?
+        ids.each do |document_id|
+          @group.add_document(document_id, current_user)
+        end
+      end
+      flash[:notice] = t('groups.created')
+    end
   end
   
   def join
     @group = Group.find params[:id]
     unless current_user.member_of?(@group)
 			@group.create_member(current_user)
-      redirect_to @group, :notice => "#{t('groups.have_joined')} #{@group}"
-    else
-      redirect_to @group, :error => t('groups.already_in')
     end
   end
   
   def leave
     @group = Group.find params[:id]
 		@group.remove_member(current_user)
-    redirect_to groups_path, :notice => "#{t('groups.have_left')} #{@group}"
   end
 
 	def update_status
 		resource.update_status(params[:status])
 		redirect_to resource_path
-	end
-	
-	def timeline
-		@feed = resource.timeline(Time.parse(params[:last]))
-		respond_to do |format|
-			format.js{ render 'dashboard/show'}
-		end
 	end
 	
 	def promote
@@ -59,8 +67,20 @@ class GroupsController < InheritedResources::Base
   
   protected
   
-  def collection
-    @groups ||= paginate(end_of_association_chain.includes(:leader))
+  def scope_for(params)
+    case params[:filter]
+    when 'my'
+      current_user.groups
+    else
+      case params[:type]
+      when 'user'
+        User.find(params[:id]).groups
+      when 'document'
+        Document.find(params[:id]).groups
+      else
+        Group
+      end
+    end
   end
   
   def check_leader
@@ -69,8 +89,4 @@ class GroupsController < InheritedResources::Base
       redirect_to group
     end
   end
-
-	def load_presenter
-		@presenter = GroupsPresenter.new(current_user)
-	end
 end

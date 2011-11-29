@@ -1,49 +1,45 @@
 class UsersController < InheritedResources::Base
-	before_filter :load_presenter
+  respond_to :html, :js
 	
 	def index
-		@users = paginate(User.search(params[:search])) if params[:search]
-		@user ||= current_user
-		super
-	end
-	
-	def show
-		@documents = @user.documents
-		@groups = @user.groups
-		@timeline = @user.timeline
-		super
+	  @filter = params[:filter]
+		scope = paginate(scope_for(params).order('created_at desc'))
+		@users = if params[:search].present?
+		  scope.search(params[:search])
+	  else
+	    scope
+    end
 	end
   
   def follow
     unless current_user.following?(resource)
       current_user.follow!(resource)
-      flash[:notice] = "#{t('users.now_following')} #{resource}."
     end
-    redirect_to :back
   end
   
   def unfollow
     if current_user.following?(resource)
       current_user.unfollow!(resource)
-      flash[:notice] = "#{t('users.have_unfollowed')} #{resource}."
     end
-    redirect_to :back
   end
-
-	def timeline
-		@feed = resource.timeline(Time.parse(params[:last]))
-		respond_to do |format|
-			format.js{ render 'dashboard/show'}
-		end
-	end
   
   protected
   
-  def collection
-    @users ||= paginate(end_of_association_chain.order('created_at asc'))
+  def scope_for(params)
+    case params[:filter]
+    when 'following'
+      current_user.following
+    when 'followers'
+    	current_user.followers
+    else
+      case params[:type]
+      when 'document'
+        Document.find(params[:id]).users
+      when 'group'
+        Group.find(params[:id]).users
+      else
+        User
+      end
+    end
   end
-
-	def load_presenter
-		@presenter = UsersPresenter.new(current_user)
-	end
 end

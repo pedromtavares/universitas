@@ -1,5 +1,0 @@
-- type ||= nil
-- url  ||= dashboard_path
-%ul.list.updates{:type => type, :last => feed.to_a.last.try(:created_at), :url => url}
-  = render :partial => 'dashboard/update', :collection => feed
-.center= loading_icon

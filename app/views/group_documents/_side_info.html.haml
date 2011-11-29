@@ -1,8 +1,0 @@
-.block
-  %h2=t('groups.documents.senders')
-  .content.sidebar-box
-    - unless @presenter.senders.empty?
-      - @presenter.senders.each do |user|
-        =link_to avatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
-    - else
-      %p=t('groups.documents.no_senders')

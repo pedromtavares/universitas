@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Universitas - <%= t('shared.app_description')%></title>
+  <title>Universitas - <%= t('shared.app_description')%></title>
   <%= render :partial => 'shared/stylesheets'%>
   <%= csrf_meta_tag %>
   <%= render :partial => 'shared/site_analytics'%>
+<<<<<<< HEAD
   <script src="/track.js" type="text/javascript"></script>
+=======
+>>>>>>> v2
 </head>
-<body>
-  <div id="container">
-    <div id="header">
-      <a href="/"><%=image_tag 'logo.png', :class => 'left'%><h1>niversitas - <%= t('shared.app_description')%></a></h1>
-      <%= render :partial => 'shared/user_navigation' %>
-    </div>   
-    <div id="box">
-      <%= yield %>            
-    </div>
-    <div id="footer">
-      <div class="block">
-        <p><%=t('shared.copyright')%> &copy; <%= Time.now.year %> Universitas</p>
-      </div>      
-    </div>
+<body class="login">
+  <div id="wrapper">
+    <header>
+        <div class="container_8 clearfix">
+          <h1 class="grid_1"><a href="/"><img src="/images/logo.png" style="margin-top:5px;margin-bottom:-10px;margin-left:-20px"></a></h1>
+            <%= render :partial => 'shared/user_navigation' %>
+        </div>
+    </header>
+    <%= yield %>
   </div>
+  <footer>
+      <div id="footer-inner" class="container_8 clearfix">
+          <div class="grid_8">
+              <%= raw(t('shared.footer_note'))%>
+          </div>
+      </div>
+  </footer>
+<%= render :partial => 'shared/javascripts'%>
+<%= yield :javascripts %>
 </body>
 </html>

@@ -1,12 +1,1 @@
-var tr = $('#remove_<%=@group_document.id%>').closest('tr');
-tr.detach();
-
-checkNone($('#accepted tbody'));
-checkNone($('#pending tbody'));
-
-function checkNone(body){
-	if (body.children().length == 1){
-		body.closest('table').addClass('none');
-		body.closest('table').siblings('p').removeClass('none');
-	}
-}
+$('#<%=@group_document.id%>').slideUp();

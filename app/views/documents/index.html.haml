@@ -1,30 +1,21 @@
-.content
-  %h2.title=t('documents.plural')
-  .inner
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      %li= action_link(t('documents.new'), :add, :path => new_document_path, :class => 'overlay', :rel => "#overlay") if current_user
+    .view-switcher
+      %h2
+        = document_title_for(@filter)
+        =link_to "&darr;", 'javascript:void(0)'
+      %ul
+        %li=link_to t('documents.all'), documents_path
+        - if current_user
+          %li=link_to t('documents.my_documents'), documents_path(:filter => 'my')
+          %li=link_to t('documents.uploaded'), documents_path(:filter => 'uploaded')
+  %section
     = form_tag documents_path, :class => 'form', :method => 'get' do
-      .small-box= text_field_tag :search, params[:search], :class => 'text_field'
+      = hidden_field_tag :filter, @filter
+      = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
-    %br
-    %br
-    - unless collection.blank?
-      %table.table
-        %tr
-          %th.first
-          %th= t('documents.name')
-          %th= t('documents.description')
-          %th= t('documents.uploader')
-        - collection.each do |resource|
-          %tr{:class => cycle("odd","even")}
-            %td.first
-              =link_to document_icon_for(resource), resource.file_url, :title => t('shared.click_to_download')
-              - if user_signed_in? && !current_user.has_document?(resource)
-                = link_to t('shared.add'), add_user_document_path(current_user, resource), :method => :post, :class => "button spaced"
-            %td= link_to resource.name, resource
-            %td= resource.description
-            %td= link_to resource.uploader, resource.uploader
-      .actions-bar.wat-cf
-        .actions
-        .pagination
-          = paginate collection
-    - else
-      = t('documents.blank')
+    %br.clear
+    = partial('list', :collection => collection, :filter => @filter)
+= render_sidebar

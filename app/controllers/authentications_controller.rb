@@ -28,14 +28,14 @@ class AuthenticationsController < ApplicationController
 	end
 	
 	def failure
-		flash[:error] = t('auth.failure')
+		flash[:alert] = t('auth.failure')
 		redirect_to root_url
 	end
 	
 	def destroy
 		@authentication = current_user.authentications.find(params[:id])
 		if current_user.authentications.size == 1 && current_user.has_no_password
-			flash[:error] = t('auth.cannot_destroy')
+			flash[:alert] = t('auth.cannot_destroy')
 		else
 			@authentication.destroy
 			flash[:notice] = t('auth.destroyed')

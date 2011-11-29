@@ -1,0 +1,31 @@
+- group ||= update.target
+- documents = group.documents.recent
+- users = group.users.recent
+%h3
+  .fl.spaced-right=image_tag(group.image_url)
+  .spaced-left
+    = group.name
+    %br
+    = t('groups.led_by')
+    = link_to group.leader, group.leader
+  %br.clear
+= partial 'groups/actions', :group => group
+%hr
+%h4= t('documents.recent')
+.sidebar-box
+  - if documents.present?
+    - documents.each do |document|
+      =link_to document_icon_for(document), document, :title => document.name, :class => 'spaced left'
+  - else
+    %p= t('documents.blank.groups')
+%hr
+%h4= t('groups.recent_members')
+.sidebar-box
+  - if users.present?
+    - users.each do |user|
+      =link_to avatar_for(user, :size => 50, :title => user.name, :class => 'spaced left'), user
+  - else
+    %p= t('users.blank.groups')
+
+%hr
+%h3.ac= link_to t('groups.goto'), group

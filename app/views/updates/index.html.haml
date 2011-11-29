@@ -1,0 +1,19 @@
+.main-content.grid_4.alpha
+  %header
+    %h2=t('updates.plural')
+  %section
+    = form_tag updates_path, :method => :post do
+      = text_field_tag :status, '', :maxlength => 100, :placeholder => t('updates.status'), :style => 'width:77%'
+      =submit_button do
+        =t('shared.update')
+    %br.clear
+    %br.clear
+    .filters.center
+      =button_link_to t('updates.all'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => updates_path
+      =button_link_to t('users.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :user)
+      =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :group)
+      =button_link_to t('forums.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(:type => :forum)
+    %br.clear
+    .center= loading_icon
+    #lists= partial('list', :collection => collection)
+= render_sidebar

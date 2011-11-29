@@ -1,32 +1,19 @@
-.content
-  %h2.title=t('groups.plural')
-  .inner
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      / %li= action_button(t('groups.new'), :add)
+    .view-switcher
+      %h2
+        = @filter.present? ? t("groups.#{@filter}") : t('groups.all')
+        =link_to "&darr;", 'javascript:void(0)'
+      %ul
+        %li=link_to t('groups.all'), groups_path
+        %li=link_to t('groups.my'), groups_path(:filter => 'my') if current_user
+  %section
     = form_tag groups_path, :class => 'form', :method => 'get' do
-      .small-box= text_field_tag :search, params[:search], :class => 'text_field'
+      = hidden_field_tag :filter, @filter
+      = text_field_tag :search, params[:search], :style => 'width:70%;margin:0px 10px 20px 10px'
       = search_button
-    %br
-    %br
-    - unless collection.blank?
-      %table.table
-        %tr
-          %th.first
-          %th= t('groups.name')
-          %th= t('groups.leader')
-          %th= t('members.plural')
-          %th= t('documents.plural')
-          %th= t('modules.plural')
-        - collection.each do |resource|
-          %tr{:class => cycle("odd","even")}
-            %td.first=image_tag resource.image_url
-            %td= link_to resource.name, resource
-            %td= link_to resource.leader.name, profile_path(resource.leader)
-            %td= resource.members_count
-            %td= resource.documents_count
-            %td= resource.modules_count
-            
-      .actions-bar.wat-cf
-        .actions
-        .pagination
-          = paginate collection
-    - else
-      = t('groups.blank')
+    %br.clear
+    = partial('list', :collection => collection, :filter => @filter)
+= render_sidebar

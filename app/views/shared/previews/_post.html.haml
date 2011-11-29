@@ -1,0 +1,22 @@
+- post ||= update.target
+%h3= "#{t('topics.singular')}: #{post.topic.title}"
+.message.info= textilize(post.text).html_safe
+%em.small
+  =t('posts.posted')
+  =time_ago_in_words post.created_at
+  =t('shared.ago')
+  =t('shared.by').downcase
+  =post.author
+- if post.parent
+  %h4=t('posts.in_reply_to')
+  .message.info= textilize(post.parent.text).html_safe
+  %em.small
+    =t('posts.posted')
+    =time_ago_in_words post.parent.created_at
+    =t('shared.ago')
+    =t('shared.by').downcase
+    =post.parent.author
+%h4= link_to t('topics.join_discussion'), topic_path(post.topic)
+%h3= t('groups.singular')
+%hr
+= partial 'shared/previews/group', :group => post.topic.forum.group

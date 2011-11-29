@@ -1,0 +1,7 @@
+%h3.no-top
+  =link_to t('groups.singular'), 'javascript:void(0)', :id => 'group-breadcrumb', :class => 'custom-history', :'data-history' => group_path(parent)
+  \->
+  = "#{t('shared.manage')} #{t('groups.documents.plural')}"
+%br.clear
+%br.clear
+= partial('list', :collection => collection)

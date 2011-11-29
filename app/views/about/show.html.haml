@@ -1,12 +1,20 @@
-.content
-  %h2.title= t('about.about')
-  .inner
-    %p= raw t('about.about_text')
-  %h2.title=t('about.about2') 
-  .inner
-    %p= raw t('about.about2_text')
-  %h2.title=t('about.about3')
-  .inner
-    %p= raw t('about.about3_text')
-
-= content_for :sidebar, render(:partial => 'sidebar') unless user_signed_in?
+.main-content
+  %header
+    %h2= t('about.plural')
+  %section.container_6.clearfix
+    .grid_6
+      .message.info
+        %h3.ac= t('about.about')
+        %p= raw t('about.about_text')
+      .message.info
+        %h3.ac= t('about.about2')
+        %p= raw t('about.about2_text')
+      %h3= raw t('about.contact_text')
+      =simple_form_for @contact_form, :url => about_path, :html => {:class => 'form'} do |f|
+        = f.input :name
+        = f.input :email
+        = f.input :text, :as => :text
+        .none= f.input :honeypot
+        .action
+          = submit_button(:style => 'float:none !important') do
+            = t('shared.send')

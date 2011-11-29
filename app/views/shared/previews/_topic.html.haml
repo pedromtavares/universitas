@@ -1,0 +1,13 @@
+- topic ||= update.target
+%h3= "#{t('topics.singular')}: #{topic.title}"
+.message.info= textilize(topic.first_post.text).html_safe
+%em.small
+  =t('posts.posted')
+  =time_ago_in_words topic.first_post.created_at
+  =t('shared.ago')
+  =t('shared.by').downcase
+  =topic.first_post.author
+%h4= link_to t('topics.join_discussion'), topic_path(topic)
+%h3= t('groups.singular')
+%hr
+= partial 'shared/previews/group', :group => topic.forum.group

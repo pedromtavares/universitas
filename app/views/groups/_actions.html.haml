@@ -1,0 +1,5 @@
+- if current_user && !current_user.leader_of?(group)
+  - unless current_user.member_of?(group)
+    = action_button t('groups.join'), :key, :path => join_group_path(group), :method => :post, :class => "join-group-#{group.id}", :remote => true
+  - else
+    = action_button t('groups.leave'), :remove, :path => leave_group_path(group), :method => :delete, :class => "leave-group-#{group.id}", :remote => true

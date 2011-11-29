@@ -1,2 +1,16 @@
-%ul.list
-  = render documents
+- filter ||= nil; type ||= nil; id ||= nil;
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless{'data-url' => documents_path(:filter => filter, :type => type, :id => id)}
+    = render collection
+  .center= loading_icon
+- else
+  %p.center
+    - case type.to_s
+    - when 'user'
+      = t('documents.blank.users')
+    - when 'group'
+      = t('documents.blank.groups')
+    - else
+      = t('documents.blank.any')
+    

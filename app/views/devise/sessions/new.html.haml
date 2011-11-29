@@ -1,34 +1,22 @@
-#box
-  .block#block-login
+.login-box.main-content
+  %header
     %h2=t 'shared.signin'
-    .content.login
-      .flash
-        - flash.each do |type, message|
-          .message{:class => type}
-            %p=message
-      = form_for(resource, :as => resource_name, :url => user_session_path, :html => {:class => 'form login'}) do |f|       
-        .group.wat-cf
-          .left= f.label :login, :class => 'label right'
-          .right= f.text_field :login, :class => 'text_field'
-        
-        .group.wat-cf
-          .left= f.label :password, :class => 'label right'
-          .right= f.password_field :password, :class => 'text_field'
-          
-        - if devise_mapping.rememberable?
-          .right
-            = f.check_box :remember_me, :class => 'checkbox'
-            = f.label :remember_me   
-          %br  
-          %br  
-        .group.navform.wat-cf
-          .right
-            = submit_button do
-              = image_tag("icons/key.png", :alt => "Login") 
-              = t 'shared.signin'
-            %br.clear  
-            %br.clear  
-            - on_each_provider do |provider|
-              = link_to image_tag("auth/signin_#{provider}.png", :title => t("auth.signin_#{provider}")), "/auth/#{provider}"
-        %br
-        =render :partial => "devise/shared/links"    
+  %section
+    - flash.each do |type, message|
+      .message{:class => type}=message
+    - if params[:alert]
+      .message{:class => 'alert'}= t('groups.sign_in_alert')
+    = form_for(resource, :as => resource_name, :url => user_session_path, :html => {:class => 'clearfix'}) do |f|
+      %p= f.text_field :login, :required => 'required', :placeholder => t('registration.login'), :class => 'full'
+      %p= f.password_field :password, :required => 'required', :placeholder => t('registration.password'), :class => 'full'
+      %p.clearfix
+        %span.fl
+          - if devise_mapping.rememberable?
+            = f.check_box :remember_me, :style => "float:left;margin-right:5px;margin-top:2px"
+            = f.label :remember_me, :class => 'choice', :for => :remember_me
+        = submit_button do
+          = t 'shared.signin'
+    - on_each_provider do |provider|
+      = link_to image_tag("auth/signin_#{provider}.png", :alt => t("auth.signin_#{provider}")), "/auth/#{provider}"
+    %br
+    =render :partial => "devise/shared/links"

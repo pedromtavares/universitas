@@ -1,0 +1,15 @@
+<% if @page.blank? || @page == 1%>
+  slideContent("<%= escape_javascript(partial('group_documents/index', :collection => collection, :parent => parent))%>");
+<% else %>
+  element = $('.endless');
+	if ($(element).find('.endless_scroll_inner_wrap').length){
+		var div = '.endless_scroll_inner_wrap';
+	}else{
+		var div = element;
+	}
+	$(div).append("<%= escape_javascript(render collection)%>");
+
+ <% if collection.blank? %>
+ 	$('#infinite-scroll').detach();
+ <% end %>
+<% end %>

@@ -1,32 +1,33 @@
-.content
-  %h2.title=t('home.what')
-  .inner
-    %p=t('home.what_text')
-  %h2.title=t('home.signup') 
-  .inner
-    %p=raw t('home.signup_text') 
-  %h2.title=t('home.features')
-  .inner  
-    %ul.list.home
-      %li
-        .left= image_tag 'home/doc.png'
-        .item
-          %h3=t('home.doc')
-          %p=raw t('home.doc_text')
-      %li
-        .left= image_tag 'home/dash.png'
-        .item
-          %h3=t('home.dash')
-          %p=raw t('home.dash_text')
-      %li
-        .left= image_tag 'home/group.png'
-        .item
-          %h3=t('home.group')
-          %p=raw t('home.group_text')
-          %p=raw t('home.group_text2')
-      %li
-        .left= image_tag 'home/forum.png'
-        .item
-          %h3=t('home.forum')
-          %p=raw t('home.forum_text')
-= content_for :sidebar, render(:partial => 'sidebar') unless user_signed_in?
+.main-content
+  %header
+    %h2= t('home.welcome')
+  %section.container_6.clearfix
+    .grid_6
+      .message.info.ac
+        %h3 
+          = t('home.get_started')
+          - if current_user
+            = link_to t('home.create_your'), new_group_path, :class => 'overlay', :rel => "#overlay"
+          - else
+            = link_to t('home.create_your'), new_group_path(:set_session => true)
+        %p= t('home.box_desc')
+    %hgroup.grid_6.ac
+      %h2= t('home.header_title')
+      %h4= t('home.header_desc')
+    - [1,2,3].each do |n|
+      %figure.grid_2.ac
+        = image_tag "shots/shot#{n}_#{I18n.locale}.png", :style => "border:1px solid #5F5F5F"
+        %h3= t("home.shot#{n}_title")
+        %p= t("home.shot#{n}_desc")
+    .other-options.grid_6
+      %h3.other= t('home.other')
+      %ul
+        -[4,5,6,7].each do |n|
+          %li
+            =link_to "javascript:void(0)" do
+              %h4= t("home.shot#{n}_title")
+              %p= t("home.shot#{n}_desc")
+            .tooltip.right
+              = image_tag "shots/shot#{n}_#{I18n.locale}.png"
+        
+        

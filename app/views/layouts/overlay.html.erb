@@ -1,0 +1,17 @@
+<div id="wrapper">
+  <section>
+      <div class="clearfix" style="margin:-20px 50px 0px 50px;color:black">
+          <section class="main-section">
+            <%= yield %>
+          </section>
+      </div>
+  </section>
+</div>
+<script>
+  $("img.loading").ajaxStart(function(){
+		$(this).removeClass('none');
+	}).ajaxComplete(function(){
+		$(this).addClass('none');
+	});
+</script>
+<%= yield :javascripts %>

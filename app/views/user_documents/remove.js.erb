@@ -1,0 +1,1 @@
+$('.remove-document-<%=@document.id%>').replaceWith("<%= escape_javascript(partial('documents/actions', :document => @document))%>")

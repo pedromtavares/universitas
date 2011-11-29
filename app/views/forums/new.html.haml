@@ -1,5 +1,0 @@
-.content
-  %h2.title= t('forums.new')
-  .inner
-    = simple_form_for(resource, :url => collection_url, :html => { :method => :post, :class => :form}) do |f|
-      = render :partial => "form", :locals => {:f => f}

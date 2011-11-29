@@ -4,7 +4,6 @@ pt:
     profile: Perfil
     logout: Sair
     login: Entrar
-    copyright: Direitos Autorais
     signup: Cadastrar
     signin: Entrar
     signout: Sair
@@ -16,7 +15,7 @@ pt:
     groups: Grupos
     users: Usuários
     manage: Gerenciar
-    dashboard: Painel
+    updates: Atualizações
     no_permission: Você não tem permissão pra fazer isso.
     click_to_download: Clique pra baixar
     search: Buscar
@@ -28,24 +27,32 @@ pt:
     for: Para
     cancel: Cancelar
     add: Adicionar
+    footer_note: "Universitas - Este projeto é <a href='http://github.com/pedromtavares/universitas'>open-source</a> | &copy; 2011. Direitos autorais reservados."
+    with: pelo
+    view: Ver
+    type: Tipo
+    send: Enviar
   views:
     pagination:
       previous: ‹ Ant
       next: Prox ›
       first: « Primeiro
       last: Último »
+  registration:
+    login: Login
+    password: Senha
   custom_messages:
     file_validation: "não pode ser maior que %{size}MB!"
     image_validation: "não pode ser maior que %{size}MB!"
-    file_maximum: 'tamanho máximo do arquivo: %{size}MB'
+    file_maximum: "tamanho máximo do arquivo: %{size}MB"
     file_extensions: 'tipos de arquivo permitidos: doc, docx, xls, xlsx, ppt, pptx, pdf, txt, jpg, jpeg, gif, png'
-    image_maximum: 'tipos de arquivo permitidos: jpg, jpeg, gif, png'
-    image_extensions: "tamanho máximo do arquivo: %{size}MB"
-      
-  dashboard:
-    plural: Painel
+    image_maximum: "tamanho máximo do arquivo: %{size}MB"
+    image_extensions: 'tipos de arquivo permitidos: jpg, jpeg, gif, png'
+  updates:
+    plural: Atualizações Recentes
+    blank: Nenhuma atualização foi retornada.
     updated_status_success: Status atualizado com sucesso!
-    status: "Status:"
+    status: "Atualize seu Status"
     recent_updates: Atualizações Recentes
     updated_status: atualizou status para
     created_group: criou um grupo chamado 
@@ -65,11 +72,9 @@ pt:
     personal: Pessoal
     errors: Houveram alguns erros atualizando seu perfil. Por favor cheque todas as abas.
     cancel: Cancelar minha conta
-    description_hint: 'Uma pequena biografia sobre você.'
-    twitter_hint: "Ex: http://twitter.com/universitas"
-    facebook_hint: "Ex: http://www.facebook.com/universitas"
-    show_email: "Mostrar e-mail no seu perfil"
-    or_remote_url: "ou URL da imagem:"
+    core_info: Mude as informações mais importantes da sua conta
+    personal_info: Mude infomações pessoais e opcionais
+    options_info: Adicione e remova diferentes serviços de autenticação
   auth:
     signed_in: "Autenticação feita com sucesso!"
     edit_profile: " Por favor <a href='/profile/edit'>edite seu perfil</a> e o atualize com um endereço de e-mail para ser possível recuperar sua conta no futuro."
@@ -95,8 +100,9 @@ pt:
   users:
     singular: Usuário
     plural: Usuários
+    connection: Conexões de
     my_connections: "Minhas conexões"
-    all: Todos
+    all: Todos os Usuários
     login: Login
     name: Nome
     email: E-mail
@@ -113,8 +119,12 @@ pt:
     blank_timeline: Não há atualizaçoes deste usuário.
     location: Localidade
     description: Bio
-    groups:
-      blank: Este usuário não está em nenhum grupo ainda.
+    recent: Usuários Recentes
+    goto: "Ir para o perfil deste usuário"
+    blank:
+      groups: Este grupo ainda não possui membros.
+      documents: Este documento não está na coleção de ninguém.
+      any: Nenhum usuário foi retornado.
     documents:
       uploaded:
         singular: Documento Enviado
@@ -132,13 +142,12 @@ pt:
   groups:
     singular: Grupo
     plural: Grupos
-    all: Todos
+    all: Todos os Grupos
     new: Novo Grupo
     edit: Editar Grupo
     name: Nome
     description: Descrição
     leader: Líder
-    blank: Nenhum grupo correspondeu à sua busca.
     join: Entrar neste grupo
     leave: Sair deste grupo
     have_joined: Você entrou no grupo 
@@ -146,18 +155,30 @@ pt:
     have_left: Você saiu do grupo
     my_groups: Meus Grupos
     joined_none: "Você ainda não entrou em nenhum grupo."
-    status: "Status do Grupo:"
+    status: "Status do Grupo"
     timeline: Atualizações
     blank_timeline: Ainda não há atualizações deste grupo!
     promote: Promover este grupo
     promote_submit: Promover!
     have_promoted: Você promoveu este grupo para seus seguidores!
+    recent: Grupos Recentes
+    my: Meus Grupos
+    led_by: Liderado por
+    new_instructions: "Agora, adicione documentos ao seu grupo através do envio de novos documentos, ou escolhendo documentos que você já possui em sua coleção."
+    name_taken: "Este nome já está sendo usado por outro grupo, favor escolher outro."
+    create_your: Crie seu próprio Grupo
+    sign_in_alert: Você deve entrar ou se cadastrar antes de criar um grupo.
+    goto: Ir para a página deste grupo
+    recent_members: Membros Recentes
+    blank:
+      any: Nenhum grupo foi retornado.
+      users: Este usuário não está em nenhum grupo.
+      documents: Este documento não é compartilhado por nenhum grupo.
     documents:
       plural: Documentos do Grupo
       blank: Este grupo não possui documentos!
       no_module: Nehum módulo selecionado.
       add: Adicionar para lista dos escolhidos.
-      remove: Remover da lista dos escolhidos.
       new: Novo Documento de Grupo
       create: Criar
       created: Documentos mandados com sucesso para aprovação do líder do grupo. Você pode continuar compartilhando documentos se quiser.
@@ -168,7 +189,7 @@ pt:
       accepted:
         plural: Documentos Aceitos
         blank: Não há documentos aceitos neste grupo.
-      remove: Remover este documento
+      remove: Remover do grupo
       accept: Aceitar este documento
       edit_module: Editar Módulo
       sure: Tem certeza que deseja deletar este documento do grupo?
@@ -181,6 +202,15 @@ pt:
       senders: Remetentes
       no_senders: Ainda não há remetentes de documentos neste grupo.
       no_doc_share: Você não possui documentos para compartilhar!
+      sent_by: Enviado por
+      new_instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados na coleção de documentos do grupo assim que terminarem de serem enviados"
+      collection_instructions: "Abaixo está a lista de todos os documentos da sua coleção, favor selecionar os que você deseja compartilhar com o grupo e clique 'Salvar' quando acabar."
+      upload_new: Enviar novos documentos
+      from_collection: Escolher da sua coleção
+      no_docs: "Você não tem documentos na sua coleção para compartilhar."
+      save: "Salvar e enviar seleção de documentos"
+      saved_selection: "Sua seleção de documentos foi enviada pro grupo com sucesso."
+      proceed: Continuar pro grupo 
   members:
     singular: Membro
     plural: Membros
@@ -195,12 +225,14 @@ pt:
     edit: Editar Documento
     documents_for: Documentos para
     documents_uploaded: Documents que Você Enviou
-    all: Todos
-    new: Novo Documento
+    all: Todos os Documentos
+    new: Adicionar Documentos
     add: Adicionar à minha coleção
+    add_your: Adicionar documentos a sua coleção
     remove: Remover da minha coleção
-    blank: Nenhum resultado correspondeu à sua busca.
-    uploader: Enviado Por
+    upload: Escolher Documentos
+    uploader: Enviado por
+    uploaded: Documentos Enviados
     uploaded_at: Enviado
     size: Tamanho
     type: Tipo
@@ -208,9 +240,20 @@ pt:
     no_documents: Você ainda não possui documentos.
     users: Usuários
     groups: Grupos
+    recent: Documentos Recentes
+    share: Compartilhar documentos com esse grupo
+    view: Visualizar
+    view_this: Visualizar este documento
+    completed: Envios completos
+    proceed: Continuar para sua coleção de documentos
+    error: "Houve um erro ao salvar um de seus documentos, veja se o formato do documento é permitido e se ele está dentro dos limites de tamanho do arquivo."
+    instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a sua coleção de documentos assim que terminarem de serem enviados."
+    updated: Seu documento foi atualizado com sucesso.
+    goto: "Ir para a página deste documento"
     blank:
-      users: Esse documento não está na coleção de ninguém
-      groups: Esse documento não está sendo compartilhado por nenhum grupo
+      any: Nenhum documento foi retornado.
+      users: Este usuário não possui documentos.
+      groups: Este grupo não possui documentos.
   modules:
     singular: Módulo
     plural: Módulos
@@ -235,7 +278,7 @@ pt:
     delete: Deletar este fórum
     are_you_sure: Tem certeza que deseja deletar este fórum?
     edit: Editar este fórum
-    not_allowed: Apenas membros deste grupo podem acessar os fóruns do mesmo.
+    not_allowed: Apenas o líder deste grupo pode tomar esta ação.
     new_topics: Tópicos Recentes
     no_new_topics: Este grupo ainda não possui tópicos.
   topics:
@@ -250,10 +293,11 @@ pt:
     created: Tópico criado com sucesso.
     last_post: Último Post
     no_last_post: Este tópico ainda não possui posts.
+    join_discussion: Entre na discussão
   posts:
     singular: Post
     new: Novo Post
-    delete: Deletar este post
+    delete: Deletar
     are_you_sure: Tem certeza que desejar deletar este post?
     post: Postar
     reply: Responder
@@ -266,6 +310,7 @@ pt:
     created: "Post criado com sucesso."
     error: "Houve um problema com seu post."
     no_permission: "Você não tem permissão para fazer isso."
+    blank: Não há posts nesse tópico
   tips:
     self: Dicas
     documents:
@@ -280,9 +325,9 @@ pt:
       tip3_text: "Todo documento que você adiciona ao grupo será automaticamente aceito. Se você já tem um documento e deseja adicioná-lo ao grupo, use a tabela de compartilhamento na página do grupo para evitar documentos duplicados associados a sua conta."
     groups:
       tip: Como um membro do grupo
-      tip_text: "Você pode compartilhar documentos com o grupo, promover o grupo com uma mensagem para seus seguidores and postar nos fóruns do grupo. Todos os documentos compartilhados com o grupo precisam ser aprovador pelo Líder do grupo, então se você compartilhar um documento e este não aparecer imediatamente na lista de documentos do grupo, seja paciente."
+      tip_text: "Você pode compartilhar documentos com o grupo e postar nos fóruns do mesmo. O Líder do Grupo poderá remover qualquer documento compartilhado e moderar qualquer post nos fóruns."
       tip2: Como o Líder do grupo
-      tip2_text: "Você pode editar qualquer informação relativa ao grupo (inclusive módulos), aceitar ou recusar documentos que foram enviados pro grupo, atualizar o status do grupo (que vai aparecer no painel de todos os seus membros), e editar/moderar os fóruns do grupo. Líderes de grupo podem, obviamente, também fazer tudo o que os membros fazem."
+      tip2_text: "Você pode editar qualquer informação relativa ao grupo, remover documentos que foram enviados pro grupo, atualizar o status do grupo (que vai aparecer no painel de todos os seus membros), e editar/moderar os fóruns do grupo."
       tip3: Compartilhando documentos com um grupo
       tip3_text: "Para compartilhar documentos que você já tem, use a caixa de busca para achar os documentos que queira compartilhar e clique no ícone '+'. Depois de escolher os documentos, escolha o módulo que estes devem pertencer e clique 'Salvar'. Você também pode fazer upload de um documento novo, basta clicar no botão de 'Criar' e preencher o formulário. Em ambos os casos, os documentos serão enviados para o Líder do grupo para aprovação."
     registrations:
@@ -310,29 +355,27 @@ pt:
       tip2_text: "Se você quiser responder a um post específico, clique no botão de 'Responder a este post' no dito post. Dessa forma, sua resposta aparecerá logo abaixo do post alvo, deixando claro sua intenção de responder àquele post."
   home:
     plural: Início
-    faq: Perguntas Frequentes
-    what: O que é Universitas?
-    what_text: "Em resumo, o Universitas é como um Google Groups, só que com bem mais recursos. É uma abordagem mais social e colaborativa quanto a grupos, onde você pode mais facilmente saber de tudo que está acontecendo nos grupos que você tem interesse, como também poder contribuir com eles compartilhando documentos e ideias. Ah, e tudo isso de graça."
-    signup: Não quer se cadastrar?
-    signup_text: "Sem problemas! Universitas tem a intenção de ser uma plataforma aberta e gratuita, sinta-se à vontade e navegue por nossos bancos de usuários, grupos e documentos (você também pode baixar o documento que quiser!) através da barra de navegação no topo do site, e quando você estiver pronto para aproveitar mais a plataforma, <a href='/users/sign_up'>torne-se um membro</a>."
-    features: Recursos da Plataforma
-    doc: Envio e Compartilhamento de Documentos
-    doc_text: "Um dos propósitos do Universitas é ter uma base de dados de documentos enorme, então você como usuário pode enviar quantos documentos quiser e ter sua própria coleção de documentos para compartilhá-la com outras pessoas ou outros grupos."
-    dash: Atualizações no Painel e Rede Interna
-    dash_text: "Vamos supor que você tenha alguns colegas ou pessoas que você admira que também estão no Universitas, você provavelmente gostaria de saber se estas pessoas entraram em um novo grupo ou se enviaram algum documento. Por essa razão, a plataforma provê uma rede interna muito similar ao Twitter, onde você pode seguir outras pessoas e receber atualizações no seu painel referentes não somente às pessoas que você segue, mas aos grupos que você pertence também. Você também pode acompanhar as atualizações de um usuário ou grupo simplesmente acessando a página do mesmo." 
-    group: Grupos Simples e Poderosos
-    group_text: "Os grupos do Universitas possuem uma interface de fácil uso, porém muito poderosa. Logo de cara você recebe uma URL amigável para compartilhar na internet, como universit.as/meugrupo. Você também pode agrupar vários assuntos diferentes do seu grupo em módulos, cada um com sua respectiva coleção de documentos."
-    group_text2: "Compartilhar documentos com grupos é tão fácil quanto selecioná-los da sua própria coleção e adicioná-los na coleção do grupo, ou você pode enviá-los do seu computador diretamente na mesma página. Como o Líder do grupo, você pode gerenciar cada documento que entra através de uma interface bastante similar e instintiva."
-    forum: Fóruns de Grupo
-    forum_text: "O recurso mais importante relacionado a grupos é a discussão: qual o fundamento de ter grupos se você não pode trocar ideias e pensamentos? No Universitas, cada grupo tem seu próprio fórum, onde o Líder do grupo pode criar (e moderar) quantas seções quiser e os membros podem criar tópicos e posts sobre basicamente qualquer coisa."
-    unlimited: "Envio (upload) de documentos ilimitado? Sério?"
-    unlimited_text: "Sério. Você pode armazenar quantos arquivos quiser, se estes estiverem nos tipos de arquivos permitidos (documentos e imagens)."
-    who: Pra quem é o Universitas?
-    who_text: "Para pessoas interessadas em aprender novas coisas e em compartilhar seu conhecimento. Talvez você queira aprender algo e não sabe por onde começar, ou talvez você tenha um monte de material interessante sobre algo e gostaria de ter um lugar central para que outras pessoas possam vir e se interessar também. Até mesmo se você tem um grupo de estudos e precisa de um lugar pra colocar todas as suas pesquisas e discutí-las."
-    get: "O que eu ganho me cadastrando??"
-    get_text: "Você poderá enviar (fazer upload) de documentos, entrar em grupos, postar em fóruns e ver atualizações no seu painel. O máximo que você fará como um usuário não-cadastrado é fazer buscas nos nossos bancos de dados, o que é bom também, mas se cadastrar leva no máximo 30 segundos e lhe dar acesso total ao sistema, fazendo esses 30 segundos bem proveitosos."
-    social: "Mais uma rede social?"
-    social_text: "Não, a rede interna do Universitas está longe de ter o mesmo propósito de vida pessoal do Facebook ou de micro-blogging do Twitter, ou ao menos não foi pra isso que a rede foi feita. As atualizações geradas pela plataforma estão restritas a seus recursos (com exceção da atualização de status), como entrar em um grupo, criar documentos ou postar em fórum."
+    welcome: "Bem-vindo ao Universitas!"
+    get_started: "Comece agora:"
+    create_your: "Crie seu próprio Grupo!"
+    box_desc: "Seja um simples grupo de estudos ou uma grande comunidade, colabore com outras pessoas compartilhando documentos e discussões."
+    header_title: Grupos Colaborativos
+    header_desc: Um único lugar para compartilhar informação
+    shot1_title: Crie um Grupo
+    shot1_desc: "Para hospedar seus documentos e discussões"
+    shot2_title: Compartilhe Documentos
+    shot2_desc: "Envie vários documentos para seu grupo com facilidade"
+    shot3_title: Divulgue!
+    shot3_desc: "Espalhe seu grupo para qualquer pessoa no mundo"
+    other: "E ainda tem mais..."
+    shot4_title: "Colaboração ao Máximo"
+    shot4_desc: "Outros membros do seu grupo também podem participar e enviar seus próprios documentos pro grupo."
+    shot5_title: Atualizações Recentes
+    shot5_desc: "Receba atualizações sobre tudo que acontece ao seu redor aqui no Universitas."
+    shot6_title: Fóruns de Discussão
+    shot6_desc: "Cada grupo tem seu próprio fórum, onde você pode discutir sobre qualquer assunto com outros membros do seu grupo"
+    shot7_title: Siga outras Pessoas
+    shot7_desc: "Assim como o Twitter, siga outras pessoas e receba atualizações do que elas estão se engajando aqui no Universitas."
   about:
     plural: Sobre
     success: Obrigado por entrar em contato conosco!
@@ -340,11 +383,9 @@ pt:
     contact_us: Entre em Contato
     contact_text: "Sugestões? Reclamações? Quer dar uma mão? Entre em contato pelo endereço <a href='mailto:universitasproject@gmail.com'>universitasproject@gmail.com</a> ou preencha o formulário abaixo com suas informações e nós retornaremos o mais rápido possível!"
     about: Sobre o Universitas
-    about_text: "Universitas é originalmente um projeto pessoal de código aberto. Código aberto significa que todo o código necessário para fazer este projeto está <a href='http://github.com/pedromtavares/universitas'>disponível para o público</a> (desenvolvedores, mais provavelmente) e projeto pessoal significa que ninguém está me pagando para trabalhar nisto, eu simplesmente o faço para experimenar novas coisas (quanto a tecnologias) e pra possivelmente ser responsável por algo útil pra várias pessoas."
+    about_text: "Universitas é uma plataforma (assim como o Facebook e Twitter) com uma abordagem mais social e colaborativa para grupos, onde você pode mais facilmente saber de tudo que está acontecendo nos grupos que você tem interesse, como também poder contribuir com eles compartilhando documentos e ideias. Ah, e tudo isso de graça."
     about2: E quem é você?
-    about2_text: "Meu nome é <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> e eu sou desenvolvedor de software. Sou atualmente a única pessoa por trás do Universitas, tendo desenvolvido o projeto inteiro sozinho além de pagar todas as contas relacionadas (servidor, armazenamento de arquivos)."
-    about3: Você não precisa de ajuda?
-    about3_text: "Preciso. Manter o Universitas atualizado com novas funcionalidades e corrigindo eventuais problemas consome bastante tempo, levei mais de 6 meses para lançar a versão inicial do Universitas simplesmente porque não tive tempo de fazê-lo antes. Se você for um desenvolvedor ou um designer e gostaria de dar uma mão, por favor mande um e-mail ou entre em contato pelo formulário nesta página, estarei em breve fazendo um post 'por favor me ajude' no meu blog com mais detalhes técnicos do projeto e vou atualizar essa página com o link pra esse post assim que ele estiver pronto." 
+    about2_text: "Meu nome é <a href='http://pedromtavares.com'>Pedro Mateus Tavares</a> e eu sou desenvolvedor de software. Sou atualmente a única pessoa responsável pela manutenção do Universitas (além de ter desenvolvido tudo e arcado com custos)."
   date: 
     formats: 
       default: "%d/%m/%Y"
