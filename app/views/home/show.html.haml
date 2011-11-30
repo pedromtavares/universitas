@@ -17,7 +17,13 @@
     - [1,2,3].each do |n|
       %figure.grid_2.ac
         = image_tag "shots/shot#{n}_#{I18n.locale}.png", :style => "border:1px solid #5F5F5F"
-        %h3= t("home.shot#{n}_title")
+        - if n == 1 # Create a Group
+          - if current_user
+            %h3= link_to t("home.shot#{n}_title"), new_group_path, :class => 'overlay', :rel => "#overlay"
+          - else
+            %h3= link_to t("home.shot#{n}_title"), new_group_path(:set_session => true)
+        - else
+          %h3= t("home.shot#{n}_title")
         %p= t("home.shot#{n}_desc")
     .other-options.grid_6
       %h3.other= t('home.other')
