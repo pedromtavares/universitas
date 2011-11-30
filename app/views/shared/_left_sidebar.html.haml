@@ -4,7 +4,7 @@
       - items = %w{updates groups documents users}
       - items.each do |type|
         - next if type == 'updates' && !current_user
-        %li{:class => "#{controller_name == type ? 'active' : ''}"}= link_to t("#{type}.plural"), url_for(send(type+"_path")), :class => "nav-icon icon-#{type}"
+        %li{:class => "#{controller_name == type ? 'active' : ''}"}= link_to t("#{type}.plural"), sidebar_url_for(type), :class => "nav-icon icon-#{type}"
   - if current_user
     - recent_groups = current_user.groups.order('created_at desc').limit(3)
     - recent_documents = current_user.documents.order('created_at desc').limit(3)

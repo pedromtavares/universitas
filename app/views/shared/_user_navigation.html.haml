@@ -28,6 +28,7 @@
           = t("shared.signin")
           %span.arrow-down
         %ul
+          %li=link_to t('auth.login'), new_user_session_path
           - on_each_provider do |provider|
             %li
               = link_to "/auth/#{provider}" do

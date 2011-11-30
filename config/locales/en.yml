@@ -102,6 +102,7 @@ en:
     facebook: Facebook
     cannot_destroy: "You cannot destroy your only way to sign in the application! Try saving a password to your account, then remove sign in options."
     destroyed: "Successfully destroyed sign in option."
+    login: with your Login
   layout:
     logged_in: Logged in as
   users:
@@ -139,11 +140,11 @@ en:
         i: Documents I Uploaded
       click_to_edit: Click to edit
       blank: This user has no documents yet.
-      added_collection: "Document successfully added to your collection."
-      removed_collection: "Document successfully removed from your collection."
-      already_exists: "You already have this document in your collection!"
-      add: Add to my collection
-      remove: Remove from my collection
+      added_collection: "Document successfully added to your documents."
+      removed_collection: "Document successfully removed from your documents."
+      already_exists: "You already have this document in your documents!"
+      add: Add to my documents
+      remove: Remove from my documents
       no_permission: "You do not have permission to edit this document."
   groups:
     singular: Group
@@ -170,7 +171,7 @@ en:
     recent: Recent Groups
     my: My Groups
     led_by: Led by
-    new_instructions: Now proceed by adding documents to your group by either uploading new ones or selecting them from your collection.
+    new_instructions: Now proceed by adding documents to your group by either uploading new ones or selecting them from your documents.
     created: Your group was successfully created.
     name_taken: "That group name is already taken, please choose another."
     create_your: Create your own Group
@@ -211,10 +212,10 @@ en:
       no_doc_share: You have no documents to share!
       sent_by: Sent by
       upload_new: Upload new documents
-      from_collection: Select from your collection
-      new_instructions: "Click the button below and select as many files as you like. They will be added to the group document collection as soon as they're done uploading."
-      collection_instructions: "Below is the list of all documents in your collection, please select the ones you wish to share with the group and click 'Save' when done."
-      no_docs: "You have no documents in your collection to share."
+      from_collection: Select from your documents
+      new_instructions: "Click the button below and select as many files as you like. They will be added to the group's documents as soon as they're done uploading."
+      collection_instructions: "Below is the list of all your documents, please select the ones you wish to share with the group and click 'Save' when done."
+      no_docs: "You have no documents to share."
       save: "Save and send document selection to group"
       saved_selection: "Successfully sent your document selection to the group."
       proceed: Proceed to group
@@ -234,9 +235,9 @@ en:
     documents_uploaded: Documents You Uploaded
     all: All Documents
     new: Add New Documents
-    add: Add to my collection
-    add_your: Add new documents to your collection
-    remove: Remove from my collection
+    add: Add to my documents
+    add_your: Add new documents
+    remove: Remove from my documents
     blank: No document results matched your search.
     upload: Choose Documents
     uploader: Uploaded by
@@ -253,9 +254,9 @@ en:
     view_this: View this document
     view: View
     completed: Completed Uploads
-    proceed: Proceed to your document collection
+    proceed: Proceed to your documents
     error: "There was an error while saving one of your documents, please make sure it's an allowed file type and is within permitted file sizes."
-    instructions: "Click the button below and select as many files as you like. They will be added to your document collection as soon as they're done uploading."
+    instructions: "Click the button below and select as many files as you like. They will be added to your documents as soon as they're done uploading."
     updated: Your document was successfully updated.
     goto: "Go to this document's page"
     blank:

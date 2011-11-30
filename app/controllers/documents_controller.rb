@@ -28,7 +28,7 @@ class DocumentsController < InheritedResources::Base
     if @document.save
       current_user.add_document(@document)
       Group.find(params[:group_id]).add_document(@document, current_user) if params[:group_id].present?
-	    render(:text => render_to_string(:partial => 'form_document', :locals => {:document => resource}))
+	    render(:text => render_to_string(:partial => 'form_document', :locals => {:document => @document}))
 	  end
 	end
 	

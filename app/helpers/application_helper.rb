@@ -72,4 +72,28 @@ module ApplicationHelper
       t('shared.search')
 		end
 	end
+	
+	def sidebar_url_for(type)
+	  default = url_for(send(type+"_path"))
+	  if current_user
+	    case type
+	    when 'groups'
+	      if current_user.groups.present?
+	        url_for(groups_path(:filter => :my))
+        else
+          default
+        end
+      when 'documents'
+        if current_user.documents.present?
+	        url_for(documents_path(:filter => :my))
+        else
+          default
+        end
+      else
+        default
+      end
+    else
+      default
+    end  
+	end
 end

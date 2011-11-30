@@ -95,6 +95,7 @@ pt:
     facebook: Facebook
     cannot_destroy: "Você não pode remover sua única forma de se autenticar no Universitas! Tente salvar uma senha para sua conta para depois remover opçoes de autenticação."
     destroyed: "Opção de autenticação removida com sucesso."
+    login: "com seu Login"
   layout:
     logged_in: Logado como
   users:
@@ -123,7 +124,7 @@ pt:
     goto: "Ir para o perfil deste usuário"
     blank:
       groups: Este grupo ainda não possui membros.
-      documents: Este documento não está na coleção de ninguém.
+      documents: Este documento não pertence a ninguém.
       any: Nenhum usuário foi retornado.
     documents:
       uploaded:
@@ -133,11 +134,11 @@ pt:
         i: Documentos Que Enviei
       click_to_edit: Clique para editar
       blank: Este usuário não tem documentos ainda.
-      added_collection: "Documento adicionado com sucesso à sua coleção."
-      removed_collection: "Documento removido com sucesso da sua colecão."
-      already_exists: "Você já possui este documento na sua coleção!"
-      remove: Remover da minha coleção
-      add: Adicionar à minha coleção
+      added_collection: "Documento adicionado com sucesso aos seus documentos."
+      removed_collection: "Documento removido com sucesso dos seus documentos."
+      already_exists: "Você já possui este documento!"
+      remove: Remover dos meus documentos
+      add: Adicionar aos meus documentos
       no_permission: "Você não tem permissão para editar este documento."
   groups:
     singular: Grupo
@@ -164,7 +165,7 @@ pt:
     recent: Grupos Recentes
     my: Meus Grupos
     led_by: Liderado por
-    new_instructions: "Agora, adicione documentos ao seu grupo através do envio de novos documentos, ou escolhendo documentos que você já possui em sua coleção."
+    new_instructions: "Agora, adicione documentos ao seu grupo através do envio de novos documentos, ou escolhendo documentos que você já possui."
     name_taken: "Este nome já está sendo usado por outro grupo, favor escolher outro."
     create_your: Crie seu próprio Grupo
     sign_in_alert: Você deve entrar ou se cadastrar antes de criar um grupo.
@@ -203,11 +204,11 @@ pt:
       no_senders: Ainda não há remetentes de documentos neste grupo.
       no_doc_share: Você não possui documentos para compartilhar!
       sent_by: Enviado por
-      new_instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados na coleção de documentos do grupo assim que terminarem de serem enviados"
-      collection_instructions: "Abaixo está a lista de todos os documentos da sua coleção, favor selecionar os que você deseja compartilhar com o grupo e clique 'Salvar' quando acabar."
+      new_instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados aos documentos do grupo assim que terminarem de serem enviados"
+      collection_instructions: "Abaixo está a lista de todos os seus documentos, favor selecionar os que você deseja compartilhar com o grupo e clique 'Salvar' quando acabar."
       upload_new: Enviar novos documentos
-      from_collection: Escolher da sua coleção
-      no_docs: "Você não tem documentos na sua coleção para compartilhar."
+      from_collection: Escolher dos seus documentos
+      no_docs: "Você não tem documentos para compartilhar."
       save: "Salvar e enviar seleção de documentos"
       saved_selection: "Sua seleção de documentos foi enviada pro grupo com sucesso."
       proceed: Continuar pro grupo 
@@ -227,9 +228,9 @@ pt:
     documents_uploaded: Documents que Você Enviou
     all: Todos os Documentos
     new: Adicionar Documentos
-    add: Adicionar à minha coleção
-    add_your: Adicionar documentos a sua coleção
-    remove: Remover da minha coleção
+    add: Adicionar à meus documentos
+    add_your: Adicionar documentos
+    remove: Remover dos meus documentos
     upload: Escolher Documentos
     uploader: Enviado por
     uploaded: Documentos Enviados
@@ -245,9 +246,9 @@ pt:
     view: Visualizar
     view_this: Visualizar este documento
     completed: Envios completos
-    proceed: Continuar para sua coleção de documentos
+    proceed: Continuar para seus documentos
     error: "Houve um erro ao salvar um de seus documentos, veja se o formato do documento é permitido e se ele está dentro dos limites de tamanho do arquivo."
-    instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a sua coleção de documentos assim que terminarem de serem enviados."
+    instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a seus documentos assim que terminarem de serem enviados."
     updated: Seu documento foi atualizado com sucesso.
     goto: "Ir para a página deste documento"
     blank:
