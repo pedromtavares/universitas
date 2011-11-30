@@ -40,14 +40,10 @@
   </footer>
 <%= render :partial => 'shared/javascripts'%>
 <%= yield :javascripts %>
-<<<<<<< HEAD
-<script src="/track.js" type="text/javascript"></script> 
-=======
 <% if session[:new_group].present? && current_user %>
   <% session[:new_group] = nil%>
   <div id='activate-new-group'>
 <% end %>
->>>>>>> v2
 </body>
 </html>
   
