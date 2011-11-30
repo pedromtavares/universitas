@@ -16,11 +16,7 @@
         - if current_user && current_user.leader_of?(@group)
           %li= action_button(t('shared.edit'), :edit, :path => edit_group_path(@group))
           %li= action_button("#{t('shared.manage')} #{t('groups.documents.plural')}", 'manage-documents', :path => group_documents_path(@group), :remote => true, :class => 'history')
-        - if current_user && !current_user.leader_of?(@group)
-          - if current_user.member_of?(@group)
-            =action_button(t('groups.leave'), :remove, :path => leave_group_path(@group), :method => :delete)
-          - else
-            =action_button(t('groups.join'), :key, :path => join_group_path(@group), :method => :post)
+        = partial('groups/actions', :group => @group)
       %br.clear
       %h4
         %em=@group.description
