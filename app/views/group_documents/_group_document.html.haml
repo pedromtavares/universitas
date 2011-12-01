@@ -1,5 +1,5 @@
 %li.custom.clearfix{:id => group_document.id}
-  .avatar=link_to document_icon_for(group_document.document), group_document.document.file.url, :title => t('shared.click_to_download')
+  .avatar=document_icon_for(group_document.document, false, :title => group_document.document.description)
   = link_to "&raquo;", document_path(group_document.document), :class => "more"
   %span.timestamp= group_document.created_at.strftime("%b %d, %Y")
   = link_to group_document.document.name, document_path(group_document.document), :class => "name"

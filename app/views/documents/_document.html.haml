@@ -1,5 +1,5 @@
 %li.custom.clearfix
-  .avatar=document_icon_for(document)
+  .avatar=document_icon_for(document, false, :title => document.description)
   = link_to "&raquo;", document_path(document), :class => "more"
   %span.timestamp= document.created_at.strftime("%b %d, %Y")
   = link_to document.name, document_path(document), :class => "name"

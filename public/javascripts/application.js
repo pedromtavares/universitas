@@ -187,7 +187,7 @@ function slideContent(content){
   $('#slide-content').slideUp('slow', function() {
     $('#group-show').slideUp('slow');
     $('#slide-content').html(content);
+    rebindToDOM();
     $('#slide-content').slideDown('slow');
   });
-  rebindToDOM();
 }
