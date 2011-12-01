@@ -19,3 +19,4 @@ facebook:
   production:
     key: key
     secret: secret
+scribd: your-scribd-key
