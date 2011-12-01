@@ -20,10 +20,6 @@ class GroupDocumentsController < InheritedResources::Base
 
 	private
 
-	def resource
-		@group_document = parent.group_documents.find(params[:id])
-	end
-
 	def collection
 		paginate(@group_documents = parent.group_documents.includes([:document, :module, :group]).order('created_at desc'))
 	end
