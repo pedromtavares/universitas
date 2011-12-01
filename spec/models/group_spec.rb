@@ -66,9 +66,9 @@ describe Group do
 		end
 		it 'should add a document' do
 			user = Factory(:user)
-			@group.add_document(@other_doc, nil, user)
+			@group.add_document(@other_doc, user)
 			@group.documents.should include(@other_doc)
-			@group.group_documents.last.pending.should be_true
+			# @group.group_documents.last.pending.should be_true TODO: Retest this after optional pre-approval of docs is added
 		end
 		it 'should remove a document' do
 			@group.remove_document(@document)

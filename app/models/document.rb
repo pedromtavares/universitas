@@ -30,7 +30,7 @@ class Document < ActiveRecord::Base
 	
 	mount_uploader :file, FileUploader
 	
-	MAXIMUM_FILE_SIZE = 20000000
+	MAXIMUM_FILE_SIZE = 50000000
 	MAXIMUM_FILE_SIZE_MB = MAXIMUM_FILE_SIZE/1000000
 	
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }

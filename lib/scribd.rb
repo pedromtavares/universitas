@@ -12,6 +12,7 @@ class Scribd
   end
   
   def upload(file, extension)
+    return self.fake_upload(file, extension) if Rails.env.test?
     response = RestClient.post @url, {:file => file, :doc_type => extension, :method => "docs.upload"}.merge(@query)
     xml = Nokogiri::XML(response)
     begin
@@ -21,6 +22,10 @@ class Scribd
     rescue
       false
     end
+  end
+  
+  def fake_upload(file, extension)
+    {:doc_id => "scribd-doc-#{rand(Time.now.to_i)}", :access_key => "key-#{rand(Time.now.to_i)}"}
   end
   
   def download(document)
