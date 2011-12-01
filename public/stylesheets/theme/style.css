@@ -1077,3 +1077,32 @@ body > footer {
     background-image:url(../../images/overlay/transparent.png);        
     color:#fff;
 }
+
+.scribd_overlay {
+    /* initially overlay is hidden */
+    display:none;
+    
+    /* growing background image */
+    background-image:url(../../images/overlay/white.png);
+    
+    /* 
+        width after the growing animation finishes
+        height is automatically calculated
+    */
+    width:820px;
+    
+    /* some padding to layout nested elements nicely  */
+    padding:35px;
+
+    /* a little styling */    
+    font-size:11px;
+}
+
+/* default close button positioned on upper right corner */
+.scribd_overlay .close {
+    background-image:url(../../images/close-icon.png);
+    position:absolute; right:14px; top:14px;
+    cursor:pointer;
+    height:30px;
+    width:30px;
+}

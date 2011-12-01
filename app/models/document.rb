@@ -22,8 +22,7 @@ class Document < ActiveRecord::Base
 	has_many :groups, :through => :group_documents
 	has_friendly_id :name, :use_slug => true
 	
-	attr_accessible :uploader, :name, :file, :description
-	before_save :set_file_attributes
+	attr_accessible :uploader, :name, :file, :description, :file_size, :scribd_doc_id, :scribd_access_key, :content_type, :extension
 	
 	# remove this after carrierwave merges this feature into master
 	before_update :store_previous_file
@@ -35,7 +34,7 @@ class Document < ActiveRecord::Base
 	MAXIMUM_FILE_SIZE_MB = MAXIMUM_FILE_SIZE/1000000
 	
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }
-	validates :file, :presence => true, :length => {:maximum => MAXIMUM_FILE_SIZE, :message => I18n.t('custom_messages.file_validation', :size => MAXIMUM_FILE_SIZE_MB)}
+	validates :file, :length => {:maximum => MAXIMUM_FILE_SIZE, :message => I18n.t('custom_messages.file_validation', :size => MAXIMUM_FILE_SIZE_MB)}
 	validates :description, :length => {:maximum => 1000}
 	
 	scope :recent, order('created_at desc').limit(5)
@@ -45,19 +44,40 @@ class Document < ActiveRecord::Base
 	end
 	
 	def extension
-		self.file_url.split('.').last.downcase
+	  if self.file.present?
+		  self.file_url.split('.').last.downcase
+	  else
+	    self.read_attribute(:extension)
+    end
 	end
 	
 	def self.search(search)
 		self.where("name like ?", "%#{search}%")
 	end
 	
-	private 
+	def self.get_extension_from(filename)
+	  filename.split('.').last
+	end
 	
-  def set_file_attributes 
-    self.content_type = self.file.file.content_type 
-    self.file_size = self.file.size 
-  end
+	def self.is_image?(extension)
+	  if ['png','gif', 'jpg', 'jpeg'].include?(extension)
+	    true
+    else
+      false
+    end
+	end
+	
+	def self.create_from_scribd(name, file, user, content_type)
+	  extension = self.get_extension_from(file.original_filename)
+	  result = Scribd.new.upload(file, extension)
+	  if result && result[:doc_id] && result[:access_key]
+	    Document.create(:name => name, :uploader => user, :file_size => file.size, :content_type => content_type, :scribd_doc_id => result[:doc_id], :scribd_access_key => result[:access_key], :extension => extension)
+    else
+      false
+    end
+	end
+  
+  private
 
 	def store_previous_file
 		@stored = Document.find(self.id) if self.file_changed?

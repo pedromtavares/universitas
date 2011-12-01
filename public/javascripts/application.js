@@ -1,58 +1,80 @@
-/* Endless scroll helper variables */
-
-var scrollLock = true;
-
-var updatesOptions = {
-	fireOnce: true,
-	fireDelay: 1500,
-	ceaseFire: function(){
-		return $('#infinite-scroll').length ? false : true;
-	},
-	bottomPixels:300,
-  callback: function(){
-    if (scrollLock){
-      scrollLock = false;
-      $.ajax({
-		    url: $(this).data('url'),
-		    data: {
-				  last: $(this).attr('last')			
-			  },
-        dataType: 'script',
-        success: function(data, status){
-          scrollLock = true;
-        }
-		  });
+// Function to rebind all important UI events after DOM updates
+function rebindToDOM(){
+  var scrollLock = true;
+  
+  $('.updates').endlessScroll({
+  	fireOnce: true,
+  	fireDelay: 1500,
+  	ceaseFire: function(){
+  		return $('#infinite-scroll').length ? false : true;
+  	},
+  	bottomPixels:300,
+    callback: function(fireSequence){
+      if (scrollLock){
+        scrollLock = false;
+        $.ajax({
+    	    url: $(this).data('url'),
+    	    data: {
+    			  page: fireSequence + 1,
+    			  search: $('#search').val()
+    		  },
+    		  dataType: 'script',
+          success: function(data, status){
+            scrollLock = true;
+          }
+    	  });
+  	  }
     }
-    
-  }
-}
+  });
+  
+	$('.endless').endlessScroll({
+  	fireOnce: true,
+  	fireDelay: 1500,
+  	ceaseFire: function(){
+  		return $('#infinite-scroll').length ? false : true;
+  	},
+  	bottomPixels:300,
+    callback: function(){
+      if (scrollLock){
+        scrollLock = false;
+        $.ajax({
+  		    url: $(this).data('url'),
+  		    data: {
+  				  last: $(this).attr('last')			
+  			  },
+          dataType: 'script',
+          success: function(data, status){
+            scrollLock = true;
+          }
+  		  });
+      }
 
-var endlessOptions = {
-	fireOnce: true,
-	fireDelay: 1500,
-	ceaseFire: function(){
-		return $('#infinite-scroll').length ? false : true;
-	},
-	bottomPixels:300,
-  callback: function(fireSequence){
-    if (scrollLock){
-      scrollLock = false;
-      $.ajax({
-  	    url: $(this).data('url'),
-  	    data: {
-  			  page: fireSequence + 1,
-  			  search: $('#search').val()
-  		  },
-  		  dataType: 'script',
-        success: function(data, status){
-          scrollLock = true;
-        }
-  	  });
-	  }
-  }
+    }
+  });
+  
+  $("a.overlay[rel]").overlay({
+    effect: 'apple',
+    onBeforeLoad: function() {
+      var wrap = this.getOverlay().find(".contentWrap");
+      wrap.load(this.getTrigger().attr("href"));
+    }
+  });
+  
+  $("a.full_overlay[rel]").overlay({
+    effect: 'apple',
+    top: -15,
+    onBeforeLoad: function() {
+      var wrap = this.getOverlay().find(".contentWrap");
+      wrap.load(this.getTrigger().attr("href"));
+    }
+  });
+  
+  $('[title]:not(abbr)').tooltip({effect: 'slide', offset: [-14, 0]});
 }
 
 $(function(){
+  
+  rebindToDOM();
 	
 	/******* General Code *******/
 	
@@ -66,9 +88,7 @@ $(function(){
 		$(this).addClass('none');
 	});
 		
-	$('.updates').endlessScroll(updatesOptions);
-	
-	$('.endless').endlessScroll(endlessOptions);
+
 	
 	$("#group-breadcrumb").live('click', function() {
 	  $('#slide-content').slideUp('slow');
@@ -85,8 +105,7 @@ $(function(){
     var url = $(this).data('url');
     if (url && url!=''){
       $.getScript($(this).data('url'), function(data, status){
-        $('.endless').endlessScroll(endlessOptions);
-        $('.updates').endlessScroll(updatesOptions);
+        rebindToDOM();
       });
     }
     return false;
@@ -170,6 +189,5 @@ function slideContent(content){
     $('#slide-content').html(content);
     $('#slide-content').slideDown('slow');
   });
-  
-  $('.endless').endlessScroll(endlessOptions);
+  rebindToDOM();
 }

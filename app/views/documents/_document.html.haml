@@ -7,6 +7,6 @@
     = t('documents.uploader') 
     = preview_link document.uploader, document.uploader
     %br.clear
-    = action_button t('documents.view'), :view, :path => document.file_url
+    = action_button t('documents.view'), :view, :path => view_document_path(document), :class => 'full_overlay', :rel => "#scribd_overlay"
     = partial 'documents/actions', :document => document
     = action_button t('shared.edit'), :edit, :path => edit_user_document_path(current_user, document.id) if current_user &&  current_user.uploaded_document?(document)

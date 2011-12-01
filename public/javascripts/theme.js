@@ -49,26 +49,9 @@ $(document).ready(function() {
         }
     });
 
-    $('[title]:not(abbr)').tooltip({effect: 'slide', offset: [-14, 0]});
-
     // html element for the help popup
-    $('body').append('<div class="apple_overlay black" id="overlay"><div class="contentWrap" style="width: 100%; height: 500px;overflow:auto;background:#8EC2DA;"></iframe></div>');
-
-    // this is the help popup
-    $("a.overlay[rel]").overlay({
-
-        effect: 'apple',
-
-        onBeforeLoad: function() {
-
-            // grab wrapper element inside content
-            var wrap = this.getOverlay().find(".contentWrap");
-
-            // load the page specified in the trigger
-            wrap.load(this.getTrigger().attr("href"));
-        }
-
-    });
+    $('body').append('<div class="apple_overlay black" id="overlay"><div class="contentWrap" style="width: 100%; height: 500px;overflow:auto;background:#8EC2DA;"></div>');
+    $('body').append('<div class="scribd_overlay" id="scribd_overlay"><div class="contentWrap" style="width: 100%; height:645px;overflow:auto;background:#8EC2DA;"></div>');
 
     /**
      * Setup Tabs

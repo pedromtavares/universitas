@@ -13,14 +13,7 @@ gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'simple_form'
 gem 'carrierwave'
-# need ImageMagick
-# brew install imagemagick
-# (you may need to `brew update` first)
-# or
-# apt-get imagemagick
-# you know what to do
 gem 'rmagick'
-gem 'web-app-theme'
 gem 'fog'
 gem 'kaminari'
 gem 'cocoon'
@@ -34,6 +27,7 @@ gem 'unicorn'
 gem 'hoptoad_notifier'
 gem 'kgio', '2.4.1'
 gem 'rest-client'
+gem 'mime-types'
 
 group :development do
 	gem 'annotate'

@@ -5,10 +5,11 @@
   .fl.spaced-right=document_icon_for(document)
   .spaced-left
     = document.name
+    %br
     = t('documents.uploader')
-    = link_to resource.uploader, resource.uploader
+    = link_to document.uploader, document.uploader
   %br.clear
-= action_button t('documents.view'), :view, :path => document.file_url
+= action_link t('documents.view'), :view, :path => view_document_path(document), :class => 'full_overlay', :rel => "#scribd_overlay"
 = partial 'documents/actions', :document => document  
 %hr
 %h4= t('groups.recent')

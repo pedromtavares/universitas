@@ -259,6 +259,9 @@ en:
     instructions: "Click the button below and select as many files as you like. They will be added to your documents as soon as they're done uploading."
     updated: Your document was successfully updated.
     goto: "Go to this document's page"
+    select: Select File(s)
+    download: Download document
+    download_unavailable: "Download is unavailable at the moment, please try again later."
     blank:
       any: No documents were retrieved.
       users: This user has no documents yet.

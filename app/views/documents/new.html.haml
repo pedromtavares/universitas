@@ -14,6 +14,8 @@
       'multi'        : true,
       'scriptData'   : upload_params,
       'auto'         : true,
+      'sizeLimit'    : #{Document::MAXIMUM_FILE_SIZE},
+      'buttonText'   : '#{t('documents.select')}',
       'onComplete'   : function(e, id, obj, response, data) {
         $('#complete').slideDown('slow');
         $('#files').append(response);

@@ -22,26 +22,36 @@ class DocumentsController < InheritedResources::Base
 	end
 	
 	def create
+	  content_type = MIME::Types.type_for(params[:file].original_filename).first.to_s
+	  extension = Document.get_extension_from(params[:file].original_filename)
 	  name = params[:Filename].split('.').first
 	  name = "#{name}-#{current_user.login}" if name.length < 4
-	  @document = Document.new(:name => name, :file => params[:file], :uploader => current_user)
-    if @document.save
+	  @document = if Document.is_image?(extension)
+      Document.create(:name => name, :file => params[:file], :uploader => current_user, :file_size => params[:file].size, :content_type => content_type, :extension => extension)
+    else
+      Document.create_from_scribd(name, params[:file], current_user, content_type)
+    end
+    if @document.present? && @document.id
       current_user.add_document(@document)
       Group.find(params[:group_id]).add_document(@document, current_user) if params[:group_id].present?
-	    render(:text => render_to_string(:partial => 'form_document', :locals => {:document => @document}))
-	  end
+      render(:text => render_to_string(:partial => 'form_document', :locals => {:document => @document}))
+    end
 	end
 	
-	def show
-	  @users = resource.users
-	  @groups = resource.groups
-		@user_document = current_user.user_documents.find_by_document_id(params[:id]) if current_user
-	  super
-  end
-	
 	def download
-		file = resource.file_url
-		send_data(file, :disposition => 'attachment', :filename => File.basename(file))
+    if resource.file.present?
+      redirect_to resource.file_url
+    else
+      if url = Scribd.new.download(resource)
+        redirect_to url
+      else
+        redirect_to resource, :alert => t('documents.download_unavailable')
+      end
+    end
+	end
+	
+	def view
+    render :layout => false
 	end
 	
 	private

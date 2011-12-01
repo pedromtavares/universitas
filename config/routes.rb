@@ -45,6 +45,7 @@ Universitas::Application.routes.draw do
 	resources :documents, :only => [:index, :show, :create, :new] do
 		member do
 			get :download
+			get :view
 		end
 	end
 	

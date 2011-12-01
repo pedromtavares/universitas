@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111124000242) do
+ActiveRecord::Schema.define(:version => 20111130053941) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(:version => 20111124000242) do
     t.integer  "file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "scribd_doc_id"
+    t.string   "scribd_access_key"
+    t.string   "extension"
   end
 
   add_index "documents", ["user_id"], :name => "index_documents_on_user_id"

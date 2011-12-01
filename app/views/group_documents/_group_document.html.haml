@@ -7,6 +7,6 @@
     = t('groups.documents.sent_by') 
     = preview_link group_document.sender, group_document.sender
     %br
-    = action_button t('documents.view'), :view
+    = action_button t('documents.view'), :view, :path => view_document_path(resource), :class => 'full_overlay', :rel => "#scribd_overlay"
     = action_button t('groups.documents.remove'), :remove, :path => group_document_path(group_document.group, group_document), :method => :delete, :remote => :true, :confirm => t('groups.documents.sure')
     

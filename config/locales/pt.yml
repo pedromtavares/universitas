@@ -251,6 +251,9 @@ pt:
     instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a seus documentos assim que terminarem de serem enviados."
     updated: Seu documento foi atualizado com sucesso.
     goto: "Ir para a página deste documento"
+    select: "Selecionar Arquivo(s)"
+    download: Baixar documento
+    download_unavailable: "Não é possível baixar o documento neste momento, favor tentar mais tarde."
     blank:
       any: Nenhum documento foi retornado.
       users: Este usuário não possui documentos.

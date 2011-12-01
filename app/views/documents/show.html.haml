@@ -19,7 +19,9 @@
       %h4
         %em=resource.description
       %br.clear
-      .center=button_link_to t('documents.view_this'), resource.file_url, :color => 'red'
+      .center
+        =button_link_to t('documents.view_this'), view_document_path(resource), :color => 'red full_overlay', :rel => "#scribd_overlay"      
+      
   %section
     .filters.center
       - options = {:type => :document, :id => resource.id}
