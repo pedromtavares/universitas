@@ -61,7 +61,7 @@ namespace :db do
       end
 			# create dummy documents for dummy users
 			10.times do
-				user.add_document(Document.create(:name => Faker::Lorem.sentence, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/rails.png"), :description => Faker::Lorem.paragraph))
+				user.add_document(Document.create(:name => Faker::Lorem.sentence, :uploader => user, :file => File.open("#{Rails.root}/spec/fixtures/doc.txt"), :description => Faker::Lorem.paragraph))
 			end
 		
     end

@@ -17,10 +17,6 @@ describe Document do
   	it "should have a name" do
   		Factory.build(:document, :name => nil).should_not be_valid
   	end
-
-		it "should have a file" do
-			Factory.build(:document, :file => nil).should_not be_valid
-		end
   end
 end
 

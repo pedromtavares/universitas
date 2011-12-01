@@ -28,9 +28,9 @@ class UsersController < InheritedResources::Base
   def scope_for(params)
     case params[:filter]
     when 'following'
-      current_user.following
+      resource.following
     when 'followers'
-    	current_user.followers
+    	resource.followers
     else
       case params[:type]
       when 'document'
