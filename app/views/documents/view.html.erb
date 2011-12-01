@@ -1,9 +1,5 @@
-<% if resource.file.blank?%>
+<% if resource.scribd_doc_id.present?%>
   <iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/<%=resource.scribd_doc_id%>/content?start_page=1&view_mode=list&access_key=<%=resource.scribd_access_key%>" data-auto-height="false" data-aspect-ratio="0.772727272727273" scrolling="no" id="doc_27920" width="100%" height="99%" frameborder="0"></iframe><script type="text/javascript">(function() { var scribd = document.createElement("script"); scribd.type = "text/javascript"; scribd.async = true; scribd.src = "http://www.scribd.com/javascripts/embed_code/inject.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(scribd, s); })();</script>
 <% else %>
-  <% if Document.is_image?(resource.extension)%>
   <img src="<%=resource.file_url%>"/>
-  <% else%>
-    <iframe src="<%=resource.file_url%>" width="100%" height="100%"/>
-  <%end%>
 <%end%>

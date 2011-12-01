@@ -32,4 +32,16 @@ class Scribd
       false
     end
   end
+  
+  def upload_from_url(url)
+    response = RestClient.post @url, {:url => url, :method => "docs.uploadFromUrl"}.merge(@query)
+    xml = Nokogiri::XML(response)
+    begin
+      doc_id = xml.search('doc_id').first.content
+      access_key = xml.search('access_key').first.content
+      {:doc_id => doc_id, :access_key => access_key}
+    rescue
+      false
+    end
+  end
 end
