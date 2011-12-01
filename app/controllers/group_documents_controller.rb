@@ -21,11 +21,7 @@ class GroupDocumentsController < InheritedResources::Base
 	private
 
 	def resource
-		@group_document = if params[:id]
-			parent.group_documents.find(params[:id])
-		else
-			@group_document.errors.blank? ? GroupDocument.new(:document => params[:document] || Document.new) : @group_document
-		end
+		@group_document = parent.group_documents.find(params[:id])
 	end
 
 	def collection
