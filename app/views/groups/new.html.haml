@@ -35,21 +35,21 @@
         .spaced-left.spaced-top= loading_icon
         %br.clear
         %h3= t('groups.new_instructions')
-        .filters.center#doc-filters
-          =button_link_to t('groups.documents.upload_new'), "javascript:void(0)", :color => 'blue button-green', :'data-target' => 'new-docs'
-          =button_link_to t('groups.documents.from_collection'), "javascript:void(0)", :color => 'blue', :'data-target'=> 'collection-docs'
-        %br.clear
         #new-docs
           #upload-error.message.alert{:style => 'display:none'}=t('documents.error')
           .center
             =file_field_tag "file"
             .hint-box= raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")  
           %br.clear
+          .doc-filters.center
+            = link_to t('documents.select_from_uploaded'), "javascript:void(0)", :'data-target'=> 'collection-docs'
           %br.clear
           #complete{:style => 'display:none'}
             %h3= t('documents.completed')
             #files
         #collection-docs{:style => 'display:none'}
+          .doc-filters.center
+            = link_to t('documents.back_to_upload'), "javascript:void(0)", :'data-target'=> 'new-docs'
           - if @documents.present?
             %table.datatable.no-style.full{:style => 'color:black;width:110%'}
               %thead
@@ -68,7 +68,6 @@
             %br.clear
           - else
             .center= t('groups.documents.no_docs')
-        %br.clear
         = submit_button(:style => 'float:left !important;text-align:center;margin-left:170px') do
           = "#{t('shared.save')} #{t('groups.singular')}"
         .left.spaced-left.spaced-top= loading_icon

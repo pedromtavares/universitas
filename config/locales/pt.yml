@@ -165,7 +165,7 @@ pt:
     recent: Grupos Recentes
     my: Meus Grupos
     led_by: Liderado por
-    new_instructions: "Agora, adicione documentos ao seu grupo através do envio de novos documentos, ou escolhendo documentos que você já possui."
+    new_instructions: "Agora, adicione documentos ao seu grupo. Lembre-se que todos os documentos adicionados serão públicos."
     name_taken: "Este nome já está sendo usado por outro grupo, favor escolher outro."
     create_your: Crie seu próprio Grupo
     sign_in_alert: Você deve entrar ou se cadastrar antes de criar um grupo.
@@ -204,7 +204,7 @@ pt:
       no_senders: Ainda não há remetentes de documentos neste grupo.
       no_doc_share: Você não possui documentos para compartilhar!
       sent_by: Enviado por
-      new_instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados aos documentos do grupo assim que terminarem de serem enviados"
+      new_instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Lembre-se que todos os documentos adicionados serão públicos."
       collection_instructions: "Abaixo está a lista de todos os seus documentos, favor selecionar os que você deseja compartilhar com o grupo e clique 'Salvar' quando acabar."
       upload_new: Enviar novos documentos
       from_collection: Escolher dos seus documentos
@@ -248,12 +248,14 @@ pt:
     completed: Envios completos
     proceed: Continuar para seus documentos
     error: "Houve um erro ao salvar um de seus documentos, veja se o formato do documento é permitido e se ele está dentro dos limites de tamanho do arquivo."
-    instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Eles serão adicionados a seus documentos assim que terminarem de serem enviados."
+    instructions: "Clique no botão abaixo e selecione quantos arquivos quiser. Lembre-se que todos os documentos adicionados serão públicos."
     updated: Seu documento foi atualizado com sucesso.
     goto: "Ir para a página deste documento"
     select: "Selecionar Arquivo(s)"
     download: Baixar documento
     download_unavailable: "Não é possível baixar o documento neste momento, favor tentar mais tarde."
+    select_from_uploaded: ou selecione dos documentos que você já possui
+    back_to_upload: "Voltar para o envio de novos documentos"
     blank:
       any: Nenhum documento foi retornado.
       users: Este usuário não possui documentos.

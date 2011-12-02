@@ -118,7 +118,7 @@ $(function(){
     $('#' + $(this).data('target')).slideDown();
   });
   
-  $("#doc-filters a").live('click', function(){
+  $(".doc-filters a").live('click', function(){
     $('#new-docs').slideUp();
     $('#collection-docs').slideUp();
     $('#' + $(this).data('target')).slideDown();

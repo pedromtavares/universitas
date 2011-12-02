@@ -30,9 +30,6 @@
     %h2= t('groups.documents.share')
   %section.clearfix
     .grid_6
-      .filters.center#doc-filters
-        =button_link_to t('groups.documents.upload_new'), "javascript:void(0)", :color => 'blue button-green', :'data-target' => 'new-docs'
-        =button_link_to t('groups.documents.from_collection'), "javascript:void(0)", :color => 'blue', :'data-target'=> 'collection-docs'
       %br.clear
       #new-docs
         %h3= t('groups.documents.new_instructions')
@@ -42,6 +39,8 @@
           =file_field_tag "file"
           .hint-box= raw("#{t('custom_messages.file_maximum', :size => Document::MAXIMUM_FILE_SIZE_MB)}<br/>#{t('custom_messages.file_extensions')}")  
         %br.clear
+        .doc-filters.center
+          = link_to t('documents.select_from_uploaded'), "javascript:void(0)", :'data-target'=> 'collection-docs'
         %br.clear
         #complete{:style => 'display:none'}
           %h4.center=link_to t('groups.documents.proceed'), group_path(@group) 
@@ -49,6 +48,8 @@
           #files
       #collection-docs{:style => 'display:none'}
         %h3= t('groups.documents.collection_instructions')
+        .doc-filters.center
+          = link_to t('documents.back_to_upload'), "javascript:void(0)", :'data-target'=> 'new-docs'
         %br.clear
         - if @documents.present?
           = form_tag add_multiple_group_documents_path(@group), :method => :post, :remote => true do

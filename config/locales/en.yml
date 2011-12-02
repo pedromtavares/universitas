@@ -171,7 +171,7 @@ en:
     recent: Recent Groups
     my: My Groups
     led_by: Led by
-    new_instructions: Now proceed by adding documents to your group by either uploading new ones or selecting them from your documents.
+    new_instructions: Now proceed by adding documents to your group. Keep in mind that these documents will be publicly available.
     created: Your group was successfully created.
     name_taken: "That group name is already taken, please choose another."
     create_your: Create your own Group
@@ -213,7 +213,7 @@ en:
       sent_by: Sent by
       upload_new: Upload new documents
       from_collection: Select from your documents
-      new_instructions: "Click the button below and select as many files as you like. They will be added to the group's documents as soon as they're done uploading."
+      new_instructions: "Click the button below and select as many files as you like. Keep in mind that these documents will be publicly available."
       collection_instructions: "Below is the list of all your documents, please select the ones you wish to share with the group and click 'Save' when done."
       no_docs: "You have no documents to share."
       save: "Save and send document selection to group"
@@ -256,12 +256,14 @@ en:
     completed: Completed Uploads
     proceed: Proceed to your documents
     error: "There was an error while saving one of your documents, please make sure it's an allowed file type and is within permitted file sizes."
-    instructions: "Click the button below and select as many files as you like. They will be added to your documents as soon as they're done uploading."
+    instructions: "Click the button below and select as many files as you like. Keep in mind that these documents will be publicly available."
     updated: Your document was successfully updated.
     goto: "Go to this document's page"
     select: Select File(s)
     download: Download document
     download_unavailable: "Download is unavailable at the moment, please try again later."
+    select_from_uploaded: or select from your already uploaded documents
+    back_to_upload: "Back to uploading new documents"
     blank:
       any: No documents were retrieved.
       users: This user has no documents yet.
