@@ -332,7 +332,7 @@ en:
       tip: Upload all you want!
       tip_text: "Feel free to upload as many documents as you please, but be aware that these will be available to anyone on the web to download."
       tip2: Viewing Documents
-      tip2_text: "If you're not being able to view a document, it might be because it was just uploaded and is being processed, in that case, just wait a few minutes and should be able to view it. If the problem persists, the document might have been blocked by the viewing service used due to copyright infringement."
+      tip2_text: "If you're not being able to view a document, it might be because it was just uploaded and is being processed, in that case, just wait a few minutes and you should be able to view it. If the problem persists, the document might have been blocked by the viewing service used due to copyright infringement."
     groups:
       tip: As a Group Member
       tip_text: "You can share documents with the group and post in the group forums. The group leader may remove any documents you share and moderate anything you post."
@@ -347,14 +347,9 @@ en:
       tip2_text: "You can import your personal data from Twitter/Facebook like your picture, location, bio, e-mail and website by adding them as sign in options on your 'Edit Profile' page. Links to your profiles in these services will also be added automatically."
     forums:
       tip: About Group Forums
-      tip_text: "Group forums are meant for discussion and information sharing, each forum has various topics which themselves have various posts, so feel free to pick a topic (or create a new one) and post away!"
-      tip2: Forum Moderator
-      tip2_text: "Group leaders are responsible for moderating the group's forums by being able to create, edit and delete forums, topics and posts."
-    topics: 
-      tip: "Format with Textile"
-      tip_text: "You can format your posts with Textile (markup language) to display links, bold/italic text, lists, and more. Be sure to check the Textile Guide link near the 'Post' button."
-      tip2: Replying
-      tip2_text: "If you want to reply to a specific post, be sure to click the 'Reply to this post' link on said post. This way your reply will appear nested in its target post."
+      tip_text: "Group forums are meant for discussions and information sharing. A forum acts as a category for various topics, and topics are simply a grouping of various user posts."
+      tip2: "Format with Textile"
+      tip2_text: "You can format your posts to display links, bold/italic text, lists, and more. Be sure to check the Textile Guide link near the 'Post' button for more information."
   home:
     plural: Home
     welcome: "Welcome to Universitas!"

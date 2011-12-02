@@ -91,6 +91,8 @@ $(function(){
 	$("#group-breadcrumb").live('click', function() {
 	  $('#slide-content').slideUp('slow');
 	  $('#group-show').slideDown('slow');
+	  $('#group-tips').slideDown();
+    $('#forum-tips').slideUp();
 	});
 	
 	$('a[rel*=facebox]').facebox();
@@ -187,5 +189,7 @@ function slideContent(content){
     $('#slide-content').html(content);
     rebindToDOM();
     $('#slide-content').slideDown('slow');
+    $('#group-tips').slideUp();
+    $('#forum-tips').slideDown();
   });
 }

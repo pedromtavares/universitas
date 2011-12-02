@@ -338,14 +338,9 @@ pt:
       tip2_text: "Você pode importar seus dados pessoais do Twitter ou Facebook como sua foto, localidade, biografia, e-mail e website adicionando-os como opções de autenticação na página Editar Perfil. Links para seus perfis nestes serviços também serão adicionados automaticamente."
     forums:
       tip: Sobre os Fóruns
-      tip_text: "Os fóruns são feitos para discussões e compartilhamento de informações, cada fórum contém vários tópicos que, por sua vez, contém varios posts, então fique à vontade para escolher um tópico (ou criar um novo) e saia postando!"
-      tip2: Moderador dos Fóruns
-      tip2_text: "O Líder do grupo é responsável por moderar o fórum do grupo através do gerenciamentos dós fóruns, tópicos e posts, podendo editar e apagá-los como bem entender."
-    topics: 
-      tip: "Formate seus textos com Textile"
-      tip_text: "Você pode formatar o texto dos seus posts com Textile (linguagem de marcaçäo) para mostrar links, texto em itálico/negrito, listas, e mais. Dê uma olhada no link contendo o Guia de Textile ao lado do botão de 'Postar'."
-      tip2: Respondendo
-      tip2_text: "Se você quiser responder a um post específico, clique no botão de 'Responder a este post' no dito post. Dessa forma, sua resposta aparecerá logo abaixo do post alvo, deixando claro sua intenção de responder àquele post."
+      tip_text: "Os fóruns são feitos para discussões e compartilhamento de informações. Um fórum funciona como uma categoria, contendo vários tópicos, e os tópicos, por sua vez, servem para agrupar postagens dos usuários."
+      tip2: "Formate seus textos"
+      tip2_text: "Você pode formatar o texto dos seus posts para mostrar links, texto em itálico/negrito, listas, e mais. Dê uma olhada no link contendo o Guia de Textile ao lado do botão de 'Postar' para mais informações."
   home:
     plural: Início
     welcome: "Bem-vindo ao Universitas!"
