@@ -1,33 +1,7 @@
 // Function to rebind all important UI events after DOM updates
 function rebindToDOM(){
   var scrollLock = true;
-  
   $('.updates').endlessScroll({
-  	fireOnce: true,
-  	fireDelay: 1500,
-  	ceaseFire: function(){
-  		return $('#infinite-scroll').length ? false : true;
-  	},
-  	bottomPixels:300,
-    callback: function(fireSequence){
-      if (scrollLock){
-        scrollLock = false;
-        $.ajax({
-    	    url: $(this).data('url'),
-    	    data: {
-    			  page: fireSequence + 1,
-    			  search: $('#search').val()
-    		  },
-    		  dataType: 'script',
-          success: function(data, status){
-            scrollLock = true;
-          }
-    	  });
-  	  }
-    }
-  });
-  
-	$('.endless').endlessScroll({
   	fireOnce: true,
   	fireDelay: 1500,
   	ceaseFire: function(){
@@ -49,6 +23,30 @@ function rebindToDOM(){
   		  });
       }
 
+    }
+  });  
+	$('.endless').endlessScroll({
+  	fireOnce: true,
+  	fireDelay: 1500,
+  	ceaseFire: function(){
+  		return $('#infinite-scroll').length ? false : true;
+  	},
+  	bottomPixels:300,
+    callback: function(fireSequence){
+      if (scrollLock){
+        scrollLock = false;
+        $.ajax({
+    	    url: $(this).data('url'),
+    	    data: {
+    			  page: fireSequence + 1,
+    			  search: $('#search').val()
+    		  },
+    		  dataType: 'script',
+          success: function(data, status){
+            scrollLock = true;
+          }
+    	  });
+  	  }
     }
   });
   
