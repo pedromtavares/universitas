@@ -30,6 +30,7 @@ class Document < ActiveRecord::Base
 	
 	mount_uploader :file, FileUploader
 	
+	ALLOWED_FILE_EXTENSIONS = %w(jpg jpeg gif png doc docx xls xlsx ppt pptx pdf txt)
 	MAXIMUM_FILE_SIZE = 50000000
 	MAXIMUM_FILE_SIZE_MB = MAXIMUM_FILE_SIZE/1000000
 	

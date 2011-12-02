@@ -24,6 +24,10 @@ class DocumentsController < InheritedResources::Base
 	def create
 	  content_type = MIME::Types.type_for(params[:file].original_filename).first.to_s
 	  extension = Document.get_extension_from(params[:file].original_filename)
+	  unless Document::ALLOWED_FILE_EXTENSIONS.include?(extension)
+      render :nothing => true, :status => :unsupported_media_type #415
+      return
+    end
 	  name = params[:Filename].split('.').first
 	  name = "#{name}-#{current_user.login}" if name.length < 4
 	  @document = if Document.is_image?(extension)
@@ -35,6 +39,8 @@ class DocumentsController < InheritedResources::Base
       current_user.add_document(@document)
       Group.find(params[:group_id]).add_document(@document, current_user) if params[:group_id].present?
       render(:text => render_to_string(:partial => 'form_document', :locals => {:document => @document}))
+    else
+      render :nothing => true, :status => :unsupported_media_type #415
     end
 	end
 	

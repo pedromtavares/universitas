@@ -256,6 +256,7 @@ pt:
     download_unavailable: "Não é possível baixar o documento neste momento, favor tentar mais tarde."
     select_from_uploaded: ou selecione dos documentos que você já possui
     back_to_upload: "Voltar para o envio de novos documentos"
+    invalid_format: "Formato Inválido"
     blank:
       any: Nenhum documento foi retornado.
       users: Este usuário não possui documentos.

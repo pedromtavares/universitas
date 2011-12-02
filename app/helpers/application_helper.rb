@@ -96,4 +96,8 @@ module ApplicationHelper
       default
     end  
 	end
+	
+	def uploadify(groups=false)
+	  partial('shared/uploadify', :groups => groups)
+	end
 end

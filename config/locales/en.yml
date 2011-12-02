@@ -264,6 +264,7 @@ en:
     download_unavailable: "Download is unavailable at the moment, please try again later."
     select_from_uploaded: or select from your already uploaded documents
     back_to_upload: "Back to uploading new documents"
+    invalid_format: Invalid Format
     blank:
       any: No documents were retrieved.
       users: This user has no documents yet.
