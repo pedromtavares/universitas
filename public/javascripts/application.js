@@ -183,13 +183,15 @@ function toggleNone(elements){
 	});
 }
 
-function slideContent(content){
+function slideContent(content, showGroupTips){
   $('#slide-content').slideUp('slow', function() {
     $('#group-show').slideUp('slow');
     $('#slide-content').html(content);
     rebindToDOM();
     $('#slide-content').slideDown('slow');
-    $('#group-tips').slideUp();
-    $('#forum-tips').slideDown();
+    if (!showGroupTips){
+      $('#group-tips').slideUp();
+      $('#forum-tips').slideDown();
+    }
   });
 }

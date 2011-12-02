@@ -1,5 +1,5 @@
 <% if @page.blank? || @page == 1%>
-  slideContent("<%= escape_javascript(partial('group_documents/index', :collection => collection, :parent => parent))%>");
+  slideContent("<%= escape_javascript(partial('group_documents/index', :collection => collection, :parent => parent))%>", true);
 <% else %>
   element = $('.endless');
 	if ($(element).find('.endless_scroll_inner_wrap').length){
