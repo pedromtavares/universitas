@@ -33,7 +33,7 @@ class UsersController < InheritedResources::Base
     end
     case params[:filter]
     when 'following'
-      user.find.following
+      user.following
     when 'followers'
     	user.followers
     else
