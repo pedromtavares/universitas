@@ -331,10 +331,8 @@ en:
     documents:
       tip: Upload all you want!
       tip_text: "Feel free to upload as many documents as you please, but be aware that these will be available to anyone on the web to download."
-      tip2: About Uploaded Documents
-      tip2_text: "As a document's original uploader, only you can update it, but keep in mind that documents you have uploaded could have been shared across different users and groups, so avoid editing it too drastically for the sake of consistency."
-      tip3: Viewing Documents
-      tip3_text: "If you're not being able to view a document, it might be because it was just uploaded and is being processed, in that case, just wait a few minutes and should be able to view it. If the problem persists, the document might have been blocked by the viewing service used due to copyright infringement."
+      tip2: Viewing Documents
+      tip2_text: "If you're not being able to view a document, it might be because it was just uploaded and is being processed, in that case, just wait a few minutes and should be able to view it. If the problem persists, the document might have been blocked by the viewing service used due to copyright infringement."
     groups:
       tip: As a Group Member
       tip_text: "You can share documents with the group and post in the group forums. The group leader may remove any documents you share and moderate anything you post."
