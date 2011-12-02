@@ -447,6 +447,10 @@ form label{
   margin:0 5px;
 }
 
+.entry-meta .action-buttons{
+  margin-left:-30px;
+}
+
 /* Overwrites on theme */
 
 .list-view li.custom{

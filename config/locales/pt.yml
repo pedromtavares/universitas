@@ -322,33 +322,20 @@ pt:
     documents:
       tip: Envie quantos documentos quiser!
       tip_text: "Fique a vontade pra enviar (fazer upload) de quantos documentos quiser, mas lembre-se que estes estarão disponíveis para qualquer pessoa na web baixar!"
-    group_documents:
-      tip: Remetentes de documentos de grupo
-      tip_text: "Cada documento de grupo possui um remetente, que foi a pessoa quem compartilhou o documento com o grupo. Saber quem são estes membros mais ativos pode ser uma boa ideia."
-      tip2: Ações de documentos de grupo
-      tip2_text: "Nas tabelas de documentos de grupo, você pode rapidamente aceitar/remover um documento, editar seu módulo ou saber quem foi seu remetente pelos ícones na direita."
-      tip3: Adicionando documentos de grupo
-      tip3_text: "Todo documento que você adiciona ao grupo será automaticamente aceito. Se você já tem um documento e deseja adicioná-lo ao grupo, use a tabela de compartilhamento na página do grupo para evitar documentos duplicados associados a sua conta."
+      tip2: Visualização de Documentos
+      tip2_text: "Caso você não esteja conseguindo visualizar um documento, pode ser porque ele acabou de ser enviado e ainda está sendo processado para visualização, então, basta esperar alguns minutos. Se mesmo assim o documento continuar não sendo exibido, ele pode ter sido bloqueado pelo serviço de visualização devido a direitos autorais."
     groups:
       tip: Como um membro do grupo
-      tip_text: "Você pode compartilhar documentos com o grupo e postar nos fóruns do mesmo. O Líder do Grupo poderá remover qualquer documento compartilhado e moderar qualquer post nos fóruns."
+      tip_text: "Você pode compartilhar documentos com o grupo e postar nos fóruns do mesmo. O líder do grupo poderá remover qualquer documento compartilhado e moderar qualquer post nos fóruns."
       tip2: Como o Líder do grupo
-      tip2_text: "Você pode editar qualquer informação relativa ao grupo, remover documentos que foram enviados pro grupo, atualizar o status do grupo (que vai aparecer no painel de todos os seus membros), e editar/moderar os fóruns do grupo."
-      tip3: Compartilhando documentos com um grupo
-      tip3_text: "Para compartilhar documentos que você já tem, use a caixa de busca para achar os documentos que queira compartilhar e clique no ícone '+'. Depois de escolher os documentos, escolha o módulo que estes devem pertencer e clique 'Salvar'. Você também pode fazer upload de um documento novo, basta clicar no botão de 'Criar' e preencher o formulário. Em ambos os casos, os documentos serão enviados para o Líder do grupo para aprovação."
-    registrations:
-      tip: Importância de um e-mail verdadeiro.
-      tip_text: "É importante que você forneça um e-mail verdadeiro para que possamos enviar instruções de como recuperar sua conta, o que pode ser necessário caso você esqueça sua senha."
-      tip2: Importar dados pessoais do Twitter/Facebook
-      tip2_text: "Você pode importar seus dados pessoais do Twitter ou Facebook como sua foto, localidade, biografia, e-mail e website adicionando-os como opções de autenticação. Links para seus perfis nestes serviços também serão adicionados automaticamente."
-    user_documents:
-      tip: Sobre Documentos Enviados
-      tip_text: "Como o remetente original de um documento, só você pode atualizá-lo, mas lembre-se que documentos que você enviou (fez upload) podem ter sido comparilhados entre diferentes usuários e grupos, então evite editá-los drasticamente para não causar inconsistências."
+      tip2_text: "Você pode editar qualquer informação relativa ao grupo, remover documentos que foram enviados pro grupo, atualizar o status do grupo e editar/moderar os fóruns do grupo."
+      tip3: Mande para qualquer pessoa
+      tip3_text: "Você pode mandar o link de um grupo para qualquer pessoa na web, pois o cadastro não é necessário para visualizar os documentos ou fóruns do grupo."
     users:
       tip: Seguindo usuários
       tip_text: "Após seguir um usuário, você receberá atualizaçoes no seu painel sobre ações feitas por tal usuário, como adiçoes de documentos, entrada em grupos, atualizações de status, etc."
-      tip2: Outras opçoes de autenticação
-      tip2_text: "Você pode editar seu perfil e adicionar outras opções de autenticação como Facebook ou Twitter, fazendo o processo de se logar no Universitas tão fácil quanto clicar no ícone do serviço correspondente na barra de navegação."
+      tip2: Importar dados pessoais do Twitter/Facebook
+      tip2_text: "Você pode importar seus dados pessoais do Twitter ou Facebook como sua foto, localidade, biografia, e-mail e website adicionando-os como opções de autenticação na página Editar Perfil. Links para seus perfis nestes serviços também serão adicionados automaticamente."
     forums:
       tip: Sobre os Fóruns
       tip_text: "Os fóruns são feitos para discussões e compartilhamento de informações, cada fórum contém vários tópicos que, por sua vez, contém varios posts, então fique à vontade para escolher um tópico (ou criar um novo) e saia postando!"
