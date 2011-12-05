@@ -1,10 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.5'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2', '0.2.7'
 gem 'haml'
 gem 'inherited_resources'
@@ -31,10 +27,13 @@ gem 'mime-types'
 
 group :development do
 	gem 'annotate'
-	gem "rspec"
+  gem 'bullet'
+end
+
+group :test do
+  gem "rspec"
   gem "rspec-rails"
   gem 'steak'
-  gem 'bullet'
   gem "capybara"
   gem 'factory_girl_rails'
   gem 'valid_attribute'
