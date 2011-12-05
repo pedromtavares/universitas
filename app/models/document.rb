@@ -19,7 +19,7 @@ class Document < ActiveRecord::Base
 	MAXIMUM_FILE_SIZE_MB = MAXIMUM_FILE_SIZE/1000000
 	
 	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 100 }
-	validates :file, :length => {:maximum => MAXIMUM_FILE_SIZE, :message => I18n.t('custom_messages.file_validation', :size => MAXIMUM_FILE_SIZE_MB)}
+	validates :file, :length => {:maximum => MAXIMUM_FILE_SIZE, :message => I18n.t('custom_messages.file_validation', :size => MAXIMUM_FILE_SIZE_MB)}, :if => lambda { self.file.present? }
 	validates :description, :length => {:maximum => 1000}
 	
 	scope :recent, order('created_at desc').limit(5)

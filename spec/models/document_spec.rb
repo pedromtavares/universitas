@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 class FakeFile
-  attr_accessor :size, :original_filename
+  attr_accessor :size, :original_filename, :length
   def initialize(name)
     @size = 50
+    @length = @size
     @original_filename = name.split('/').last
   end
 end
