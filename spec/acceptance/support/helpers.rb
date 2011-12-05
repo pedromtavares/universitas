@@ -18,8 +18,8 @@ module HelperMethods
     user = User.find_by_login(login)
     users << Factory(:user, :login => login, :name => "Default User") unless user
     visit login_page
-    fill_in("Login", :with => login)
-    fill_in("Password", :with => "123456")
+    fill_in("user_login", :with => login)
+    fill_in("user_password", :with => "123456")
     click_button("Sign In")
   end
   

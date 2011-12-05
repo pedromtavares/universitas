@@ -2,48 +2,24 @@ module NavigationHelpers
   # Put helper methods related to the paths in your application here.
 
   def homepage
-    "/"
-  end
-  
-  def dashboard
-    "/dashboard"
+    root_path
   end
   
   def login_page
-    "/users/sign_in"
+    new_user_session_path 
   end
   
   def signup_page
-    "/users/sign_up"
+    new_user_registration_path
   end
   
-  def users_page
-    "/users"
-  end
-  
-  def profile_page
-    "/users/#{User.first.login}"
-  end
-  
-  def edit_profile_page
-    "/profile/edit"
+  def profile
+    profile_path(User.first)
   end
   
   def other_user_profile
-    "/users/#{User.last.login}"
+    profile_path(User.last)
   end
-
-	def groups_page
-		groups_path
-	end
-	
-	def group_page(group)
-		group_path(group)
-	end
-	
-	def group_creation_page
-		new_group_path
-	end
   
 end
 

@@ -15,7 +15,7 @@
           = t('groups.new')
     %li.fr
       - if current_user
-        =link_to profile_path(current_user) do
+        =link_to profile_path(current_user), :id => "logged-in-user" do
           = current_user
           %span.arrow-down
         %ul

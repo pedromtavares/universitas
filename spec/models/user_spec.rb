@@ -172,6 +172,7 @@ describe User do
 		
 end
 
+
 # == Schema Information
 #
 # Table name: users
@@ -187,7 +188,7 @@ end
 #  facebook             :string(255)
 #  image                :string(255)
 #  description          :text
-#  show_email           :boolean(1)      default(TRUE)
+#  show_email           :boolean(1)      default(FALSE)
 #  email                :string(255)     default(""), not null
 #  encrypted_password   :string(128)     default(""), not null
 #  reset_password_token :string(255)
@@ -200,5 +201,7 @@ end
 #  last_sign_in_ip      :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  locale               :string(255)     default("en")
+#  authentication_token :string(255)
 #
 

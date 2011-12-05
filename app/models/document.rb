@@ -1,19 +1,3 @@
-# == Schema Information
-# Schema version: 20110227225207
-#
-# Table name: documents
-#
-#  id           :integer(4)      not null, primary key
-#  name         :string(255)
-#  description  :text
-#  file         :string(255)
-#  user_id      :integer(4)
-#  content_type :string(255)
-#  file_size    :integer(4)
-#  created_at   :datetime
-#  updated_at   :datetime
-#
-
 class Document < ActiveRecord::Base
 	belongs_to :uploader, :class_name => "User", :foreign_key => 'user_id'
 	has_many :user_documents, :dependent => :destroy
@@ -89,3 +73,22 @@ class Document < ActiveRecord::Base
 	end
 	
 end
+
+# == Schema Information
+#
+# Table name: documents
+#
+#  id                :integer(4)      not null, primary key
+#  name              :string(255)
+#  description       :text
+#  file              :string(255)
+#  user_id           :integer(4)
+#  content_type      :string(255)
+#  file_size         :integer(4)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  scribd_doc_id     :string(255)
+#  scribd_access_key :string(255)
+#  extension         :string(255)
+#
+

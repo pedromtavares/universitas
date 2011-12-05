@@ -15,7 +15,7 @@ feature "Signup", %q{
     fill_in("Password confirmation", :with => "123456")
     click_button("Sign Up")
     page.should have_content("You have signed up successfully.")
-    current_path.should == dashboard
+    current_path.should == homepage
   end
   
   scenario "Signing up with invalid data" do
@@ -27,6 +27,6 @@ feature "Signup", %q{
     fill_in("Password confirmation", :with => "123456")
     click_button("Sign Up")
     page.should have_content("is too short (minimum is 4 characters)")
-    current_path.should == users_page
+    current_path.should == users_path
   end
 end

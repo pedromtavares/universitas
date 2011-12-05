@@ -1,22 +1,3 @@
-# == Schema Information
-# Schema version: 20110227225207
-#
-# Table name: groups
-#
-#  id              :integer(4)      not null, primary key
-#  name            :string(255)
-#  description     :text
-#  user_id         :integer(4)
-#  cached_slug     :string(255)
-#  image           :string(255)
-#  status          :string(255)
-#  modules_count   :integer(4)      default(0)
-#  members_count   :integer(4)      default(0)
-#  documents_count :integer(4)      default(0)
-#  created_at      :datetime
-#  updated_at      :datetime
-#
-
 class Group < ActiveRecord::Base
   has_many :members, :class_name => 'GroupMember', :dependent => :destroy
 	has_many :users, :through => :members
@@ -110,3 +91,24 @@ class Group < ActiveRecord::Base
 		self.forums.create(:title => "Default")
 	end
 end
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id              :integer(4)      not null, primary key
+#  name            :string(255)
+#  description     :text
+#  user_id         :integer(4)
+#  cached_slug     :string(255)
+#  image           :string(255)
+#  status          :string(255)
+#  modules_count   :integer(4)      default(0)
+#  members_count   :integer(4)      default(0)
+#  documents_count :integer(4)      default(0)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  public          :boolean(1)      default(FALSE)
+#  archived        :boolean(1)      default(FALSE)
+#
+

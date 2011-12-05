@@ -78,6 +78,7 @@ describe Group do
 	end
 end
 
+
 # == Schema Information
 #
 # Table name: groups
@@ -94,5 +95,7 @@ end
 #  documents_count :integer(4)      default(0)
 #  created_at      :datetime
 #  updated_at      :datetime
+#  public          :boolean(1)      default(FALSE)
+#  archived        :boolean(1)      default(FALSE)
 #
 
