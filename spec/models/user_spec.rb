@@ -125,11 +125,11 @@ describe User do
 	      @user.follow!(@followed)
 			end
 			it 'should return a feed with updates on the users it follows as well as its own' do
-	      @user.feed.to_a.should == @followed.updates + @group.updates + @user.updates
+	      @user.feed.to_a.should =~ @followed.updates + @group.updates + @user.updates
 	    end
 
 			it 'should return a timeline with its updates only' do
-	      @user.timeline.to_a.should == @user.updates.to_a
+	      @user.timeline.to_a =~ @user.updates.to_a
 			end
 		end
 		
