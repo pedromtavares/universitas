@@ -55,7 +55,7 @@ Universitas::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
   
-  config.assets.precompile += ['history.js', 'theme/ie.css']
+  config.assets.precompile += ['history.js', 'theme/ie.css', 'textile_reference.css']
   
   config.active_support.deprecation = :notify
 end
