@@ -10,6 +10,8 @@ set :scm,                 :git
 ssh_options[:paranoid]    = false
 default_run_options[:pty] = true
 
+set :branch, "rails31"
+
 role :app, "66.228.47.42"
 role :web, "66.228.47.42"
 role :db,  "66.228.47.42", :primary => true
