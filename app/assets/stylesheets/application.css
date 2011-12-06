@@ -1,3 +1,13 @@
+/*
+*= require theme/reset
+*= require theme/grid
+*= require theme/style
+*= require theme/messages
+*= require theme/forms
+*= require theme/tables
+*= require_self
+*= require uploadify
+*/
 /******* Helpers *******/
 .none{
 	display: none; 
@@ -40,6 +50,12 @@
 }
 
 /******* General Custom CSS *******/
+
+#app-logo{
+  margin-top:5px;
+  margin-bottom:-10px;
+  margin-left:-20px;
+}
 
 .hint-box{
 	font-size: 10px;

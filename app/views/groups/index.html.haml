@@ -1,7 +1,7 @@
 .main-content.grid_4.alpha
   %header
     %ul.action-buttons.clearfix.fr
-      / %li= action_button(t('groups.new'), :add)
+      %li= loading_icon
     .view-switcher
       %h2
         = @filter.present? ? t("groups.#{@filter}") : t('groups.all')

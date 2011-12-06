@@ -1,3 +1,14 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.tools.min
+//= require jquery.endless-scroll
+//= require swfobject
+//= require jquery.uploadify.min
+//= require cocoon
+//= require theme
+//= require_self
+
+
 // Function to rebind all important UI events after DOM updates
 function rebindToDOM(){
   var scrollLock = true;
@@ -94,9 +105,7 @@ $(function(){
 	  $('#group-tips').slideDown();
     $('#forum-tips').slideUp();
 	});
-	
-	$('a[rel*=facebox]').facebox();
-	
+		
 	/******* Filters *******/
   
   $(".filters > a").live('click', function() {

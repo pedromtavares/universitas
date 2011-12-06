@@ -2,6 +2,7 @@
   %header
     %ul.action-buttons.clearfix.fr
       %li= action_link(t('documents.new'), :add, :path => new_document_path, :class => 'overlay', :rel => "#overlay") if current_user
+      %li= loading_icon
     .view-switcher
       %h2
         = document_title_for(@filter)

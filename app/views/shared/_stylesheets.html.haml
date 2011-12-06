@@ -1,5 +1,4 @@
-= stylesheet_link_tag "theme/reset", "theme/grid", "theme/style", "theme/messages", "theme/forms", "theme/tables", "smoothness/jquery-ui-1.8.10", "application", 'uploadify', 'facebox'
+= stylesheet_link_tag 'application'
 /[if lte IE 8]
-  = stylesheet_link_tag 'theme/ie'
-%link{:rel => 'shortcut icon', :href => '/images/favicon.png'}
-
+  = stylesheet_link_tag(asset_path('theme/ie.css'))
+=favicon_link_tag 'favicon.png'

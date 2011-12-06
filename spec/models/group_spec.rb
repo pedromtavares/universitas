@@ -9,6 +9,9 @@ describe Group do
   	it "should have a name" do
   		Factory.build(:group, :name => nil).should_not be_valid
   	end
+  	it "should not have a name that conflicts with an app path" do
+  	  Factory.build(:group, :name => "profile").should_not be_valid
+  	end
   end
 	
 	it "should return its name on #to_s" do

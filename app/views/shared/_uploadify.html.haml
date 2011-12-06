@@ -8,7 +8,7 @@
       #{extra}
     };
     $('input#file').uploadify({
-      'uploader'     : '/images/uploadify.swf',
+      'uploader'     : '#{asset_path "uploadify.swf"}',
       'script'       : '#{documents_path}',
       'fileDataName' : 'file',
       'fileExt'      : '*.png;*.jpg;*.gif;*.jpeg;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.pdf;*.txt',

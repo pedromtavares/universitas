@@ -96,7 +96,7 @@ $(document).ready(function() {
         var url = $(this).find('.more').attr('href');
         if (!$(this).hasClass('current')) {
             $('.preview-pane .preview').animate({left: "-375px"}, 300, function(){
-                $(this).animate({left: "-22px"}, 500).html('<div class="center"><img src="/images/loading.gif"/></div>');
+                $(this).animate({left: "-22px"}, 500).html("");
                 $.getScript(url);
             });
         } else {
@@ -108,7 +108,7 @@ $(document).ready(function() {
     
     $('.activate-preview').live('click', function() {
       $('.preview-pane .preview').animate({left: "-375px"}, 300, function(){
-          $(this).animate({left: "-22px"}, 500).html('<div class="center"><img src="/images/loading.gif"/></div>');
+          $(this).animate({left: "-22px"}, 500).html("");
       });
       return false;
     });

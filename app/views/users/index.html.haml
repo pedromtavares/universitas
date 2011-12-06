@@ -2,6 +2,7 @@
   %header
     %ul.action-buttons.clearfix.fr
       %li= action_button(t('shared.profile'), :profile, :path => profile_path(current_user)) if current_user
+      %li=loading_icon
     .view-switcher
       %h2
         = user_title_for(@filter)

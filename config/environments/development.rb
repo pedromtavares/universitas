@@ -11,7 +11,7 @@ Universitas::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
+  # config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
@@ -20,6 +20,12 @@ Universitas::Application.configure do
   config.active_support.deprecation = :log
   
   config.action_mailer.default_url_options = { :host => 'universitas.dev' }
+  
+  # Do not compress assets
+  config.assets.compress = false
+
+  # Expands the lines which load the assets
+  config.assets.debug = true
 
 	config.after_initialize do
 	  Bullet.enable = false
