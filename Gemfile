@@ -24,6 +24,7 @@ gem 'hoptoad_notifier'
 gem 'kgio', '2.4.1'
 gem 'rest-client'
 gem 'mime-types'
+gem 'resque'
 gem 'jquery-rails'
 
 # Gems used only for assets and not required
