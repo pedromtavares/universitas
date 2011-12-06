@@ -39,5 +39,5 @@ namespace :deploy do
 	end
 end
 
-after 'deploy', 'deploy:symlink_db'
-after 'deploy', 'deploy:symlink_services'
+after 'deploy:update_code', 'deploy:symlink_db'
+after 'deploy:update_code', 'deploy:symlink_services'
