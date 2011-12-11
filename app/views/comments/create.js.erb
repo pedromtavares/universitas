@@ -5,4 +5,5 @@ if ($('#comments').length != 0){
   $('#new-document-comment').val('');  
 }else{
   $('#lists').html("<%= escape_javascript(partial('list', :collection => @comment))%>");
+  $('#new-document-comment').val(''); 
 }
