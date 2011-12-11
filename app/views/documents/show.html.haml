@@ -23,13 +23,21 @@
         =button_link_to t('documents.view_this'), view_document_path(resource), :color => 'red full_overlay', :rel => "#scribd_overlay"      
       
   %section
+    - if current_user
+      = form_tag comments_path, :remote => true do
+        = hidden_field_tag 'document_id', resource.id
+        = text_field_tag :text, '', :placeholder => t('comments.placeholder'), :id => "new-document-comment"
+        = submit_button do
+          = t('shared.submit')
+    %br.clear
     .filters.center
       - options = {:type => :document, :id => resource.id}
-      =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => groups_path(options)
+      =button_link_to t('comments.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => comments_path(options) 
+      =button_link_to t('groups.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => groups_path(options)
       =button_link_to t('users.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options)
       %br
       %br
       =loading_icon
-    #lists= partial('groups/list', {:collection => resource.groups.order('created_at desc')}.merge(options))
+    #lists= partial('comments/list', {:collection => resource.comments.order('created_at desc')}.merge(options))
     
 =render_sidebar

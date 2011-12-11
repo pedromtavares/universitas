@@ -4,6 +4,7 @@
 //= require jquery.endless-scroll
 //= require swfobject
 //= require jquery.uploadify.min
+//= require jquery.focusend
 //= require cocoon
 //= require theme
 //= require_self
@@ -97,7 +98,12 @@ $(function(){
 		$(this).addClass('none');
 	});
 		
-
+  $('#new-document-comment').keyup(function() {
+    if ($(this).val().length > 42){
+      $(this).replaceWith('<textarea name=text id=new-document-comment>'+$(this).val()+'</textarea>');
+      $('#new-document-comment').focusEnd();
+    }
+  });
 	
 	$("#group-breadcrumb").live('click', function() {
 	  $('#slide-content').slideUp('slow');

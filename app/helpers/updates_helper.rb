@@ -15,6 +15,8 @@ module UpdatesHelper
 			"#{preview_link(target.author, target.author)} #{t('updates.posted_topic')} #{link_to(target.topic, target.topic)}: '#{target.text.try(:truncate,100)}'"
 		elsif update.to_topic?
 			"#{preview_link(target.author, target.author)} #{t('updates.created_topic')} #{link_to(target, target)}: '#{target.text.try(:truncate,100)}'"
+		elsif update.to_comment?
+		  "#{t('updates.commented')} #{link_to(target.target, target.target)}: '#{target.text.try(:truncate,100)}'"
 		elsif update.to_group?
 			if update.from_user?
 				if update.custom_message?
@@ -64,6 +66,8 @@ module UpdatesHelper
 			partial 'shared/previews/post', :update => update
 		elsif update.to_topic?
 			partial 'shared/previews/topic', :update => update
+		elsif update.to_comment?
+		  partial 'shared/previews/comment', :update => update
 		elsif update.to_group?
 			if update.from_user?
 				partial 'shared/previews/new_group', :update => update

@@ -1,0 +1,14 @@
+- comment ||= update.target
+.message.info= comment.text
+%em.small
+  =t('posts.posted')
+  =time_ago_in_words comment.created_at
+  =t('shared.ago')
+  =t('shared.by').downcase
+  =comment.user
+%h3= t('documents.singular')
+%hr
+= partial 'shared/previews/document', :document => comment.target
+%h3= t('users.singular')
+%hr
+= partial 'shared/previews/user', :user => comment.user

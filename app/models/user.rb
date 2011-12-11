@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 	has_many :uploaded_documents, :class_name => 'Document'
 	has_many :authentications, :dependent => :destroy
 	has_many :posts, :dependent => :destroy
+	has_many :comments, :dependent => :destroy
 	
 	scope :recent, order('created_at desc').limit(5)
   
@@ -108,6 +109,14 @@ class User < ActiveRecord::Base
 	def remove_document(document_id)
 		document = Document.find(document_id)
 		self.user_documents.find_by_document_id(document).destroy if self.has_document?(document)
+	end
+	
+	def add_comment(text, target)
+	  self.comments.create(:text => text, :target => target)
+	end
+	
+	def remove_comment(comment)
+	  self.comments.find(comment).destroy
 	end
 	
 	def has_provider?(provider)

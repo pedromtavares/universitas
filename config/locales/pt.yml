@@ -32,6 +32,7 @@ pt:
     view: Ver
     type: Tipo
     send: Enviar
+    delete: Deletar
   views:
     pagination:
       previous: ‹ Ant
@@ -66,6 +67,7 @@ pt:
     promoted_message: dizendo
     created_topic: acabou de criar um novo tópico
     posted_topic: acabou de postar no tópico
+    commented: comentou no documento 
     all: Tudo
   account:
     self: Conta
@@ -305,7 +307,7 @@ pt:
     singular: Post
     new: Novo Post
     delete: Deletar
-    are_you_sure: Tem certeza que desejar deletar este post?
+    are_you_sure: Tem certeza que deseja deletar este post?
     post: Postar
     reply: Responder
     reply_to: Responder a este post
@@ -318,6 +320,13 @@ pt:
     error: "Houve um problema com seu post."
     no_permission: "Você não tem permissão para fazer isso."
     blank: Não há posts nesse tópico
+  comments:
+    singular: Comentário
+    plural: Comentários
+    placeholder: Deixe um comentário neste documento
+    are_you_sure: Tem certeza que deseja deletar este comentário?
+    blank:
+      documents: Este documento não possui comentários ainda.
   tips:
     self: Dicas
     documents:

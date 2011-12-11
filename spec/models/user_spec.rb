@@ -165,9 +165,23 @@ describe User do
 				@user.email.should_not == @omniauth['user_info']['email'] #user already has email
 				@user.twitter.should == @omniauth['user_info']['urls']['Twitter']
 				@user.image.should be_blank
-				
 			end
+		end
 		
+		describe "comments" do
+      before(:each) do
+				@document = Factory(:document, :uploader => @user)
+			end
+			it 'should add a comment' do
+				@user.add_comment("test comment", @document)
+				@user.comments.should_not be_blank
+			end
+			
+			it 'should remove a comment' do
+			  comment = @user.add_comment("test comment", @document)
+				@user.remove_comment(comment)
+				@user.reload.comments.should_not include(comment)
+			end
 		end
 		
 end

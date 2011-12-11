@@ -4,6 +4,8 @@ class Document < ActiveRecord::Base
 	has_many :group_documents, :dependent => :destroy
 	has_many :users, :through => :user_documents
 	has_many :groups, :through => :group_documents
+	has_many :comments, :as => :target, :dependent => :destroy
+	
 	has_friendly_id :name, :use_slug => true
 	
 	attr_accessible :uploader, :name, :file, :description, :file_size, :scribd_doc_id, :scribd_access_key, :content_type, :extension

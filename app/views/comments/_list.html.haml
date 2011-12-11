@@ -1,0 +1,11 @@
+- filter ||= nil; type ||= nil; id ||= nil;
+- unless collection.blank?
+  #infinite-scroll.none
+  %ul.listing.list-view.clearfix.endless#comments{'data-url' => comments_path(:filter => filter, :type => type, :id => id)}
+    = render collection
+  .center= loading_icon
+- else
+  %p.center
+    - case type.to_s
+    - when 'document'
+      = t('comments.blank.documents')

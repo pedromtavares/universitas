@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130053941) do
+ActiveRecord::Schema.define(:version => 20111209032541) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +22,17 @@ ActiveRecord::Schema.define(:version => 20111130053941) do
   end
 
   add_index "authentications", ["uid", "provider"], :name => "index_authentications_on_uid_and_provider"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id", "target_id", "target_type"], :name => "index_comments_on_user_id_and_target_id_and_target_type"
 
   create_table "documents", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,21 @@
+%li.custom.clearfix.post{:id => "comment-#{comment.id}"}
+  .content
+    .avatar{:style => "clear:left"}
+      = avatar_for(comment.user)
+      %br
+      .center.user= link_to comment.user, user_path(comment.user), :remote => true, :class => 'activate-preview'
+    = link_to "&raquo;", comment_path(comment), :class => "more"
+    %span.timestamp
+      .left.spaced-right
+        =t('posts.posted')
+        =time_ago_in_words comment.created_at
+        =t('shared.ago')
+      - if comment.created_at != comment.updated_at
+        .left.spaced-left
+          =t('posts.edited')
+          =time_ago_in_words comment.updated_at
+          =t('shared.ago')
+    .text= comment.text
+  - if current_user
+    .entry-meta.actions  
+      .right= action_button t('shared.delete'), :remove, :path => comment_path(comment), :method => :delete, :remote => true, :confirm => t('comments.are_you_sure'), :class => 'remove' if comment.user == current_user || comment.document.uploader == current_user

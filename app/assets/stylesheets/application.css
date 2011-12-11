@@ -62,6 +62,10 @@
 	color: gray;
 }
 
+#new-document-comment{
+  width:77%;
+}
+
 /******* Dashboard & Updates *******/
 
 .updates{

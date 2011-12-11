@@ -1,0 +1,8 @@
+if ($('#comments').length != 0){
+  $('#comments').prepend("<%=escape_javascript(render @comment)%>");
+  $('#comment-<%=@comment.id%>').hide();
+  $('#comment-<%=@comment.id%>').slideDown("slow");
+  $('#new-document-comment').val('');  
+}else{
+  $('#lists').html("<%= escape_javascript(partial('list', :collection => @comment))%>");
+}

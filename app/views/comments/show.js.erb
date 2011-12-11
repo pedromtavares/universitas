@@ -1,0 +1,2 @@
+$('.preview-pane .preview').html("<%= escape_javascript(render :partial => 'shared/previews/comment', :locals => {:comment => @comment})%>");
+rebindToDOM();

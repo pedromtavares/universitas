@@ -52,6 +52,8 @@ Universitas::Application.routes.draw do
 	resources :updates, :except => [:update]
 	
 	resources :authentications
+	
+	resources :comments
 		
 	resource :home, :only => :show, :controller => 'home'
 	resource :about, :only => [:show, :create], :controller => 'about'

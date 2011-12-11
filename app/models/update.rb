@@ -27,7 +27,7 @@ class Update < ActiveRecord::Base
 	end
 	
 	# generates to_user?, to_group_document?, etc...
-	[User, Group, UserDocument, GroupDocument, GroupMember, Post, Topic].each do |klass|
+	[User, Group, UserDocument, GroupDocument, GroupMember, Post, Topic, Comment].each do |klass|
 		class_eval %Q!
 			def to_#{klass.to_s.underscore}?
 				self.target.class.to_s == '#{klass.to_s}'
