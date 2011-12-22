@@ -28,8 +28,8 @@
     #slide-content{:style => 'display:none'}
     #group-show
       - if current_user && current_user.leader_of?(@group)
-        = form_tag update_status_group_path(@group), :method => :put do
-          = text_field_tag :status, @group.status, :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
+        = form_tag update_status_group_path(@group), :method => :put, :remote => true do
+          = text_field_tag :status, '', :maxlength => 100, :placeholder => t('groups.status'), :style => 'width:77%'
           = submit_button do
             =t('shared.update')
         %br.clear
@@ -40,7 +40,7 @@
         - options = {:type => :group, :id => @group.id}
         =button_link_to t('documents.plural'), "javascript:void(0)", :color => 'blue button-green', :'data-url' => documents_path(options)
         =button_link_to t('members.plural'), "javascript:void(0)", :color => 'blue', :'data-url' => users_path(options)
-        =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options)
+        =button_link_to t('groups.timeline'), "javascript:void(0)", :color => 'blue', :'data-url' => updates_path(options), :id => 'group-timeline'
         %br
         %br
       #lists= partial('documents/list', {:collection => @group.documents.order('created_at desc')}.merge(options))

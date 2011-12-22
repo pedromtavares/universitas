@@ -158,7 +158,7 @@ pt:
     have_left: Você saiu do grupo
     my_groups: Meus Grupos
     joined_none: "Você ainda não entrou em nenhum grupo."
-    status: "Status do Grupo"
+    status: "Atualizar status do grupo"
     timeline: Atualizações
     blank_timeline: Ainda não há atualizações deste grupo!
     promote: Promover este grupo
@@ -173,6 +173,7 @@ pt:
     sign_in_alert: Você deve entrar ou se cadastrar antes de criar um grupo.
     goto: Ir para a página deste grupo
     recent_members: Membros Recentes
+    updated_status: O status do grupo foi atualizado com sucesso.
     blank:
       any: Nenhum grupo foi retornado.
       users: Este usuário não está em nenhum grupo.

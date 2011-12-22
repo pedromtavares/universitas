@@ -57,12 +57,11 @@ class GroupsController < InheritedResources::Base
 
 	def update_status
 		resource.update_status(params[:status])
-		redirect_to resource_path
 	end
 	
 	def promote
 		resource.promote(params[:message], current_user)
-		redirect_to resource_path, :notice => "#{t('groups.have_promoted')}"
+		redirect_to resource_path, :notice => t('groups.have_promoted')
 	end
   
   protected

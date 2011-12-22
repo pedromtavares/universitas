@@ -164,7 +164,7 @@ en:
     have_left: You have left the group
     my_groups: My Groups
     joined_none: "You haven't joined any groups yet."
-    status: "Group Status"
+    status: "Update this group's status"
     timeline: Timeline
     blank_timeline: There are no updates from this group yet!
     promote: Promote this group
@@ -180,6 +180,7 @@ en:
     sign_in_alert: You must sign in or sign up first before creating a group.
     goto: Go to this group's page
     recent_members: Recent Members
+    updated_status: Group status successfully updated.
     blank:
       any: No groups were retrieved.
       users: This user has no groups yet.
