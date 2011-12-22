@@ -1,5 +1,5 @@
 class CommentsController < InheritedResources::Base
-  respond_to :html, :js
+  respond_to :js
   
   def index
 	  @filter = params[:filter]

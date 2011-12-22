@@ -22,7 +22,7 @@ class GroupsController < InheritedResources::Base
 	    return
     end
 	  @group = Group.new
-	  @documents = current_user.documents.order('created_at desc')
+	  @documents = current_user ? current_user.documents.order('created_at desc') : nil
 	  render :layout => 'overlay'
 	end
 	
