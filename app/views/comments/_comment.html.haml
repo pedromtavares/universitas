@@ -18,4 +18,4 @@
     .text= comment.text
   - if current_user
     .entry-meta.actions  
-      .right= action_button t('shared.delete'), :remove, :path => comment_path(comment), :method => :delete, :remote => true, :confirm => t('comments.are_you_sure'), :class => 'remove' if comment.user == current_user || comment.document.uploader == current_user
+      .right= action_button t('shared.delete'), :remove, :path => comment_path(comment), :method => :delete, :remote => true, :confirm => t('comments.are_you_sure'), :class => 'remove' if comment.user == current_user || comment.target.uploader == current_user

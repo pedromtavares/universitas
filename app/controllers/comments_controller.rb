@@ -12,6 +12,12 @@ class CommentsController < InheritedResources::Base
     end
   end
   
+  def show
+    respond_to do |format|
+      format.html{redirect_to resource.target}
+    end
+  end
+  
   def destroy
     current_user.remove_comment(resource)
   end
