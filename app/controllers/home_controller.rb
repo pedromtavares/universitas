@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   require 'rest-client'
-  skip_before_filter :set_breadcrumbs
   
   def show
   end

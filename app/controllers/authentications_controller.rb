@@ -42,10 +42,5 @@ class AuthenticationsController < ApplicationController
 		end
 		redirect_to edit_profile_url
 	end
-	
-	private
-
-	def set_breadcrumbs
-	end
 
 end

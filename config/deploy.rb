@@ -21,13 +21,13 @@ require 'hoptoad_notifier/capistrano'
 
 namespace :deploy do
   task :start do
-    sudo "/etc/init.d/unicorn start"
+    sudo "/etc/init.d/unicorn_universitas start"
   end
   task :stop do
-    sudo "/etc/init.d/unicorn stop"
+    sudo "/etc/init.d/unicorn_universitas stop"
   end
   task :restart do
-    sudo "/etc/init.d/unicorn reload"
+    sudo "/etc/init.d/unicorn_universitas reload"
   end
 	task :symlink_db, :roles => :app do
 		run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"

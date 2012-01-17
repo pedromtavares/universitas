@@ -13,3 +13,4 @@ config/database.yml
 config/services.yml
 .rspec
 .sass-cache/
+*.rdb
