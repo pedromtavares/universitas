@@ -1,34 +1,27 @@
-%aside.grid_1
-  %nav.global
-    %ul.clearfix
-      - items = %w{updates groups documents users}
-      - items.each do |type|
-        - next if type == 'updates' && !current_user
-        %li{:class => "#{controller_name == type ? 'active' : ''}"}= link_to t("#{type}.plural"), sidebar_url_for(type), :class => "nav-icon icon-#{type}"
-  - if current_user
-    - recent_groups = current_user.groups.order('created_at desc').limit(3)
-    - recent_documents = current_user.documents.order('created_at desc').limit(3)
-    - if recent_groups.present?
-      %nav.subnav.recent
-        %h4= t('groups.recent')
-        %ul.clearfix
-          - recent_groups.each do |group|
-            %li
-              =link_to group_path(group) do
-                %h5= group
-              .tooltip.left
-                %span.left=image_tag(group.image_url)
-                %h5= group
-                %h6= group.description
-    - if recent_documents.present?
-      %nav.subnav.recent
-        %h4= t('documents.recent')
-        %ul.clearfix
-          - recent_documents.each do |doc|
-            %li
-              =link_to document_path(doc) do
-                %h5= doc
-              .tooltip.left
-                %span.left=document_icon_for(doc)
-                %h5= doc
-                %h6= doc.description
+- if current_user
+  - recent_groups = current_user.groups.order('created_at desc').limit(3)
+  - recent_documents = current_user.documents.order('created_at desc').limit(3)
+  - if recent_groups.present?
+    %nav.subnav.recent
+      %h4= t('groups.recent')
+      %ul.clearfix
+        - recent_groups.each do |group|
+          %li
+            =link_to group_path(group) do
+              %h5= group
+            .tooltip.left
+              %span.left=image_tag(group.image_url)
+              %h5= group
+              %h6= group.description
+  - if recent_documents.present?
+    %nav.subnav.recent
+      %h4= t('documents.recent')
+      %ul.clearfix
+        - recent_documents.each do |doc|
+          %li
+            =link_to document_path(doc) do
+              %h5= doc
+            .tooltip.left
+              %span.left=document_icon_for(doc)
+              %h5= doc
+              %h6= doc.description

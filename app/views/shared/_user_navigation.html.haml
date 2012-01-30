@@ -1,10 +1,11 @@
 .block
   .text Browse & discover
   .links
-    = link_to 'groups', '#', :class => ''
-    = link_to 'users', '#', :class => ''
-    = link_to 'docs', '#', :class => ''
-
+    - items = %w{updates groups documents users}
+    - items.each do |type|
+      - next if type == 'updates' && !current_user
+      = link_to t("#{type}.plural"), sidebar_url_for(type)
+    
 .separator
     
 .block
@@ -12,7 +13,12 @@
   .links
     = link_to 'news feed', '#', :class => ''
     = link_to 'groups', '#', :class => ''
-    = link_to 'docs', '#', :class => ''   
+    = link_to 'docs', '#', :class => '' 
+  - if current_user
+    %div
+      = link_to new_group_path, :class => "button button-blue", :rel => "#overlay", :id => 'new-group-button' do
+        %span.add
+        = t('groups.new')  
 
 .separator
 
@@ -27,3 +33,36 @@
 .separator
 
 
+
+
+
+
+%ul
+
+  - if !current_user
+    %li.action{:style => "margin-left:10px"}
+      = link_to new_group_path(:set_session => true), :class => "button button-blue", :id => 'new-group-button' do
+        %span.add
+        = t('groups.new')
+  %li.fr
+    - if current_user
+      =link_to profile_path(current_user), :id => "logged-in-user" do
+        = current_user
+        %span.arrow-down
+      %ul
+        %li= link_to t('groups.my'), groups_path(:filter => :my)
+        %li= link_to t('documents.my_documents'), documents_path(:filter => :my)
+        %li= link_to "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path
+        %li= link_to t("shared.signout"), destroy_user_session_path
+    - else
+      =link_to new_user_session_path do
+        = t("shared.signin")
+        %span.arrow-down
+      %ul
+        %li=link_to t('auth.login'), new_user_session_path
+        - on_each_provider do |provider|
+          %li
+            = link_to "/auth/#{provider}" do
+              = image_tag("auth/signin_#{provider}_small.png", :alt => t("auth.signin_#{provider}"), :style => 'margin-bottom:-5px')
+              = "#{t('shared.with')} #{provider.titleize}"
+      %li.fr= link_to t("shared.signup"), new_user_registration_path
