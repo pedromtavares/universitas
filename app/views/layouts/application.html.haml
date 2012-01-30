@@ -9,14 +9,14 @@
         
   %body
     #wrapper
-      #header
-        %header
-          %div{ :class => "container_8 clearfix" }
-            %h1.grid_1
-              %a{ :href => "/" }
+      #header_container
+        #header
+          %header
+            %h1
+              - link_to "/", :class => 'logo'
             = render :partial => 'shared/user_navigation' 
       %section
-        %div{ :class => "container_8 clearfix" }
+        %div
           = render :partial => 'shared/left_sidebar'
           %section{ :class => "main-section grid_7" }
             - flash.each do |type, message| 
