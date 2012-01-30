@@ -11,10 +11,9 @@
     #wrapper
       #header_container
         #header
-          %header
-            %h1
-              - link_to "/", :class => 'logo'
-            = render :partial => 'shared/user_navigation' 
+          %h1
+            - link_to "/", :class => 'logo'
+          = render :partial => 'shared/user_navigation' 
       %section
         %div
           = render :partial => 'shared/left_sidebar'

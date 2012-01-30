@@ -1,24 +1,3 @@
-
-
-
-
-
-
-
-%aside.grid_1
-  %nav.global
-    %ul
-      - items = %w{updates groups documents users}
-      - items.each do |type|
-        - next if type == 'updates' && !current_user
-        %li{:class => "#{controller_name == type ? 'active' : ''}"}= link_to t("#{type}.plural"), sidebar_url_for(type), :class => "nav-icon icon-#{type}"
-
-
-
-
-
-
-
 %nav.grid_5
   %ul.clearfix
     - pages = %w{home about}
