@@ -35,8 +35,7 @@ namespace :db do
 			name = Faker::Company.catch_phrase
 			group = Group.create!(:name => name,
 										:description => Faker::Lorem.paragraph,
-										:leader => User.find(n + 1),
-										:image => File.open("#{Rails.root}/spec/fixtures/rails.png"))
+										:leader => User.find(n + 1))
 			3.times do
 				GroupModule.create!(:group => group, :name => Faker::Lorem.paragraph[0..49], :description => Faker::Lorem.paragraph[0..199])
 			end
