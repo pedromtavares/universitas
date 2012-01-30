@@ -152,7 +152,7 @@ en:
     singular: Group
     plural: Groups
     all: All Groups
-    new: New Group
+    new: Create a group
     edit: Edit Group
     name: Name
     description: Description

@@ -1,39 +1,29 @@
-%nav.grid_5
-  %ul.clearfix
-    - pages = %w{home about}
-    - pages.each do |page|
-      %li{:class => "#{controller_name == page ? 'active' : ''}"}= link_to t("#{page}.plural"), url_for(send(page+"_path"))
-    - if current_user
-      %li.action{:style => "margin-left:10px"}
-        = link_to new_group_path, :class => "button button-blue overlay", :rel => "#overlay", :id => 'new-group-button' do
-          %span.add
-          = t('groups.new')
-    - else
-      %li.action{:style => "margin-left:10px"}
-        = link_to new_group_path(:set_session => true), :class => "button button-blue", :id => 'new-group-button' do
-          %span.add
-          = t('groups.new')
-    %li.fr
-      - if current_user
-        =link_to profile_path(current_user), :id => "logged-in-user" do
-          = current_user
-          %span.arrow-down
-        %ul
-          %li= link_to t('groups.my'), groups_path(:filter => :my)
-          %li= link_to t('documents.my_documents'), documents_path(:filter => :my)
-          %li= link_to "#{t('shared.edit')} #{t('shared.profile')}", edit_profile_path
-          %li= link_to t("shared.signout"), destroy_user_session_path
-      - else
-        =link_to new_user_session_path do
-          = t("shared.signin")
-          %span.arrow-down
-        %ul
-          %li=link_to t('auth.login'), new_user_session_path
-          - on_each_provider do |provider|
-            %li
-              = link_to "/auth/#{provider}" do
-                = image_tag("auth/signin_#{provider}_small.png", :alt => t("auth.signin_#{provider}"), :style => 'margin-bottom:-5px')
-                = "#{t('shared.with')} #{provider.titleize}"
-        %li.fr= link_to t("shared.signup"), new_user_registration_path
-      %li.fr{:class => "#{current_locale == :pt ? 'active' : ''}"}= link_to image_tag('icons/pt.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :pt)), :title => "Português"
-      %li.fr{:class => "#{current_locale == :en ? 'active' : ''}"}= link_to image_tag('icons/en.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :en)), :title => "English"
+.block
+  .text Browse & discover
+  .links
+    = link_to 'groups', '#', :class => ''
+    = link_to 'users', '#', :class => ''
+    = link_to 'docs', '#', :class => ''
+
+.separator
+    
+.block
+  .text My stuff
+  .links
+    = link_to 'news feed', '#', :class => ''
+    = link_to 'groups', '#', :class => ''
+    = link_to 'docs', '#', :class => ''   
+
+.separator
+
+.block
+  .locales
+    .flag{:class => "#{current_locale == :pt ? 'active' : ''}"}= link_to image_tag('icons/pt.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :pt)), :title => "Português"
+    .flag{:class => "#{current_locale == :en ? 'active' : ''}"}= link_to image_tag('icons/en.png', :style => 'margin-bottom:-8px'), url_for(params.merge(:locale => :en)), :title => "English"
+  .links
+    = link_to '', '#', :class => '' 
+    - pages = %w{ about}
+
+.separator
+
+

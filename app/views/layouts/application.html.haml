@@ -16,15 +16,13 @@
               %span universit.as  # for seo, hidden by css
           = render :partial => 'shared/user_navigation' 
       %section
-        %div
-          = render :partial => 'shared/left_sidebar'
-          %section{ :class => "main-section grid_7" }
-            - flash.each do |type, message| 
-              %div{ :class => "message #{ type } center closeable" }
-                %span.message-close
-                  %h3= message
-            = yield
-          #push
+        %section{ :class => "main-section grid_7" }
+          - flash.each do |type, message| 
+            %div{ :class => "message #{ type } center closeable" }
+              %span.message-close
+                %h3= message
+          = yield
+        #push
     %footer
       #footer-inner{ :class => "container_8 clearfix" }
         .grid_8

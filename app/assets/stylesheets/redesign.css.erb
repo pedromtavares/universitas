@@ -36,7 +36,7 @@
 #header #logo	{
 	
 	height: 70px;
-	width: 220px;
+	width: 200px;
 	margin: 19px 20px 0 0;
 	padding: 0;
 	float: left;
@@ -46,19 +46,36 @@
 	display: block;
 	height: 100%;
 	width: 100%;
-	
-	
 	background: url(<%= asset_path "universitas_logo.png" %>) no-repeat;
 }
 
 #header #logo a span { display:none;}
 
 
+#header .block	{ float:left; margin:15px 20px 0 0;}
 
+#header .text 				{ font-size: 19px; color: #cfcfcf; margin:0 0 5px 0;}
+#header .links a			{ font-size: 15px; color:#7289ff; text-decoration:underline; margin:0 6px 0 0 ;}
+
+#header .links a:hover			{  text-decoration:none;}
 
 #header h1.universitas_logo a	{ 
 	width:100px; height:70px; 
 }
+
+#header ul { list-style-type: none; }
+
+#header .separator { 
+	background: url(<%= asset_path "separator.png" %>) no-repeat;
+	width:10px;
+	display: block;
+	zoom: 1;
+	height: 51px;
+	float: left;
+	margin: 10px 10px 0 0;
+}
+
+
 
 
 .button		{
