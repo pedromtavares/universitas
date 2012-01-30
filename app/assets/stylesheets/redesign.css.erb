@@ -11,15 +11,11 @@
 
 
 #header_container {
-	background: linear-gradient(#FAFAFA,#EAEAEA) !important;
-	background: -moz-linear-gradient(#FAFAFA,#EAEAEA) !important;
-	background: -ms-linear-gradient(#FAFAFA,#EAEAEA) !important;
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#FAFAFA),color-stop(100%,#EAEAEA)) !important;
-	background: -webkit-linear-gradient(#FAFAFA,#EAEAEA) !important;
-	background: -o-linear-gradient(#FAFAFA,#EAEAEA) 
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#eaeaea')" !important;
+	background: -webkit-gradient(linear,0% 0,0% 100%,from(#FCFCFC),to(#E8E8E8));
+	background: -moz-linear-gradient(270deg,#FCFCFC,#ECECEC);
 	background: linear-gradient(#FAFAFA,#EAEAEA) !important; 
-
+	border-bottom: 2px #E1DFDF solid;
+	
 	height:70px !important;
 
     margin-bottom: 50px;
@@ -35,8 +31,35 @@
 #header 	{
 	width:1000px;
 	margin: 0 auto !important;
-	background: url(<%= asset_path "universitas_logo.png" %>) 0 20px no-repeat !important;
 }
+
+#header #logo	{
+	
+	height: 70px;
+	width: 220px;
+	margin: 19px 20px 0 0;
+	padding: 0;
+	float: left;
+}
+
+#header #logo a	{ 
+	display: block;
+	height: 100%;
+	width: 100%;
+	
+	
+	background: url(<%= asset_path "universitas_logo.png" %>) no-repeat;
+}
+
+#header #logo a span { display:none;}
+
+
+
+
+#header h1.universitas_logo a	{ 
+	width:100px; height:70px; 
+}
+
 
 .button		{
 	display: inline-block;

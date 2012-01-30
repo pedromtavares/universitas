@@ -11,8 +11,9 @@
     #wrapper
       #header_container
         #header
-          %h1
-            - link_to "/", :class => 'logo'
+          #logo
+            %a{ :href => "http://www.universit.as", :class => 'universitas_logo'}
+              %span universit.as  # for seo, hidden by css
           = render :partial => 'shared/user_navigation' 
       %section
         %div
