@@ -13,13 +13,17 @@
   .links
     = link_to 'news feed', '#', :class => ''
     = link_to 'groups', '#', :class => ''
-    = link_to 'docs', '#', :class => '' 
-  - if current_user
-    %div
+    = link_to 'docs', '#', :class => ''   
+  .actions
+    - if current_user
       = link_to new_group_path, :class => "button button-blue", :rel => "#overlay", :id => 'new-group-button' do
         %span.add
-        = t('groups.new')  
-
+        = t('groups.new')
+    - else
+      = link_to new_group_path(:set_session => true), :class => "button button-blue", :id => 'new-group-button' do
+        %span.add
+        = t('groups.new')
+          
 .separator
 
 .block
@@ -35,15 +39,8 @@
 
 
 
-
-
 %ul
 
-  - if !current_user
-    %li.action{:style => "margin-left:10px"}
-      = link_to new_group_path(:set_session => true), :class => "button button-blue", :id => 'new-group-button' do
-        %span.add
-        = t('groups.new')
   %li.fr
     - if current_user
       =link_to profile_path(current_user), :id => "logged-in-user" do
