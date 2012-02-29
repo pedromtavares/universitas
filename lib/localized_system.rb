@@ -1,4 +1,6 @@
 module LocalizedSystem
+  
+  LOCALES = ['en', 'pt']
 
   extend ActiveSupport::Memoizable
 
@@ -30,6 +32,7 @@ module LocalizedSystem
   end
 
   def set_locale
+    params[:locale] = false unless params[:locale].present? && LOCALES.include?(params[:locale])
     I18n.locale = cookies.permanent[:locale] = params[:locale] || cookies[:locale] || I18n.default_locale
 		current_user.update_attribute(:locale, I18n.locale) unless current_user.blank?
   end
