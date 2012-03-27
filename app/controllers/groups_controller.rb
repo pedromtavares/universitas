@@ -16,10 +16,10 @@ class GroupsController < InheritedResources::Base
 	end
 	
 	def new
-	  if params[:set_session].present?
-	    session[:new_group] = true;
-	    redirect_to new_user_session_path(:alert => :group)
-	    return
+    unless current_user
+      session[:new_group] = true if params[:set_session].present?
+      redirect_to new_user_session_path(:alert => :group)
+      return
     end
 	  @group = Group.new
 	  @documents = current_user ? current_user.documents.order('created_at desc') : nil
