@@ -15,7 +15,7 @@ class UpdatesController < InheritedResources::Base
   protected
   
   def scope_for(params)
-    last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
+    last = params[:last]
     if params[:id]
       case params[:type]
       when 'user'

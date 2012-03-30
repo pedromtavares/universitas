@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     self.updates.create!(:target => self, :custom_message => msg)    
   end
   
-  def feed(last = Time.now + 1.second, type = nil)
+  def feed(last = nil, type = nil)
 		all = Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User') or (creator_id in (?) and creator_type='Group')", self.following, self.id, self.groups)
 		user = Update.where("((creator_id IN (?) or creator_id = ?) and creator_type='User')", self.following, self.id)
 		group = Update.where("(creator_id in (?) and creator_type='Group')", self.groups)
@@ -65,11 +65,12 @@ class User < ActiveRecord::Base
     else
       all
     end
-    result.where('created_at < ?', last).limit(30).order('created_at desc')
+    
+    result.recent.before_id(last)
   end
 
-	def timeline(last = Time.now + 1.second)
-    Update.where("creator_id = ? and creator_type='User'", self.id).where('created_at < ?', last).limit(20).order('created_at desc')
+	def timeline(last = nil)
+    Update.where("creator_id = ? and creator_type='User'", self.id).recent.before_id(last)
 	end
   
   def following?(followed)

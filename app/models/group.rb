@@ -51,9 +51,9 @@ class Group < ActiveRecord::Base
 		@blank ||= GroupModule.blank_module
 		self.modules.include?(@blank) ? self.modules: self.modules.unshift(@blank)
 	end
-	
-	def timeline(last = Time.now + 1.second)
-		Update.where("creator_id = ? and creator_type='Group'", self.id).where('created_at < ?', last).limit(20).order('created_at desc')
+
+	def timeline(last = nil)
+    Update.where("creator_id = ? and creator_type='Group'", self.id).recent.before_id(last)
 	end
 	
 	def promote(msg, user)

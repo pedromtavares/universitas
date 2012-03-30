@@ -1,7 +1,7 @@
 - type ||= nil; id ||= nil
 - unless collection.blank?
   #infinite-scroll.none
-  %ul.listing.list-view.clearfix.updates{:last => collection.to_a.last.created_at, 'data-url' => updates_path(:type => type, :id => id)}
+  %ul.listing.list-view.clearfix.updates{'data-last' => collection.to_a.last.id, 'data-url' => updates_path(:type => type, :id => id)}
     = render collection
   .center= loading_icon
 - else

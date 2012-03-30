@@ -14,51 +14,53 @@
 function rebindToDOM(){
   var scrollLock = true;
   $('.updates').endlessScroll({
-  	fireOnce: true,
-  	fireDelay: 1500,
-  	ceaseFire: function(){
-  		return $('#infinite-scroll').length ? false : true;
-  	},
-  	bottomPixels:300,
+    fireOnce: true,
+    fireDelay: 1500,
+    ceaseFire: function(){
+      return $('#infinite-scroll').length ? false : true;
+    },
+    bottomPixels:300,
     callback: function(){
       if (scrollLock){
         scrollLock = false;
         $.ajax({
-  		    url: $(this).data('url'),
-  		    data: {
-  				  last: $(this).attr('last')			
-  			  },
+          method: 'GET',
+          url: $(this).data('url'),
+          data: {
+            last: $(this).data('last')
+          },
           dataType: 'script',
           success: function(data, status){
             scrollLock = true;
           }
-  		  });
+        });
       }
 
     }
-  });  
+  });
 	$('.endless').endlessScroll({
-  	fireOnce: true,
-  	fireDelay: 1500,
-  	ceaseFire: function(){
-  		return $('#infinite-scroll').length ? false : true;
-  	},
-  	bottomPixels:300,
+    fireOnce: true,
+    fireDelay: 1500,
+    ceaseFire: function(){
+      return $('#infinite-scroll').length ? false : true;
+    },
+    bottomPixels:300,
     callback: function(fireSequence){
       if (scrollLock){
         scrollLock = false;
         $.ajax({
-    	    url: $(this).data('url'),
-    	    data: {
-    			  page: fireSequence + 1,
-    			  search: $('#search').val()
-    		  },
-    		  dataType: 'script',
+          method: 'GET',
+          url: $(this).data('url'),
+          data: {
+            page: fireSequence + 1,
+            search: $('#search').val()
+          },
+          dataType: 'script',
           success: function(data, status){
             scrollLock = true;
           }
-    	  });
-  	  }
+        });
+      }
     }
   });
   
@@ -106,9 +108,9 @@ $(function(){
   });
 	
 	$("#group-breadcrumb").live('click', function() {
-	  $('#slide-content').slideUp('slow');
-	  $('#group-show').slideDown('slow');
-	  $('#group-tips').slideDown();
+    $('#slide-content').slideUp('slow');
+    $('#group-show').slideDown('slow');
+    $('#group-tips').slideDown();
     $('#forum-tips').slideUp();
 	});
 		
@@ -118,7 +120,7 @@ $(function(){
     $(".filters a").removeClass('button-green');
     $(this).addClass('button-green');
     var url = $(this).data('url');
-    if (url && url!=''){
+    if (url && url !== ''){
       $.getScript($(this).data('url'), function(data, status){
         rebindToDOM();
       });
@@ -159,7 +161,7 @@ $(function(){
   });
 	
 	$('.edit-post').live('click', function(){
-		var post = $(this).closest('.post')
+		var post = $(this).closest('.post');
 		var id = post.attr('id');
 		var form = $('#edit-'+id);
 		form.removeClass('none');
@@ -168,14 +170,14 @@ $(function(){
 	});
 	
 	$('.cancel-edit-form').live('click', function(){
-		var post = $(this).closest('.post')
+		var post = $(this).closest('.post');
 		$(this).closest('form').addClass('none');
 		post.find('.text').removeClass('none');
 		post.find('.actions').removeClass('none');
 	});
 	
 	$('.edit-topic').live('click', function(){
-		var topic = $(this).closest('.topic')
+		var topic = $(this).closest('.topic');
 		var id = topic.attr('id');
 		var form = $('#edit-'+id);
 		form.removeClass('none');

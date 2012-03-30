@@ -1,20 +1,16 @@
 <% if params[:last].blank? %>
-  $('#lists').html("<%= escape_javascript(partial('list', :collection => collection, :type => params[:type], :last => params[:last], :id => params[:id]))%>");
+  $('#lists').html("<%= escape_javascript(partial('list', :collection => collection, :type => params[:type], :last => nil, :id => params[:id]))%>");
 <% else %>
-  element = $('.updates');
-
-  if ($(element).find('.endless_scroll_inner_wrap').length){
-  	var div = '.endless_scroll_inner_wrap';
-  }else{
-  	var div = element;
-  }
-
   <% if collection.blank? %>
   	$('#infinite-scroll').detach();
   <% else %>
-    // console.log('<%=collection.to_a.last.created_at%>')
-    element.attr('last', '<%=collection.to_a.last.created_at%>')
+    element = $('.updates');
+    if ($(element).find('.endless_scroll_inner_wrap').length){
+      var div = '.endless_scroll_inner_wrap';
+    }else{
+      var div = element;
+    }
+    element.data('last', '<%=collection.to_a.last.id%>')
+    $(div).append("<%= escape_javascript(render collection) %>");
   <% end %>
-
-  $(div).append("<%= escape_javascript(render collection) %>");
 <% end %>

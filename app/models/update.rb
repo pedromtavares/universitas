@@ -15,7 +15,10 @@
 
 class Update < ActiveRecord::Base
 	belongs_to :creator, :polymorphic => true
-  belongs_to :target, :polymorphic => true  
+  belongs_to :target, :polymorphic => true
+
+  scope :recent, order('id desc').limit(30)
+  scope :before_id, lambda { |id| id.present? ? where('id < ?', id) : scoped} 
 
 	# generates from_user?, from_group?, etc...
 	[User, Group].each do |klass|
