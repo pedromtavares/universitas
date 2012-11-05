@@ -14,32 +14,32 @@
 #
 
 class Update < ActiveRecord::Base
-	belongs_to :creator, :polymorphic => true
+  belongs_to :creator, :polymorphic => true
   belongs_to :target, :polymorphic => true
 
   scope :recent, order('id desc').limit(30)
   scope :before_id, lambda { |id| id.present? ? where('id < ?', id) : scoped} 
 
-	# generates from_user?, from_group?, etc...
-	[User, Group].each do |klass|
-		class_eval %Q!
-			def from_#{klass.to_s.underscore}?
-				self.creator.class.to_s == '#{klass.to_s}'
-			end
-		!
-	end
-	
-	# generates to_user?, to_group_document?, etc...
-	[User, Group, UserDocument, GroupDocument, GroupMember, Post, Topic, Comment].each do |klass|
-		class_eval %Q!
-			def to_#{klass.to_s.underscore}?
-				self.target.class.to_s == '#{klass.to_s}'
-			end
-		!
-	end
-	
-	def to_forum?
-		self.to_post? || self.to_topic?
-	end
-	
+  # generates from_user?, from_group?, etc...
+  [User, Group].each do |klass|
+    class_eval %Q!
+      def from_#{klass.to_s.underscore}?
+        self.creator.class.to_s == '#{klass.to_s}'
+      end
+    !
+  end
+  
+  # generates to_user?, to_group_document?, etc...
+  [User, Group, UserDocument, GroupDocument, GroupMember, Post, Topic, Comment].each do |klass|
+    class_eval %Q!
+      def to_#{klass.to_s.underscore}?
+        self.target.class.to_s == '#{klass.to_s}'
+      end
+    !
+  end
+  
+  def to_forum?
+    self.to_post? || self.to_topic?
+  end
+  
 end

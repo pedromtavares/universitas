@@ -1,5 +1,5 @@
 class UpdatesController < InheritedResources::Base
-	respond_to :html, :js 
+  respond_to :html, :js 
   before_filter :authenticate_user!
   
   def index

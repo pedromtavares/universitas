@@ -2,9 +2,9 @@ class CommentsController < InheritedResources::Base
   respond_to :js
   
   def index
-	  @filter = params[:filter]
-		@comments = paginate(scope_for(params).order('created_at desc'))
-	end
+    @filter = params[:filter]
+    @comments = paginate(scope_for(params).order('created_at desc'))
+  end
   
   def create
     if doc = Document.find(params[:document_id])

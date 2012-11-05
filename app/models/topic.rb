@@ -12,34 +12,34 @@
 #
 
 class Topic < ActiveRecord::Base
-	belongs_to :forum, :counter_cache => :topics_count
-	has_many :posts, :dependent => :destroy
-	validates :title, :presence => true, :length => 2..200
-	delegate :text, :author, :to => :first_post, :allow_nil => true
-	
-	has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
-	
-	after_create :create_update
-	
-	def to_s
-		self.title
-	end
-	
-	def create_post(post)
-		self.posts.create!(post)
-	end
-	
-	def first_post
-		self.posts.order('created_at asc').first
-	end
-	
-	def last_post
-		self.posts.order('created_at desc').first
-	end
-	
-	private
-	
-	def create_update
-		self.forum.group.updates.create(:target => self)
-	end
+  belongs_to :forum, :counter_cache => :topics_count
+  has_many :posts, :dependent => :destroy
+  validates :title, :presence => true, :length => 2..200
+  delegate :text, :author, :to => :first_post, :allow_nil => true
+  
+  has_many :targeted_updates, :as => :target, :dependent => :destroy, :class_name => "Update"
+  
+  after_create :create_update
+  
+  def to_s
+    self.title
+  end
+  
+  def create_post(post)
+    self.posts.create!(post)
+  end
+  
+  def first_post
+    self.posts.order('created_at asc').first
+  end
+  
+  def last_post
+    self.posts.order('created_at desc').first
+  end
+  
+  private
+  
+  def create_update
+    self.forum.group.updates.create(:target => self)
+  end
 end

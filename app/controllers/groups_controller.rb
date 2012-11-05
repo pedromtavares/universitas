@@ -1,34 +1,34 @@
 class GroupsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show, :new]
   before_filter :check_leader, :only => [:edit, :update] 
-	respond_to :html, :js
+  respond_to :html, :js
 
   actions :all, :except => :delete
 
-	def index
-		@filter = params[:filter]
-		scope = paginate(scope_for(params).order('created_at desc'))
-		@groups = if params[:search].present?
-		  scope.search(params[:search])
-	  else
-	    scope
+  def index
+    @filter = params[:filter]
+    scope = paginate(scope_for(params).order('created_at desc'))
+    @groups = if params[:search].present?
+      scope.search(params[:search])
+    else
+      scope
     end
-	end
-	
-	def new
+  end
+  
+  def new
     unless current_user
       session[:new_group] = true if params[:set_session].present?
       redirect_to new_user_session_path(:alert => :group)
       return
     end
-	  @group = Group.new
-	  @documents = current_user ? current_user.documents.order('created_at desc') : nil
-	  render :layout => 'overlay'
-	end
-	
-	def show
-	  @group = Group.find params[:id]
-	end
+    @group = Group.new
+    @documents = current_user ? current_user.documents.order('created_at desc') : nil
+    render :layout => 'overlay'
+  end
+  
+  def show
+    @group = Group.find params[:id]
+  end
   
   def create
     @group = Group.create(params[:group].merge(:leader => current_user))
@@ -46,23 +46,23 @@ class GroupsController < InheritedResources::Base
   def join
     @group = Group.find params[:id]
     unless current_user.member_of?(@group)
-			@group.create_member(current_user)
+      @group.create_member(current_user)
     end
   end
   
   def leave
     @group = Group.find params[:id]
-		@group.remove_member(current_user)
+    @group.remove_member(current_user)
   end
 
-	def update_status
-		resource.update_status(params[:status])
-	end
-	
-	def promote
-		resource.promote(params[:message], current_user)
-		redirect_to resource_path, :notice => t('groups.have_promoted')
-	end
+  def update_status
+    resource.update_status(params[:status])
+  end
+  
+  def promote
+    resource.promote(params[:message], current_user)
+    redirect_to resource_path, :notice => t('groups.have_promoted')
+  end
   
   protected
   

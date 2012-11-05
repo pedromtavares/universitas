@@ -38,7 +38,7 @@ function rebindToDOM(){
 
     }
   });
-	$('.endless').endlessScroll({
+  $('.endless').endlessScroll({
     fireOnce: true,
     fireDelay: 1500,
     ceaseFire: function(){
@@ -87,34 +87,34 @@ function rebindToDOM(){
 $(function(){
   
   rebindToDOM();
-	
-	/******* General Code *******/
-	
+  
+  /******* General Code *******/
+  
   if ($('#activate-new-group').length){
     $('#new-group-button').click();
   }
-	
-	$("img.loading").ajaxStart(function(){
-		$(this).removeClass('none');
-	}).ajaxComplete(function(){
-		$(this).addClass('none');
-	});
-		
+  
+  $("img.loading").ajaxStart(function(){
+    $(this).removeClass('none');
+  }).ajaxComplete(function(){
+    $(this).addClass('none');
+  });
+    
   $('#new-document-comment').keyup(function() {
     if ($(this).val().length > 42){
       $(this).replaceWith('<textarea name=text id=new-document-comment>'+$(this).val()+'</textarea>');
       $('#new-document-comment').focusEnd();
     }
   });
-	
-	$("#group-breadcrumb").live('click', function() {
+  
+  $("#group-breadcrumb").live('click', function() {
     $('#slide-content').slideUp('slow');
     $('#group-show').slideDown('slow');
     $('#group-tips').slideDown();
     $('#forum-tips').slideUp();
-	});
-		
-	/******* Filters *******/
+  });
+    
+  /******* Filters *******/
   
   $(".filters > a").live('click', function() {
     $(".filters a").removeClass('button-green');
@@ -140,64 +140,64 @@ $(function(){
     $('#collection-docs').slideUp();
     $('#' + $(this).data('target')).slideDown();
   });
-	
-	/******* Group forums *******/
+  
+  /******* Group forums *******/
 
-	$('.reply-to').live('click',function(){
-		var post = $(this).closest('.post');
-		var id = post.attr('id');
-		$('#in-reply-to').slideDown('slow');
-		$('#reply').slideUp('slow');
-		$('#reply-text').html(post.find('.text').html());
-		$('#reply-author').text(post.find('.author').text());
-		$('#parent_id').val(id);
-		$('html, body').animate({scrollTop: $('body').height()}, 800);
-	});
-	
+  $('.reply-to').live('click',function(){
+    var post = $(this).closest('.post');
+    var id = post.attr('id');
+    $('#in-reply-to').slideDown('slow');
+    $('#reply').slideUp('slow');
+    $('#reply-text').html(post.find('.text').html());
+    $('#reply-author').text(post.find('.author').text());
+    $('#parent_id').val(id);
+    $('html, body').animate({scrollTop: $('body').height()}, 800);
+  });
+  
   $('#cancel-reply').live('click', function(){
    $('#in-reply-to').slideUp('slow');
    $('#reply').slideDown('slow');
    $('#parent_id').val('');
   });
-	
-	$('.edit-post').live('click', function(){
-		var post = $(this).closest('.post');
-		var id = post.attr('id');
-		var form = $('#edit-'+id);
-		form.removeClass('none');
-		post.find('.text').addClass('none');
-		post.find('.actions').addClass('none');
-	});
-	
-	$('.cancel-edit-form').live('click', function(){
-		var post = $(this).closest('.post');
-		$(this).closest('form').addClass('none');
-		post.find('.text').removeClass('none');
-		post.find('.actions').removeClass('none');
-	});
-	
-	$('.edit-topic').live('click', function(){
-		var topic = $(this).closest('.topic');
-		var id = topic.attr('id');
-		var form = $('#edit-'+id);
-		form.removeClass('none');
-		topic.find('.title').addClass('none');
-	});
-		
-		
+  
+  $('.edit-post').live('click', function(){
+    var post = $(this).closest('.post');
+    var id = post.attr('id');
+    var form = $('#edit-'+id);
+    form.removeClass('none');
+    post.find('.text').addClass('none');
+    post.find('.actions').addClass('none');
+  });
+  
+  $('.cancel-edit-form').live('click', function(){
+    var post = $(this).closest('.post');
+    $(this).closest('form').addClass('none');
+    post.find('.text').removeClass('none');
+    post.find('.actions').removeClass('none');
+  });
+  
+  $('.edit-topic').live('click', function(){
+    var topic = $(this).closest('.topic');
+    var id = topic.attr('id');
+    var form = $('#edit-'+id);
+    form.removeClass('none');
+    topic.find('.title').addClass('none');
+  });
+    
+    
 });
 
 
 /******* Helper Functions *******/
 
 function toggleNone(elements){
-	$.each(elements, function (index, element){
-		if ($(element).hasClass('none-i')){
-			$(element).removeClass('none-i');
-		}else{
-			$(element).addClass('none-i');
-		}
-	});
+  $.each(elements, function (index, element){
+    if ($(element).hasClass('none-i')){
+      $(element).removeClass('none-i');
+    }else{
+      $(element).addClass('none-i');
+    }
+  });
 }
 
 function slideContent(content, showGroupTips){

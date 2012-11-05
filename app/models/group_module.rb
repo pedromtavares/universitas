@@ -12,22 +12,22 @@
 #
 
 class GroupModule < ActiveRecord::Base
-	belongs_to :group, :counter_cache => :modules_count
-	has_many :group_documents
-	
-	validates :name, :presence => true, :length => { :minimum => 4, :maximum => 60 }
-	validates :description, :length => { :minimum => 4, :maximum => 300 }
-	
-	after_create :create_forum
-	
-	def self.blank_module
-		self.new(:name => I18n.t('groups.documents.blank_prompt'))
-	end
-	
-	
-	private
-	
-	def create_forum
-		self.group.forums.create(:title => self.name, :description => self.description)
-	end
+  belongs_to :group, :counter_cache => :modules_count
+  has_many :group_documents
+  
+  validates :name, :presence => true, :length => { :minimum => 4, :maximum => 60 }
+  validates :description, :length => { :minimum => 4, :maximum => 300 }
+  
+  after_create :create_forum
+  
+  def self.blank_module
+    self.new(:name => I18n.t('groups.documents.blank_prompt'))
+  end
+  
+  
+  private
+  
+  def create_forum
+    self.group.forums.create(:title => self.name, :description => self.description)
+  end
 end

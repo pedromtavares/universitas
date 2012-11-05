@@ -1,36 +1,36 @@
 class DocumentsController < InheritedResources::Base
-	respond_to :html, :js
-	
-	def index
-		@filter = params[:filter]
-		scope = paginate(scope_for(params).order('created_at desc'))
-		@documents = if params[:search].present?
-		  scope.search(params[:search])
-	  else
-	    scope
+  respond_to :html, :js
+  
+  def index
+    @filter = params[:filter]
+    scope = paginate(scope_for(params).order('created_at desc'))
+    @documents = if params[:search].present?
+      scope.search(params[:search])
+    else
+      scope
     end
-	end
-	
-	def new
-	  if params[:group_id]
-	    @group = Group.find(params[:group_id])
-	    @documents = current_user.documents.order('created_at desc')
-	    render 'group_new', :layout => 'overlay'
+  end
+  
+  def new
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      @documents = current_user.documents.order('created_at desc')
+      render 'group_new', :layout => 'overlay'
     else
       render :layout => 'overlay'
     end
-	end
-	
-	def create
-	  content_type = MIME::Types.type_for(params[:file].original_filename).first.to_s
-	  extension = Document.get_extension_from(params[:file].original_filename)
-	  unless Document::ALLOWED_FILE_EXTENSIONS.include?(extension)
+  end
+  
+  def create
+    content_type = MIME::Types.type_for(params[:file].original_filename).first.to_s
+    extension = Document.get_extension_from(params[:file].original_filename)
+    unless Document::ALLOWED_FILE_EXTENSIONS.include?(extension)
       render :nothing => true, :status => :unsupported_media_type #415
       return
     end
-	  name = params[:Filename].split('.').first
-	  name = "#{name}-#{current_user.login}" if name.length < 4
-	  @document = if Document.is_image?(extension)
+    name = params[:Filename].split('.').first
+    name = "#{name}-#{current_user.login}" if name.length < 4
+    @document = if Document.is_image?(extension)
       Document.create(:name => name, :file => params[:file], :uploader => current_user, :file_size => params[:file].size, :content_type => content_type, :extension => extension)
     else
       Document.create_from_scribd(name, params[:file], current_user, content_type)
@@ -42,9 +42,9 @@ class DocumentsController < InheritedResources::Base
     else
       render :nothing => true, :status => :unsupported_media_type #415
     end
-	end
-	
-	def download
+  end
+  
+  def download
     if resource.file.present?
       redirect_to resource.file_url
     else
@@ -54,20 +54,20 @@ class DocumentsController < InheritedResources::Base
         redirect_to resource, :alert => t('documents.download_unavailable')
       end
     end
-	end
-	
-	def view
+  end
+  
+  def view
     render :layout => false
-	end
-	
-	private
-	
-	def scope_for(params)
+  end
+  
+  private
+  
+  def scope_for(params)
     case params[:filter]
     when 'my'
       current_user.documents
     when 'uploaded'
-    	current_user.uploaded_documents
+      current_user.uploaded_documents
     else
       case params[:type]
       when 'user'

@@ -1,15 +1,15 @@
 class UsersController < InheritedResources::Base
   respond_to :html, :js
-	
-	def index
-	  @filter = params[:filter]
-		scope = paginate(scope_for(params).order('created_at desc'))
-		@users = if params[:search].present?
-		  scope.search(params[:search])
-	  else
-	    scope
+  
+  def index
+    @filter = params[:filter]
+    scope = paginate(scope_for(params).order('created_at desc'))
+    @users = if params[:search].present?
+      scope.search(params[:search])
+    else
+      scope
     end
-	end
+  end
   
   def follow
     unless current_user.following?(resource)
@@ -35,7 +35,7 @@ class UsersController < InheritedResources::Base
     when 'following'
       user.following
     when 'followers'
-    	user.followers
+      user.followers
     else
       case params[:type]
       when 'document'

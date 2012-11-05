@@ -13,17 +13,17 @@
 #
 
 class Forum < ActiveRecord::Base
-	belongs_to :group
-	has_many :topics, :dependent => :destroy
-	has_many :posts, :through => :topics
-	validates :title, :presence => true, :length => 2..200
-	validates :description, :length => {:maximum => 400}
-	
-	def to_s
-		self.title
-	end
-	
-	def last_post
-		self.posts.order('created_at desc').first
-	end
+  belongs_to :group
+  has_many :topics, :dependent => :destroy
+  has_many :posts, :through => :topics
+  validates :title, :presence => true, :length => 2..200
+  validates :description, :length => {:maximum => 400}
+  
+  def to_s
+    self.title
+  end
+  
+  def last_post
+    self.posts.order('created_at desc').first
+  end
 end
